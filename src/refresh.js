@@ -11,6 +11,7 @@ import {
   ZH_DOC_URLS,
 } from "./config.js";
 import { groupToday, writeDaily, writeModelTree } from "./digest.js";
+import { buildCommunity, loadMaintainers } from "./community.js";
 import { fetchCommunity, scoreItem, shanghaiToday } from "./github.js";
 import { groupHistory, mergeHistory, readHistory, shouldDeep, writeHistoryFiles } from "./history.js";
 import { FAMILY_ORDER, MODELS, PLATFORM } from "./models.js";
@@ -169,6 +170,11 @@ async function runRefresh() {
     knownModels.add(group.id);
   }
   const models = orderModels(builtModels);
+  const maintainers = await loadMaintainers(previous?.community?.people?.maintainers || []);
+  const communitySummary = buildCommunity(historyItems, {
+    today: community?.day || shanghaiToday().day,
+    maintainers,
+  });
 
   const todayKeys = new Set();
   for (const group of todayGroups) {
@@ -205,6 +211,7 @@ async function runRefresh() {
       historyCount: historyItems.length,
       rateRemaining: community?.rateRemaining ?? previous?.stats?.rateRemaining ?? null,
     },
+    community: communitySummary,
   };
 
   await writeState(state);

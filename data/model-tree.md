@@ -1,6 +1,6 @@
 # vLLM-Ascend 模型版本树
 
-更新时间：2026-10-14T02:22:21.051Z
+更新时间：2026-10-14T07:51:02.491Z
 
 版本按日期由近到远排列。同一条说明若点名多个模型，会同时出现在这些模型下。
 
@@ -4121,12 +4121,6 @@
 
 - 在某些情况下，当启用 aclgraph 时，vLLM 进程可能会因 GatherV3 错误而崩溃。我们正在处理此问题，并将在下一个版本中修复。 [#1038](https://github.com/vllm-project/vllm-ascend/issues/1038)
 - 前缀缓存功能在启用 Ascend Scheduler 但未启用分块预填充时无法正常工作。此问题将在下一个版本中修复。 [#1350](https://github.com/vllm-project/vllm-ascend/issues/1350)
-
-#### v0.9.0rc2 · 2025.06.10（英文原文）
-
-##### 亮点
-
-- Fix the import error when vllm-ascend is installed without editable way. [#1152](https://github.com/vllm-project/vllm-ascend/issues/1152)
 
 #### v0.9.0rc1 · 2025.06.09（中文）
 

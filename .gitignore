@@ -1,2 +1,4 @@
 data/server.log
 data/server.pid
+data/server.out.log
+data/server.err.log
