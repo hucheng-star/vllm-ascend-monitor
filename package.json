@@ -1,0 +1,11 @@
+{
+  "name": "vllm-ascend-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Monitor vLLM-Ascend release notes by model, plus daily PR and issue progress.",
+  "scripts": {
+    "start": "node src/server.js",
+    "refresh": "node src/refresh.js"
+  }
+}

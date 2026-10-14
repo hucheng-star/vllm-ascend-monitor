@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>vLLM-Ascend 社区监控</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="live" id="live" title="监控进程在运行"></span>
+        <div>
+          <h1>vLLM-Ascend 社区监控</h1>
+          <p id="status">正在读取本地快照…</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="refresh" type="button">立即同步</button>
+      </div>
+    </header>
+    <div id="warnings" class="warnings" hidden></div>
+    <div class="layout">
+      <aside class="sidebar">
+        <label class="search">
+          <span>筛选模型</span>
+          <input id="filter" type="search" placeholder="例如 DeepSeek、Qwen、GLM" />
+        </label>
+        <nav id="tree" class="tree"></nav>
+      </aside>
+      <main id="main" class="main"></main>
+    </div>
+    <script src="/app.js"></script>
+  </body>
+</html>

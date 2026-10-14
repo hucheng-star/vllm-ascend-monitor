@@ -1,0 +1,938 @@
+{
+  "day": "2026-10-08",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 18030,
+          "title": "[Bug][v0.23.0]: enable mooncake pooling on Qwen3.8-27B caused request backlog",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/18030",
+          "author": "huangdong2022",
+          "labels": [
+            "bug"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-08T12:40:41Z",
+          "updatedAt": "2026-10-08T12:53:10Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 8,
+          "titleZh": "【缺陷】【v0.23.0】: 启用 mooncake 池化 on Qwen3.8-27B 导致 请求积压",
+          "excerptZh": ""
+        },
+        {
+          "kind": "pr",
+          "number": 18027,
+          "title": "[Perf][QSA] Avoid per-prefill recompilation of QSA Triton kernels via do_not_specialize",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18027",
+          "author": "Wfd567",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-08T12:15:46Z",
+          "updatedAt": "2026-10-08T12:22:00Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR is based on 17762 (\"Support Qwen3.8 Flash Next on Ascend\") and applies an optimization on top of its qwen4 exp/qsa.py Triton kernels. The QSA split-k and merge Triton kernels declare num rows , num requests and num cache blocks as s",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "[PERF] [QSA]避免通过do_not_specialize对QSA Triton内核进行每次预填重新编译",
+          "excerptZh": "This PR is based on 17762 (\"支持 Qwen3.8 Flash Next on Ascend\") and applies an 优化 on top of its qwen4 exp/qsa.py Triton 内核. The QSA 拆分-k and 合并 Triton 内核 declare num rows , num requests and num 缓存 blocks as s"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17927,
+          "title": "[Feature][Model] Add DeepSeek V4.1 support and execution optimizations on Ascend A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17927",
+          "author": "linfeng-yuan",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-06T08:30:37Z",
+          "updatedAt": "2026-10-08T15:17:58Z",
+          "closedAt": "2026-10-08T15:17:58Z",
+          "mergedAt": "2026-10-08T15:17:58Z",
+          "comments": 0,
+          "excerpt": "Add DeepSeek V4.1 support on Ascend A5 and integrate metadata, indexer, QKV and Engram optimizations. This remains a draft pending CI, native-source rebuild verification and broader runtime coverage. The original sequence separates native o",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【功能】【模型】DeepSeek V4.1 支持 and 执行优化 on Ascend A5",
+          "excerptZh": "新增 DeepSeek V4.1 支持 on Ascend A5 and integrate 元数据, 索引器, QKV and Engram 优化. This remains a draft pending CI, native-source rebuild verification and broader 运行时 coverage. The original 序列 separates native o"
+        },
+        {
+          "kind": "pr",
+          "number": 17989,
+          "title": "[Feat][Model] Add DeepSeek V4.1 MRV2 PCP with shared Engram",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17989",
+          "author": "vrooml",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-08T05:12:33Z",
+          "updatedAt": "2026-10-08T15:42:50Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add DeepSeek V4.1 PCP support on MRV2, following the DSA PCP path in 14037 and the MRV2 integration in 16899. - Separate rank-local queries from global cache updates; gather and restore hidden states before updating replicated KV and compre",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【Feat】【模型】新增 DeepSeek V4.1 MRV2 PCP with 共享 Engram",
+          "excerptZh": "新增 DeepSeek V4.1 PCP 支持 on MRV2, following the DSA PCP path in 14037 and the MRV2 integration in 16899. - Separate rank-local queries from global 缓存 更新; gather and 恢复 hidden states before updating replicated KV and compre"
+        },
+        {
+          "kind": "pr",
+          "number": 17794,
+          "title": "[BugFix][Model] Fix Engram history and lookup timing in model runner v2",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17794",
+          "author": "QwertyJack",
+          "labels": [
+            "module:tests",
+            "merge-conflicts",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-30T00:14:53Z",
+          "updatedAt": "2026-10-08T15:40:29Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Fix DeepSeek V4.1 Engram device history and lookup timing in model runner v2 after 16899. Does this PR introduce any user-facing change? Correct MRV2 Engram execution; no new configuration options. A3, MRV2, full GPQA-Diamond (198 questions",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【模型】Engram history and lookup timing in model runner v2",
+          "excerptZh": "修复 DeepSeek V4.1 Engram device history and lookup timing in model runner v2 after 16899. Correct MRV2 Engram execution; no new 配置 options. A3, MRV2, full GPQA-Diamond (198 questions"
+        },
+        {
+          "kind": "pr",
+          "number": 17341,
+          "title": "[Performance] Overlap DeepSeek V4.1 indexer preprocessing",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17341",
+          "author": "pisceskkk",
+          "labels": [
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-23T03:42:40Z",
+          "updatedAt": "2026-10-08T15:39:47Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "- Overlap indexer query RoPE with weights projection on separate NPU streams. - Overlap indexer query quantization with compressor WKV projection. For C2, complete the input FP32 cast before releasing query work to the auxiliary stream. - P",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】重叠 DeepSeek V4.1 索引器 preprocessing",
+          "excerptZh": "- 重叠 索引器 query RoPE with 权重 projection on separate NPU streams. - 重叠 索引器 query 量化 with 压缩器 WKV projection. For C2, complete the input FP32 cast before releasing query work to the auxiliary stream. - P"
+        },
+        {
+          "kind": "pr",
+          "number": 17097,
+          "title": "[Performance] Overlap V4.1 DSA-CP gathers",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17097",
+          "author": "pisceskkk",
+          "labels": [
+            "module:tests",
+            "module:core",
+            "merge-conflicts",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-21T08:12:01Z",
+          "updatedAt": "2026-10-08T15:38:21Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4.1 DSA-CP with sequence-parallel MoE previously used an activation all-gather before attention, an attention-output all-to-all, and an output reduce-scatter. This PR keeps the query input sequence-sharded and asynchronously gathe",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】重叠 V4.1 DSA-CP gathers",
+          "excerptZh": "DeepSeek V4.1 DSA-CP with 序列-parallel MoE previously used an activation all-gather before 注意力, an 注意力-output all-to-all, and an output 减少-scatter. This PR keeps the query input 序列-sharded and asynchronously gathe"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18037,
+          "title": "[Performance]: optimize DeepSeek V4 TurboQuant framework path",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18037",
+          "author": "qjgggsse",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:quantization"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-08T15:27:55Z",
+          "updatedAt": "2026-10-08T15:34:08Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Share DSV4 transform tensors and cache KV plans, fuse scale correction and cache packing, and align DSpark context KV rotation and compressed attention metadata. Restore the historical DSV4 Hadamard sequence while preserving the SFA baselin",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【性能】: 优化 DeepSeek V4 TurboQuant framework path",
+          "excerptZh": "Share DSV4 transform tensors and 缓存 KV plans, 融合 scale correction and 缓存 packing, and 对齐 DSpark context KV rotation and compressed 注意力 元数据. 恢复 the historical DSV4 Hadamard 序列 while preserving the SFA baselin"
+        },
+        {
+          "kind": "pr",
+          "number": 16542,
+          "title": "[Performance][DSA] Fuse build_dspark_swa_indices into a single Triton kernel for DSv4 DSpark decode",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/16542",
+          "author": "zhangxiaoshanha",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-14T13:41:09Z",
+          "updatedAt": "2026-10-08T14:36:42Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "build dspark swa indices builds the per-token \"which KV slots can I see\" index table for DSv4 DSpark parallel drafting. The eager implementation is a 12-op PyTorch chain (24 kernel launches, including an AiCPU-bound FloorDiv ), which is lau",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[性能] [DSA]将build_dspark_swa_indices融合到单个Triton内核中，用于DSv4 DSpark解码",
+          "excerptZh": "build dspark swa indices builds the per-token \"which KV slots can I see\" index table for DSv4 DSpark parallel drafting. The eager implementation is a 12-op PyTorch chain (24 内核 launches, including an AiCPU-bound FloorDiv ), which is lau"
+        }
+      ]
+    },
+    {
+      "id": "ds-v3",
+      "name": "DeepSeek V3",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18025,
+          "title": "[Bugfix]fix DeepSeek-V3-weekly",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18025",
+          "author": "SOMEONEUNSEEN",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-08T12:05:18Z",
+          "updatedAt": "2026-10-08T12:24:55Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Does this PR introduce any user-facing change? - vLLM main:",
+          "modelIds": [
+            "ds-v3"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【修复】DeepSeek-V3-每周",
+          "excerptZh": "- vLLM main:"
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17916,
+          "title": "[BugFix][MoE] Resolve communication methods with MoE config",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17916",
+          "author": "hust17yixuan",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-05T20:35:34Z",
+          "updatedAt": "2026-10-08T15:51:14Z",
+          "closedAt": "2026-10-08T15:51:14Z",
+          "mergedAt": "2026-10-08T15:51:14Z",
+          "comments": 0,
+          "excerpt": "The MoE communication registry is keyed by both communication type and the expert shape from FusedMoEConfig. AscendMoERunner registered shape-specific communication instances but retrieved FusedMC2 and AlltoAll without the config, which loo",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【MoE】Resolve 通信 methods with MoE 配置",
+          "excerptZh": "The MoE 通信 registry is keyed by both 通信 type and the expert shape from FusedMoEConfig. AscendMoERunner registered shape-specific 通信 instances but retrieved FusedMC2 and AlltoAll without the 配置, which loo"
+        },
+        {
+          "kind": "pr",
+          "number": 17994,
+          "title": "[BugFix][Model] Avoid current-config lookup in MiniMax-M3 MRV2 forward",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17994",
+          "author": "yingyingzizi",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-08T06:25:17Z",
+          "updatedAt": "2026-10-08T14:01:58Z",
+          "closedAt": "2026-10-08T14:01:58Z",
+          "mergedAt": "2026-10-08T14:01:58Z",
+          "comments": 0,
+          "excerpt": "MiniMax-M3 A3 decode startup can fail at the first FULL graph-capture warmup with MRV2, TP4, DP4 and EAGLE3. AscendMiniMaxM3IndexerImpl.forward() calls is mrv2 idle dp dummy() , which reads get current vllm config().use v2 model runner . Th",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "[BugFix] [Model]避免在MiniMax-M3 MRV2正向中查找当前配置",
+          "excerptZh": "MiniMax-M3 A3 解码 startup can fail at the first FULL graph-capture warmup with MRV2, TP4, DP4 and EAGLE3. AscendMiniMaxM3IndexerImpl.forward() calls is mrv2 idle dp dummy() , which reads get current vllm 配置().use v2 model runner . Th"
+        },
+        {
+          "kind": "pr",
+          "number": 18024,
+          "title": "[BugFix][Ops] Drop need_expert_scale setup in MoE token dispatcher",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18024",
+          "author": "lvvgang",
+          "labels": [
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-08T11:59:33Z",
+          "updatedAt": "2026-10-08T13:58:50Z",
+          "closedAt": "2026-10-08T13:58:50Z",
+          "mergedAt": "2026-10-08T13:58:50Z",
+          "comments": 0,
+          "excerpt": "TokenDispatcherWithMC2 previously set need expert scale for both hierarchical communication and the A5 shared-expert case. That flag makes MoE dispatch pass expert scales into the MC2 dispatch operator. A5 does not need expert scales here. ",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "[BugFix] [Ops]在教育部令牌调度程序中丢弃NEED_EXPERT_SCALE设置",
+          "excerptZh": "TokenDispatcherWithMC2 previously set need expert scale for both hierarchical 通信 and the A5 共享-expert case. That flag makes MoE dispatch pass expert scales into the MC2 dispatch operator. A5 does not need expert scales here."
+        },
+        {
+          "kind": "issue",
+          "number": 17582,
+          "title": "[Feature]: Support lmhead TP together with speculative decoding on Model Runner V2",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/17582",
+          "author": "xuchi-0808",
+          "labels": [
+            "feature request"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-09-27T15:39:35Z",
+          "updatedAt": "2026-10-08T13:36:35Z",
+          "closedAt": "2026-10-08T06:43:58Z",
+          "mergedAt": null,
+          "comments": 3,
+          "excerpt": "Following up on 14668 (lmhead TP on the MRv2 sample path): when speculative decoding is also enabled, the draft LM head still samples per rank without the row alignment the LM-head collectives require, so the combination currently hangs sil",
+          "modelIds": [],
+          "action": "closed",
+          "score": 5,
+          "titleZh": "【功能】: 支持 lmhead TP together with 投机解码 on Model Runner V2",
+          "excerptZh": "Following up on 14668 (lmhead TP on the MRv2 sample path): when 投机解码 is also 启用, the draft LM head still samples per rank without the row alignment the LM-head collectives require, so the combination currently hangs sil"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-moe",
+      "name": "Qwen3 MoE",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17356,
+          "title": "[CI][Doc][Misc] Prune retired Qwen3-235B nightly cases and refresh the kept ones",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17356",
+          "author": "hw-qianlingfeng",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:tools"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-09-23T05:06:49Z",
+          "updatedAt": "2026-10-08T14:11:31Z",
+          "closedAt": "2026-10-08T14:08:51Z",
+          "mergedAt": "2026-10-08T14:08:51Z",
+          "comments": 0,
+          "excerpt": "Qwen3-235B nightly coverage has grown to 9 registered cases over 10 config files that repeat the same scenarios on different generations of launch flags; a few are no longer registered at all or point at a local absolute model path. This PR",
+          "modelIds": [
+            "qwen3-moe"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "[CI] [Doc] [Misc]修剪退役的Qwen3-235B夜间案例并刷新保留的",
+          "excerptZh": "Qwen3-235B 夜间 coverage has grown to 9 registered cases over 10 配置 files that repeat the same scenarios on different generations of launch flags; a few are no longer registered at all or point at a local absolute model path. This PR"
+        },
+        {
+          "kind": "pr",
+          "number": 18023,
+          "title": "[Test] switches the Qwen3-30B-QuaRot-eagle3 from eager mode to FULL_DECODE_ONLY graph mode",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18023",
+          "author": "HustCGX",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-08T11:55:51Z",
+          "updatedAt": "2026-10-08T13:19:49Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR updates the Qwen3-30B-QuaRot-eagle3 test case to use FULL DECODE ONLY graph mode instead of eager mode, with performance guard maintained. Changes in this PR: - Remove --enforce-eager from server cmd to disable eager execution. - Ad",
+          "modelIds": [
+            "qwen3-moe"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "[测试]将Qwen3-30B-QuaRot-eagle3从eager模式切换到FULL_DECODE_ONLY图模式",
+          "excerptZh": "This PR 更新 the Qwen3-30B-QuaRot-eagle3 测试用例 to use FULL 解码 ONLY 图模式 instead of eager 模式, with 性能 guard maintained. Changes in this PR: - 移除 --enforce-eager from server cmd to 禁用 eager execution. - Ad"
+        },
+        {
+          "kind": "pr",
+          "number": 15723,
+          "title": "[CI] New test cases added",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/15723",
+          "author": "jiangli221",
+          "labels": [
+            "module:tests",
+            "module:tools",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-04T01:40:13Z",
+          "updatedAt": "2026-10-08T12:29:45Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "New test cases added: Qwen3-30B-A3B-W8A8-offload-test-acc.yaml Qwen3.5-397B-no-Memcache-perf.yaml Modified the verification logic of input throughput. - vLLM main:",
+          "modelIds": [
+            "qwen3.5",
+            "qwen3-moe"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】New 测试用例 新增",
+          "excerptZh": "新增测试用例： Qwen3-30B-A3B-W8A8-offload-test-acc.yaml Qwen3.5-397B-no-Memcache-perf.yaml修改了输入吞吐量的验证逻辑。- vLLM主："
+        }
+      ]
+    },
+    {
+      "id": "glm-5.2",
+      "name": "GLM-5.2",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17900,
+          "title": "[Feature][KV Offload] Support GLM-5.2 V2 sparse offload with PP and DSpark",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17900",
+          "author": "zhenwenqi2024",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-05T09:41:59Z",
+          "updatedAt": "2026-10-08T15:44:14Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable GLM MLA DSpark with V2 sparse KV offload and disaggregated prefill, while preserving native MTP and non-offload paths. - Keep target KV in the sparse host pool and draft KV resident on Decode; account for both in cache sizing. - Pref",
+          "modelIds": [
+            "glm-5.2"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【KV 卸载】支持 GLM-5.2 V2 稀疏 卸载 with PP and DSpark",
+          "excerptZh": "启用 GLM MLA DSpark with V2 稀疏 KV 卸载 and 分离式预填充, while preserving native MTP and non-卸载 paths. - Keep target KV in the 稀疏 host pool and draft KV resident on 解码; account for both in 缓存 sizing. - Pref"
+        }
+      ]
+    },
+    {
+      "id": "ds-v3.2",
+      "name": "DeepSeek V3.2",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18013,
+          "title": "[CI] Remove GLM5, DeepSeek V3.2 and GLM4.7 nightly and weekly cases",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18013",
+          "author": "Wyz-134",
+          "labels": [
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-08T09:55:47Z",
+          "updatedAt": "2026-10-08T15:14:29Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Remove all scheduled nightly and weekly matrix entries for GLM-5 (original version), DeepSeek-V3.2 (including V3.2T), and GLM-4.7. - Nightly: remove 4 cases covering DeepSeek-V3.2 single-node, EP and dual-node configurations, and GLM-4.7 si",
+          "modelIds": [
+            "ds-v3.2",
+            "glm-5",
+            "glm-4.7"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【持续集成】移除 GLM5, DeepSeek V3.2 and GLM4.7 夜间 and 每周 cases",
+          "excerptZh": "移除 all scheduled 夜间 and 每周 matrix entries for GLM-5 (original version), DeepSeek-V3.2 (including V3.2T), and GLM-4.7. - 夜间: 移除 4 cases covering DeepSeek-V3.2 single-node, EP and dual-node configurations, and GLM-4.7 si"
+        }
+      ]
+    },
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18013,
+          "title": "[CI] Remove GLM5, DeepSeek V3.2 and GLM4.7 nightly and weekly cases",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18013",
+          "author": "Wyz-134",
+          "labels": [
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-08T09:55:47Z",
+          "updatedAt": "2026-10-08T15:14:29Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Remove all scheduled nightly and weekly matrix entries for GLM-5 (original version), DeepSeek-V3.2 (including V3.2T), and GLM-4.7. - Nightly: remove 4 cases covering DeepSeek-V3.2 single-node, EP and dual-node configurations, and GLM-4.7 si",
+          "modelIds": [
+            "ds-v3.2",
+            "glm-5",
+            "glm-4.7"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【持续集成】移除 GLM5, DeepSeek V3.2 and GLM4.7 夜间 and 每周 cases",
+          "excerptZh": "移除 all scheduled 夜间 and 每周 matrix entries for GLM-5 (original version), DeepSeek-V3.2 (including V3.2T), and GLM-4.7. - 夜间: 移除 4 cases covering DeepSeek-V3.2 single-node, EP and dual-node configurations, and GLM-4.7 si"
+        }
+      ]
+    },
+    {
+      "id": "glm-4.7",
+      "name": "GLM-4.7",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18013,
+          "title": "[CI] Remove GLM5, DeepSeek V3.2 and GLM4.7 nightly and weekly cases",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18013",
+          "author": "Wyz-134",
+          "labels": [
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-08T09:55:47Z",
+          "updatedAt": "2026-10-08T15:14:29Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Remove all scheduled nightly and weekly matrix entries for GLM-5 (original version), DeepSeek-V3.2 (including V3.2T), and GLM-4.7. - Nightly: remove 4 cases covering DeepSeek-V3.2 single-node, EP and dual-node configurations, and GLM-4.7 si",
+          "modelIds": [
+            "ds-v3.2",
+            "glm-5",
+            "glm-4.7"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【持续集成】移除 GLM5, DeepSeek V3.2 and GLM4.7 夜间 and 每周 cases",
+          "excerptZh": "移除 all scheduled 夜间 and 每周 matrix entries for GLM-5 (original version), DeepSeek-V3.2 (including V3.2T), and GLM-4.7. - 夜间: 移除 4 cases covering DeepSeek-V3.2 single-node, EP and dual-node configurations, and GLM-4.7 si"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17334,
+          "title": "[Feature][MoE] Support Kimi K3 CANN MegaMoE on main",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17334",
+          "author": "qijiajin",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-23T03:03:58Z",
+          "updatedAt": "2026-10-08T14:36:05Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "What this PR does Enable Kimi K3 CANN MegaMoE on current main and allow the existing mega moe max tokens configuration to be zero. Preserve the original receive-capacity selection: P and PD-mixed nodes use the configured value capped at the",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【MoE】支持 Kimi K3 CANN MegaMoE on main",
+          "excerptZh": "What this PR does 启用 Kimi K3 CANN MegaMoE on current main and allow the existing mega moe max tokens 配置 to be zero. Preserve the original receive-capacity selection: P and PD-mixed nodes use the configured value capped at the"
+        },
+        {
+          "kind": "pr",
+          "number": 17835,
+          "title": "[Feature][Model] Support EPLB for Kimi K3 and its MTP draft model",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17835",
+          "author": "freyfwt",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-30T07:08:48Z",
+          "updatedAt": "2026-10-08T13:54:30Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Upstream Kimi K3 declares MixtureOfExperts but does not initialize the runtime metadata required by is mixture of experts() . EPLB registration therefore skips the model. This PR implements that contract for the Ascend language model and Mo",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【特点】【型号】支持Kimi K3及其MTP草案型号的EPLB",
+          "excerptZh": "Upstream Kimi K3 declares MixtureOfExperts but does not 初始化 the 运行时 元数据 必填 by is mixture of experts() . EPLB registration therefore skips the model. This PR implements that contract for the Ascend language model and Mo"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-pro",
+      "name": "DeepSeek V4 Pro",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 16839,
+          "title": "[CI][MRV2] Add DeepSeek V4 Pro MTP prefix-cache nightly case",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/16839",
+          "author": "pgzddxx",
+          "labels": [
+            "module:tests",
+            "module:tools",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-18T02:51:40Z",
+          "updatedAt": "2026-10-08T14:37:38Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary - split the DeepSeek V4 Pro MTP prefix-cache P/D MRV2 nightly case from 16816 into an independently triggerable PR - reuse the existing Pro w4a8 MTP model entry in model dataset list.json - keep the generate zh docs.py import-path f",
+          "modelIds": [
+            "ds-v4-pro"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】【MRV2】新增 DeepSeek V4 Pro MTP 前缀-缓存 夜间用例",
+          "excerptZh": "Summary - 拆分 the DeepSeek V4 Pro MTP 前缀-缓存 P/D MRV2 夜间用例 from 16816 into an independently triggerable PR - reuse the existing Pro w4a8 MTP model entry in model dataset list.json - keep the generate zh docs.py import-path f"
+        },
+        {
+          "kind": "pr",
+          "number": 16838,
+          "title": "[CI][MRV2] Add DeepSeek V4 Pro DSpark prefix-cache nightly case",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/16838",
+          "author": "pgzddxx",
+          "labels": [
+            "module:tests",
+            "module:tools",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-18T02:51:37Z",
+          "updatedAt": "2026-10-08T14:37:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary - split the DeepSeek V4 Pro DSpark prefix-cache P/D MRV2 nightly case from 16816 into an independently triggerable PR - add the required Pro w4a8 model to model dataset list.json - keep the generate zh docs.py import-path fix requir",
+          "modelIds": [
+            "ds-v4-pro"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】【MRV2】新增 DeepSeek V4 Pro DSpark 前缀-缓存 夜间用例",
+          "excerptZh": "Summary - 拆分 the DeepSeek V4 Pro DSpark 前缀-缓存 P/D MRV2 夜间用例 from 16816 into an independently triggerable PR - 新增 the 必填 Pro w4a8 model to model dataset list.json - keep the generate zh docs.py import-path 修复 requir"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 16836,
+          "title": "[CI][MRV2] Add DeepSeek V4 Flash PD nightly case",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/16836",
+          "author": "pgzddxx",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-18T02:51:29Z",
+          "updatedAt": "2026-10-08T13:43:45Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "What this PR does Adds the DeepSeek V4 Flash MRV2 disaggregated-prefill Nightly case. This branch was rebuilt cleanly on vLLM Ascend main 395432829b21352c7cd620e7755519150b193da8 . The previous conflict-heavy history is preserved in pgzddxx",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】【MRV2】新增 DeepSeek V4 Flash PD 夜间用例",
+          "excerptZh": "此PR的作用添加了DeepSeek V4 Flash MRV2分解预填充Nightly案例。该分支在vLLM Ascend主395432829b21352c7cd620e7755519150b193da8上干净利落地重建。之前的冲突历史记录保留在pgzddxx中"
+        },
+        {
+          "kind": "pr",
+          "number": 17362,
+          "title": "[CI] Add case DeepSeek-V4-Flash-w8a8-bugtest-acc",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17362",
+          "author": "jiangli221",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-23T06:46:29Z",
+          "updatedAt": "2026-10-08T12:37:27Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add case DeepSeek-V4-Flash-w8a8-bugtest-acc - vLLM main:",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "[CI]添加案例DeepSeek-V4-Flash-w8a8-bugtest-acc",
+          "excerptZh": "添加案例DeepSeek-V4-Flash-w8a8-bugtest-acc - vLLM主要："
+        },
+        {
+          "kind": "pr",
+          "number": 17599,
+          "title": "[CI] Add weekly case DeepSeek-V4-Flash-w8a8-sleep-wakeup",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17599",
+          "author": "jiangli221",
+          "labels": [
+            "module:tests",
+            "module:tools",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-28T02:40:01Z",
+          "updatedAt": "2026-10-08T12:19:41Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add weekly case DeepSeek-V4-Flash-w8a8-sleep-wakeup modify aisbench.py - vLLM main:",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "[CI]添加每周案例DeepSeek-V4-Flash-w8a8-sleep-wakeup",
+          "excerptZh": "添加每周案例DeepSeek-V4-Flash-w8a8-sleep-wakeup修改aisbench.py - vLLM主要："
+        }
+      ]
+    },
+    {
+      "id": "llama",
+      "name": "Llama",
+      "family": "其他",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17439,
+          "title": "[Test]Upstream test: debug test case test_llama_nemotron_vl.py using the online model.",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17439",
+          "author": "meiling6226",
+          "labels": [
+            "ci/build"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-24T02:01:32Z",
+          "updatedAt": "2026-10-08T12:32:19Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Upstream test: debug test case test llama nemotron vl.py using the online model. Does this PR introduce any user-facing change? NO - vLLM main:",
+          "modelIds": [
+            "llama"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "[测试]上游测试：使用在线模型调试测试用例test_llama_nemotron_vl.py。",
+          "excerptZh": "Upstream test: 调试 测试用例 test llama nemotron vl.py using the online model. NO - vLLM main:"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 15723,
+          "title": "[CI] New test cases added",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/15723",
+          "author": "jiangli221",
+          "labels": [
+            "module:tests",
+            "module:tools",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-04T01:40:13Z",
+          "updatedAt": "2026-10-08T12:29:45Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "New test cases added: Qwen3-30B-A3B-W8A8-offload-test-acc.yaml Qwen3.5-397B-no-Memcache-perf.yaml Modified the verification logic of input throughput. - vLLM main:",
+          "modelIds": [
+            "qwen3.5",
+            "qwen3-moe"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】New 测试用例 新增",
+          "excerptZh": "新增测试用例： Qwen3-30B-A3B-W8A8-offload-test-acc.yaml Qwen3.5-397B-no-Memcache-perf.yaml修改了输入吞吐量的验证逻辑。- vLLM主："
+        }
+      ]
+    },
+    {
+      "id": "glm-5.1",
+      "name": "GLM-5.1",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17836,
+          "title": "[CI][PCP] Migrate GLM MRV2 nightlies from DSA-CP to PCP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17836",
+          "author": "li1how",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-09-30T07:13:18Z",
+          "updatedAt": "2026-10-08T15:20:06Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "- Migrate five GLM MRV2 nightly configurations from DSA-CP to PCP while preserving their device counts. - Align the GLM-5.1 PD prefill topology and KV transfer metadata with the new TP size. - Keep the GLM-5.2 DCP topology and raise its HCC",
+          "modelIds": [
+            "glm-5.1"
+          ],
+          "action": "updated",
+          "score": -1,
+          "titleZh": "【持续集成】【PCP】迁移 GLM MRV2 nightlies from DSA-CP to PCP",
+          "excerptZh": "- 迁移 five GLM MRV2 夜间 configurations from DSA-CP to PCP while preserving their device counts. - 对齐 the GLM-5.1 PD 预填充 topology and KV transfer 元数据 with the new TP size. - Keep the GLM-5.2 DCP topology and raise its HCC"
+        }
+      ]
+    }
+  ]
+}

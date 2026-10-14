@@ -1,0 +1,677 @@
+{
+  "day": "2026-10-11",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18184,
+          "title": "[BugFix][v0.30.0] Define draft token mapping for full-vocabulary DSpark models",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18184",
+          "author": "drslark",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-10T04:41:39Z",
+          "updatedAt": "2026-10-10T09:54:57Z",
+          "closedAt": "2026-10-10T09:54:57Z",
+          "mergedAt": "2026-10-10T09:54:57Z",
+          "comments": 0,
+          "excerpt": "Backport of to releases/v0.30.0 . Define draft id to target id = None on the Ascend DeepSeek V4 and DeepSeek V4.1 DSpark model classes. Their draft token IDs already match target token IDs, so they need no remapping. This exposes the attrib",
+          "modelIds": [
+            "ds-v4.1",
+            "ds-v4"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【修复】【v0.30.0】Define draft token mapping for full-vocabulary DSpark models",
+          "excerptZh": "Backport of to releases/v0.30.0 . Define draft id to target id = None on the Ascend DeepSeek V4 and DeepSeek V4.1 DSpark model classes. Their draft token IDs already match target token IDs, so they need no remapping. This exposes the attrib"
+        },
+        {
+          "kind": "pr",
+          "number": 18182,
+          "title": "[BugFix] Define draft token mapping for full-vocabulary DSpark models",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18182",
+          "author": "drslark",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-10T04:39:14Z",
+          "updatedAt": "2026-10-10T09:53:08Z",
+          "closedAt": "2026-10-10T09:53:08Z",
+          "mergedAt": "2026-10-10T09:53:08Z",
+          "comments": 0,
+          "excerpt": "Define draft id to target id = None on the Ascend DeepSeek V4 and DeepSeek V4.1 DSpark model classes. Their draft token IDs already match target token IDs, so they need no remapping. This exposes the attribute read by the DSpark speculator.",
+          "modelIds": [
+            "ds-v4.1",
+            "ds-v4"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【修复】Define draft token mapping for full-vocabulary DSpark models",
+          "excerptZh": "Define draft id to target id = None on the Ascend DeepSeek V4 and DeepSeek V4.1 DSpark model classes. Their draft token IDs already match target token IDs, so they need no remapping. This exposes the attribute read by the DSpark speculator."
+        },
+        {
+          "kind": "pr",
+          "number": 18221,
+          "title": "[Feature][Model] Support DeepSeek V4.1 SWA bounded replay on the Ascend V1 runner",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18221",
+          "author": "dodatboii",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-10T08:56:36Z",
+          "updatedAt": "2026-10-10T09:24:04Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4.1-Flash runs a 128-token sliding window in every layer. Persisting that window in the prefix cache costs more than the compressed KV it protects, so upstream's SWA bounded replay takes the SWA group out of prefix caching and, on",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【功能】【模型】支持 DeepSeek V4.1 SWA bounded replay on the Ascend V1 runner",
+          "excerptZh": "DeepSeek V4.1-Flash runs a 128-token sliding window in every layer. Persisting that window in the 前缀缓存 costs more than the compressed KV it protects, so upstream's SWA bounded replay takes the SWA group out of 前缀缓存 and, on"
+        },
+        {
+          "kind": "pr",
+          "number": 17742,
+          "title": "[Feature][Model] Support DeepSeek V4.1 Endoder SWA bounded replay",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17742",
+          "author": "weijinqian0",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-29T09:06:18Z",
+          "updatedAt": "2026-10-10T11:11:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Support DeepSeek V4.1 SWA bounded replay on Ascend, integrating the upstream replay mechanism from vllm-project/vllm 56227. After a prefix-cache hit, rebuild the sliding-window KV while preserving the shared cached KV of other cache groups.",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】支持 DeepSeek V4.1 Endoder SWA bounded replay",
+          "excerptZh": "支持 DeepSeek V4.1 SWA bounded replay on Ascend, integrating the upstream replay mechanism from vllm-project/vllm 56227. After a 前缀-缓存 hit, rebuild the sliding-window KV while preserving the 共享 cached KV of other 缓存 groups."
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18184,
+          "title": "[BugFix][v0.30.0] Define draft token mapping for full-vocabulary DSpark models",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18184",
+          "author": "drslark",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-10T04:41:39Z",
+          "updatedAt": "2026-10-10T09:54:57Z",
+          "closedAt": "2026-10-10T09:54:57Z",
+          "mergedAt": "2026-10-10T09:54:57Z",
+          "comments": 0,
+          "excerpt": "Backport of to releases/v0.30.0 . Define draft id to target id = None on the Ascend DeepSeek V4 and DeepSeek V4.1 DSpark model classes. Their draft token IDs already match target token IDs, so they need no remapping. This exposes the attrib",
+          "modelIds": [
+            "ds-v4.1",
+            "ds-v4"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【修复】【v0.30.0】Define draft token mapping for full-vocabulary DSpark models",
+          "excerptZh": "Backport of to releases/v0.30.0 . Define draft id to target id = None on the Ascend DeepSeek V4 and DeepSeek V4.1 DSpark model classes. Their draft token IDs already match target token IDs, so they need no remapping. This exposes the attrib"
+        },
+        {
+          "kind": "pr",
+          "number": 18182,
+          "title": "[BugFix] Define draft token mapping for full-vocabulary DSpark models",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18182",
+          "author": "drslark",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-10T04:39:14Z",
+          "updatedAt": "2026-10-10T09:53:08Z",
+          "closedAt": "2026-10-10T09:53:08Z",
+          "mergedAt": "2026-10-10T09:53:08Z",
+          "comments": 0,
+          "excerpt": "Define draft id to target id = None on the Ascend DeepSeek V4 and DeepSeek V4.1 DSpark model classes. Their draft token IDs already match target token IDs, so they need no remapping. This exposes the attribute read by the DSpark speculator.",
+          "modelIds": [
+            "ds-v4.1",
+            "ds-v4"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【修复】Define draft token mapping for full-vocabulary DSpark models",
+          "excerptZh": "Define draft id to target id = None on the Ascend DeepSeek V4 and DeepSeek V4.1 DSpark model classes. Their draft token IDs already match target token IDs, so they need no remapping. This exposes the attribute read by the DSpark speculator."
+        },
+        {
+          "kind": "pr",
+          "number": 16958,
+          "title": "[BugFix][Model] Apply DeepSeek-V4 attention sinks through the weight loader",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/16958",
+          "author": "Ronald1995",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-09-20T02:59:43Z",
+          "updatedAt": "2026-10-10T09:52:25Z",
+          "closedAt": "2026-10-10T09:52:24Z",
+          "mergedAt": "2026-10-10T09:52:24Z",
+          "comments": 0,
+          "excerpt": "DeepSeek-V4 Attention Sink loading used direct copy calls, bypassing the parameter's current weight loader . During live/layerwise reload, those writes land on meta parameters instead of entering the reload cache, leaving the original Sink ",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【修复】【模型】Apply DeepSeek-V4 注意力 sinks through the 权重 loader",
+          "excerptZh": "DeepSeek-V4 注意力 Sink 加载 used direct copy calls, bypassing the parameter's current 权重 loader . During live/layerwise reload, those writes land on meta parameters instead of entering the reload 缓存, leaving the original Sink"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 18240,
+          "title": "[Bug] DFlash2 draft rejected in APIServer: \"Model architectures ['DFlash2DraftModel'] are not supported for now\" (plugin registration timing?)",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/18240",
+          "author": "bigbigwei99",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-10T10:32:28Z",
+          "updatedAt": "2026-10-10T10:38:32Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 1,
+          "excerpt": "Bug Description Serving Qwen3.8-27B with a DFlash2 draft model (following the official speculative-decoding guide example) fails at startup in the APIServer process: SpeculativeConfig validation rejects the draft architecture DFlash2DraftMo",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【缺陷】【'DFlash2DraftModel'】DFlash2 draft rejected in APIServer: \"Model architectures are not supported for now\" (plugin registration timing?)",
+          "excerptZh": "Bug Description 服务 Qwen3.8-27B with a DFlash2 draft model (following the official 投机-解码 guide example) fails at startup in the APIServer process: SpeculativeConfig validation rejects the draft architecture DFlash2DraftMo"
+        },
+        {
+          "kind": "issue",
+          "number": 18239,
+          "title": "[Bug][MRV2] Qwen3.8-27B + MTP on Model Runner V2: GDN metadata KeyError 'language_model.model.layers.0.linear_attn' during FULL_DECODE_ONLY capture",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/18239",
+          "author": "bigbigwei99",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-10T10:32:19Z",
+          "updatedAt": "2026-10-10T10:38:31Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 1,
+          "excerpt": "Bug Description Serving Qwen3.8-27B (architecture Qwen3 5ForConditionalGeneration , hybrid Gated-DeltaNet + full-attention) on Model Runner V2 with MTP speculative decoding crashes during ACLGraph capture ( FULL DECODE ONLY warmup forward).",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【缺陷】【MRV2】Qwen3.8-27B + MTP on Model Runner V2: GDN 元数据 KeyError 'language_model.model.layers.0.linear_attn' during FULL_DECODE_ONLY capture",
+          "excerptZh": "Bug Description 服务 Qwen3.8-27B (architecture Qwen3 5ForConditionalGeneration , hybrid Gated-DeltaNet + full-注意力) on Model Runner V2 with MTP 投机解码 crashes during ACLGraph capture ( FULL 解码 ONLY warmup forward)."
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 18237,
+          "title": "[Bug]: Benchmark report classification depends on parent directory names",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/18237",
+          "author": "PuppyLu",
+          "labels": [
+            "bug"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-10T10:23:36Z",
+          "updatedAt": "2026-10-10T10:23:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "",
+          "modelIds": [],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【缺陷】: Benchmark report classification depends on parent directory names",
+          "excerptZh": ""
+        },
+        {
+          "kind": "pr",
+          "number": 18147,
+          "title": "[Feature][P/D][v0.30.0] Support Mooncake V2 KV receive failure handling",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18147",
+          "author": "nwpu-zxr",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-09T18:10:19Z",
+          "updatedAt": "2026-10-10T10:37:18Z",
+          "closedAt": "2026-10-10T10:37:18Z",
+          "mergedAt": "2026-10-10T10:37:18Z",
+          "comments": 0,
+          "excerpt": "Backport of 18146 to releases/v0.30.0 (cherry-picked without conflicts). Support request-level KV receive failure reporting in MooncakeConnectorV2 through vLLM's KVConnectorTransferResults , including hybrid caches with multiple KV groups. ",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【功能】【P/D】【v0.30.0】支持 Mooncake V2 KV receive failure handling",
+          "excerptZh": "Backport of 18146 to releases/v0.30.0 (cherry-picked without conflicts). 支持 request-level KV receive failure reporting in MooncakeConnectorV2 through vLLM's KVConnectorTransferResults , including hybrid caches with multiple KV groups."
+        },
+        {
+          "kind": "pr",
+          "number": 18146,
+          "title": "[Feature][P/D] Support Mooncake V2 KV receive failure handling",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18146",
+          "author": "nwpu-zxr",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-09T18:09:50Z",
+          "updatedAt": "2026-10-10T10:36:52Z",
+          "closedAt": "2026-10-10T10:36:52Z",
+          "mergedAt": "2026-10-10T10:36:52Z",
+          "comments": 0,
+          "excerpt": "Support request-level KV receive failure reporting in MooncakeConnectorV2 through vLLM's KVConnectorTransferResults , including hybrid caches with multiple KV groups. Drain receive completion and failure together, attribute transfer errors ",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【功能】【P/D】支持 Mooncake V2 KV receive failure handling",
+          "excerptZh": "支持 request-level KV receive failure reporting in MooncakeConnectorV2 through vLLM's KVConnectorTransferResults , including hybrid caches with multiple KV groups. Drain receive completion and failure together, attribute transfer errors"
+        },
+        {
+          "kind": "pr",
+          "number": 18141,
+          "title": "[BugFix][P/D][v0.30.0] Handle hybrid cache views in preempt offload",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18141",
+          "author": "nwpu-zxr",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-09T15:45:49Z",
+          "updatedAt": "2026-10-10T10:34:54Z",
+          "closedAt": "2026-10-10T10:34:54Z",
+          "mergedAt": "2026-10-10T10:34:54Z",
+          "comments": 0,
+          "excerpt": "Backport of 18140 to releases/v0.30.0 (cherry-picked without conflicts). Fix preempt-offload registration for hybrid KV caches: retain the largest same-pointer attention view per logical block (including block-size scaling), deduplicate ide",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【P/D】【v0.30.0】Handle hybrid 缓存 views in preempt 卸载",
+          "excerptZh": "Backport of 18140 to releases/v0.30.0 (cherry-picked without conflicts). 修复 preempt-卸载 registration for hybrid KV caches: retain the largest same-pointer 注意力 view per logical block (including block-size scaling), deduplicate ide"
+        },
+        {
+          "kind": "pr",
+          "number": 18140,
+          "title": "[BugFix][P/D] Handle hybrid cache views in preempt offload",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18140",
+          "author": "nwpu-zxr",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-09T15:45:17Z",
+          "updatedAt": "2026-10-10T10:34:13Z",
+          "closedAt": "2026-10-10T10:34:13Z",
+          "mergedAt": "2026-10-10T10:34:13Z",
+          "comments": 0,
+          "excerpt": "Fix preempt-offload registration for hybrid KV caches: retain the largest same-pointer attention view per logical block (including block-size scaling), deduplicate identical Mamba views separately from attention, and skip empty tensors. Pre",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【P/D】Handle hybrid 缓存 views in preempt 卸载",
+          "excerptZh": "修复 preempt-卸载 registration for hybrid KV caches: retain the largest same-pointer 注意力 view per logical block (including block-size scaling), deduplicate identical Mamba views separately from 注意力, and skip empty tensors. Pre"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 17476,
+          "title": "[Bug]: Deepseek V4 Flash 0731 BF16 weights converted by msmodelslim lose accuracy when `quant_model_description.json` is present",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/17476",
+          "author": "liyu119",
+          "labels": [
+            "bug",
+            "triaged",
+            "llm-model",
+            "deepseek"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-09-24T06:41:24Z",
+          "updatedAt": "2026-10-10T09:20:34Z",
+          "closedAt": "2026-10-10T09:20:34Z",
+          "mergedAt": null,
+          "comments": 1,
+          "excerpt": "",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "closed",
+          "score": 6,
+          "titleZh": "【缺陷】: Deepseek V4 Flash 0731 BF16 权重 converted by msmodelslim lose 精度 when `quant_model_description.json` is present",
+          "excerptZh": ""
+        }
+      ]
+    },
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18013,
+          "title": "[CI] Remove GLM5 and GLM4.7 scheduled cases and YAML files",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18013",
+          "author": "Wyz-134",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-08T09:55:47Z",
+          "updatedAt": "2026-10-10T09:43:38Z",
+          "closedAt": "2026-10-10T09:43:38Z",
+          "mergedAt": "2026-10-10T09:43:38Z",
+          "comments": 0,
+          "excerpt": "Remove the remaining GLM-5 (original version) and GLM-4.7 nightly/weekly cases, their YAML files, and obsolete scheduled-test references, following the cleanup scope of 17950. - Remove glm-4.7-w8a8 from nightly and delete tests/e2e/cases/mo",
+          "modelIds": [
+            "glm-5",
+            "glm-4.7"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【持续集成】移除 GLM5 and GLM4.7 scheduled cases and YAML files",
+          "excerptZh": "移除 the remaining GLM-5 (original version) and GLM-4.7 夜间/每周 cases, their YAML files, and obsolete scheduled-test references, following the cleanup scope of 17950. - 移除 glm-4.7-w8a8 from 夜间 and delete tests/e2e/cases/mo"
+        }
+      ]
+    },
+    {
+      "id": "glm-4.7",
+      "name": "GLM-4.7",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18013,
+          "title": "[CI] Remove GLM5 and GLM4.7 scheduled cases and YAML files",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18013",
+          "author": "Wyz-134",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-08T09:55:47Z",
+          "updatedAt": "2026-10-10T09:43:38Z",
+          "closedAt": "2026-10-10T09:43:38Z",
+          "mergedAt": "2026-10-10T09:43:38Z",
+          "comments": 0,
+          "excerpt": "Remove the remaining GLM-5 (original version) and GLM-4.7 nightly/weekly cases, their YAML files, and obsolete scheduled-test references, following the cleanup scope of 17950. - Remove glm-4.7-w8a8 from nightly and delete tests/e2e/cases/mo",
+          "modelIds": [
+            "glm-5",
+            "glm-4.7"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【持续集成】移除 GLM5 and GLM4.7 scheduled cases and YAML files",
+          "excerptZh": "移除 the remaining GLM-5 (original version) and GLM-4.7 夜间/每周 cases, their YAML files, and obsolete scheduled-test references, following the cleanup scope of 17950. - 移除 glm-4.7-w8a8 from 夜间 and delete tests/e2e/cases/mo"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18175,
+          "title": "[Doc][Feature] Add documentation for Qwen3.6-27B-w8a8c8-mxfp8 and W8A8C8 FAQ",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18175",
+          "author": "AJF-cmd",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-10T03:52:01Z",
+          "updatedAt": "2026-10-10T09:48:23Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR adds documentation and deployment guidelines for the newly supported Qwen3.6-27B-w8a8c8-mxfp8 quantized model. It includes hardware requirements, a brief description, and a detailed FAQ section explaining how to use the W8A8C8 quant",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【功能】documentation for Qwen3.6-27B-w8a8c8-mxfp8 and W8A8C8 FAQ",
+          "excerptZh": "This PR adds documentation and deployment guidelines for the newly supported Qwen3.6-27B-w8a8c8-mxfp8 quantized model. It includes hardware requirements, a brief description, and a detailed FAQ section explaining how to use the W8A8C8 quant"
+        },
+        {
+          "kind": "pr",
+          "number": 18214,
+          "title": "[Doc][Feature] Add documentation for Qwen3.6-27B-w8a8c8-mxfp8 model",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18214",
+          "author": "AJF-cmd",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-10T08:14:44Z",
+          "updatedAt": "2026-10-10T09:42:23Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR adds documentation and deployment instructions for the Qwen3.6-27B-w8a8c8-mxfp8 quantized model on Ascend NPUs (950DT and 950PR Products). It includes hardware requirements, startup commands, and parameter descriptions (such as --kv",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【功能】documentation for Qwen3.6-27B-w8a8c8-mxfp8 model",
+          "excerptZh": "This PR adds documentation and deployment instructions for the Qwen3.6-27B-w8a8c8-mxfp8 quantized model on Ascend NPUs (950DT and 950PR Products). It includes hardware requirements, startup commands, and parameter descriptions (such as --kv"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18233,
+          "title": "[Doc] Update Qwen3.5-397B-A17B deployment configurations",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18233",
+          "author": "dypforever",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-10T09:54:09Z",
+          "updatedAt": "2026-10-10T09:55:41Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Update the Qwen3.5-397B-A17B single-node and PD deployment examples to select Model Runner V1 and configure FlashComm and fused MC2. Enable shared-expert data parallelism in the 950DT prefill example, explain the settings, and align the opt",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "opened",
+          "score": 2,
+          "titleZh": "【文档】更新 Qwen3.5-397B-A17B deployment configurations",
+          "excerptZh": "更新 the Qwen3.5-397B-A17B single-node and PD deployment examples to select Model Runner V1 and configure FlashComm and 融合 MC2. 启用 共享-expert data parallelism in the 950DT 预填充 example, explain the settings, and 对齐 the opt"
+        },
+        {
+          "kind": "pr",
+          "number": 15723,
+          "title": "[CI] New test cases added",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/15723",
+          "author": "jiangli221",
+          "labels": [
+            "module:tests",
+            "module:tools",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-04T01:40:13Z",
+          "updatedAt": "2026-10-10T09:58:17Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "New test cases added: Qwen3-30B-A3B-W8A8-offload-test-acc.yaml Qwen3.5-397B-no-Memcache-perf.yaml Modified the verification logic of input throughput. - vLLM main:",
+          "modelIds": [
+            "qwen3.5",
+            "qwen3-moe"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】New 测试用例 新增",
+          "excerptZh": "新增测试用例： Qwen3-30B-A3B-W8A8-offload-test-acc.yaml Qwen3.5-397B-no-Memcache-perf.yaml修改了输入吞吐量的验证逻辑。- vLLM主："
+        }
+      ]
+    },
+    {
+      "id": "qwen3-moe",
+      "name": "Qwen3 MoE",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 15723,
+          "title": "[CI] New test cases added",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/15723",
+          "author": "jiangli221",
+          "labels": [
+            "module:tests",
+            "module:tools",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-04T01:40:13Z",
+          "updatedAt": "2026-10-10T09:58:17Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "New test cases added: Qwen3-30B-A3B-W8A8-offload-test-acc.yaml Qwen3.5-397B-no-Memcache-perf.yaml Modified the verification logic of input throughput. - vLLM main:",
+          "modelIds": [
+            "qwen3.5",
+            "qwen3-moe"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】New 测试用例 新增",
+          "excerptZh": "新增测试用例： Qwen3-30B-A3B-W8A8-offload-test-acc.yaml Qwen3.5-397B-no-Memcache-perf.yaml修改了输入吞吐量的验证逻辑。- vLLM主："
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18042,
+          "title": "[Test][Kimi] Add Kimi K3 MRV2 PR and nightly coverage",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18042",
+          "author": "EmptyJST",
+          "labels": [
+            "module:tests",
+            "ready-all"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-09T01:19:15Z",
+          "updatedAt": "2026-10-10T08:57:29Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Use the existing Kimi K3 MRV1 coverage as the basis for Model Runner V2. - Add Kimi K3 Model Runner V2 functional coverage under the standard tests/e2e/pull request/four card/model runner v2 framework. - Reuse the MRV1 reduced-model fixture",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】【Kimi】新增 Kimi K3 MRV2 PR and 夜间 coverage",
+          "excerptZh": "Use the existing Kimi K3 MRV1 coverage as the basis for Model Runner V2. - 新增 Kimi K3 Model Runner V2 functional coverage under the standard tests/e2e/pull request/four card/model runner v2 framework. - Reuse the MRV1 reduced-model fixture"
+        }
+      ]
+    }
+  ]
+}
