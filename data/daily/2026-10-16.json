@@ -1,0 +1,209 @@
+{
+  "day": "2026-10-16",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18885,
+          "title": "[Cherry-pick][releases/v0.30.0][BugFix] Skip incompatible kernels for static kernel (from #18869)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18885",
+          "author": "vllm-ascend-ci",
+          "labels": [
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-15T10:40:40Z",
+          "updatedAt": "2026-10-15T16:06:27Z",
+          "closedAt": "2026-10-15T16:06:27Z",
+          "mergedAt": "2026-10-15T16:06:27Z",
+          "comments": 0,
+          "excerpt": "Cherry-pick of PR 18869 onto releases/v0.30.0 . Original PR: 18869 Original author: @zhiyu-wa --- When the static kernel feature is enabled, some ops are incompatible and must be skipped. This PR skips QuantBatchMatmulV3 、 GenericBlockSpars",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【Cherry-pick】【releases/v0.30.0】【修复】Skip incompatible 内核 for static 内核 (from #18869)",
+          "excerptZh": "Cherry-pick of PR 18869 onto releases/v0.30.0 . Original PR: 18869 Original author: @zhiyu-wa --- When the static 内核 特性 is 启用, some ops are incompatible and must be skipped. This PR skips QuantBatchMatmulV3 、 GenericBlockSpars"
+        },
+        {
+          "kind": "pr",
+          "number": 18869,
+          "title": "[BugFix] Skip incompatible kernels for static kernel",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18869",
+          "author": "zhiyu-wa",
+          "labels": [
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-15T09:43:53Z",
+          "updatedAt": "2026-10-15T16:06:22Z",
+          "closedAt": "2026-10-15T16:06:21Z",
+          "mergedAt": "2026-10-15T16:06:21Z",
+          "comments": 0,
+          "excerpt": "When the static kernel feature is enabled, some ops are incompatible and must be skipped. This PR skips QuantBatchMatmulV3 、 GenericBlockSparseAttn and TopKV2 to avoid bugs, and adds a log message to inform users. Does this PR introduce any",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】Skip incompatible 内核 for static 内核",
+          "excerptZh": "When the static 内核 特性 is 启用, some ops are incompatible and must be skipped. This PR skips QuantBatchMatmulV3 、 GenericBlockSparseAttn and TopKV2 to 避免 bugs, and adds a log message to inform users. Does this PR introduce any"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k2",
+      "name": "Kimi K2",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18845,
+          "title": "[BugFix][Attention] Preserve strided MLA caches for wide A5 draft inputs",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18845",
+          "author": "HackClawMxw",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-15T07:34:10Z",
+          "updatedAt": "2026-10-15T17:33:29Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Fix the Kimi-K2.6 A5 wide-Eagle3 startup/stall issue following 18256. Concatenating two 7168-wide inputs produces He=14336, which CANN MLA PROLOG V3 rejects with error 561002. Preserve the existing wide-draft solution already validated on t",
+          "modelIds": [
+            "kimi-k2"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【注意力】Preserve strided MLA caches for wide A5 draft inputs",
+          "excerptZh": "修复 the Kimi-K2.6 A5 wide-Eagle3 startup/stall issue following 18256. Concatenating two 7168-wide inputs produces He=14336, which CANN MLA PROLOG V3 rejects with error 561002. Preserve the existing wide-draft solution already validated on t"
+        },
+        {
+          "kind": "pr",
+          "number": 18897,
+          "title": "[BugFix][v0.30.0] Backport strided MLA adapter for wide A5 draft inputs (#18845)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18897",
+          "author": "HackClawMxw",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-15T12:38:01Z",
+          "updatedAt": "2026-10-15T16:07:29Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Backport 18845 to releases/v0.30.0 to fix the Kimi-K2.6 A5 wide-Eagle3 startup/stall issue: concatenating two 7168-wide inputs produces He=14336, which CANN MLA PROLOG V3 rejects with error 561002. Preserve the implementation already valida",
+          "modelIds": [
+            "kimi-k2"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【v0.30.0】Backport strided MLA adapter for wide A5 draft inputs (#18845)",
+          "excerptZh": "Backport 18845 to releases/v0.30.0 to 修复 the Kimi-K2.6 A5 wide-Eagle3 startup/stall issue: concatenating two 7168-wide inputs produces He=14336, which CANN MLA PROLOG V3 rejects with error 561002. Preserve the implementation already valida"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18672,
+          "title": "[BugFix][KDA] Match fallback compiled launches to Triton signatures",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18672",
+          "author": "q664171689",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-14T05:22:15Z",
+          "updatedAt": "2026-10-15T16:19:45Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Kimi K3 prefill can fail in StridedKDAFallbackPlan. copy with: The fallback prepares batch memcpy kernel with BLOCK SIZE=8192 , then directly invokes the retained compiled kernel with only three runtime arguments. Triton 3.6 retains the con",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[BugFix] [KDA]将回退编译的启动与Triton签名匹配",
+          "excerptZh": "Kimi K3 预填充 can fail in StridedKDAFallbackPlan. copy with: The fallback prepares batch memcpy 内核 with BLOCK SIZE=8192 , then directly invokes the retained compiled 内核 with only three 运行时 arguments. Triton 3.6 retains the con"
+        },
+        {
+          "kind": "pr",
+          "number": 18840,
+          "title": "[BugFix][KDA][v0.30.0] Match fallback compiled launches to Triton signatures",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18840",
+          "author": "q664171689",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-15T07:13:48Z",
+          "updatedAt": "2026-10-15T16:19:17Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Backport of 18672 to releases/v0.30.0 . Kimi K3 prefill can fail in StridedKDAFallbackPlan. copy with: The fallback prepares batch memcpy kernel with BLOCK SIZE=8192 , then directly invokes the retained compiled kernel with only three runti",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【KDA】【v0.30.0】Match fallback compiled launches to Triton signatures",
+          "excerptZh": "Backport of 18672 to releases/v0.30.0 . Kimi K3 预填充 can fail in StridedKDAFallbackPlan. copy with: The fallback prepares batch memcpy 内核 with BLOCK SIZE=8192 , then directly invokes the retained compiled 内核 with only three runti"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-pro",
+      "name": "DeepSeek V4 Pro",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18913,
+          "title": "[Doc][Feature][v0.30.0] Add Ascend 950DT deployment guides for DeepSeek-V4-Pro",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18913",
+          "author": "lenghuixing0330",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-15T14:55:06Z",
+          "updatedAt": "2026-10-15T17:31:46Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Does this PR introduce any user-facing change? --- Checklist Testing - [ ] Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque",
+          "modelIds": [
+            "ds-v4-pro"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【功能】【v0.30.0】Ascend 950DT deployment guides for DeepSeek-V4-Pro",
+          "excerptZh": "【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque"
+        }
+      ]
+    }
+  ]
+}
