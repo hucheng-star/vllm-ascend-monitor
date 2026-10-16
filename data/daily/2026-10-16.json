@@ -3,112 +3,62 @@
   "timezone": "Asia/Shanghai",
   "groups": [
     {
-      "id": "platform",
-      "name": "平台与通用",
-      "family": "平台与通用",
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
       "items": [
         {
-          "kind": "pr",
-          "number": 18885,
-          "title": "[Cherry-pick][releases/v0.30.0][BugFix] Skip incompatible kernels for static kernel (from #18869)",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/18885",
-          "author": "vllm-ascend-ci",
+          "kind": "issue",
+          "number": 19022,
+          "title": "[Bug]: DeepSeek-V4.1-Flash decode hang with MoeDistributeDispatchV2 faults during PD burst admission on A3 (v0.30.0rc2)",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/19022",
+          "author": "xiaoxiao426",
           "labels": [
-            "ready-precise"
+            "bug",
+            "triaged",
+            "llm-model",
+            "deepseek"
           ],
-          "state": "closed",
+          "state": "open",
           "draft": false,
-          "createdAt": "2026-10-15T10:40:40Z",
-          "updatedAt": "2026-10-15T16:06:27Z",
-          "closedAt": "2026-10-15T16:06:27Z",
-          "mergedAt": "2026-10-15T16:06:27Z",
-          "comments": 0,
-          "excerpt": "Cherry-pick of PR 18869 onto releases/v0.30.0 . Original PR: 18869 Original author: @zhiyu-wa --- When the static kernel feature is enabled, some ops are incompatible and must be skipped. This PR skips QuantBatchMatmulV3 、 GenericBlockSpars",
-          "modelIds": [],
-          "action": "merged",
-          "score": 5,
-          "titleZh": "【Cherry-pick】【releases/v0.30.0】【修复】Skip incompatible 内核 for static 内核 (from #18869)",
-          "excerptZh": "Cherry-pick of PR 18869 onto releases/v0.30.0 . Original PR: 18869 Original author: @zhiyu-wa --- When the static 内核 特性 is 启用, some ops are incompatible and must be skipped. This PR skips QuantBatchMatmulV3 、 GenericBlockSpars"
+          "createdAt": "2026-10-16T10:09:21Z",
+          "updatedAt": "2026-10-16T11:07:41Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 1,
+          "excerpt": "",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 8,
+          "titleZh": "【缺陷】: DeepSeek-V4.1-Flash 解码 挂起 with MoeDistributeDispatchV2 faults during PD burst admission on A3 (v0.30.0rc2)",
+          "excerptZh": ""
         },
         {
           "kind": "pr",
-          "number": 18869,
-          "title": "[BugFix] Skip incompatible kernels for static kernel",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/18869",
-          "author": "zhiyu-wa",
-          "labels": [
-            "ready-precise"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-10-15T09:43:53Z",
-          "updatedAt": "2026-10-15T16:06:22Z",
-          "closedAt": "2026-10-15T16:06:21Z",
-          "mergedAt": "2026-10-15T16:06:21Z",
-          "comments": 0,
-          "excerpt": "When the static kernel feature is enabled, some ops are incompatible and must be skipped. This PR skips QuantBatchMatmulV3 、 GenericBlockSparseAttn and TopKV2 to avoid bugs, and adds a log message to inform users. Does this PR introduce any",
-          "modelIds": [],
-          "action": "merged",
-          "score": 5,
-          "titleZh": "【修复】Skip incompatible 内核 for static 内核",
-          "excerptZh": "When the static 内核 特性 is 启用, some ops are incompatible and must be skipped. This PR skips QuantBatchMatmulV3 、 GenericBlockSparseAttn and TopKV2 to 避免 bugs, and adds a log message to inform users. Does this PR introduce any"
-        }
-      ]
-    },
-    {
-      "id": "kimi-k2",
-      "name": "Kimi K2",
-      "family": "Kimi",
-      "items": [
-        {
-          "kind": "pr",
-          "number": 18845,
-          "title": "[BugFix][Attention] Preserve strided MLA caches for wide A5 draft inputs",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/18845",
-          "author": "HackClawMxw",
+          "number": 18831,
+          "title": "[CI] Add DeepSeek V4.1 Flash MRV2 PCP nightly coverage",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18831",
+          "author": "vrooml",
           "labels": [
             "module:tests"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-15T07:34:10Z",
-          "updatedAt": "2026-10-15T17:33:29Z",
+          "createdAt": "2026-10-15T06:22:34Z",
+          "updatedAt": "2026-10-16T14:40:40Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Fix the Kimi-K2.6 A5 wide-Eagle3 startup/stall issue following 18256. Concatenating two 7168-wide inputs produces He=14336, which CANN MLA PROLOG V3 rejects with error 561002. Preserve the existing wide-draft solution already validated on t",
+          "excerpt": "This PR adds MRV2 and PCP nightly coverage for DeepSeek V4.1 Flash W8A8 on two A3 nodes. GPQA accuracy runs first, followed by 16k/1k and 128k/1k prefix-90 performance cases with 128k warmup. The case is registered in the A3 double-node nig",
           "modelIds": [
-            "kimi-k2"
+            "ds-v4.1"
           ],
           "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】【注意力】Preserve strided MLA caches for wide A5 draft inputs",
-          "excerptZh": "修复 the Kimi-K2.6 A5 wide-Eagle3 startup/stall issue following 18256. Concatenating two 7168-wide inputs produces He=14336, which CANN MLA PROLOG V3 rejects with error 561002. Preserve the existing wide-draft solution already validated on t"
-        },
-        {
-          "kind": "pr",
-          "number": 18897,
-          "title": "[BugFix][v0.30.0] Backport strided MLA adapter for wide A5 draft inputs (#18845)",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/18897",
-          "author": "HackClawMxw",
-          "labels": [
-            "module:tests"
-          ],
-          "state": "open",
-          "draft": false,
-          "createdAt": "2026-10-15T12:38:01Z",
-          "updatedAt": "2026-10-15T16:07:29Z",
-          "closedAt": null,
-          "mergedAt": null,
-          "comments": 0,
-          "excerpt": "Backport 18845 to releases/v0.30.0 to fix the Kimi-K2.6 A5 wide-Eagle3 startup/stall issue: concatenating two 7168-wide inputs produces He=14336, which CANN MLA PROLOG V3 rejects with error 561002. Preserve the implementation already valida",
-          "modelIds": [
-            "kimi-k2"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】【v0.30.0】Backport strided MLA adapter for wide A5 draft inputs (#18845)",
-          "excerptZh": "Backport 18845 to releases/v0.30.0 to 修复 the Kimi-K2.6 A5 wide-Eagle3 startup/stall issue: concatenating two 7168-wide inputs produces He=14336, which CANN MLA PROLOG V3 rejects with error 561002. Preserve the implementation already valida"
+          "score": 0,
+          "titleZh": "【持续集成】新增 DeepSeek V4.1 Flash MRV2 PCP 夜间 coverage",
+          "excerptZh": "This PR adds MRV2 and PCP 夜间 coverage for DeepSeek V4.1 Flash W8A8 on two A3 nodes. GPQA 精度 runs first, followed by 16k/1k and 128k/1k 前缀-90 性能 cases with 128k warmup. The case is registered in the A3 double-node nig"
         }
       ]
     },
@@ -119,89 +69,732 @@
       "items": [
         {
           "kind": "pr",
-          "number": 18672,
-          "title": "[BugFix][KDA] Match fallback compiled launches to Triton signatures",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/18672",
-          "author": "q664171689",
+          "number": 18976,
+          "title": "[v0.30.0][Feature][MoE] Backport Kimi K3 MegaMoE routed dimensions (#17334)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18976",
+          "author": "Zoezxb",
           "labels": [
             "module:tests",
-            "module:ops",
+            "module:core",
             "ready-precise"
           ],
-          "state": "open",
+          "state": "closed",
           "draft": false,
-          "createdAt": "2026-10-14T05:22:15Z",
-          "updatedAt": "2026-10-15T16:19:45Z",
-          "closedAt": null,
-          "mergedAt": null,
+          "createdAt": "2026-10-16T06:41:03Z",
+          "updatedAt": "2026-10-16T13:08:34Z",
+          "closedAt": "2026-10-16T13:08:33Z",
+          "mergedAt": "2026-10-16T13:08:33Z",
           "comments": 0,
-          "excerpt": "Kimi K3 prefill can fail in StridedKDAFallbackPlan. copy with: The fallback prepares batch memcpy kernel with BLOCK SIZE=8192 , then directly invokes the retained compiled kernel with only three runtime arguments. Triton 3.6 retains the con",
+          "excerpt": "Backport the final changes from 17334 through source head cff56165ea661540142ff93a817a62f6e17c8944 to releases/v0.30.0 . For Kimi K3 / Latent-MoE, validate the effective routed-expert input width ( routed expert hidden size ) rather than th",
           "modelIds": [
             "kimi-k3"
           ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "[BugFix] [KDA]将回退编译的启动与Triton签名匹配",
-          "excerptZh": "Kimi K3 预填充 can fail in StridedKDAFallbackPlan. copy with: The fallback prepares batch memcpy 内核 with BLOCK SIZE=8192 , then directly invokes the retained compiled 内核 with only three 运行时 arguments. Triton 3.6 retains the con"
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【v0.30.0】【功能】【MoE】Backport Kimi K3 MegaMoE routed dimensions (#17334)",
+          "excerptZh": "Backport the final changes from 17334 through source head cff56165ea661540142ff93a817a62f6e17c8944 to releases/v0.30.0 . For Kimi K3 / Latent-MoE, validate the effective routed-expert input width ( routed expert hidden size ) rather than th"
         },
         {
           "kind": "pr",
-          "number": 18840,
-          "title": "[BugFix][KDA][v0.30.0] Match fallback compiled launches to Triton signatures",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/18840",
-          "author": "q664171689",
+          "number": 17334,
+          "title": "[BugFix][MoE] Check routed-expert dimensions for CANN MegaMoE",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17334",
+          "author": "qijiajin",
+          "labels": [
+            "module:tests",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-09-23T03:03:58Z",
+          "updatedAt": "2026-10-16T12:46:10Z",
+          "closedAt": "2026-10-16T12:46:10Z",
+          "mergedAt": "2026-10-16T12:46:10Z",
+          "comments": 0,
+          "excerpt": "What this PR does Validate CANN MegaMoE against the routed-expert input width for latent MoE models such as Kimi K3. Tokens are projected before reaching the routed experts, so routed expert hidden size is the relevant operator dimension. M",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【修复】【MoE】Check routed-expert dimensions for CANN MegaMoE",
+          "excerptZh": "What this PR does Validate CANN MegaMoE against the routed-expert input width for latent MoE models such as Kimi K3. Tokens are projected before reaching the routed experts, so routed expert hidden size is the relevant operator dimension. M"
+        },
+        {
+          "kind": "pr",
+          "number": 19045,
+          "title": "[Feature][Kimi K3] Schedule shared experts before routed on v0.30.0",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19045",
+          "author": "LoganJane",
           "labels": [
             "module:tests",
             "module:ops",
-            "ready-precise"
+            "module:core"
           ],
           "state": "open",
-          "draft": false,
-          "createdAt": "2026-10-15T07:13:48Z",
-          "updatedAt": "2026-10-15T16:19:17Z",
+          "draft": true,
+          "createdAt": "2026-10-16T15:32:06Z",
+          "updatedAt": "2026-10-16T15:37:28Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Backport of 18672 to releases/v0.30.0 . Kimi K3 prefill can fail in StridedKDAFallbackPlan. copy with: The fallback prepares batch memcpy kernel with BLOCK SIZE=8192 , then directly invokes the retained compiled kernel with only three runti",
+          "excerpt": "Summary This is an alternative update to 19023. It is built from that PR's current consolidated B101 head, rebased onto the current releases/v0.30.0 tip ( 716da29099b57d16f4a9b6cce65418192c660cf7 ), and changes Kimi K3 shared-expert multi-s",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【功能】【Kimi K3】Schedule 共享 experts before routed on v0.30.0",
+          "excerptZh": "Summary This is an alternative 更新 to 19023. It is built from that PR's current consolidated B101 head, rebased onto the current releases/v0.30.0 tip ( 716da29099b57d16f4a9b6cce65418192c660cf7 ), and changes Kimi K3 共享-expert multi-s"
+        },
+        {
+          "kind": "pr",
+          "number": 19023,
+          "title": "[Feature][Kimi K3] Consolidate B101 Ascend fixes on v0.30.0",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19023",
+          "author": "qijiajin",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-16T10:09:40Z",
+          "updatedAt": "2026-10-16T13:09:22Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Kimi K3 on the B101 v0.30.0 release stack needs its MLA/KDA graph and W4A8 shared-expert fixes in one reviewable branch. This PR ports the container's changes onto the current releases/v0.30.0 branch and resolves the intervening release cha",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【功能】【Kimi K3】Consolidate B101 Ascend fixes on v0.30.0",
+          "excerptZh": "Kimi K3 on the B101 v0.30.0 release stack needs its MLA/KDA graph and W4A8 共享-expert fixes in one reviewable branch. This PR ports the container's changes onto the current releases/v0.30.0 branch and resolves the intervening release cha"
+        },
+        {
+          "kind": "pr",
+          "number": 18903,
+          "title": "[Ops][Feature] Support forcing BF16 precision for Ascend MoE router",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18903",
+          "author": "qijiajin",
+          "labels": [
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-15T13:29:09Z",
+          "updatedAt": "2026-10-16T15:00:38Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Kimi K3 computes its router logits outside the MoE runner: AscendKimiMoE.forward() calls self.gate(hidden states) and passes the logits into self.experts(...) . Although the model hidden states are BF16, the registered Ascend GateLinear exp",
           "modelIds": [
             "kimi-k3"
           ],
           "action": "updated",
           "score": 3,
-          "titleZh": "【修复】【KDA】【v0.30.0】Match fallback compiled launches to Triton signatures",
-          "excerptZh": "Backport of 18672 to releases/v0.30.0 . Kimi K3 预填充 can fail in StridedKDAFallbackPlan. copy with: The fallback prepares batch memcpy 内核 with BLOCK SIZE=8192 , then directly invokes the retained compiled 内核 with only three runti"
+          "titleZh": "【算子】【功能】支持 forcing BF16 精度 for Ascend MoE router",
+          "excerptZh": "Kimi K3 computes its router logits outside the MoE runner: AscendKimiMoE.forward() calls self.gate(hidden states) and passes the logits into self.experts(...) . Although the model hidden states are BF16, the registered Ascend GateLinear exp"
+        },
+        {
+          "kind": "pr",
+          "number": 18606,
+          "title": "[BugFix][Kimi] Use grouped matmul for eager MXFP8 projections",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18606",
+          "author": "Dawn952",
+          "labels": [
+            "module:tests",
+            "module:quantization",
+            "ready-a5",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-13T12:43:24Z",
+          "updatedAt": "2026-10-16T14:49:10Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Corresponding releases/v0.30.0 backport: 18756. Route Kimi K3's fused QKV, routed-down and routed-up MXFP8 projections through single-group npu grouped matmul during eager execution. The motivating issue is excessive QMM workspace/tiling su",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[BugFix] [Kimi]使用分组matmul进行急切的MXFP8投影",
+          "excerptZh": "Corresponding releases/v0.30.0 backport: 18756. Route Kimi K3's 融合 QKV, routed-down and routed-up MXFP8 projections through single-group npu grouped matmul during eager execution. The motivating issue is excessive QMM workspace/tiling su"
+        },
+        {
+          "kind": "pr",
+          "number": 18939,
+          "title": "[Test][Kimi] Backport MRV2 E2E coverage to v0.30.0",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18939",
+          "author": "Nothing-98",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-16T02:44:04Z",
+          "updatedAt": "2026-10-16T12:19:51Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Backport the Kimi K3 Model Runner V2 coverage from 18042 to releases/v0.30.0 . - Add the standard four-card MRV2 functional E2E coverage, reusing the existing Kimi K3 model fixtures and scenario helpers. - Register the four-node internal-DP",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【测试】【Kimi】Backport MRV2 E2E coverage to v0.30.0",
+          "excerptZh": "Backport the Kimi K3 Model Runner V2 coverage from 18042 to releases/v0.30.0 . - 新增 the standard four-card MRV2 functional E2E coverage, reusing the existing Kimi K3 model fixtures and scenario helpers. - Register the four-node internal-DP"
         }
       ]
     },
     {
-      "id": "ds-v4-pro",
-      "name": "DeepSeek V4 Pro",
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18968,
+          "title": "feat(model): enable dense sequence parallelism for the Qwen3.5 family",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18968",
+          "author": "chenxi-hh",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-16T06:20:53Z",
+          "updatedAt": "2026-10-16T14:49:39Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Upstream gates sequence parallelism on use sequence parallel moe, so dense Qwen3.5-family checkpoints (Qwen3.5/3.6/3.8-27B dense, model type qwen3 5 text) could not run sequence parallel on Ascend. Extend the FlashComm switch (additional co",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "feat(model): 启用 dense 序列 parallelism for the Qwen3.5 family",
+          "excerptZh": "Upstream gates 序列 parallelism on use 序列 parallel moe, so dense Qwen3.5-family 检查点 (Qwen3.5/3.6/3.8-27B dense, model type qwen3 5 text) could not run 序列 parallel on Ascend. Extend the FlashComm 切换 (additional co"
+        },
+        {
+          "kind": "pr",
+          "number": 16998,
+          "title": "[Performance][Model] Fuse matmul+allreduce for Qwen3.5 row-parallel linears on Ascend",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/16998",
+          "author": "chenxi-hh",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-20T08:12:11Z",
+          "updatedAt": "2026-10-16T15:01:40Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Under TP, every row-parallel linear in Qwen3.5 (attention o proj , MLP down proj , GDN out proj ) runs a matmul followed by an all-reduce: the all-reduce (reduce-scatter + all-gather on the ring) makes the activation cross the HCCL link twi",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】【型号】Fuse matmul + allreduce for Qwen3.5 row-parallel linears on Ascend",
+          "excerptZh": "Under TP, every row-parallel linear in Qwen3.5 (注意力 o proj , MLP down proj , GDN out proj ) runs a matmul followed by an all-减少: the all-减少 (减少-scatter + all-gather on the ring) makes the activation cross the HCCL link twi"
+        },
+        {
+          "kind": "pr",
+          "number": 18621,
+          "title": "[BugFix][KV Cache] Restore contiguous hybrid Attention+Mamba KV cache layout",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18621",
+          "author": "pjh456",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-13T16:34:57Z",
+          "updatedAt": "2026-10-16T13:48:52Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Restore the contiguous per-layer K/V allocation for the ordinary Attention layers of hybrid Attention+Mamba models (e.g. Qwen3.5 / Qwen3.8, qwen3 5 GDN) in MRv1, undoing the generic non-contiguous block-major layout introduced by 14340 for ",
+          "modelIds": [
+            "qwen3.8",
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[BugFix] [KV Cache]恢复连续混合注意力+曼巴KV缓存布局",
+          "excerptZh": "恢复 the contiguous per-layer K/V allocation for the ordinary 注意力 layers of hybrid 注意力+Mamba models (e.g. Qwen3.5 / Qwen3.8, qwen3 5 GDN) in MRv1, undoing the generic non-contiguous block-major layout introduced by 14340 for"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
       "family": "DeepSeek",
       "items": [
         {
           "kind": "pr",
-          "number": 18913,
-          "title": "[Doc][Feature][v0.30.0] Add Ascend 950DT deployment guides for DeepSeek-V4-Pro",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/18913",
-          "author": "lenghuixing0330",
+          "number": 19034,
+          "title": "[BugFix][PCP] Size DSV4.1 replay metadata for local segments",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19034",
+          "author": "li1how",
           "labels": [
-            "documentation"
+            "module:tests",
+            "ready-precise",
+            "ready"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-15T14:55:06Z",
-          "updatedAt": "2026-10-15T17:31:46Z",
+          "createdAt": "2026-10-16T12:42:07Z",
+          "updatedAt": "2026-10-16T13:08:05Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "PCP splits a prefill request into front/back local segments, so a rank's local batch can contain up to twice max num seqs entries. DSV4.1 Engram gathers replay metadata using these local entries but allocates its CPU/GPU replay buffer for o",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【修复】【PCP】Size DSV4.1 replay 元数据 for local segments",
+          "excerptZh": "PCP splits a 预填充 request into front/back local segments, so a rank's local batch can contain up to twice max num seqs entries. DSV4.1 Engram gathers replay 元数据 using these local entries but allocates its CPU/GPU replay buffer for o"
+        },
+        {
+          "kind": "pr",
+          "number": 19042,
+          "title": "[Refactor][Model] Revert \"Restore platform-default indexer KV dtype for DeepSeek V4\"",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19042",
+          "author": "Pingzii",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-16T14:15:50Z",
+          "updatedAt": "2026-10-16T14:17:16Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "[Refactor][Model] Revert \"Restore platform-default indexer KV dtype for DeepSeek V4\" Reverts 17635 ( b980a2476dfa259f6112b01ded829b7cfb80d409 ). That commit added get indexer k dtype to the DeepSeek V4 indexer: it resolves indexer kv dtype=",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【重构】【模型】Revert \"恢复 平台默认 索引器 KV dtype for DeepSeek V4\"",
+          "excerptZh": "【重构】【模型】Revert \"恢复 平台默认 索引器 KV dtype for DeepSeek V4\" Reverts 17635 ( b980a2476dfa259f6112b01ded829b7cfb80d409 ). That commit 新增 get 索引器 k dtype to the DeepSeek V4 索引器: it resolves 索引器 kv dtype="
+        },
+        {
+          "kind": "pr",
+          "number": 18891,
+          "title": "[BugFix][Platform] Reject KV cache dtypes the attention backend cannot store",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18891",
+          "author": "Pingzii",
+          "labels": [
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-15T11:21:02Z",
+          "updatedAt": "2026-10-16T15:41:20Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "[BugFix][Platform] Reject KV cache dtypes the attention backend cannot store Both DeepSeek V4 caches default to \"auto\" , and on Ascend \"auto\" resolves to a dtype the kernels there cannot write, so a default launch reaches ACLGraph capture a",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【Platform】Reject KV 缓存 dtypes the 注意力 backend cannot store",
+          "excerptZh": "【修复】【Platform】Reject KV 缓存 dtypes the 注意力 backend cannot store Both DeepSeek V4 caches default to \"auto\" , and on Ascend \"auto\" resolves to a dtype the 内核 there cannot write, so a default launch reaches ACLGraph capture a"
+        },
+        {
+          "kind": "pr",
+          "number": 18808,
+          "title": "[v0.30.0][Attention][Feature] Integrate mixed_quant_sparse_flash_mla op for DeepSeek-V4 FP8 KV path",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18808",
+          "author": "lcfenglinwan",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-15T03:45:40Z",
+          "updatedAt": "2026-10-16T12:15:20Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Backport Unify the DSV4 sparse attention path on the MixedQuantSparseFlashMla operator family from cann ops transformer, replacing the previous in-tree custom operators: Remove the in-tree KvCompressEpilog custom op (csrc/attention/kv compr",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【v0.30.0】【注意力】【功能】Integrate mixed_quant_sparse_flash_mla op for DeepSeek-V4 FP8 KV path",
+          "excerptZh": "Backport Unify the DSV4 稀疏 注意力 path on the MixedQuantSparseFlashMla operator family from cann ops transformer, replacing the previous in-tree custom operators: 移除 the in-tree KvCompressEpilog 自定义算子 (csrc/注意力/kv compr"
+        },
+        {
+          "kind": "pr",
+          "number": 18994,
+          "title": "[CI] dsv4 mooncake",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18994",
+          "author": "chen-commits",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-16T08:01:30Z",
+          "updatedAt": "2026-10-16T11:44:06Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
           "excerpt": "Does this PR introduce any user-facing change? --- Checklist Testing - [ ] Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque",
           "modelIds": [
-            "ds-v4-pro"
+            "ds-v4"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【持续集成】dsv4 mooncake",
+          "excerptZh": "【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque"
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18347,
+          "title": "[Performance][Kernel] Optimize hc_pre kernels/v0.30.0",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18347",
+          "author": "goodgoodname",
+          "labels": [
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-12T02:16:19Z",
+          "updatedAt": "2026-10-16T15:43:06Z",
+          "closedAt": "2026-10-16T15:43:05Z",
+          "mergedAt": "2026-10-16T15:43:05Z",
+          "comments": 0,
+          "excerpt": "Integrate an optimized hc pre operator implementation for evaluation on Ascend A3. The operator source was adapted from the cann-recipes-infer implementation. The changes are limited to the operator implementation and its build integration.",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【性能】【Kernel】优化 hc_pre 内核/v0.30.0",
+          "excerptZh": "Integrate an optimized hc pre operator implementation for evaluation on Ascend A3. The operator source was adapted from the cann-recipes-infer implementation. The changes are limited to the operator implementation and its build integration."
+        },
+        {
+          "kind": "pr",
+          "number": 17681,
+          "title": "[Feature][MRV2] Default Model Runner V2 for all configurations",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17681",
+          "author": "yjyang62",
+          "labels": [
+            "module:tests",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-09-29T01:38:26Z",
+          "updatedAt": "2026-10-16T15:39:03Z",
+          "closedAt": "2026-10-16T15:39:02Z",
+          "mergedAt": "2026-10-16T15:39:02Z",
+          "comments": 0,
+          "excerpt": "This PR makes Model Runner V2 the default on Ascend when VLLM USE V2 MODEL RUNNER is unset. The old architecture, feature, platform, and Triton whitelist is replaced by a blacklist in vllm ascend/mrv2 utils.py . When the env var is unset, a",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "[功能] [MRV2]所有配置的默认模型运行器V2",
+          "excerptZh": "This PR makes Model Runner V2 the default on Ascend when VLLM USE V2 MODEL RUNNER is unset. The old architecture, 特性, platform, and Triton whitelist is replaced by a blacklist in vllm ascend/mrv2 utils.py . When the env var is unset, a"
+        },
+        {
+          "kind": "pr",
+          "number": 18924,
+          "title": "[BugFix][v0.30.0] Serialize csrc publication directory creation",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18924",
+          "author": "AuroraEmiya",
+          "labels": [
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-16T01:39:07Z",
+          "updatedAt": "2026-10-16T15:38:42Z",
+          "closedAt": "2026-10-16T15:38:42Z",
+          "mergedAt": "2026-10-16T15:38:42Z",
+          "comments": 0,
+          "excerpt": "Minimal releases/v0.30.0 counterpart of 18923. Move one existing publish dir.mkdir(parents=True, exist ok=True) call under the existing .publish.lock . The first publisher deletes/recreates this shared directory while holding the lock; crea",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【v0.30.0】Serialize csrc publication directory creation",
+          "excerptZh": "Minimal releases/v0.30.0 counterpart of 18923. Move one existing publish dir.mkdir(parents=True, exist ok=True) call under the existing .publish.lock . The first publisher deletes/recreates this 共享 directory while holding the lock; crea"
+        },
+        {
+          "kind": "pr",
+          "number": 18923,
+          "title": "[BugFix][Build] Serialize csrc publication directory creation",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18923",
+          "author": "AuroraEmiya",
+          "labels": [
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-16T01:36:48Z",
+          "updatedAt": "2026-10-16T15:38:38Z",
+          "closedAt": "2026-10-16T15:38:38Z",
+          "mergedAt": "2026-10-16T15:38:38Z",
+          "comments": 0,
+          "excerpt": "Move the existing publish dir.mkdir(parents=True, exist ok=True) into the existing .publish.lock critical section. The first publisher removes/recreates the shared operator output directory under that lock. Another publisher could previousl",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【Build】Serialize csrc publication directory creation",
+          "excerptZh": "Move the existing publish dir.mkdir(parents=True, exist ok=True) into the existing .publish.lock critical section. The first publisher removes/recreates the 共享 operator output directory under that lock. Another publisher could previousl"
+        },
+        {
+          "kind": "pr",
+          "number": 18870,
+          "title": "[BugFix][Model][v0.30.0 only] Restore GLM V1 FlashComm1 with PP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18870",
+          "author": "aisong1988",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-15T09:44:10Z",
+          "updatedAt": "2026-10-16T15:32:23Z",
+          "closedAt": "2026-10-16T15:32:23Z",
+          "mergedAt": "2026-10-16T15:32:23Z",
+          "comments": 0,
+          "excerpt": "GLM DSA V1 with PP 1 can report FlashComm1 enabled while decoder SP remains disabled by the upstream PP=1 guard. This minimal fix enables SP on eligible GLM MoE/MLA layers, keeps attention projection unreduced for the decoder's reduce-scatt",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【模型】【v0.30.0 only】恢复 GLM V1 FlashComm1 with PP",
+          "excerptZh": "GLM DSA V1 with PP 1 can report FlashComm1 启用 while decoder SP remains disabled by the upstream PP=1 guard. This minimal 修复 enables SP on eligible GLM MoE/MLA layers, keeps 注意力 projection unreduced for the decoder's 减少-scatt"
+        },
+        {
+          "kind": "pr",
+          "number": 18979,
+          "title": "[BugFix] Keep MiniMax-M3 sparse attention outside piecewise graphs",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18979",
+          "author": "FORFuture37",
+          "labels": [
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-16T06:46:42Z",
+          "updatedAt": "2026-10-16T15:26:00Z",
+          "closedAt": "2026-10-16T15:26:00Z",
+          "mergedAt": "2026-10-16T15:26:00Z",
+          "comments": 0,
+          "excerpt": "MiniMax-M3 sparse attention writes the KV cache and reads slot metadata from the forward context. Under the default piecewise cudagraph mode those custom ops were compiled into a graph piece, so replay reused the slots and token count captu",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】Keep MiniMax-M3 稀疏 注意力 outside piecewise graphs",
+          "excerptZh": "MiniMax-M3 稀疏 注意力 writes the KV 缓存 and reads slot 元数据 from the forward context. Under the default piecewise cudagraph mode those custom ops were compiled into a graph piece, so replay reused the slots and token count captu"
+        },
+        {
+          "kind": "pr",
+          "number": 18445,
+          "title": "[BugFix] Fix MiniMax-M3 fused sparse attention boundary in piecewise graphs",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18445",
+          "author": "FORFuture37",
+          "labels": [
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-12T12:13:19Z",
+          "updatedAt": "2026-10-16T15:25:57Z",
+          "closedAt": "2026-10-16T15:25:57Z",
+          "mergedAt": "2026-10-16T15:25:57Z",
+          "comments": 0,
+          "excerpt": "Fix the MiniMax-M3 fused sparse-attention boundary under piecewise graph execution by adding vllm::minimax m3 fused sparse forward to compilation config.splitting ops . 18235 introduced a fused path combining QK normalization, RoPE, main/in",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】MiniMax-M3 融合 稀疏 注意力 boundary in piecewise graphs",
+          "excerptZh": "修复 the MiniMax-M3 融合 稀疏-注意力 boundary under piecewise graph execution by adding vllm::minimax m3 融合 稀疏 forward to compilation 配置.splitting ops . 18235 introduced a 融合 path combining QK normalization, RoPE, main/in"
+        },
+        {
+          "kind": "pr",
+          "number": 18756,
+          "title": "[BugFix][Kimi] Use grouped matmul for eager MXFP8 projections (v0.30 backport)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18756",
+          "author": "Dawn952",
+          "labels": [
+            "module:tests",
+            "module:quantization",
+            "ready-a5",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-14T15:29:04Z",
+          "updatedAt": "2026-10-16T14:59:52Z",
+          "closedAt": "2026-10-16T14:59:52Z",
+          "mergedAt": "2026-10-16T14:59:52Z",
+          "comments": 0,
+          "excerpt": "Backport of 18606 to releases/v0.30.0 ; the projection selection and quantization implementation match main. The branch was rebased onto the current release base to remove the old CI replay conflicts. Route Kimi K3's fused QKV, routed-down ",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【Kimi】Use grouped matmul for eager MXFP8 projections (v0.30 backport)",
+          "excerptZh": "Backport of 18606 to releases/v0.30.0 ; the projection selection and 量化 implementation match main. The branch was rebased onto the current release base to 移除 the old CI replay conflicts. Route Kimi K3's 融合 QKV, routed-down"
+        }
+      ]
+    },
+    {
+      "id": "glm-5.2",
+      "name": "GLM-5.2",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18937,
+          "title": "[Doc] TurboQuant does not support context parallelism",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18937",
+          "author": "chenweiqiang11",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-16T02:40:32Z",
+          "updatedAt": "2026-10-16T11:39:09Z",
+          "closedAt": "2026-10-16T11:39:09Z",
+          "mergedAt": "2026-10-16T11:39:09Z",
+          "comments": 0,
+          "excerpt": "Sync of 18935 to releases/v0.30.0 : adds the context-parallelism restriction to the --kv-cache-dtype turboquant 4bit nc entries for GLM-5.2 and GLM-5.3 - TurboQuant does not support DCP/PCP. The entries landed without it in 18574. Three pla",
+          "modelIds": [
+            "glm-5.2"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】TurboQuant does not 支持 context parallelism",
+          "excerptZh": "Sync of 18935 to releases/v0.30.0 : adds the context-parallelism restriction to the --kv-缓存-dtype turboquant 4bit nc entries for GLM-5.2 and GLM-5.3 - TurboQuant does not 支持 DCP/PCP. The entries landed without it in 18574. Three pla"
+        },
+        {
+          "kind": "pr",
+          "number": 18935,
+          "title": "[Doc] TurboQuant does not support context parallelism",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18935",
+          "author": "chenweiqiang11",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-16T02:40:26Z",
+          "updatedAt": "2026-10-16T11:38:03Z",
+          "closedAt": "2026-10-16T11:38:03Z",
+          "mergedAt": "2026-10-16T11:38:03Z",
+          "comments": 0,
+          "excerpt": "Adds the context-parallelism restriction to the --kv-cache-dtype turboquant 4bit nc entries for GLM-5.2 and GLM-5.3: TurboQuant does not support DCP/PCP. The entries landed without it in 18566. Three places, same wording: GLM5.2 section 5.1",
+          "modelIds": [
+            "glm-5.2"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】TurboQuant does not 支持 context parallelism",
+          "excerptZh": "Adds the context-parallelism restriction to the --kv-缓存-dtype turboquant 4bit nc entries for GLM-5.2 and GLM-5.3: TurboQuant does not 支持 DCP/PCP. The entries landed without it in 18566. Three places, same wording: GLM5.2 section 5.1"
+        },
+        {
+          "kind": "pr",
+          "number": 17516,
+          "title": "[Doc][Model] Align shared GLM-5.2/5.3 deployment settings and W4A4C8 examples",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17516",
+          "author": "Wyz-134",
+          "labels": [
+            "documentation",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-24T13:14:05Z",
+          "updatedAt": "2026-10-16T12:28:30Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Merge GLM-5.2/GLM-5.3 deployment documentation and align shared configurations with the maintained release guide. Script source is releases/v0.30.0 at 1bd04a362691d78286399916c03821a201b66a8e , the branch containing the earlier GLM document",
+          "modelIds": [
+            "glm-5.2"
           ],
           "action": "updated",
           "score": 0,
-          "titleZh": "【文档】【功能】【v0.30.0】Ascend 950DT deployment guides for DeepSeek-V4-Pro",
-          "excerptZh": "【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque"
+          "titleZh": "【文档】【模型】对齐 共享 GLM-5.2/5.3 deployment settings and W4A4C8 examples",
+          "excerptZh": "合并 GLM-5.2/GLM-5.3 deployment documentation and 对齐 共享 configurations with the maintained release guide. Script source is releases/v0.30.0 at 1bd04a362691d78286399916c03821a201b66a8e , the branch containing the earlier GLM 补充文档"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18621,
+          "title": "[BugFix][KV Cache] Restore contiguous hybrid Attention+Mamba KV cache layout",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18621",
+          "author": "pjh456",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-13T16:34:57Z",
+          "updatedAt": "2026-10-16T13:48:52Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Restore the contiguous per-layer K/V allocation for the ordinary Attention layers of hybrid Attention+Mamba models (e.g. Qwen3.5 / Qwen3.8, qwen3 5 GDN) in MRv1, undoing the generic non-contiguous block-major layout introduced by 14340 for ",
+          "modelIds": [
+            "qwen3.8",
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[BugFix] [KV Cache]恢复连续混合注意力+曼巴KV缓存布局",
+          "excerptZh": "恢复 the contiguous per-layer K/V allocation for the ordinary 注意力 layers of hybrid 注意力+Mamba models (e.g. Qwen3.5 / Qwen3.8, qwen3 5 GDN) in MRv1, undoing the generic non-contiguous block-major layout introduced by 14340 for"
         }
       ]
     }

@@ -1,0 +1,143 @@
+{
+  "day": "2026-10-17",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17624,
+          "title": "[Test] Add KV pooling to DSV4-Flash nightly (PD / A5 / A3 / MTP3)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17624",
+          "author": "lizy124",
+          "labels": [
+            "module:tests",
+            "merge-conflicts",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-28T06:15:53Z",
+          "updatedAt": "2026-10-16T17:43:47Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Motivation KV pooling (AscendStoreConnector, both memcache and mooncake backends, with/without use layerwise ) currently has no nightly coverage : a pooling regression would not be caught until a manual weekly/CI run happens. This PR brings",
+          "modelIds": [
+            "ds-v4-flash",
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 KV 池化 to DSV4-Flash 夜间 (PD / A5 / A3 / MTP3)",
+          "excerptZh": "Motivation KV 池化 (AscendStoreConnector, both memcache and mooncake backends, with/without use layerwise ) currently has no 夜间 coverage : a 池化 回退 would not be caught until a manual 每周/CI run happens. This PR brings"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17624,
+          "title": "[Test] Add KV pooling to DSV4-Flash nightly (PD / A5 / A3 / MTP3)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17624",
+          "author": "lizy124",
+          "labels": [
+            "module:tests",
+            "merge-conflicts",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-28T06:15:53Z",
+          "updatedAt": "2026-10-16T17:43:47Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Motivation KV pooling (AscendStoreConnector, both memcache and mooncake backends, with/without use layerwise ) currently has no nightly coverage : a pooling regression would not be caught until a manual weekly/CI run happens. This PR brings",
+          "modelIds": [
+            "ds-v4-flash",
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 KV 池化 to DSV4-Flash 夜间 (PD / A5 / A3 / MTP3)",
+          "excerptZh": "Motivation KV 池化 (AscendStoreConnector, both memcache and mooncake backends, with/without use layerwise ) currently has no 夜间 coverage : a 池化 回退 would not be caught until a manual 每周/CI run happens. This PR brings"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k2",
+      "name": "Kimi K2",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 16170,
+          "title": "[CI][nightly] Add Kimi-K2.6-w4a8-DFlash-A3 spec decode nightly tests",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/16170",
+          "author": "lyur01",
+          "labels": [
+            "module:tests",
+            "merge-conflicts",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-09T11:37:50Z",
+          "updatedAt": "2026-10-16T17:11:03Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add a nightly test for Kimi-K2.6 acceptance rate per position. Does this PR introduce any user-facing change? No. Nighly test passed. - vLLM main:",
+          "modelIds": [
+            "kimi-k2"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】【nightly】新增 Kimi-K2.6-w4a8-DFlash-A3 spec 解码 夜间 tests",
+          "excerptZh": "新增 a 夜间 test for Kimi-K2.6 acceptance rate per position. No. Nighly test passed. - vLLM main:"
+        }
+      ]
+    },
+    {
+      "id": "glm-5.1",
+      "name": "GLM-5.1",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 15489,
+          "title": "[CI] Trigger GLM-5.1 nightly bisect",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/15489",
+          "author": "ZYang6263",
+          "labels": [
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-09-01T09:00:27Z",
+          "updatedAt": "2026-10-16T17:10:46Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This is an empty draft PR used to trigger the multi-node GLM-5.1 nightly bisect workflow.\\n\\nNo code changes. - vLLM main:",
+          "modelIds": [
+            "glm-5.1"
+          ],
+          "action": "updated",
+          "score": -1,
+          "titleZh": "【持续集成】Trigger GLM-5.1 夜间 bisect",
+          "excerptZh": "This is an empty draft PR used to trigger the multi-node GLM-5.1 夜间 bisect workflow.\\n\\nNo code changes. - vLLM main:"
+        }
+      ]
+    }
+  ]
+}
