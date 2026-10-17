@@ -43,6 +43,7 @@ const ICONS = {
   help: "M12 17h.01M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .8-1 1.7",
   more: "M5 12h.01M12 12h.01M19 12h.01",
   feature: "M4 5h6v4H4zM14 5h6v4h-6zM9 15h6v4H9zM7 9v3M17 9v3M12 12v3",
+  diagram: "M4 7h5v4H4zM15 7h5v4h-5zM9.5 15h5v4h-5zM6.5 11v2.2L12 15M17.5 11v2.2L12 15",
 };
 
 let state = null;
@@ -51,6 +52,7 @@ let issueFilter = "all";
 let modelQuery = "";
 let activeModel = "";
 let activeFeature = "";
+let activePrinciple = "";
 const featureFamily = new Map();
 const FEATURE_FAMILIES = ["DeepSeek", "Qwen", "GLM", "Kimi", "MiniMax", "Gemma", "Step", "Bailing", "其他"];
 
@@ -79,11 +81,47 @@ function icon(name) {
   return svg;
 }
 
+function stageTerms(text) {
+  return String(text)
+    .replaceAll("预填充", "Prefill")
+    .replaceAll("发行说明", "release note")
+    .replaceAll("投机解码", "\uE000")
+    .replaceAll("解码器", "\uE001")
+    .replaceAll("解码", "Decode")
+    .replaceAll("\uE000", "投机解码")
+    .replaceAll("\uE001", "解码器")
+    .replace(/([\u4e00-\u9fff])(Prefill|Decode|release note)/g, "$1 $2")
+    .replace(/(Prefill|Decode|release note)([\u4e00-\u9fff])/g, "$1 $2");
+}
+
 function el(tag, className, text) {
   const node = document.createElement(tag);
   if (className) node.className = className;
-  if (text != null) node.textContent = text;
+  if (text != null) node.textContent = stageTerms(text);
   return node;
+}
+
+function richNode(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  for (const part of stageTerms(text).split(/(\*\*[^*]+\*\*)/g)) {
+    if (!part) continue;
+    if (part.startsWith("**") && part.endsWith("**")) {
+      node.append(el("strong", null, part.slice(2, -2)));
+    } else {
+      node.append(document.createTextNode(part));
+    }
+  }
+  return node;
+}
+
+function supportCellClass(cell) {
+  if (cell === "✅") return "mark ok";
+  if (cell === "🔵") return "mark exp";
+  if (cell === "🔴") return "mark retired";
+  if (cell === "🟡") return "mark unverified";
+  if (cell === "❌") return "mark no";
+  return "";
 }
 
 function shiftDay(day, delta) {
@@ -603,7 +641,124 @@ function renderFeatureDetail(feature) {
   mainEl.replaceChildren(wrap);
 }
 
+function renderPrinciple(feature) {
+  const entry = (window.FEATURE_PRINCIPLES || {})[feature.id] || {
+    scene: "flow",
+    paragraphs: [feature.principle],
+    nodes: [[feature.english || feature.title, ""], ["vLLM-Ascend", "按官方实现"], ["昇腾", "NPU 上执行"]],
+  };
+  const wrap = document.createDocumentFragment();
+  const head = el("div", "detail-head");
+  const copy = el("div");
+  copy.append(el("p", "kicker", "原理解读"));
+  appendFeatureName(copy, feature, "h2");
+  const back = el("button", "back", "返回特性介绍");
+  back.type = "button";
+  back.addEventListener("click", () => {
+    activePrinciple = "";
+    render();
+    mainEl.scrollTop = 0;
+  });
+  head.append(copy, back);
+  wrap.append(head);
+
+  const layout = el("div", "principle-layout");
+  const diagram = el("section", "principle-box");
+  diagram.append(el("h3", null, "原理图"));
+  const stage = el("div", "principle-stage");
+  if (window.mountPrincipleScene) window.mountPrincipleScene(stage, entry);
+  diagram.append(stage);
+  layout.append(diagram);
+
+  const text = el("div", "principle-copy");
+  if (entry.paragraphs?.length) {
+    const box = el("section", "principle-box");
+    box.append(el("h3", null, "原理"));
+    for (const paragraph of entry.paragraphs) box.append(richNode("p", null, paragraph));
+    text.append(box);
+  }
+  if (entry.points?.length) {
+    const box = el("section", "principle-box tone-key");
+    box.append(el("h3", null, "要点"));
+    const list = el("ul", "principle-points");
+    for (const point of entry.points) list.append(richNode("li", null, point));
+    box.append(list);
+    text.append(box);
+  }
+  if (entry.support?.rows?.length) {
+    const box = el("section", "principle-box");
+    box.append(el("h3", null, "支持范围"));
+    if (entry.support.note) box.append(richNode("p", "muted", entry.support.note));
+    const table = el("table", "support-table");
+    const headRow = el("tr");
+    for (const column of entry.support.columns || []) headRow.append(el("th", null, column));
+    table.append(headRow);
+    for (const cells of entry.support.rows) {
+      const row = el("tr");
+      for (const cell of cells) row.append(el("td", supportCellClass(cell), cell));
+      table.append(row);
+    }
+    box.append(table);
+    text.append(box);
+  }
+  if (entry.example?.length) {
+    const box = el("section", "principle-box");
+    box.append(el("h3", null, entry.exampleTitle || "对照"));
+    const table = el("table");
+    for (const [label, value] of entry.example) {
+      const row = el("tr");
+      row.append(el("th", null, label), richNode("td", null, value));
+      table.append(row);
+    }
+    box.append(table);
+    text.append(box);
+  }
+  if (entry.applies) {
+    const box = el("section", "principle-box tone-key");
+    box.append(el("h3", null, "适用范围"));
+    box.append(richNode("p", null, entry.applies));
+    text.append(box);
+  }
+  if (entry.code) {
+    const box = el("section", "principle-box");
+    box.append(el("h3", null, "怎么启用"));
+    const pre = el("pre", "principle-code");
+    pre.textContent = entry.code;
+    box.append(pre);
+    text.append(box);
+  }
+  if (entry.notes?.length) {
+    const box = el("section", "principle-box tone-warn");
+    box.append(el("h3", null, "注意"));
+    for (const note of entry.notes) {
+      const line = el("div", `principle-note ${note.level || ""}`);
+      line.append(richNode("p", null, note.text));
+      for (const ref of note.refs || []) line.append(externalLink(ref.url, `${ref.kind} #${ref.n}`, "ref-chip"));
+      box.append(line);
+    }
+    text.append(box);
+  }
+  const sources = el("section", "principle-box");
+  sources.append(el("h3", null, "依据"));
+  const links = el("div", "principle-sources");
+  links.append(externalLink(feature.doc, "官方特性说明"));
+  for (const [label, href] of entry.sources || []) links.append(externalLink(href, label));
+  sources.append(links);
+  text.append(sources);
+  layout.append(text);
+  wrap.append(layout);
+  mainEl.replaceChildren(wrap);
+}
+
 function renderFeatures() {
+  if (activePrinciple) {
+    const explained = allFeatures().find((item) => item.id === activePrinciple);
+    if (explained) {
+      renderPrinciple(explained);
+      return;
+    }
+    activePrinciple = "";
+  }
   const current = allFeatures().find((item) => item.id === activeFeature);
   if (current) {
     mainEl.classList.remove("pin-overview");
@@ -613,8 +768,27 @@ function renderFeatures() {
   const wrap = document.createDocumentFragment();
   const hero = el("div", "page-head");
   hero.append(el("h2", null, "特性介绍"));
-  hero.append(el("p", null, "先从总览跳到某个特性。每块默认显示该特性的全部最近动态，也可以按模型类别查看。"));
+  hero.append(el("p", null, "先从总览跳到某个特性。方块右上角的图标可以打开原理解读。每块默认显示该特性的全部最近动态，也可以按模型类别查看。"));
   wrap.append(hero);
+  const glossary = el("details", "glossary");
+  glossary.append(el("summary", null, "名词说明"));
+  const terms = el("dl", "glossary-grid");
+  for (const [term, meaning] of [
+    ["Prefill", "把整段提示一次算完、写出 KV、得到第一个输出 token 之前的阶段。"],
+    ["Decode", "已经产出第一个 token 之后，一次再生成一个新 token 的阶段。"],
+    ["release note", "某个版本发布时附带的说明，记录新能力和已知限制。"],
+    ["NPU", "昇腾上实际算模型的芯片。一台 Atlas 800 A2 有 8 张 NPU。"],
+    ["rank", "并行进程的编号。它不一定等于 NPU 编号。TP 大于 1 时，一个 rank 可以占多张 NPU。"],
+    ["TP", "张量并行。同一层的权重沿隐藏维切开，多张 NPU 一起算这一层。"],
+    ["PP", "流水线并行。前半层和后半层放在不同的 rank 上，中间只传递激活值。"],
+    ["PCP", "Prefill 上下文并行。长提示按 token 分到额外 rank 上，各自只算自己那一段。"],
+    ["DCP", "Decode 上下文并行。历史 KV 按序列分片存放。新 token 仍然是一个，不会再被切成几段提示。"],
+    ["EP", "专家并行。MoE 的路由专家分到不同 NPU，token 按路由送到对应专家。"],
+  ]) {
+    terms.append(el("dt", null, term), el("dd", null, meaning));
+  }
+  glossary.append(terms);
+  wrap.append(glossary);
   const rows = allFeatures().map((feature) => ({ feature, matched: featureItems(feature) }));
   const index = el("section", "feature-index");
   const indexHead = el("div", "feature-index-head");
@@ -623,11 +797,22 @@ function renderFeatures() {
   const links = el("div", "feature-index-grid");
   const ranked = [...rows].sort((a, b) => b.matched.length - a.matched.length);
   for (const { feature, matched } of ranked) {
-    const button = el("button", matched.length ? "" : "quiet");
-    button.type = "button";
+    const button = el("div", `feature-jump${matched.length ? "" : " quiet"}`);
+    button.tabIndex = 0;
+    button.setAttribute("role", "button");
+    const open = el("button", "principle-open");
+    open.type = "button";
+    open.setAttribute("aria-label", `原理解读：${feature.english || feature.title}`);
+    open.append(icon("diagram"));
+    open.addEventListener("click", (event) => {
+      event.stopPropagation();
+      activePrinciple = feature.id;
+      render();
+      mainEl.scrollTop = 0;
+    });
     const names = el("span", "feature-name");
     appendFeatureName(names, feature, "strong");
-    button.append(names, el("b", null, matched.length ? `${matched.length} 条` : "暂无"));
+    button.append(open, names, el("b", null, matched.length ? `${matched.length} 条` : "暂无"));
     button.addEventListener("click", () => {
       const target = document.getElementById(`feature-${feature.id}`);
       if (!target) return;
@@ -677,6 +862,8 @@ mainEl.addEventListener("wheel", (event) => {
   if (!board || board.contains(event.target)) return;
   const index = mainEl.querySelector(".feature-index");
   if (index?.contains(event.target) && index.scrollHeight > index.clientHeight + 1) return;
+  const glossary = mainEl.querySelector(".glossary");
+  if (glossary?.open && glossary.contains(event.target) && glossary.scrollHeight > glossary.clientHeight + 1) return;
   board.scrollTop += event.deltaY;
   event.preventDefault();
 }, { passive: false });
