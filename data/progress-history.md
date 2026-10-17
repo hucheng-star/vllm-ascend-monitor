@@ -1,6 +1,6 @@
 # vLLM-Ascend 各模型历史进展
 
-更新时间：2026-10-16T23:00:05.851Z
+更新时间：2026-10-17T06:59:19.933Z
 
 收录 2026-09-17 以来仍被提到的模型相关 PR 与 Issue，按事件日期由近到远。中文在前，原文在后。
 
@@ -897,6 +897,13 @@
 
 ### Qwen3.8
 
+#### 2026-10-17
+
+- [PR #19056](https://github.com/vllm-project/vllm-ascend/pull/19056) 进行中
+  - 中文：【功能】dense SP 支持 for Qwen3.8
+  - 原文：[Feature] add dense SP support for Qwen3.8
+  - 说明：新增 a scoped Qwen3.5 decoder layer override with explicit 序列-parallel all-gather and 减少-scatter boundaries. Wire opt-in FlashComm enablement and 新增 unit, collective, engine, graph-mode, MTP, and full-权重 coverage. Does this PR
+
 #### 2026-10-16
 
 - [PR #18983](https://github.com/vllm-project/vllm-ascend/pull/18983) 草稿
@@ -1568,6 +1575,220 @@
 
 ## GLM
 
+### GLM-5
+
+#### 2026-10-17
+
+- [PR #19055](https://github.com/vllm-project/vllm-ascend/pull/19055) 进行中
+  - 中文：【修复】【持续集成】恢复 GLM5_1_W4A4_A5 to the V1 server 配置
+  - 原文：[BugFix][CI] Restore GLM5_1_W4A4_A5 to the V1 server config
+  - 说明：17681 moved GLM5 1 W4A4 A5 onto a Model Runner V2 server shape (TP=2, 预填充-context-parallel-size=4, HCCL BUFFSIZE=1024, gpu-显存-utilization=0.90, CLI EPLB). A follow-up only pinned VLLM USE V2 MODEL RUNNER=0. V1 rejects 预填充 contex
+
+#### 2026-10-16
+
+- [PR #18930](https://github.com/vllm-project/vllm-ascend/pull/18930) 已合并
+  - 中文：【重构】【Patch】Use upstream GLM-5-Next 配置 支持
+  - 原文：[Refactor][Patch] Use upstream GLM-5-Next config support
+  - 说明：vLLM v0.31.0 and the verified main pin ( c4df37dfcc7f72ca41cd43801a468526ecf99a2b ) already register glm5 next , glm5 next text , and glm5 next vision , and recognize the GLM-5-Next text model types for MLA. The upstream 配置 classes have
+- [Issue #18951](https://github.com/vllm-project/vllm-ascend/issues/18951) 进行中
+  - 中文：【缺陷】: GLM-5.3-Flash-w8a8基于vllm-ascend 0.30.0rc2部署（1P1D）128K/2K性能测试正常，256K/2K测试崩溃
+  - 原文：[Bug]: GLM-5.3-Flash-w8a8基于vllm-ascend 0.30.0rc2部署（1P1D）128K/2K性能测试正常，256K/2K测试崩溃
+- [PR #18938](https://github.com/vllm-project/vllm-ascend/pull/18938) 已关闭
+  - 中文：Docs turboquant glm52 glm53 0.30.0
+  - 说明：【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque
+
+#### 2026-10-15
+
+- [PR #18878](https://github.com/vllm-project/vllm-ascend/pull/18878) 草稿
+  - 中文：【修复】【GLM5Next】CausalConv1d state underflow for padded 解码 requests
+  - 原文：[BugFix][GLM5Next] Fix CausalConv1d state underflow for padded decode requests
+  - 说明：修复 a GLM5Next CausalConv1d state-buffer underflow when a 解码 graph contains padded requests. For example, five live 解码 requests can replay an eight-row graph. The state gather currently writes -1 for inactive rows and the wrapper pa
+- [Issue #16085](https://github.com/vllm-project/vllm-ascend/issues/16085) 已关闭
+  - 中文：【缺陷】: 0.26.0rc1 GLM5.3 dcp=8 and sfa-c8 true 的场景 必定精度异常，出现乱码
+  - 原文：[Bug]: 0.26.0rc1 GLM5.3 dcp=8 and sfa-c8 true 的场景 必定精度异常，出现乱码
+- [Issue #16654](https://github.com/vllm-project/vllm-ascend/issues/16654) 已关闭
+  - 中文：【Bug】： GLM-5.2 A3 （ 2 节点 P/D 分离部署） ，长时间 （ 3-8小时 ）运行后 Prefill实例出现 fftsplus aicore error ， EngineCore异常退出
+  - 原文：[Bug]: GLM-5.2 A3（2 节点 P/D 分离部署），长时间（3-8小时）运行后Prefill实例出现 fftsplus aicore error ， EngineCore异常退出
+- [Issue #16015](https://github.com/vllm-project/vllm-ascend/issues/16015) 已关闭
+  - 中文：【缺陷】: 0.26.0rc1 GLM5.3 w8a8c8 部署pd分离 512K场景 sfac8 && dcp16 开启，长输入请求乱码
+  - 原文：[Bug]: 0.26.0rc1 GLM5.3 w8a8c8 部署pd分离 512K场景 sfac8 && dcp16 开启，长输入请求乱码
+- [Issue #18859](https://github.com/vllm-project/vllm-ascend/issues/18859) 进行中
+  - 中文：【缺陷】: MLAPO hardcodes RMSNorm epsilon=1e-6 instead of honoring model rms_norm_eps (GLM-5.2 W8A8)
+  - 原文：[Bug]: MLAPO hardcodes RMSNorm epsilon=1e-6 instead of honoring model rms_norm_eps (GLM-5.2 W8A8)
+- [Issue #18807](https://github.com/vllm-project/vllm-ascend/issues/18807) 进行中
+  - 中文：【缺陷】: v0.30.0rc2，glm5.3flash，A3，3P+1D,多模态请求导致服务挂死
+  - 原文：[Bug]: v0.30.0rc2，glm5.3flash，A3，3P+1D,多模态请求导致服务挂死
+- [Issue #18804](https://github.com/vllm-project/vllm-ascend/issues/18804) 进行中
+  - 中文：[Bug] ： 4节点A2 PD + Mooncake KV Pool （ GLM-5.3-Flash-w8a8 ， v0.30.0rc2 ） ：两个预填充引擎都悬挂在61%的池水位线上— AscendStore batch_put失败为-1 ，而master显示38%可用， NPU任务队列为空
+  - 原文：[Bug]: 4-node A2 PD + Mooncake KV Pool (GLM-5.3-Flash-w8a8, v0.30.0rc2): both Prefill engines hang at 61% pool watermark — AscendStore batch_put fails with -1 while master shows 38% free, NPU task queues empty
+- [Issue #18782](https://github.com/vllm-project/vllm-ascend/issues/18782) 进行中
+  - 中文：[错误] ： 0.30.0rc1/rc2 GLM-5.3-Flash-w8a8部署 四机Atlas 800I A2PD分离远程引擎1不得在外部或混合DP 1b模式下使用--headless
+  - 原文：[Bug]: 0.30.0rc1/rc2部署GLM-5.3-Flash-w8a8 四机Atlas 800I A2PD分离Remote engine1 must not use --headless in external or hybrid dp 1b mode
+
+#### 2026-10-14
+
+- [Issue #16941](https://github.com/vllm-project/vllm-ascend/issues/16941) 已关闭
+  - 中文：【Bug】：【Bug】GLM-5.2 GLM-5.3、 PD分解流返回重复空块，异常STOP_REASON: 154829和膨胀COMPLETION_TOKENS
+  - 原文：[Bug]: [Bug] GLM-5.2、GLM-5.3 PD disaggregation streaming returns duplicated empty chunks with abnormal stop_reason: 154829 and inflated completion_tokens
+- [Issue #17391](https://github.com/vllm-project/vllm-ascend/issues/17391) 已关闭
+  - 中文：【缺陷】: GLM-5.2-w4a8c8 、GLM-5.3-w8a8c8premature stop / silent termination before 工具调用 generation in P/D disaggregated deployment
+  - 原文：[Bug]:  GLM-5.2-w4a8c8 、GLM-5.3-w8a8c8premature stop / silent termination before tool call generation in P/D disaggregated deployment
+- [PR #18552](https://github.com/vllm-project/vllm-ascend/pull/18552) 已合并
+  - 中文：[文档]澄清GLM-5停产并调整GLM-5.1部署示例
+  - 原文：[Doc] Clarify GLM-5 discontinuation and align GLM-5.1 deployment examples
+  - 说明：Clarify that GLM-5 is discontinued starting with vLLM Ascend v0.30.0 and make the deployment examples specific to GLM-5.1. The guide currently combines GLM-5 and GLM-5.1, lists GLM-5 权重 and serves requests under the glm-5 alias even in
+- [PR #18553](https://github.com/vllm-project/vllm-ascend/pull/18553) 已合并
+  - 中文：[文档] [v0.30.0]澄清GLM-5停产并调整GLM-5.1部署示例
+  - 原文：[Doc][v0.30.0] Clarify GLM-5 discontinuation and align GLM-5.1 deployment examples
+  - 说明：Clarify that GLM-5 is discontinued starting with vLLM Ascend v0.30.0 and make the deployment examples specific to GLM-5.1. The guide currently combines GLM-5 and GLM-5.1, lists GLM-5 权重 and serves requests under the glm-5 alias even in
+- [Issue #16195](https://github.com/vllm-project/vllm-ascend/issues/16195) 已关闭
+  - 中文：【缺陷】【v0.26rc1】【GLM5.2】: 回退megamoe后MTP接受步长显著下降
+  - 原文：[Bug]: [v0.26rc1][GLM5.2] 回退megamoe后MTP接受步长显著下降
+- [Issue #18640](https://github.com/vllm-project/vllm-ascend/issues/18640) 进行中
+  - 中文：【缺陷】: 0.30.0rc1镜像双机A2部署GLM5.3Flash拉起失败
+  - 原文：[Bug]: 0.30.0rc1镜像双机A2部署GLM5.3Flash拉起失败
+- [Issue #16484](https://github.com/vllm-project/vllm-ascend/issues/16484) 已关闭
+  - 中文：[Bug] [A5] [GLM DSpark]运行时状态更改会破坏编译准确性
+  - 原文：[Bug][A5][GLM DSpark] Runtime state changes can break compiled accuracy
+
+#### 2026-10-13
+
+- [Issue #16954](https://github.com/vllm-project/vllm-ascend/issues/16954) 已关闭
+  - 中文：【文档】: GLM-5 & GLM-5.1文档latest中A3PD分离配置 --kv-缓存-dtype int8 \ --attention_config.indexer_kv_dtype int8 \ 服务启动失败
+  - 原文：[Doc]: GLM-5 & GLM-5.1文档latest中A3PD分离配置    --kv-cache-dtype int8 \     --attention_config.indexer_kv_dtype int8 \ 服务启动失败
+  - 说明：【init .py:115】📚 The doc issue 文档地址： 文档中指定vllm-ascend 0.23.0版本 A3PD分离场景下vllm配置中新增参数 --kv-缓存-dtype int8 \ --注意力 配置.索引器 kv dtype int8 \ 带该参数启动服务报错： INFO 09-19 05:32:12 Registered model loader <class 'vllm ascend.model loade
+- [Issue #18605](https://github.com/vllm-project/vllm-ascend/issues/18605) 进行中
+  - 中文：[错误] ： GLM-5.3-Flash MooncakeConnectorV2 PD在长输入提示下重复推理
+  - 原文：[Bug]: GLM-5.3-Flash MooncakeConnectorV2 PD repeats reasoning on a long-input prompt
+  - 说明：GLM-5.3-Flash with MooncakeConnectorV2 repeatedly continues reasoning without returning the final answer for a long-input request through the PD route. The identical prompt completes correctly when sent directly to D with both cold and warm
+- [Issue #18573](https://github.com/vllm-project/vllm-ascend/issues/18573) 进行中
+  - 中文：[Doc]: 0.30.0rc1的GLM-5.3文档配置，实测带memcache的配置可以正常拉起服务，但是curl P节点无响应，请确认配置方案是否准确
+  - 说明：📚 The doc issue 0.30.0rc1的文档配置，实测带memcache的配置可以正常拉起服务，但是curl P节点无响应，去掉如下memcache配置后，推理正常 <img width="984" height="475" alt="Image" src=" / 具体配置段落： <img width="1217" height="1138" alt="Image" src=" / Suggest a potential alternative/修复 No r
+- [Issue #18560](https://github.com/vllm-project/vllm-ascend/issues/18560) 进行中
+  - 中文：【文档】: Feedback for `/zh-cn/v0.30.0rc1/tutorials/models/GLM5.3.html`
+  - 原文：[Doc]: Feedback for `/zh-cn/v0.30.0rc1/tutorials/models/GLM5.3.html`
+  - 说明：📚 The doc issue 实测融合 muls 新增 参数层级有误 文档未能及时更新；glm5.3 w8a8c8 四机混部使用0.30.0rc1 版本拉取报融合 muls 新增参数不支持，按附件修改vllm服务参数后--additional-配置 "{"ascend compilation 配置": {"融合 muls 新增": true}, "启用 dsa cp": true, "启用 balance scheduli
+- [PR #18534](https://github.com/vllm-project/vllm-ascend/pull/18534) 进行中
+  - 中文：【特点】【型号】GLM-Next KPool索引器LI C8 ： int8量化池化缓存， dsa_cp兼容
+  - 原文：[Feat][Model] GLM-Next KPool indexer LI C8: int8 quantized pooled cache, dsa_cp compatible
+  - 说明：GLM-5.3-Flash (glm5 next arch, KDA+SFA hybrid) uses the KPool pooled 索引器 缓存. Today 注意力 配置.索引器 kv dtype is silently ignored for this model family: kpool models are not SFA-稀疏, so 启用 稀疏 li c8 is never derived
+- [Issue #18523](https://github.com/vllm-project/vllm-ascend/issues/18523) 进行中
+  - 中文：[错误] ： v0.30.0rc1 glm5.3-w8a8c8部署 四机Atlas 800I A2混部远程引擎1不得在外部或混合dp 1b模式下使用--headless
+  - 原文：[Bug]: v0.30.0rc1部署glm5.3-w8a8c8 四机Atlas 800I A2混部 Remote engine1 must not use --headless in external or hybrid dp 1b mode
+- [Issue #18492](https://github.com/vllm-project/vllm-ascend/issues/18492) 进行中
+  - 中文：[Doc]: Feedback for `/zh-cn/v0.30.0rc1/tutorials/models/GLM5.3.html' vllm-ascend v0.30.rc1版本都已经更新到了 ， 5.1.1节中的脚文档里写的还是本在v0.23.0上进行了测试。
+  - 原文：[Doc]: Feedback for `/zh-cn/v0.30.0rc1/tutorials/models/GLM5.3.html` vllm-ascend版本都已经更新到v0.30.rc1了，文档里写的还是The scripts in Section 5.1.1 were tested on v0.23.0.
+  - 说明：📚 The doc issue 5.1.1 多节点部署¶ 如果您想部署多节点环境，需要按照验证多节点通信环境中的说明验证多节点通信。 The scripts in Section 5.1.1 were tested on v0.23.0. Suggest a potential alternative/修复 No response
+
+#### 2026-10-12
+
+- [Issue #16683](https://github.com/vllm-project/vllm-ascend/issues/16683) 已关闭
+  - 中文：【缺陷】: GLM5.2使用权重w4a8c8 1MB部署，enable_sparse_sfa_c8=true时，D节点崩溃
+  - 原文：[Bug]: GLM5.2使用权重w4a8c8 1MB部署，enable_sparse_sfa_c8=true时，D节点崩溃
+- [Issue #18387](https://github.com/vllm-project/vllm-ascend/issues/18387) 进行中
+  - 中文：[Doc]: 使用docs.vllm.ai上 GLM-5.3-Flash (Experimental) 介绍的镜像，启动 glm-5.3-flash-w8a8失败
+  - 原文：[Doc]: 使用docs.vllm.ai上 GLM-5.3-Flash (Experimental) 介绍的镜像，启动glm-5.3-flash-w8a8失败
+  - 说明：【init .py:44】【init .py:46】📚 The doc issue <img width="1994" height="718" alt="Image" src=" / 实际执行时报错： INFO 10-12 07:03:55 Available plugins for group vllm.platform plugins: INFO 10-12 07:03:55 - ascend - vllm ascend:register INFO 10-12
+
+#### 2026-10-11
+
+- [Issue #18315](https://github.com/vllm-project/vllm-ascend/issues/18315) 进行中
+  - 中文：【缺陷】: GLM5.3 w8a8c8 使用v0.27.1RC1 参考社区文档部署报MoeDistributedDispatch算子问题，但是去掉PYTORCH_NPU_ALLOC_CONF、HCCL_OP_EXPANSION_MODE两个环境变量可以拉起
+  - 原文：[Bug]: GLM5.3 w8a8c8 使用v0.27.1RC1 参考社区文档部署报MoeDistributedDispatch算子问题，但是去掉PYTORCH_NPU_ALLOC_CONF、HCCL_OP_EXPANSION_MODE两个环境变量可以拉起
+- [PR #18278](https://github.com/vllm-project/vllm-ascend/pull/18278) 进行中
+  - 中文：[Cherry-pick] [releases/v0.30.0] [CI]删除GLM5和GLM4.7预定案例和YAML文件（来自# 18013 ）
+  - 原文：[Cherry-pick][releases/v0.30.0][CI] Remove GLM5 and GLM4.7 scheduled cases and YAML files (from #18013)
+  - 说明：Cherry-pick of PR 18013 onto releases/v0.30.0 . Original PR: 18013 Original author: @Wyz-134 --- 移除 the remaining GLM-5 (original version) and GLM-4.7 夜间/每周 cases, their YAML files, and obsolete scheduled-test references, follo
+
+#### 2026-10-10
+
+- [PR #18013](https://github.com/vllm-project/vllm-ascend/pull/18013) 已合并
+  - 中文：[CI]删除GLM5和GLM4.7预定用例和YAML文件
+  - 原文：[CI] Remove GLM5 and GLM4.7 scheduled cases and YAML files
+  - 说明：移除 the remaining GLM-5 (original version) and GLM-4.7 夜间/每周 cases, their YAML files, and obsolete scheduled-test references, following the cleanup scope of 17950. - 移除 glm-4.7-w8a8 from 夜间 and delete tests/e2e/cases/mo
+- [PR #18192](https://github.com/vllm-project/vllm-ascend/pull/18192) 进行中
+  - 中文：[文档] [模型]在GLM教程中将fuse_muls_add移动到ascend_compilation_config
+  - 原文：[Doc][Model] Move fuse_muls_add into ascend_compilation_config in GLM tutorials
+  - 说明：Fixes 18130. 融合 muls 新增 is a field of AscendCompilationConfig ( vllm ascend/ascend 配置.py:129 ), not of the top-level AscendConfig . The GLM5 / GLM5.2 / GLM5.3 tutorials passed it at the top level of --additional-配置 , so AscendCon
+
+#### 2026-10-09
+
+- [Issue #18130](https://github.com/vllm-project/vllm-ascend/issues/18130) 进行中
+  - 中文：【缺陷】: v27.1rc1部署glm5.3-w8a8c8 四机Atlas 800I A2混部 fuse_muls_add 这个参数报不支持
+  - 原文：[Bug]: v27.1rc1部署glm5.3-w8a8c8 四机Atlas 800I A2混部 fuse_muls_add 这个参数报不支持
+- [Issue #16072](https://github.com/vllm-project/vllm-ascend/issues/16072) 已关闭
+  - 中文：【缺陷】: GLM-5.3-Flash-w8a8长序列（1M）推理启动成功，AIME2026精度测试后台崩溃
+  - 原文：[Bug]: GLM-5.3-Flash-w8a8长序列（1M）推理启动成功，AIME2026精度测试后台崩溃
+- [Issue #18099](https://github.com/vllm-project/vllm-ascend/issues/18099) 进行中
+  - 中文：[bug] ： [v 0.26] [glm5.2+kvoffload] PD-sep解码等级崩溃： HYBM VA地址重叠
+  - 原文：[bug]:[v0.26][glm5.2+kvoffload]PD-sep decode ranks crash: HYBM VA address overlap
+
+#### 2026-10-08
+
+- [Issue #18005](https://github.com/vllm-project/vllm-ascend/issues/18005) 进行中
+  - 中文：[Bug]: glm5.2+kvoffload 非分布式启动在bench中途报错 ：预期所有张量都在同一设备上，但get x2在npu: 5上
+  - 原文：[Bug]: glm5.2+kvoffload 非分布式启动在bench中途报错：Expected all tensors to be on the same device, but got x2 is on npu:5
+
+#### 2026-10-07
+
+- [Issue #15922](https://github.com/vllm-project/vllm-ascend/issues/15922) 已关闭
+  - 中文：【缺陷】: GLM5.2 1M长序列挂死
+  - 原文：[Bug]: GLM5.2 1M长序列挂死
+- [Issue #17951](https://github.com/vllm-project/vllm-ascend/issues/17951) 进行中
+  - 中文：[文档] ： GLM-5.3-Flash教程第4.1节图像解析为v0.23.0 ，不支持Glm5Next
+  - 原文：[Doc]: GLM-5.3-Flash tutorial section 4.1 images resolve to v0.23.0, which has no Glm5Next support
+  - 说明：📚 The doc issue Page: GLM-5.3-Flash (Experimental) — 4.1 Docker Image Installation Source file: docs/source/tutorials/models/GLM5.3-Flash.md Affects: both en/latest and zh-cn/latest Section 4.1 currently tells users to pull a vLLM-Ascend v
+
+#### 2026-10-04
+
+- [PR #17664](https://github.com/vllm-project/vllm-ascend/pull/17664) 已合并
+  - 中文：[Refactor] [Ops]用fla_npu替换捆绑的KDA运算符
+  - 原文：[Refactor][Ops] Replace bundled KDA operators with fla_npu
+  - 说明：Directly import chunk kda fwd and recurrent kda from fla npu.ops.ascendc in the 共享 KDA adapters used by Kimi K3 and GLM5Next. Keep the existing normalization, gate/beta handling and V-first 缓存 semantics, adapting the recurrent keywor
+
+#### 2026-09-26
+
+- [Issue #17541](https://github.com/vllm-project/vllm-ascend/issues/17541) 进行中
+  - 中文：[Bug][GLM-5.3] A3 P/D：8192 预填充批次导致输出损坏；919K 中间检索在 4096 处仍然错误
+  - 原文：[Bug][GLM-5.3] A3 P/D: 8192 prefill batch corrupts output; 919K middle retrieval still wrong at 4096
+  - 说明：RCA 更新 (2026-09-26): The 6,816-token corruption is 导致 by an undersized 融合-MoE receiver capacity: we explicitly set mega moe max tokens=8192 where the running build defaults to 65536 . Observed expert routes exceeded 8192 and the
+
+#### 2026-09-25
+
+- [Issue #17532](https://github.com/vllm-project/vllm-ascend/issues/17532) 进行中
+  - 中文：【Bug】： # 16925的圆形短路掉落GLM-5-Next KPool尾槽映射超出融合路径（ MTP起草器） ；夜间test_glm5next_tail_slot_mapping_triton失败4/4
+  - 原文：[Bug]: #16925's circular short-circuit drops GLM-5-Next KPool tail slot mapping outside the fused path (MTP drafter); nightly test_glm5next_tail_slot_mapping_triton fails 4/4
+
+#### 2026-09-24
+
+- [Issue #17443](https://github.com/vllm-project/vllm-ascend/issues/17443) 进行中
+  - 中文：[Bug] ： GLM-5.3-Flash W8A8上的长上下文TTFT退化（ A3 ， P/D分解） ：预填充率崩溃102K→ 205K→ 460K （ 11.8K → 10.0K → 3.4K tok/s ） ，解码TPOT不受影响
+  - 原文：[Bug]: Long-context TTFT degradation on GLM-5.3-Flash W8A8 (A3, P/D disaggregated): prefill rate collapses 102K→205K→460K (11.8K → 10.0K → 3.4K tok/s), decode TPOT unaffected
+- [Issue #17438](https://github.com/vllm-project/vllm-ascend/issues/17438) 进行中
+  - 中文：【缺陷】: 23.post1和26.rc1版本GLM5.2-w8a8跑pd分离，d节点开启dcp会出现精度问题
+  - 原文：[Bug]: 23.post1和26.rc1版本GLM5.2-w8a8跑pd分离，d节点开启dcp会出现精度问题
+
+#### 2026-09-23
+
+- [Issue #17388](https://github.com/vllm-project/vllm-ascend/issues/17388) 进行中
+  - 中文：[Bug]: enable_dsa_cp = true在cudagraph捕获期间在sfa_cp中GLM-5.3-Flash预填充启动失败
+  - 原文：[Bug]: enable_dsa_cp=true fails GLM-5.3-Flash prefill startup in sfa_cp during cudagraph capture
+
+#### 2026-09-18
+
+- [Issue #16835](https://github.com/vllm-project/vllm-ascend/issues/16835) 进行中
+  - 中文：[Doc]: GLM5.3PD分离参考5.2配置拉起失败
+  - 说明：📚 The doc issue 文档中GLM 5.3 PD分离参考5.2，按照5.2配置拉起失败。 使用配置为 w8a8c8 A3 四机： "预填充": {"dp size": 1, "pp size": 2, "tp size": 16, "pp layer partition": "41,37"}, "解码": { "dp size": 16, "tp size": 2} 目前尝试关闭sfa c8,增大HCCLBUFFSIZE 到1024，P节点mtp
+
+#### 2026-09-17
+
+- [PR #16802](https://github.com/vllm-project/vllm-ascend/pull/16802) 进行中
+  - 中文：[BugFix] [Model]在GLM-5-next处理器视频分支中绑定merge_size
+  - 原文：[BugFix][Model] Bind merge_size in GLM-5-next processor video branch
+  - 说明：Glm5NextProcessor. get num multimodal tokens() assigns 合并 size only inside the if image sizes is not None: branch, but the video branch reads the same variable: Any video-only request (i.e. image sizes=None , video sizes set) therefore r
+- [Issue #14656](https://github.com/vllm-project/vllm-ascend/issues/14656) 已关闭
+  - 中文：[Bug]: 0.23.0rc1 and 0.23.0 GLM5.2 PD分离场景下存在工具调用返回jsonl格式异常问题
+
 ### GLM-5.2
 
 #### 2026-10-16
@@ -1780,213 +2001,6 @@
   - 中文：[错误] ： GLM-4.6V视觉编码器在910C上没有有效的TP并行度—并发图像请求通过编码器串行化
   - 原文：[Bug]: GLM-4.6V vision encoder has no effective TP parallelism on 910C — concurrent image requests serialize through the encoder
 
-### GLM-5
-
-#### 2026-10-16
-
-- [PR #18930](https://github.com/vllm-project/vllm-ascend/pull/18930) 已合并
-  - 中文：【重构】【Patch】Use upstream GLM-5-Next 配置 支持
-  - 原文：[Refactor][Patch] Use upstream GLM-5-Next config support
-  - 说明：vLLM v0.31.0 and the verified main pin ( c4df37dfcc7f72ca41cd43801a468526ecf99a2b ) already register glm5 next , glm5 next text , and glm5 next vision , and recognize the GLM-5-Next text model types for MLA. The upstream 配置 classes have
-- [Issue #18951](https://github.com/vllm-project/vllm-ascend/issues/18951) 进行中
-  - 中文：【缺陷】: GLM-5.3-Flash-w8a8基于vllm-ascend 0.30.0rc2部署（1P1D）128K/2K性能测试正常，256K/2K测试崩溃
-  - 原文：[Bug]: GLM-5.3-Flash-w8a8基于vllm-ascend 0.30.0rc2部署（1P1D）128K/2K性能测试正常，256K/2K测试崩溃
-- [PR #18938](https://github.com/vllm-project/vllm-ascend/pull/18938) 已关闭
-  - 中文：Docs turboquant glm52 glm53 0.30.0
-  - 说明：【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque
-
-#### 2026-10-15
-
-- [PR #18878](https://github.com/vllm-project/vllm-ascend/pull/18878) 草稿
-  - 中文：【修复】【GLM5Next】CausalConv1d state underflow for padded 解码 requests
-  - 原文：[BugFix][GLM5Next] Fix CausalConv1d state underflow for padded decode requests
-  - 说明：修复 a GLM5Next CausalConv1d state-buffer underflow when a 解码 graph contains padded requests. For example, five live 解码 requests can replay an eight-row graph. The state gather currently writes -1 for inactive rows and the wrapper pa
-- [Issue #16085](https://github.com/vllm-project/vllm-ascend/issues/16085) 已关闭
-  - 中文：【缺陷】: 0.26.0rc1 GLM5.3 dcp=8 and sfa-c8 true 的场景 必定精度异常，出现乱码
-  - 原文：[Bug]: 0.26.0rc1 GLM5.3 dcp=8 and sfa-c8 true 的场景 必定精度异常，出现乱码
-- [Issue #16654](https://github.com/vllm-project/vllm-ascend/issues/16654) 已关闭
-  - 中文：【Bug】： GLM-5.2 A3 （ 2 节点 P/D 分离部署） ，长时间 （ 3-8小时 ）运行后 Prefill实例出现 fftsplus aicore error ， EngineCore异常退出
-  - 原文：[Bug]: GLM-5.2 A3（2 节点 P/D 分离部署），长时间（3-8小时）运行后Prefill实例出现 fftsplus aicore error ， EngineCore异常退出
-- [Issue #16015](https://github.com/vllm-project/vllm-ascend/issues/16015) 已关闭
-  - 中文：【缺陷】: 0.26.0rc1 GLM5.3 w8a8c8 部署pd分离 512K场景 sfac8 && dcp16 开启，长输入请求乱码
-  - 原文：[Bug]: 0.26.0rc1 GLM5.3 w8a8c8 部署pd分离 512K场景 sfac8 && dcp16 开启，长输入请求乱码
-- [Issue #18859](https://github.com/vllm-project/vllm-ascend/issues/18859) 进行中
-  - 中文：【缺陷】: MLAPO hardcodes RMSNorm epsilon=1e-6 instead of honoring model rms_norm_eps (GLM-5.2 W8A8)
-  - 原文：[Bug]: MLAPO hardcodes RMSNorm epsilon=1e-6 instead of honoring model rms_norm_eps (GLM-5.2 W8A8)
-- [Issue #18807](https://github.com/vllm-project/vllm-ascend/issues/18807) 进行中
-  - 中文：【缺陷】: v0.30.0rc2，glm5.3flash，A3，3P+1D,多模态请求导致服务挂死
-  - 原文：[Bug]: v0.30.0rc2，glm5.3flash，A3，3P+1D,多模态请求导致服务挂死
-- [Issue #18804](https://github.com/vllm-project/vllm-ascend/issues/18804) 进行中
-  - 中文：[Bug] ： 4节点A2 PD + Mooncake KV Pool （ GLM-5.3-Flash-w8a8 ， v0.30.0rc2 ） ：两个预填充引擎都悬挂在61%的池水位线上— AscendStore batch_put失败为-1 ，而master显示38%可用， NPU任务队列为空
-  - 原文：[Bug]: 4-node A2 PD + Mooncake KV Pool (GLM-5.3-Flash-w8a8, v0.30.0rc2): both Prefill engines hang at 61% pool watermark — AscendStore batch_put fails with -1 while master shows 38% free, NPU task queues empty
-- [Issue #18782](https://github.com/vllm-project/vllm-ascend/issues/18782) 进行中
-  - 中文：[错误] ： 0.30.0rc1/rc2 GLM-5.3-Flash-w8a8部署 四机Atlas 800I A2PD分离远程引擎1不得在外部或混合DP 1b模式下使用--headless
-  - 原文：[Bug]: 0.30.0rc1/rc2部署GLM-5.3-Flash-w8a8 四机Atlas 800I A2PD分离Remote engine1 must not use --headless in external or hybrid dp 1b mode
-
-#### 2026-10-14
-
-- [Issue #16941](https://github.com/vllm-project/vllm-ascend/issues/16941) 已关闭
-  - 中文：【Bug】：【Bug】GLM-5.2 GLM-5.3、 PD分解流返回重复空块，异常STOP_REASON: 154829和膨胀COMPLETION_TOKENS
-  - 原文：[Bug]: [Bug] GLM-5.2、GLM-5.3 PD disaggregation streaming returns duplicated empty chunks with abnormal stop_reason: 154829 and inflated completion_tokens
-- [Issue #17391](https://github.com/vllm-project/vllm-ascend/issues/17391) 已关闭
-  - 中文：【缺陷】: GLM-5.2-w4a8c8 、GLM-5.3-w8a8c8premature stop / silent termination before 工具调用 generation in P/D disaggregated deployment
-  - 原文：[Bug]:  GLM-5.2-w4a8c8 、GLM-5.3-w8a8c8premature stop / silent termination before tool call generation in P/D disaggregated deployment
-- [PR #18552](https://github.com/vllm-project/vllm-ascend/pull/18552) 已合并
-  - 中文：[文档]澄清GLM-5停产并调整GLM-5.1部署示例
-  - 原文：[Doc] Clarify GLM-5 discontinuation and align GLM-5.1 deployment examples
-  - 说明：Clarify that GLM-5 is discontinued starting with vLLM Ascend v0.30.0 and make the deployment examples specific to GLM-5.1. The guide currently combines GLM-5 and GLM-5.1, lists GLM-5 权重 and serves requests under the glm-5 alias even in
-- [PR #18553](https://github.com/vllm-project/vllm-ascend/pull/18553) 已合并
-  - 中文：[文档] [v0.30.0]澄清GLM-5停产并调整GLM-5.1部署示例
-  - 原文：[Doc][v0.30.0] Clarify GLM-5 discontinuation and align GLM-5.1 deployment examples
-  - 说明：Clarify that GLM-5 is discontinued starting with vLLM Ascend v0.30.0 and make the deployment examples specific to GLM-5.1. The guide currently combines GLM-5 and GLM-5.1, lists GLM-5 权重 and serves requests under the glm-5 alias even in
-- [Issue #16195](https://github.com/vllm-project/vllm-ascend/issues/16195) 已关闭
-  - 中文：【缺陷】【v0.26rc1】【GLM5.2】: 回退megamoe后MTP接受步长显著下降
-  - 原文：[Bug]: [v0.26rc1][GLM5.2] 回退megamoe后MTP接受步长显著下降
-- [Issue #18640](https://github.com/vllm-project/vllm-ascend/issues/18640) 进行中
-  - 中文：【缺陷】: 0.30.0rc1镜像双机A2部署GLM5.3Flash拉起失败
-  - 原文：[Bug]: 0.30.0rc1镜像双机A2部署GLM5.3Flash拉起失败
-- [Issue #16484](https://github.com/vllm-project/vllm-ascend/issues/16484) 已关闭
-  - 中文：[Bug] [A5] [GLM DSpark]运行时状态更改会破坏编译准确性
-  - 原文：[Bug][A5][GLM DSpark] Runtime state changes can break compiled accuracy
-
-#### 2026-10-13
-
-- [Issue #16954](https://github.com/vllm-project/vllm-ascend/issues/16954) 已关闭
-  - 中文：【文档】: GLM-5 & GLM-5.1文档latest中A3PD分离配置 --kv-缓存-dtype int8 \ --attention_config.indexer_kv_dtype int8 \ 服务启动失败
-  - 原文：[Doc]: GLM-5 & GLM-5.1文档latest中A3PD分离配置    --kv-cache-dtype int8 \     --attention_config.indexer_kv_dtype int8 \ 服务启动失败
-  - 说明：【init .py:115】📚 The doc issue 文档地址： 文档中指定vllm-ascend 0.23.0版本 A3PD分离场景下vllm配置中新增参数 --kv-缓存-dtype int8 \ --注意力 配置.索引器 kv dtype int8 \ 带该参数启动服务报错： INFO 09-19 05:32:12 Registered model loader <class 'vllm ascend.model loade
-- [Issue #18605](https://github.com/vllm-project/vllm-ascend/issues/18605) 进行中
-  - 中文：[错误] ： GLM-5.3-Flash MooncakeConnectorV2 PD在长输入提示下重复推理
-  - 原文：[Bug]: GLM-5.3-Flash MooncakeConnectorV2 PD repeats reasoning on a long-input prompt
-  - 说明：GLM-5.3-Flash with MooncakeConnectorV2 repeatedly continues reasoning without returning the final answer for a long-input request through the PD route. The identical prompt completes correctly when sent directly to D with both cold and warm
-- [Issue #18573](https://github.com/vllm-project/vllm-ascend/issues/18573) 进行中
-  - 中文：[Doc]: 0.30.0rc1的GLM-5.3文档配置，实测带memcache的配置可以正常拉起服务，但是curl P节点无响应，请确认配置方案是否准确
-  - 说明：📚 The doc issue 0.30.0rc1的文档配置，实测带memcache的配置可以正常拉起服务，但是curl P节点无响应，去掉如下memcache配置后，推理正常 <img width="984" height="475" alt="Image" src=" / 具体配置段落： <img width="1217" height="1138" alt="Image" src=" / Suggest a potential alternative/修复 No r
-- [Issue #18560](https://github.com/vllm-project/vllm-ascend/issues/18560) 进行中
-  - 中文：【文档】: Feedback for `/zh-cn/v0.30.0rc1/tutorials/models/GLM5.3.html`
-  - 原文：[Doc]: Feedback for `/zh-cn/v0.30.0rc1/tutorials/models/GLM5.3.html`
-  - 说明：📚 The doc issue 实测融合 muls 新增 参数层级有误 文档未能及时更新；glm5.3 w8a8c8 四机混部使用0.30.0rc1 版本拉取报融合 muls 新增参数不支持，按附件修改vllm服务参数后--additional-配置 "{"ascend compilation 配置": {"融合 muls 新增": true}, "启用 dsa cp": true, "启用 balance scheduli
-- [PR #18534](https://github.com/vllm-project/vllm-ascend/pull/18534) 进行中
-  - 中文：【特点】【型号】GLM-Next KPool索引器LI C8 ： int8量化池化缓存， dsa_cp兼容
-  - 原文：[Feat][Model] GLM-Next KPool indexer LI C8: int8 quantized pooled cache, dsa_cp compatible
-  - 说明：GLM-5.3-Flash (glm5 next arch, KDA+SFA hybrid) uses the KPool pooled 索引器 缓存. Today 注意力 配置.索引器 kv dtype is silently ignored for this model family: kpool models are not SFA-稀疏, so 启用 稀疏 li c8 is never derived
-- [Issue #18523](https://github.com/vllm-project/vllm-ascend/issues/18523) 进行中
-  - 中文：[错误] ： v0.30.0rc1 glm5.3-w8a8c8部署 四机Atlas 800I A2混部远程引擎1不得在外部或混合dp 1b模式下使用--headless
-  - 原文：[Bug]: v0.30.0rc1部署glm5.3-w8a8c8 四机Atlas 800I A2混部 Remote engine1 must not use --headless in external or hybrid dp 1b mode
-- [Issue #18492](https://github.com/vllm-project/vllm-ascend/issues/18492) 进行中
-  - 中文：[Doc]: Feedback for `/zh-cn/v0.30.0rc1/tutorials/models/GLM5.3.html' vllm-ascend v0.30.rc1版本都已经更新到了 ， 5.1.1节中的脚文档里写的还是本在v0.23.0上进行了测试。
-  - 原文：[Doc]: Feedback for `/zh-cn/v0.30.0rc1/tutorials/models/GLM5.3.html` vllm-ascend版本都已经更新到v0.30.rc1了，文档里写的还是The scripts in Section 5.1.1 were tested on v0.23.0.
-  - 说明：📚 The doc issue 5.1.1 多节点部署¶ 如果您想部署多节点环境，需要按照验证多节点通信环境中的说明验证多节点通信。 The scripts in Section 5.1.1 were tested on v0.23.0. Suggest a potential alternative/修复 No response
-
-#### 2026-10-12
-
-- [Issue #16683](https://github.com/vllm-project/vllm-ascend/issues/16683) 已关闭
-  - 中文：【缺陷】: GLM5.2使用权重w4a8c8 1MB部署，enable_sparse_sfa_c8=true时，D节点崩溃
-  - 原文：[Bug]: GLM5.2使用权重w4a8c8 1MB部署，enable_sparse_sfa_c8=true时，D节点崩溃
-- [Issue #18387](https://github.com/vllm-project/vllm-ascend/issues/18387) 进行中
-  - 中文：[Doc]: 使用docs.vllm.ai上 GLM-5.3-Flash (Experimental) 介绍的镜像，启动 glm-5.3-flash-w8a8失败
-  - 原文：[Doc]: 使用docs.vllm.ai上 GLM-5.3-Flash (Experimental) 介绍的镜像，启动glm-5.3-flash-w8a8失败
-  - 说明：【init .py:44】【init .py:46】📚 The doc issue <img width="1994" height="718" alt="Image" src=" / 实际执行时报错： INFO 10-12 07:03:55 Available plugins for group vllm.platform plugins: INFO 10-12 07:03:55 - ascend - vllm ascend:register INFO 10-12
-
-#### 2026-10-11
-
-- [Issue #18315](https://github.com/vllm-project/vllm-ascend/issues/18315) 进行中
-  - 中文：【缺陷】: GLM5.3 w8a8c8 使用v0.27.1RC1 参考社区文档部署报MoeDistributedDispatch算子问题，但是去掉PYTORCH_NPU_ALLOC_CONF、HCCL_OP_EXPANSION_MODE两个环境变量可以拉起
-  - 原文：[Bug]: GLM5.3 w8a8c8 使用v0.27.1RC1 参考社区文档部署报MoeDistributedDispatch算子问题，但是去掉PYTORCH_NPU_ALLOC_CONF、HCCL_OP_EXPANSION_MODE两个环境变量可以拉起
-- [PR #18278](https://github.com/vllm-project/vllm-ascend/pull/18278) 进行中
-  - 中文：[Cherry-pick] [releases/v0.30.0] [CI]删除GLM5和GLM4.7预定案例和YAML文件（来自# 18013 ）
-  - 原文：[Cherry-pick][releases/v0.30.0][CI] Remove GLM5 and GLM4.7 scheduled cases and YAML files (from #18013)
-  - 说明：Cherry-pick of PR 18013 onto releases/v0.30.0 . Original PR: 18013 Original author: @Wyz-134 --- 移除 the remaining GLM-5 (original version) and GLM-4.7 夜间/每周 cases, their YAML files, and obsolete scheduled-test references, follo
-
-#### 2026-10-10
-
-- [PR #18013](https://github.com/vllm-project/vllm-ascend/pull/18013) 已合并
-  - 中文：[CI]删除GLM5和GLM4.7预定用例和YAML文件
-  - 原文：[CI] Remove GLM5 and GLM4.7 scheduled cases and YAML files
-  - 说明：移除 the remaining GLM-5 (original version) and GLM-4.7 夜间/每周 cases, their YAML files, and obsolete scheduled-test references, following the cleanup scope of 17950. - 移除 glm-4.7-w8a8 from 夜间 and delete tests/e2e/cases/mo
-- [PR #18192](https://github.com/vllm-project/vllm-ascend/pull/18192) 进行中
-  - 中文：[文档] [模型]在GLM教程中将fuse_muls_add移动到ascend_compilation_config
-  - 原文：[Doc][Model] Move fuse_muls_add into ascend_compilation_config in GLM tutorials
-  - 说明：Fixes 18130. 融合 muls 新增 is a field of AscendCompilationConfig ( vllm ascend/ascend 配置.py:129 ), not of the top-level AscendConfig . The GLM5 / GLM5.2 / GLM5.3 tutorials passed it at the top level of --additional-配置 , so AscendCon
-
-#### 2026-10-09
-
-- [Issue #18130](https://github.com/vllm-project/vllm-ascend/issues/18130) 进行中
-  - 中文：【缺陷】: v27.1rc1部署glm5.3-w8a8c8 四机Atlas 800I A2混部 fuse_muls_add 这个参数报不支持
-  - 原文：[Bug]: v27.1rc1部署glm5.3-w8a8c8 四机Atlas 800I A2混部 fuse_muls_add 这个参数报不支持
-- [Issue #16072](https://github.com/vllm-project/vllm-ascend/issues/16072) 已关闭
-  - 中文：【缺陷】: GLM-5.3-Flash-w8a8长序列（1M）推理启动成功，AIME2026精度测试后台崩溃
-  - 原文：[Bug]: GLM-5.3-Flash-w8a8长序列（1M）推理启动成功，AIME2026精度测试后台崩溃
-- [Issue #18099](https://github.com/vllm-project/vllm-ascend/issues/18099) 进行中
-  - 中文：[bug] ： [v 0.26] [glm5.2+kvoffload] PD-sep解码等级崩溃： HYBM VA地址重叠
-  - 原文：[bug]:[v0.26][glm5.2+kvoffload]PD-sep decode ranks crash: HYBM VA address overlap
-
-#### 2026-10-08
-
-- [Issue #18005](https://github.com/vllm-project/vllm-ascend/issues/18005) 进行中
-  - 中文：[Bug]: glm5.2+kvoffload 非分布式启动在bench中途报错 ：预期所有张量都在同一设备上，但get x2在npu: 5上
-  - 原文：[Bug]: glm5.2+kvoffload 非分布式启动在bench中途报错：Expected all tensors to be on the same device, but got x2 is on npu:5
-
-#### 2026-10-07
-
-- [Issue #15922](https://github.com/vllm-project/vllm-ascend/issues/15922) 已关闭
-  - 中文：【缺陷】: GLM5.2 1M长序列挂死
-  - 原文：[Bug]: GLM5.2 1M长序列挂死
-- [Issue #17951](https://github.com/vllm-project/vllm-ascend/issues/17951) 进行中
-  - 中文：[文档] ： GLM-5.3-Flash教程第4.1节图像解析为v0.23.0 ，不支持Glm5Next
-  - 原文：[Doc]: GLM-5.3-Flash tutorial section 4.1 images resolve to v0.23.0, which has no Glm5Next support
-  - 说明：📚 The doc issue Page: GLM-5.3-Flash (Experimental) — 4.1 Docker Image Installation Source file: docs/source/tutorials/models/GLM5.3-Flash.md Affects: both en/latest and zh-cn/latest Section 4.1 currently tells users to pull a vLLM-Ascend v
-
-#### 2026-10-04
-
-- [PR #17664](https://github.com/vllm-project/vllm-ascend/pull/17664) 已合并
-  - 中文：[Refactor] [Ops]用fla_npu替换捆绑的KDA运算符
-  - 原文：[Refactor][Ops] Replace bundled KDA operators with fla_npu
-  - 说明：Directly import chunk kda fwd and recurrent kda from fla npu.ops.ascendc in the 共享 KDA adapters used by Kimi K3 and GLM5Next. Keep the existing normalization, gate/beta handling and V-first 缓存 semantics, adapting the recurrent keywor
-
-#### 2026-09-26
-
-- [Issue #17541](https://github.com/vllm-project/vllm-ascend/issues/17541) 进行中
-  - 中文：[Bug][GLM-5.3] A3 P/D：8192 预填充批次导致输出损坏；919K 中间检索在 4096 处仍然错误
-  - 原文：[Bug][GLM-5.3] A3 P/D: 8192 prefill batch corrupts output; 919K middle retrieval still wrong at 4096
-  - 说明：RCA 更新 (2026-09-26): The 6,816-token corruption is 导致 by an undersized 融合-MoE receiver capacity: we explicitly set mega moe max tokens=8192 where the running build defaults to 65536 . Observed expert routes exceeded 8192 and the
-
-#### 2026-09-25
-
-- [Issue #17532](https://github.com/vllm-project/vllm-ascend/issues/17532) 进行中
-  - 中文：【Bug】： # 16925的圆形短路掉落GLM-5-Next KPool尾槽映射超出融合路径（ MTP起草器） ；夜间test_glm5next_tail_slot_mapping_triton失败4/4
-  - 原文：[Bug]: #16925's circular short-circuit drops GLM-5-Next KPool tail slot mapping outside the fused path (MTP drafter); nightly test_glm5next_tail_slot_mapping_triton fails 4/4
-
-#### 2026-09-24
-
-- [Issue #17443](https://github.com/vllm-project/vllm-ascend/issues/17443) 进行中
-  - 中文：[Bug] ： GLM-5.3-Flash W8A8上的长上下文TTFT退化（ A3 ， P/D分解） ：预填充率崩溃102K→ 205K→ 460K （ 11.8K → 10.0K → 3.4K tok/s ） ，解码TPOT不受影响
-  - 原文：[Bug]: Long-context TTFT degradation on GLM-5.3-Flash W8A8 (A3, P/D disaggregated): prefill rate collapses 102K→205K→460K (11.8K → 10.0K → 3.4K tok/s), decode TPOT unaffected
-- [Issue #17438](https://github.com/vllm-project/vllm-ascend/issues/17438) 进行中
-  - 中文：【缺陷】: 23.post1和26.rc1版本GLM5.2-w8a8跑pd分离，d节点开启dcp会出现精度问题
-  - 原文：[Bug]: 23.post1和26.rc1版本GLM5.2-w8a8跑pd分离，d节点开启dcp会出现精度问题
-
-#### 2026-09-23
-
-- [Issue #17388](https://github.com/vllm-project/vllm-ascend/issues/17388) 进行中
-  - 中文：[Bug]: enable_dsa_cp = true在cudagraph捕获期间在sfa_cp中GLM-5.3-Flash预填充启动失败
-  - 原文：[Bug]: enable_dsa_cp=true fails GLM-5.3-Flash prefill startup in sfa_cp during cudagraph capture
-
-#### 2026-09-18
-
-- [Issue #16835](https://github.com/vllm-project/vllm-ascend/issues/16835) 进行中
-  - 中文：[Doc]: GLM5.3PD分离参考5.2配置拉起失败
-  - 说明：📚 The doc issue 文档中GLM 5.3 PD分离参考5.2，按照5.2配置拉起失败。 使用配置为 w8a8c8 A3 四机： "预填充": {"dp size": 1, "pp size": 2, "tp size": 16, "pp layer partition": "41,37"}, "解码": { "dp size": 16, "tp size": 2} 目前尝试关闭sfa c8,增大HCCLBUFFSIZE 到1024，P节点mtp
-
-#### 2026-09-17
-
-- [PR #16802](https://github.com/vllm-project/vllm-ascend/pull/16802) 进行中
-  - 中文：[BugFix] [Model]在GLM-5-next处理器视频分支中绑定merge_size
-  - 原文：[BugFix][Model] Bind merge_size in GLM-5-next processor video branch
-  - 说明：Glm5NextProcessor. get num multimodal tokens() assigns 合并 size only inside the if image sizes is not None: branch, but the video branch reads the same variable: Any video-only request (i.e. image sizes=None , video sizes set) therefore r
-- [Issue #14656](https://github.com/vllm-project/vllm-ascend/issues/14656) 已关闭
-  - 中文：[Bug]: 0.23.0rc1 and 0.23.0 GLM5.2 PD分离场景下存在工具调用返回jsonl格式异常问题
-
 ### GLM-5.1
 
 #### 2026-10-16
@@ -2140,7 +2154,7 @@
 - [PR #18903](https://github.com/vllm-project/vllm-ascend/pull/18903) 进行中
   - 中文：【算子】【功能】支持 forcing BF16 精度 for Ascend MoE router
   - 原文：[Ops][Feature] Support forcing BF16 precision for Ascend MoE router
-  - 说明：Kimi K3 computes its router logits outside the MoE runner: AscendKimiMoE.forward() calls self.gate(hidden states) and passes the logits into self.experts(...) . Although the model hidden states are BF16, the registered Ascend GateLinear exp
+  - 说明：v0.30.0 counterpart of 19002, rebased onto releases/v0.30.0 commit 169823b8c . Kimi K3 computes its router logits outside the MoE runner: AscendKimiMoE.forward() calls self.gate(hidden states) and passes the logits into self.experts(...) .
 - [PR #18834](https://github.com/vllm-project/vllm-ascend/pull/18834) 已合并
   - 中文：【文档】【模型】Sync Kimi-K3 guide from official v0.27 branch
   - 原文：[Doc][Model] Sync Kimi-K3 guide from official v0.27 branch
@@ -2405,6 +2419,13 @@
 ## Gemma
 
 ### Gemma4
+
+#### 2026-10-17
+
+- [PR #19053](https://github.com/vllm-project/vllm-ascend/pull/19053) 进行中
+  - 中文：【测试】新增 A5 夜间 GPQA-D coverage for Gemma 4 MXFP4
+  - 原文：[Test] Add A5 nightly GPQA-D coverage for Gemma 4 MXFP4
+  - 说明：新增 A5 夜间 GPQA-D 精度 coverage for Gemma 4 MXFP4 models: - 31B: baseline 75%, tolerance ±5 percentage points. - 26B-A4B: baseline 72%, tolerance ±5 percentage points. No. Tested on A5.
 
 #### 2026-10-16
 

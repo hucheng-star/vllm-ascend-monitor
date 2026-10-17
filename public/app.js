@@ -9,6 +9,7 @@ const MODULES = [
   ["models", "模型总览", "按家族查看合入", "layers"],
   ["community", "社区状态", "合入、Issue 与人员", "activity"],
   ["issues", "Issue 总览", "按类别统计和浏览", "issue"],
+  ["features", "特性介绍", "最近的 PR 与 Issue", "feature"],
 ];
 
 const PR_CATEGORIES = [
@@ -41,6 +42,7 @@ const ICONS = {
   file: "M6 3h8l4 4v14H6V3zm8 0v4h4",
   help: "M12 17h.01M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .8-1 1.7",
   more: "M5 12h.01M12 12h.01M19 12h.01",
+  feature: "M4 5h6v4H4zM14 5h6v4h-6zM9 15h6v4H9zM7 9v3M17 9v3M12 12v3",
 };
 
 let state = null;
@@ -48,6 +50,9 @@ let selected = "models";
 let issueFilter = "all";
 let modelQuery = "";
 let activeModel = "";
+let activeFeature = "";
+const featureFamily = new Map();
+const FEATURE_FAMILIES = ["DeepSeek", "Qwen", "GLM", "Kimi", "MiniMax", "Gemma", "Step", "Bailing", "其他"];
 
 const timeFormat = new Intl.DateTimeFormat("zh-CN", {
   timeZone: "Asia/Shanghai",
@@ -276,9 +281,11 @@ function uniqueHistory(kind) {
       for (const item of day.items || []) {
         if (kind && item.kind !== kind) continue;
         const key = `${item.kind}:${item.number}`;
-        if (!map.has(key)) map.set(key, { ...item, modelNames: [] });
+        if (!map.has(key)) map.set(key, { ...item, modelNames: [], families: [] });
         const row = map.get(key);
         if (group.id !== "platform" && group.name && !row.modelNames.includes(group.name)) row.modelNames.push(group.name);
+        const family = group.family || "";
+        if (group.id !== "platform" && family && family !== "平台与通用" && !row.families.includes(family)) row.families.push(family);
       }
     }
   }
@@ -497,8 +504,186 @@ function renderIssues() {
   mainEl.replaceChildren(wrap);
 }
 
+function appendFeatureName(parent, feature, titleTag) {
+  parent.append(el(titleTag, null, feature.english || feature.title));
+  if (feature.title && feature.title !== feature.english) parent.append(el("small", null, feature.title));
+}
+
+function allFeatures() {
+  return (window.FEATURE_CATALOG || []).flatMap((group) => group.items || []);
+}
+
+function featureItems(feature) {
+  const textOf = (item) => `${item.title || ""} ${item.titleZh || ""}`;
+  return uniqueHistory()
+    .filter((item) => feature.pattern.test(textOf(item)))
+    .sort((a, b) => (b.day || "").localeCompare(a.day || ""));
+}
+
+function featureFamilyChoices(items) {
+  const present = new Set(items.flatMap((item) => item.families || []));
+  const ordered = FEATURE_FAMILIES.filter((name) => present.has(name));
+  for (const name of present) if (!ordered.includes(name)) ordered.push(name);
+  return ordered;
+}
+
+function selectedFeatureFamily(featureId) {
+  return featureFamily.get(featureId) || "";
+}
+
+function featureFilterBar(feature, matched) {
+  const selected = selectedFeatureFamily(feature.id);
+  const bar = el("div", "feature-filters");
+  const choices = [["", "全部", matched.length]];
+  for (const name of featureFamilyChoices(matched)) {
+    choices.push([name, name, matched.filter((item) => item.families?.includes(name)).length]);
+  }
+  for (const [id, label, count] of choices) {
+    const button = el("button", id === selected ? "active" : "");
+    button.type = "button";
+    button.append(el("span", "filter-name", label));
+    if (count) button.append(el("span", "filter-count", String(count)));
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      if (id) featureFamily.set(feature.id, id);
+      else featureFamily.delete(feature.id);
+      render();
+    });
+    bar.append(button);
+  }
+  return bar;
+}
+
+function featureEntry(item) {
+  const block = el("article", "issue-entry");
+  const zh = (item.titleZh || "").trim();
+  const en = (item.title || "").trim();
+  const kind = item.kind === "pr" ? "PR" : "Issue";
+  block.append(externalLink(item.url, `${kind} #${item.number} ${zh || en}`));
+  if (zh && en && zh !== en) block.append(el("p", "original", en));
+  if (item.day) block.append(el("p", "muted", item.day));
+  return block;
+}
+
+function renderFeatureDetail(feature) {
+  const wrap = document.createDocumentFragment();
+  const head = el("div", "detail-head");
+  const copy = el("div");
+  appendFeatureName(copy, feature, "h2");
+  const actions = el("div", "detail-actions");
+  const back = el("button", "back", "返回全部特性");
+  back.type = "button";
+  back.addEventListener("click", () => {
+    activeFeature = "";
+    render();
+    mainEl.scrollTop = 0;
+  });
+  actions.append(back, externalLink(feature.doc, "官方说明"));
+  head.append(copy, actions);
+  wrap.append(head);
+  const today = state.today?.day || "";
+  const picked = selectedFeatureFamily(feature.id);
+  const matched = featureItems(feature).filter((item) => !picked || item.families?.includes(picked));
+  wrap.append(featureFilterBar(feature, featureItems(feature)));
+  const start = today ? shiftDay(today, -13) : "";
+  const recent = matched.filter((item) => !start || (item.day && item.day >= start && item.day <= today));
+  const byDay = new Map();
+  for (const item of recent) {
+    if (!byDay.has(item.day)) byDay.set(item.day, []);
+    byDay.get(item.day).push(item);
+  }
+  if (!byDay.size) wrap.append(el("p", "empty", "近 14 天没有匹配到相关 PR 或 Issue。"));
+  for (const [day, items] of byDay) {
+    const section = el("section", "feature-day");
+    section.append(el("h3", null, day === today ? `${day} · 今天` : day));
+    for (const item of items.slice(0, 8)) section.append(featureEntry(item));
+    if (items.length > 8) section.append(el("p", "muted", `还有 ${items.length - 8} 条`));
+    wrap.append(section);
+  }
+  mainEl.replaceChildren(wrap);
+}
+
+function renderFeatures() {
+  const current = allFeatures().find((item) => item.id === activeFeature);
+  if (current) {
+    mainEl.classList.remove("pin-overview");
+    renderFeatureDetail(current);
+    return;
+  }
+  const wrap = document.createDocumentFragment();
+  const hero = el("div", "page-head");
+  hero.append(el("h2", null, "特性介绍"));
+  hero.append(el("p", null, "先从总览跳到某个特性。每块默认显示该特性的全部最近动态，也可以按模型类别查看。"));
+  wrap.append(hero);
+  const rows = allFeatures().map((feature) => ({ feature, matched: featureItems(feature) }));
+  const index = el("section", "feature-index");
+  const indexHead = el("div", "feature-index-head");
+  indexHead.append(el("h3", null, "总览"));
+  indexHead.append(el("p", null, `${rows.length} 个特性，${rows.filter((row) => row.matched.length).length} 个最近有动态`));
+  const links = el("div", "feature-index-grid");
+  const ranked = [...rows].sort((a, b) => b.matched.length - a.matched.length);
+  for (const { feature, matched } of ranked) {
+    const button = el("button", matched.length ? "" : "quiet");
+    button.type = "button";
+    const names = el("span", "feature-name");
+    appendFeatureName(names, feature, "strong");
+    button.append(names, el("b", null, matched.length ? `${matched.length} 条` : "暂无"));
+    button.addEventListener("click", () => {
+      const target = document.getElementById(`feature-${feature.id}`);
+      if (!target) return;
+      for (const card of board.querySelectorAll(".feature-card.active")) card.classList.remove("active");
+      target.classList.add("active");
+      target.scrollIntoView({ block: "start" });
+    });
+    links.append(button);
+  }
+  index.append(indexHead, links);
+  wrap.append(index);
+  const board = el("section", "feature-board");
+  for (const { feature, matched } of rows) {
+    const card = el("article", "feature-card");
+    card.id = `feature-${feature.id}`;
+    const head = el("div", "feature-head");
+    const titles = el("div");
+    appendFeatureName(titles, feature, "h3");
+    head.append(titles, externalLink(feature.doc, "文档"));
+    card.append(head);
+    card.append(featureFilterBar(feature, matched));
+    const picked = selectedFeatureFamily(feature.id);
+    const visible = picked ? matched.filter((item) => item.families?.includes(picked)) : matched;
+    const daily = el("div", "feature-daily");
+    daily.append(el("strong", null, picked ? `${picked} 的最近动态` : "最近动态"));
+    if (!visible.length) daily.append(el("p", "empty", picked ? "这个类别还没有相关动态。" : "还没有相关动态。"));
+    for (const item of visible) daily.append(featureEntry(item));
+    card.append(daily);
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a, button")) return;
+      activeFeature = feature.id;
+      render();
+      mainEl.scrollTop = 0;
+    });
+    board.append(card);
+  }
+  wrap.append(board);
+  const kept = mainEl.querySelector(".feature-board")?.scrollTop || 0;
+  mainEl.classList.add("pin-overview");
+  mainEl.replaceChildren(wrap);
+  if (kept) mainEl.querySelector(".feature-board").scrollTop = kept;
+}
+
+mainEl.addEventListener("wheel", (event) => {
+  if (!mainEl.classList.contains("pin-overview")) return;
+  const board = mainEl.querySelector(".feature-board");
+  if (!board || board.contains(event.target)) return;
+  const index = mainEl.querySelector(".feature-index");
+  if (index?.contains(event.target) && index.scrollHeight > index.clientHeight + 1) return;
+  board.scrollTop += event.deltaY;
+  event.preventDefault();
+}, { passive: false });
+
 function render() {
   if (!state?.generatedAt) {
+    mainEl.classList.remove("pin-overview");
     statusEl.textContent = state?.pending ? "正在从 GitHub 和文档站同步…" : "等待第一次同步";
     mainEl.replaceChildren(el("p", "empty", "第一次同步会拉取版本说明、PR 和 Issue，通常需要十几秒。"));
     modulesEl.replaceChildren();
@@ -511,8 +696,10 @@ function render() {
   warningsEl.hidden = !state.warnings?.length;
   warningsEl.textContent = (state.warnings || []).join("；");
   renderModules();
+  mainEl.classList.remove("pin-overview");
   if (selected === "models") renderModelBoard();
   else if (selected === "issues") renderIssues();
+  else if (selected === "features") renderFeatures();
   else renderCommunity();
 }
 

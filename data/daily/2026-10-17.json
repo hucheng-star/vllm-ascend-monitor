@@ -3,10 +3,162 @@
   "timezone": "Asia/Shanghai",
   "groups": [
     {
-      "id": "ds-v4-flash",
-      "name": "DeepSeek V4 Flash",
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19055,
+          "title": "[BugFix][CI] Restore GLM5_1_W4A4_A5 to the V1 server config",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19055",
+          "author": "yjyang62",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-17T02:29:09Z",
+          "updatedAt": "2026-10-17T03:27:41Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "17681 moved GLM5 1 W4A4 A5 onto a Model Runner V2 server shape (TP=2, prefill-context-parallel-size=4, HCCL BUFFSIZE=1024, gpu-memory-utilization=0.90, CLI EPLB). A follow-up only pinned VLLM USE V2 MODEL RUNNER=0. V1 rejects prefill contex",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【修复】【持续集成】恢复 GLM5_1_W4A4_A5 to the V1 server 配置",
+          "excerptZh": "17681 moved GLM5 1 W4A4 A5 onto a Model Runner V2 server shape (TP=2, 预填充-context-parallel-size=4, HCCL BUFFSIZE=1024, gpu-显存-utilization=0.90, CLI EPLB). A follow-up only pinned VLLM USE V2 MODEL RUNNER=0. V1 rejects 预填充 contex"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19056,
+          "title": "[Feature] add dense SP support for Qwen3.8",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19056",
+          "author": "jiaqi-lee",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-17T03:06:32Z",
+          "updatedAt": "2026-10-17T03:09:30Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add a scoped Qwen3.5 decoder layer override with explicit sequence-parallel all-gather and reduce-scatter boundaries. Wire opt-in FlashComm enablement and add unit, collective, engine, graph-mode, MTP, and full-weight coverage. Does this PR",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【功能】dense SP 支持 for Qwen3.8",
+          "excerptZh": "新增 a scoped Qwen3.5 decoder layer override with explicit 序列-parallel all-gather and 减少-scatter boundaries. Wire opt-in FlashComm enablement and 新增 unit, collective, engine, graph-mode, MTP, and full-权重 coverage. Does this PR"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18903,
+          "title": "[Ops][Feature] Support forcing BF16 precision for Ascend MoE router",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18903",
+          "author": "qijiajin",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-15T13:29:09Z",
+          "updatedAt": "2026-10-17T03:27:09Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "v0.30.0 counterpart of 19002, rebased onto releases/v0.30.0 commit 169823b8c . Kimi K3 computes its router logits outside the MoE runner: AscendKimiMoE.forward() calls self.gate(hidden states) and passes the logits into self.experts(...) . ",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【算子】【功能】支持 forcing BF16 精度 for Ascend MoE router",
+          "excerptZh": "v0.30.0 counterpart of 19002, rebased onto releases/v0.30.0 commit 169823b8c . Kimi K3 computes its router logits outside the MoE runner: AscendKimiMoE.forward() calls self.gate(hidden states) and passes the logits into self.experts(...) ."
+        },
+        {
+          "kind": "pr",
+          "number": 19002,
+          "title": "[Ops][Feature] Implement KimiK3RouterLinear for Ascend Kimi K3 MoE",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19002",
+          "author": "qijiajin",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-16T08:44:50Z",
+          "updatedAt": "2026-10-17T03:12:02Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Main-branch counterpart of 18903, based on main commit 932818a5b . Only the final Kimi-specific implementation and its tests are ported; none of the release branch's opt-in environment variable or internal Router changes are included. Kimi ",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【算子】【功能】Implement KimiK3RouterLinear for Ascend Kimi K3 MoE",
+          "excerptZh": "Main-branch counterpart of 18903, based on main commit 932818a5b . Only the final Kimi-specific implementation and its tests are ported; none of the release branch's opt-in environment variable or internal Router changes are included. Kimi"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
       "family": "DeepSeek",
       "items": [
+        {
+          "kind": "pr",
+          "number": 19034,
+          "title": "[BugFix][PCP] Size DSV4.1 replay metadata for local segments",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19034",
+          "author": "li1how",
+          "labels": [
+            "module:tests",
+            "ready-precise",
+            "ready"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-16T12:42:07Z",
+          "updatedAt": "2026-10-17T03:07:49Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "PCP splits a prefill request into front/back local segments, so a rank's local batch can contain up to twice max num seqs entries. DSV4.1 Engram gathers replay metadata using these local entries but allocates its CPU/GPU replay buffer for o",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【PCP】Size DSV4.1 replay 元数据 for local segments",
+          "excerptZh": "PCP splits a 预填充 request into front/back local segments, so a rank's local batch can contain up to twice max num seqs entries. DSV4.1 Engram gathers replay 元数据 using these local entries but allocates its CPU/GPU replay buffer for o"
+        },
         {
           "kind": "pr",
           "number": 17624,
@@ -38,8 +190,72 @@
       ]
     },
     {
-      "id": "ds-v4",
-      "name": "DeepSeek V4",
+      "id": "gemma4",
+      "name": "Gemma4",
+      "family": "Gemma",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19053,
+          "title": "[Test] Add A5 nightly GPQA-D coverage for Gemma 4 MXFP4",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19053",
+          "author": "Alex-stack-hub",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-17T01:35:19Z",
+          "updatedAt": "2026-10-17T02:02:50Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add A5 nightly GPQA-D accuracy coverage for Gemma 4 MXFP4 models: - 31B: baseline 75%, tolerance ±5 percentage points. - 26B-A4B: baseline 72%, tolerance ±5 percentage points. Does this PR introduce any user-facing change? No. Tested on A5.",
+          "modelIds": [
+            "gemma4"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【测试】新增 A5 夜间 GPQA-D coverage for Gemma 4 MXFP4",
+          "excerptZh": "新增 A5 夜间 GPQA-D 精度 coverage for Gemma 4 MXFP4 models: - 31B: baseline 75%, tolerance ±5 percentage points. - 26B-A4B: baseline 72%, tolerance ±5 percentage points. No. Tested on A5."
+        }
+      ]
+    },
+    {
+      "id": "llama",
+      "name": "Llama",
+      "family": "其他",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17439,
+          "title": "[Test]Upstream test: debug test case test_llama_nemotron_vl.py using the online model.",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17439",
+          "author": "meiling6226",
+          "labels": [
+            "ci/build"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-24T02:01:32Z",
+          "updatedAt": "2026-10-17T03:24:12Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Upstream test: debug test case test llama nemotron vl.py using the online model. Does this PR introduce any user-facing change? NO - vLLM main:",
+          "modelIds": [
+            "llama"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "[测试]上游测试：使用在线模型调试测试用例test_llama_nemotron_vl.py。",
+          "excerptZh": "Upstream test: 调试 测试用例 test llama nemotron vl.py using the online model. NO - vLLM main:"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
       "family": "DeepSeek",
       "items": [
         {
