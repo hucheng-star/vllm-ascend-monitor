@@ -1,0 +1,200 @@
+{
+  "day": "2026-10-18",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "glm-5.2",
+      "name": "GLM-5.2",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19094,
+          "title": "[Performance][Attention] Avoid redundant wk_weights_proj in SFA indexer top-k selection",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19094",
+          "author": "2luckydog",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-17T16:21:34Z",
+          "updatedAt": "2026-10-17T16:47:04Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "In the DSA/SFA attention decode forward of GLM-5.2, the Indexer submodule performs top-k block selection. Its preceding projection wk weights proj is a fused GEMM ( MergedColumnParallelLinear(hidden size, [head dim, n head]) ) that produces",
+          "modelIds": [
+            "glm-5.2"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【性能】【注意力】避免 redundant wk_weights_proj in SFA 索引器 top-k selection",
+          "excerptZh": "【head dim, n head】In the DSA/SFA 注意力 解码 forward of GLM-5.2, the 索引器 submodule performs top-k block selection. Its preceding projection wk 权重 proj is a 融合 GEMM ( MergedColumnParallelLinear(hidden size, ) ) that produces"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19001,
+          "title": "[BugFix][Model] Support dense sequence parallelism for the Qwen3.5 family (Qwen3.8-27B) [releases/v0.30.0]",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19001",
+          "author": "chenxi-hh",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-16T08:44:47Z",
+          "updatedAt": "2026-10-17T16:19:46Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adaptation of the dense-SP feature for the v0.30.0 release line (vLLM v0.30.0 pin). Same content as the main-line PR. Upstream vLLM gates sequence parallelism on use sequence parallel moe , which requires an MoE checkpoint with expert paral",
+          "modelIds": [
+            "qwen3.8",
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【模型】【releases/v0.30.0】支持 dense 序列 parallelism for the Qwen3.5 family (Qwen3.8-27B)",
+          "excerptZh": "Adaptation of the dense-SP 特性 for the v0.30.0 release line (vLLM v0.30.0 pin). Same content as the main-line PR. Upstream vLLM gates 序列 parallelism on use 序列 parallel moe , which requires an MoE 检查点 with expert paral"
+        },
+        {
+          "kind": "pr",
+          "number": 18968,
+          "title": "[Feature][Model] Support dense sequence parallelism for the Qwen3.5 family (Qwen3.8-27B)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18968",
+          "author": "chenxi-hh",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-16T06:20:53Z",
+          "updatedAt": "2026-10-17T16:19:43Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Upstream vLLM gates sequence parallelism on use sequence parallel moe , which requires an MoE checkpoint with expert parallelism. As a result, dense Qwen3.5-family checkpoints (Qwen3.5-27B / Qwen3.6-27B / Qwen3.8-27B , model type qwen3 5 te",
+          "modelIds": [
+            "qwen3.8",
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】支持 dense 序列 parallelism for the Qwen3.5 family (Qwen3.8-27B)",
+          "excerptZh": "Upstream vLLM gates 序列 parallelism on use 序列 parallel moe , which requires an MoE 检查点 with expert parallelism. As a result, dense Qwen3.5-family 检查点 (Qwen3.5-27B / Qwen3.6-27B / Qwen3.8-27B , model type qwen3 5 te"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19001,
+          "title": "[BugFix][Model] Support dense sequence parallelism for the Qwen3.5 family (Qwen3.8-27B) [releases/v0.30.0]",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19001",
+          "author": "chenxi-hh",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-16T08:44:47Z",
+          "updatedAt": "2026-10-17T16:19:46Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adaptation of the dense-SP feature for the v0.30.0 release line (vLLM v0.30.0 pin). Same content as the main-line PR. Upstream vLLM gates sequence parallelism on use sequence parallel moe , which requires an MoE checkpoint with expert paral",
+          "modelIds": [
+            "qwen3.8",
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【模型】【releases/v0.30.0】支持 dense 序列 parallelism for the Qwen3.5 family (Qwen3.8-27B)",
+          "excerptZh": "Adaptation of the dense-SP 特性 for the v0.30.0 release line (vLLM v0.30.0 pin). Same content as the main-line PR. Upstream vLLM gates 序列 parallelism on use 序列 parallel moe , which requires an MoE 检查点 with expert paral"
+        },
+        {
+          "kind": "pr",
+          "number": 18968,
+          "title": "[Feature][Model] Support dense sequence parallelism for the Qwen3.5 family (Qwen3.8-27B)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18968",
+          "author": "chenxi-hh",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-16T06:20:53Z",
+          "updatedAt": "2026-10-17T16:19:43Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Upstream vLLM gates sequence parallelism on use sequence parallel moe , which requires an MoE checkpoint with expert parallelism. As a result, dense Qwen3.5-family checkpoints (Qwen3.5-27B / Qwen3.6-27B / Qwen3.8-27B , model type qwen3 5 te",
+          "modelIds": [
+            "qwen3.8",
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】支持 dense 序列 parallelism for the Qwen3.5 family (Qwen3.8-27B)",
+          "excerptZh": "Upstream vLLM gates 序列 parallelism on use 序列 parallel moe , which requires an MoE 检查点 with expert parallelism. As a result, dense Qwen3.5-family 检查点 (Qwen3.5-27B / Qwen3.6-27B / Qwen3.8-27B , model type qwen3 5 te"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18831,
+          "title": "[CI] Add DeepSeek V4.1 Flash MRV2 PCP nightly coverage",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18831",
+          "author": "vrooml",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-15T06:22:34Z",
+          "updatedAt": "2026-10-17T17:45:28Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR adds a two-node A3 DeepSeek V4.1 Flash W8A8 MRV2 PCP nightly configuration. It runs GPQA accuracy before the 16k/1k and 128k/1k prefix-90 performance cases, including the 128k warmup, and registers the case in the A3 double-node nig",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】新增 DeepSeek V4.1 Flash MRV2 PCP 夜间 coverage",
+          "excerptZh": "This PR adds a two-node A3 DeepSeek V4.1 Flash W8A8 MRV2 PCP 夜间 配置. It runs GPQA 精度 before the 16k/1k and 128k/1k 前缀-90 性能 cases, including the 128k warmup, and registers the case in the A3 double-node nig"
+        }
+      ]
+    }
+  ]
+}
