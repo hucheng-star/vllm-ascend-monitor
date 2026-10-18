@@ -1,16 +1,32 @@
 # vLLM-Ascend 各模型历史进展
 
-更新时间：2026-10-17T23:00:07.268Z
+更新时间：2026-10-18T23:00:15.624Z
 
-收录 2026-09-18 以来仍被提到的模型相关 PR 与 Issue，按事件日期由近到远。中文在前，原文在后。
+收录 2026-09-19 以来仍被提到的模型相关 PR 与 Issue，按事件日期由近到远。中文在前，原文在后。
 
 ## DeepSeek
 
+### DeepSeek R1
+
+#### 2026-10-18
+
+- [PR #19110](https://github.com/vllm-project/vllm-ascend/pull/19110) 进行中
+  - 中文：【修复】【v0.30.0】MXFP8 MLA 草稿权重的 NZ 转换时机
+  - 原文：[BugFix][v0.30.0] 修复 MXFP8 MLA 草稿权重的 NZ 转换时机
+  - 说明：将 main 分支 PR 18893（ 96fa3538847804647d5dbbb5487baad65a9d699b ）的 MXFP8 MLA 草稿权重修复回移到 releases/v0.30.0，并按发布分支现有的投影输入宽度门控调整回归测试。 DeepSeek-R1-0528 的 MXFP8 MTP 在关闭 MLAPO 时仍可使用非连续缓存的 PROLOG V3 writer。原 NZ 管理只考虑 MLAPO/FA-quant，导致通用量化后处理提前把融合 Q/KV
+
+#### 2026-09-21
+
+- [PR #17042](https://github.com/vllm-project/vllm-ascend/pull/17042) 已合并
+  - 中文：[CI] [Misc]更新DeepSeek-R1-0528-W8A8 Kimi-K2.6-w4a8-A3.yaml的基线
+  - 原文：[CI][Misc] Update baseline for DeepSeek-R1-0528-W8A8  Kimi-K2.6-w4a8-A3.yaml
+  - 说明：This PR 更新 the 性能 baseline for the 前缀-缓存-deepseek-r1-0528-w8a8 测试用例 in the 夜间 single-node E2E tests. The baseline value is adjusted from 3.4877 to 3.0293 to reflect the latest 性能 metrics. Does this PR
+
 ### DeepSeek V4.1
 
-#### 2026-10-17
+#### 2026-10-18
 
-- [PR #19092](https://github.com/vllm-project/vllm-ascend/pull/19092) 进行中
+- [PR #19092](https://github.com/vllm-project/vllm-ascend/pull/19092) 已合并
   - 中文：【文档】【模型】更新 DeepSeek V4.1-1017 权重 links for v0.30.0rc2
   - 原文：[Doc][Model] Update DeepSeek V4.1-1017 weight links for v0.30.0rc2
   - 说明：The DeepSeek V4.1 guide still says 支持 requires main and does not list the 1017 检查点. 更新 the v0.30.0rc2 documentation to state that the release supports both DeepSeek-V4.1-Flash and DeepSeek-V4.1-Flash-1017, link the official
@@ -255,7 +271,7 @@
 - [PR #17513](https://github.com/vllm-project/vllm-ascend/pull/17513) 已合并
   - 中文：[BugFix] [Engram]支持BF16检查点，无需隐式量化
   - 原文：[BugFix][Engram] Support BF16 checkpoints without implicit quantization
-  - 说明：DeepSeek V4.1 BF16 检查点 are needed for RL rollout inference, but Engram unconditionally opens a QuaRot file and converts BF16 embedding rows to INT8. A non-quantized 检查点 now keeps BF16 table
+  - 说明：DeepSeek V4.1 BF16 检查点 are needed for RL rollout inference, but Engram unconditionally opens a QuaRot file and converts BF16 embedding rows to INT8. A non-quantized 检查点 now keeps BF16 tables and uses the original-basis gate w
 
 #### 2026-09-23
 
@@ -593,6 +609,13 @@
   - 原文：[BugFix] Fix DSACP with SP for Deepseek V4
   - 说明：Currently DSACP with SP is implemented in a suboptimal way, Leading to regressed 性能 during 预填充. We 支持 further development for deepseek v4 with SP and DSACP. SP chunk is implemented in model, while 注意力 减少 scatter
 
+#### 2026-09-09
+
+- [PR #16115](https://github.com/vllm-project/vllm-ascend/pull/16115) 已合并
+  - 中文：【修复】【Frontend】对齐 DeepSeek V4 frontend behavior for v0.27
+  - 原文：[BugFix][Frontend] Align DeepSeek V4 frontend behavior for v0.27
+  - 说明：Backport PR 14632 to releases/v0.27.1rc . This aligns DeepSeek V4 frontend rendering, reasoning effort handling, compatibility behavior, incremental tool argument streaming, and related unit tests. Yes. DeepSeek V4 chat template rendering a
+
 #### 2026-09-07
 
 - [PR #15893](https://github.com/vllm-project/vllm-ascend/pull/15893) 进行中
@@ -629,6 +652,13 @@
   - 原文：[BugFix][Model] Reuse DeepSeek-V4 compressor tail workspace
   - 说明：DeepSeek-V4 压缩器 partial states are currently represented as token-indexed paged KV 缓存. For a large 预填充 chunk, the 调度器 reserves state pages for the full in-flight chunk across every 压缩器 layer, although only a small
 
+#### 2026-08-31
+
+- [PR #15349](https://github.com/vllm-project/vllm-ascend/pull/15349) 已合并
+  - 中文：【v0.25.1rc】【修复】【Frontend】Handle DeepSeek V4 trailing system messages
+  - 原文：[v0.25.1rc][BugFix][Frontend] Handle DeepSeek V4 trailing system messages
+  - 说明：Backport the DeepSeek V4 trailing-system renderer 修复 from 15317 to the v0.25.1rc release branch. When a DeepSeek V4 request ends with a system message, the v0.25 renderer can leave the prompt at an invalid system-message boundary. Generati
+
 #### 2026-08-28
 
 - [Issue #15204](https://github.com/vllm-project/vllm-ascend/issues/15204) 进行中
@@ -636,12 +666,59 @@
   - 原文：[RFC]: DeepSeek-V4 compressor partial-state memory architecture
   - 说明：Motivation. A DeepSeek-V4-Flash workload was observed to reject long 预填充 chunks before any request could be scheduled. The reproduced environment was: - vLLM-Ascend: 3281a5fc44ec344ba304c9161a3959d8649471f4 - vLLM: d02df748bf9efd99022f1
 
+#### 2026-08-27
+
+- [PR #14952](https://github.com/vllm-project/vllm-ascend/pull/14952) 已合并
+  - 中文：【v0.26.0rc】【修复】【Frontend】Select DeepSeek V4 effort mapping by 检查点 配置
+  - 原文：[v0.26.0rc][BugFix][Frontend] Select DeepSeek V4 effort mapping by checkpoint config
+  - 说明：Fixes 14951. 13993 新增 the post-Preview DeepSeek V4 reasoning-effort mapping to the v0.26 release stack, but applied it to every DeepSeek V4 检查点. The official V4 Preview encoders use different semantics: default/high has no effort
+
+#### 2026-08-24
+
+- [PR #14624](https://github.com/vllm-project/vllm-ascend/pull/14624) 已合并
+  - 中文：【v0.26.0rc】【修复】【Frontend】对齐 DeepSeek V4 frontend behavior
+  - 原文：[v0.26.0rc][BugFix][Frontend] Align DeepSeek V4 frontend behavior
+  - 说明：Ports the remaining DeepSeek V4 frontend fixes from the v0.25 release branch to releases/v0.26.0rc : - 14035: attach tools to an existing system message instead of inserting a second system message; - 14521: stream long schema-typed string
+
 #### 2026-08-17
 
 - [PR #14438](https://github.com/vllm-project/vllm-ascend/pull/14438) 草稿
   - 中文：【Draft】【性能】新增 DSA 压缩器 序列 parallel
   - 原文：[Draft][Performance] Add DSA Compressor sequence parallel
   - 说明：【Draft】【性能】新增 DSA 压缩器 序列 parallel Reduces redundant DSA 压缩器 computation across TP ranks for DeepSeek-V4 DSA-CP 预填充, plus a stack of DSV4 性能 work this line carries (Q-projection 重叠, SWA SP, o-
+- [PR #14397](https://github.com/vllm-project/vllm-ascend/pull/14397) 已合并
+  - 中文：【修复】【v0.26.0】【模型】传递 DeepSeek V4 routed SwiGLU limit
+  - 原文：[BugFix][v0.26.0][Model] Propagate DeepSeek V4 routed SwiGLU limit
+  - 说明：Ports 14364 to releases/v0.26.0rc . DeepSeek V4 reads 配置.swiglu limit and already passes it to the 共享专家, but the Ascend model adapter does not pass it to routed experts. 检查点 with swiglu limit=10.0 therefore execute rout
+- [PR #14364](https://github.com/vllm-project/vllm-ascend/pull/14364) 已合并
+  - 中文：【修复】【v0.25.1】【模型】传递 DeepSeek V4 routed SwiGLU limit
+  - 原文：[BugFix][v0.25.1][Model] Propagate DeepSeek V4 routed SwiGLU limit
+  - 说明：DeepSeek V4 reads 配置.swiglu limit and already passes it to the 共享专家, but the Ascend model adapter does not pass it to the routed FusedMoE . As a result, 检查点 with swiglu limit=10.0 execute routed experts without the requ
+
+#### 2026-08-14
+
+- [PR #14035](https://github.com/vllm-project/vllm-ascend/pull/14035) 已合并
+  - 中文：【v0.25.1rc】【修复】【Frontend】对齐 DeepSeek V4 system tool rendering
+  - 原文：[v0.25.1rc][BugFix][Frontend] Align DeepSeek V4 system tool rendering
+  - 说明：This is a follow-up to 13519. The v0.25.1 release monkey patch inherited an upstream Python renderer mismatch reported in For DeepSeek V4 requests containing both an existing system message and top-level tools, the Python wrapper always ins
+
+#### 2026-08-11
+
+- [PR #13993](https://github.com/vllm-project/vllm-ascend/pull/13993) 已合并
+  - 中文：【v0.26.0rc】【修复】【Frontend】支持 DeepSeek V4 0731 reasoning effort
+  - 原文：[v0.26.0rc][BugFix][Frontend] Support DeepSeek V4 0731 reasoning effort
+  - 说明：This ports 13313 to the v0.26 release branch and follows the behavior already merged for v0.25.1 in 13519. The release branch is paired with vLLM v0.26.0 at commit 568afb3a13806beb53bb2e6bd518269357b237c0 , which predates vLLM Ascend also d
+- [PR #13519](https://github.com/vllm-project/vllm-ascend/pull/13519) 已合并
+  - 中文：【v0.25.1rc】【修复】【Frontend】对齐 DeepSeek V4 reasoning effort with vLLM
+  - 原文：[v0.25.1rc][BugFix][Frontend] Align DeepSeek V4 reasoning effort with vLLM
+  - 说明：This is a follow-up to 13314 that aligns the v0.25.1 release implementation with the behavior merged in The vLLM v0.25.1 stack predates that 合并, and vLLM Ascend does not include the upstream Rust frontend renderer. This PR 更新 the ex
+
+#### 2026-08-02
+
+- [PR #13314](https://github.com/vllm-project/vllm-ascend/pull/13314) 已合并
+  - 中文：【v0.25.1rc】【修复】【Frontend】支持 DeepSeek V4 0731 reasoning effort
+  - 原文：[v0.25.1rc][BugFix][Frontend] Support DeepSeek V4 0731 reasoning effort
+  - 说明：This is the v0.25.1 release backport of 13313. DeepSeek-V4-Flash-0731 defines three thinking levels with distinct prompt behavior: - low : no reasoning-effort 前缀 - high : the existing Reasoning Effort: Absolute maximum 前缀 - max : th
 
 ### DeepSeek V4 Flash
 
@@ -896,15 +973,6 @@
   - 原文：[CI][Misc] Sunset DeepSeek-V3.1-BF16 multi-node test case
   - 说明：This pull request removes the DeepSeek-V3.1-BF16.yaml 配置 file, sunsetting the DeepSeek-V3.1-BF16 multi-node internal data-parallel (DP) 夜间 end-to-end 测试用例. No. This is a co
 
-### DeepSeek R1
-
-#### 2026-09-21
-
-- [PR #17042](https://github.com/vllm-project/vllm-ascend/pull/17042) 已合并
-  - 中文：[CI] [Misc]更新DeepSeek-R1-0528-W8A8 Kimi-K2.6-w4a8-A3.yaml的基线
-  - 原文：[CI][Misc] Update baseline for DeepSeek-R1-0528-W8A8  Kimi-K2.6-w4a8-A3.yaml
-  - 说明：This PR 更新 the 性能 baseline for the 前缀-缓存-deepseek-r1-0528-w8a8 测试用例 in the 夜间 single-node E2E tests. The baseline value is adjusted from 3.4877 to 3.0293 to reflect the latest 性能 metrics. Does this PR
-
 ### DeepSeek OCR
 
 #### 2026-07-14
@@ -915,62 +983,119 @@
 
 ## Qwen
 
-### Qwen3.6
+### Qwen3.8
+
+#### 2026-10-18
+
+- [PR #19001](https://github.com/vllm-project/vllm-ascend/pull/19001) 已合并
+  - 中文：【修复】【模型】【releases/v0.30.0】支持 dense 序列 parallelism for the Qwen3.5 family (Qwen3.8-27B)
+  - 原文：[BugFix][Model] Support dense sequence parallelism for the Qwen3.5 family (Qwen3.8-27B) [releases/v0.30.0]
+  - 说明：Adaptation of the dense-SP 特性 for the v0.30.0 release line (vLLM v0.30.0 pin). Same content as the main-line PR. Upstream vLLM gates 序列 parallelism on use 序列 parallel moe , which requires an MoE 检查点 with expert paral
 
 #### 2026-10-17
 
-- [Issue #14152](https://github.com/vllm-project/vllm-ascend/issues/14152) 已关闭
-  - 中文：【缺陷】【310P】: Qwen3.6-27B-w8a8 fails with aclnn_parameter_error(EZ1001): bias dtype should be INT32, actual dtype is DT_FLOAT16
-  - 原文：[Bug][310P]: Qwen3.6-27B-w8a8 fails with aclnn_parameter_error(EZ1001): bias dtype should be INT32, actual dtype is DT_FLOAT16
-  - 说明：Bug Description Eco-Tech/Qwen3.6-27B-w8a8 on Atlas 300I DUO (310P3) fails during model warmup with: Eco-Tech/Qwen3.6-35B-A3B-w8a8 works fine on the same hardware/image with the same --量化 ascend flag. Both models are multimodal (bo
+- [PR #19056](https://github.com/vllm-project/vllm-ascend/pull/19056) 进行中
+  - 中文：【功能】dense SP 支持 for Qwen3.8
+  - 原文：[Feature] add dense SP support for Qwen3.8
+  - 说明：新增 a scoped Qwen3.5 decoder layer override with explicit 序列-parallel all-gather and 减少-scatter boundaries. Wire opt-in FlashComm enablement and 新增 unit, collective, engine, graph-mode, MTP, and full-权重 coverage. Does this PR
 
-#### 2026-10-11
+#### 2026-10-16
 
-- [PR #18274](https://github.com/vllm-project/vllm-ascend/pull/18274) 已合并
-  - 中文：[Cherry-pick] [releases/v0.30.0] [CI] [Test]更新Qwen3.6 310P测试配置（来自# 18273 ）
-  - 原文：[Cherry-pick][releases/v0.30.0][CI][Test] Update Qwen3.6 310P test configurations (from #18273)
-  - 说明：Cherry-pick of PR 18273 onto releases/v0.30.0 . Original PR: 18273 Original author: @czydyy --- Backports the Qwen3.6 310P test 配置 changes from 18000 to main. It removes unused sampling parameters from the 27B DUO and 35B MTP cas
-- [PR #18273](https://github.com/vllm-project/vllm-ascend/pull/18273) 已合并
-  - 中文：【持续集成】【测试】更新 Qwen3.6 310P test configurations
-  - 原文：[CI][Test] Update Qwen3.6 310P test configurations
-  - 说明：Backports the Qwen3.6 310P test 配置 changes from 18000 to main. It removes unused sampling parameters from the 27B DUO and 35B MTP cases and 更新 the 27B and 35B DUO 性能 baselines. GLM changes from 18000 are excluded. D
+- [PR #18983](https://github.com/vllm-project/vllm-ascend/pull/18983) 草稿
+  - 中文：【持续集成】【模型】新增 initial Qwen3.8 Flash Next 夜间用例
+  - 原文：[CI][Model] Add initial Qwen3.8 Flash Next nightly cases
+  - 说明：新增 initial Qwen3.8-Flash-Next single-node 夜间 configurations for A3 W8A8 (TP8) and A5 W8A8/MXFP8 (TP4), register their runner 路由, and 新增 the corresponding model/dataset preload entries. Each case currently runs a non-thinking tex
+- [PR #18968](https://github.com/vllm-project/vllm-ascend/pull/18968) 进行中
+  - 中文：【功能】【模型】支持 dense 序列 parallelism for the Qwen3.5 family (Qwen3.8-27B)
+  - 原文：[Feature][Model] Support dense sequence parallelism for the Qwen3.5 family (Qwen3.8-27B)
+  - 说明：Upstream vLLM gates 序列 parallelism on use 序列 parallel moe , which requires an MoE 检查点 with expert parallelism. As a result, dense Qwen3.5-family 检查点 (Qwen3.5-27B / Qwen3.6-27B / Qwen3.8-27B , model type qwen3 5 te
+- [PR #18921](https://github.com/vllm-project/vllm-ascend/pull/18921) 进行中
+  - 中文：【修复】【Qwen3.8】Preserve PLE history and multi-token 解码 state
+  - 原文：[BugFix][Qwen3.8] Preserve PLE history and multi-token decode state
+  - 说明：1. PLE context can contain placeholder tokens during asynchronous scheduling PLE constructs n-gram embeddings from the current input tokens and their preceding token history. This history must contain the actual tokens consumed by the model
+
+#### 2026-10-15
+
+- [Issue #18828](https://github.com/vllm-project/vllm-ascend/issues/18828) 进行中
+  - 中文：【缺陷】: Qwen3.8-27B inference hangs with AI Core error and 507057 on v0.30.0rc2 (TP=4, MTP, FULL_DECODE_ONLY)
+  - 原文：[Bug]: Qwen3.8-27B inference hangs with AI Core error and 507057 on v0.30.0rc2 (TP=4, MTP, FULL_DECODE_ONLY)
+
+#### 2026-10-14
+
+- [Issue #18664](https://github.com/vllm-project/vllm-ascend/issues/18664) 进行中
+  - 中文：[Doc] ： `/zh-cn/v0.30.0rc1/user_guide/release_notes.html'的问题
+  - 原文：[Doc]: Questions for `/zh-cn/v0.30.0rc1/user_guide/release_notes.html`
+  - 说明：📚 The doc issue 1.官方0.30.0rc1文档中写的dsv4.1做了tq4特性优化，实际保持不支持； 2. 0.30.0rc1镜像实际是9.1.0，文档上写的9.2.0，且同配置qwen3.8 27b性能不及0.23.0镜像（官方文档描述有优化）； 3. 0.30.0rc1不支持fuse muls add为true的配置，glm5.3 flash双机混部关闭该选项后性能也不及0.23.0镜像（支持为true）。 Suggest a potential alt
+- [PR #18621](https://github.com/vllm-project/vllm-ascend/pull/18621) 进行中
+  - 中文：[BugFix] [KV Cache]恢复连续混合注意力+曼巴KV缓存布局
+  - 原文：[BugFix][KV Cache] Restore contiguous hybrid Attention+Mamba KV cache layout
+  - 说明：恢复 the contiguous per-layer K/V allocation for the ordinary 注意力 layers of hybrid 注意力+Mamba models (e.g. Qwen3.5 / Qwen3.8, qwen3 5 GDN) in MRv1, undoing the generic non-contiguous block-major layout introduced by 14340 for
+- [Issue #18619](https://github.com/vllm-project/vllm-ascend/issues/18619) 进行中
+  - 中文：【Bug】： Atlas A2上的Qwen3.8-27B (qwen3_5 GDN hybrid) - P/D分解+ MTP +前缀缓存间歇性产生乱码输出
+  - 原文：[Bug]: Qwen3.8-27B (qwen3_5 GDN hybrid) on Atlas A2 - P/D disaggregation + MTP + prefix caching intermittently produces garbled output
+
+#### 2026-10-13
+
+- [Issue #18615](https://github.com/vllm-project/vllm-ascend/issues/18615) 进行中
+  - 中文：【缺陷】: Qwen3.8-37B-w8a8在v0.30.0rc1上性能劣化严重
+  - 原文：[Bug]: Qwen3.8-37B-w8a8在v0.30.0rc1上性能劣化严重
+- [Issue #18611](https://github.com/vllm-project/vllm-ascend/issues/18611) 进行中
+  - 中文：[Bug]: qwen3-8-flash-next （ GDN 混合架构） ~ 1% 请求推理跑飞：推理无限循环打满max_tokens、空回 （ GPU sglang/vllm 均无此问题）
+  - 原文：[Bug]: qwen3-8-flash-next（GDN 混合架构）~1% 请求推理跑飞：reasoning 无限循环打满 max_tokens、空回（GPU sglang/vllm 均无此问题）
+  - 说明：环境 项 值 --- --- 硬件 Atlas 800I A3（hpu910a3）16 卡 拓扑 TP8 × DP2， --max-num-seqs 8 （每 DP 槽 8 并发） 模型 qwen3-8-flash-next（GDN 混合架构，内部模型） 镜像 qwen3.8-next-a3-openeuler （ 0day 镜像，run a 轮所用——首次发现跑飞的运行环境） vllm 0.26.1.dev18+g3310aa047 vllm-ascend 内部构建（未开
+- [PR #16533](https://github.com/vllm-project/vllm-ascend/pull/16533) 已关闭
+  - 中文：壮举：支持Mooncake分层KV池上的混合多组模型
+  - 原文：feat: support hybrid multi-group models on Mooncake layerwise KV pool
+  - 说明：启用 Qwen3.8-style hybrid (GDN + full 注意力) models with the Mooncake backend block-key layerwise KV pool: - make layerwise block key embeds the group id for multi-group layouts (single-group keeps the legacy key format) so per-group
+
+#### 2026-10-12
+
+- [PR #18380](https://github.com/vllm-project/vllm-ascend/pull/18380) 已合并
+  - 中文：【文档】【杂项】更新 image version to v0.30.0rc1
+  - 原文：[Doc][Misc] Update image version to v0.30.0rc1
+  - 说明：This PR 更新 the hardcoded docker image versions in the Qwen3.5/3.6 and Qwen3.8 tutorial documentation to use v0.30.0rc1 instead of template variables or older tags. No, this is a documentat
 
 #### 2026-10-10
 
-- [PR #18248](https://github.com/vllm-project/vllm-ascend/pull/18248) 进行中
-  - 中文：【文档】【模型】更新 Qwen3.6-35B-A3B deployment for 950DT and Atlas 300I DUO
-  - 原文：[Doc][Model] Update Qwen3.6-35B-A3B deployment for 950DT and Atlas 300I DUO
-  - 说明：补充文档 Qwen3.6-35B-A3B W8A8 MXFP8 服务 on a single NPU of a 950DT Products node, including the model 权重 entries, startup command, and matching parameter explanations. 新增 the C8-specific KV 缓存 options inside the 950DT deployment
-- [Issue #18240](https://github.com/vllm-project/vllm-ascend/issues/18240) 进行中
-  - 中文：[Bug] DFlash2草稿在APIServer中被拒绝： “目前不支持模型架构['DFlash2DraftModel']” （插件注册时间？ ）
-  - 原文：[Bug] DFlash2 draft rejected in APIServer: "Model architectures ['DFlash2DraftModel'] are not supported for now" (plugin registration timing?)
-  - 说明：Bug Description 服务 Qwen3.8-27B with a DFlash2 draft model (following the official 投机-解码 guide example) fails at startup in the APIServer process: SpeculativeConfig validation rejects the draft architecture DFlash2DraftMo
 - [Issue #18239](https://github.com/vllm-project/vllm-ascend/issues/18239) 进行中
   - 中文：【缺陷】【MRV2】Qwen3.8-27B + MTP on Model Runner V2: GDN 元数据 KeyError 'language_model.model.layers.0.linear_attn' during FULL_DECODE_ONLY capture
   - 原文：[Bug][MRV2] Qwen3.8-27B + MTP on Model Runner V2: GDN metadata KeyError 'language_model.model.layers.0.linear_attn' during FULL_DECODE_ONLY capture
   - 说明：Bug Description 服务 Qwen3.8-27B (architecture Qwen3 5ForConditionalGeneration , hybrid Gated-DeltaNet + full-注意力) on Model Runner V2 with MTP 投机解码 crashes during ACLGraph capture ( FULL 解码 ONLY warmup forward).
-- [PR #18214](https://github.com/vllm-project/vllm-ascend/pull/18214) 进行中
-  - 中文：[Doc] [Feature]为Qwen3.6-27B-w8a8c8-mxfp8模型添加文档
-  - 原文：[Doc][Feature] Add documentation for Qwen3.6-27B-w8a8c8-mxfp8 model
-  - 说明：This PR adds documentation and deployment instructions for the Qwen3.6-27B-w8a8c8-mxfp8 quantized model on Ascend NPUs (950DT and 950PR Products). It includes hardware requirements, startup commands, and parameter descriptions (such as --kv
-- [PR #18175](https://github.com/vllm-project/vllm-ascend/pull/18175) 进行中
-  - 中文：[Doc] [Feature]为Qwen3.6-27B-w8a8c8-mxfp8和W8A8C8常见问题添加文档
-  - 原文：[Doc][Feature] Add documentation for Qwen3.6-27B-w8a8c8-mxfp8 and W8A8C8 FAQ
-  - 说明：This PR adds documentation and deployment guidelines for the newly supported Qwen3.6-27B-w8a8c8-mxfp8 quantized model. It includes hardware requirements, a brief description, and a detailed FAQ section explaining how to use the W8A8C8 quant
+- [PR #18159](https://github.com/vllm-project/vllm-ascend/pull/18159) 草稿
+  - 中文：【测试】【功能】新增Qwen3.8-Flash-Next四层无PLE案例
+  - 原文：[Test][Feature] Add Qwen3.8-Flash-Next four-layer no-PLE cases
+  - 说明：新增 检查点-backed HCCL and same-device NPU IPC 权重-transfer cases for Qwen3.8-Flash-Next using four decoder layers with PLE disabled. Preserve the retained original BF16 values, 512 experts, top-10 路由, GDN, QSA and hyperconnecti
 
-#### 2026-09-24
+#### 2026-10-09
 
-- [PR #17451](https://github.com/vllm-project/vllm-ascend/pull/17451) 进行中
-  - 中文：[CI] [MRV2]使用Qwen3.6-35B-A3B覆盖混合全/SWA DFlash解码
-  - 原文：[CI][MRV2] Cover hybrid full/SWA DFlash decoding with Qwen3.6-35B-A3B
-  - 说明：Root cause: the Qwen3.6 DFlash E2E test needs coverage for a draft model that mixes full 注意力 and sliding-window 注意力 (SWA), to catch regressions in hybrid-window DFlash 投机解码 on the Ascend v2 runner. 修复: 更新 te
+- [Issue #18046](https://github.com/vllm-project/vllm-ascend/issues/18046) 进行中
+  - 中文：[文档] ： `/zh-cn/latest/user_guide/feature_guide/speculative_decoding.html`使用该指导修改 num_speculative_tokens的反馈参数值后推理进程挂死
+  - 原文：[Doc]: Feedback for `/zh-cn/latest/user_guide/feature_guide/speculative_decoding.html`使用该指导修改num_speculative_tokens参数值后推理进程挂死
+  - 说明：📚 The doc issue 使用该指导部署Qwen3.8-27B-w8a8 + dflash2时，修改"num 投机 tokens"取值为1后出发性能测试vllm ascend挂死。等待一段时间后报错，RuntimeError:...error code is 507034 Suggest a potential alternative/修复 建议充分验证并修复该边界值判断问题。
 
-#### 2026-09-19
+#### 2026-10-08
 
-- [Issue #16916](https://github.com/vllm-project/vllm-ascend/issues/16916) 已关闭
-  - 中文：[Bug] ：混合GDN模型（ Qwen3.6-35B-A3B ） ：长预填序列化默认max_num_batched_tokens = 2048 （ < 70GB分支） +曼巴对齐模式
-  - 原文：[Bug]: Hybrid GDN models (Qwen3.6-35B-A3B): long prefills serialize with default max_num_batched_tokens=2048 (<70GB branch) + mamba align mode
-  - 说明：What happened? 服务 a hybrid GDN model ( Qwen3.6-35B-A3B , INT4 W4A16, 40 layers: linear-注意力/GDN + full 注意力) on Atlas 800 A3 with --启用-前缀-缓存 (mamba 缓存 mode resolves to 对齐 ): concurrent long prefills are sch
+- [Issue #18030](https://github.com/vllm-project/vllm-ascend/issues/18030) 进行中
+  - 中文：【缺陷】【v0.23.0】: 启用 mooncake 池化 on Qwen3.8-27B 导致 请求积压
+  - 原文：[Bug][v0.23.0]: enable mooncake pooling on Qwen3.8-27B caused request backlog
+- [PR #18027](https://github.com/vllm-project/vllm-ascend/pull/18027) 进行中
+  - 中文：[PERF] [QSA]避免通过do_not_specialize对QSA Triton内核进行每次预填重新编译
+  - 原文：[Perf][QSA] Avoid per-prefill recompilation of QSA Triton kernels via do_not_specialize
+  - 说明：This PR is based on 17762 ("支持 Qwen3.8 Flash Next on Ascend") and applies an 优化 on top of its qwen4 exp/qsa.py Triton 内核. The QSA 拆分-k and 合并 Triton 内核 declare num rows , num requests and num 缓存 blocks as s
+
+#### 2026-09-20
+
+- [PR #16981](https://github.com/vllm-project/vllm-ascend/pull/16981) 进行中
+  - 中文：【功能】【模型】Qwen3.8 Flash Next 支持
+  - 原文：[Feature][Model] Add Qwen3.8 Flash Next support
+  - 说明：Summary This ports the Qwen3.8 Flash Next 支持 originally developed in 15162 onto the current main APIs, while reusing the upstream Qwen4Exp model implementation instead of copying upstream model code into the plugin. The change adds: -
+
+#### 2026-09-17
+
+- [PR #16782](https://github.com/vllm-project/vllm-ascend/pull/16782) 已合并
+  - 中文：【Doc】【Misc】添加Qwen3.8-2.4T-A95B的预期输出和服务验证
+  - 原文：[Doc][Misc] Add expected output and service verification for Qwen3.8-2.4T-A95B
+  - 说明：修复 errors in the Qwen series documentation. No. Read the new doc - vLLM main:
 
 #### 2026-09-15
 
@@ -979,14 +1104,21 @@
   - 原文：[Doc][BugFix] Fix incorrect Qwen3.6 and Qwen3.8 model paths for Atlas 300I DUO and Atlas 800
   - 说明：This PR corrects the model paths for Qwen3.6-27B-w8a8 and Qwen3.8-27B-w8a8 in the documentation: - For Qwen3.5-27B-Qwen3.6-27B.md , it fixes the model path under the Atlas 800 A3/A2 section to use Eco-Tech/Qwen3.6-27B-w8a8 instead of the -3
 
-#### 2026-08-13
+#### 2026-09-10
 
-- [PR #14235](https://github.com/vllm-project/vllm-ascend/pull/14235) 进行中
-  - 中文：[BugFix] [Ascend NPU]修复DP级联崩溃并添加DP容错
-  - 原文：[BugFix][Ascend NPU] Fix DP cascade crash and add DP fault tolerance
-  - 说明：Problem In DP4×TP2+EP8 topology on Ascend 910B2 × 8, running Qwen3.6-35B-A3B-w8a8 with FULL 解码 ONLY aclgraph mode, three 崩溃 types were observed in production on vLLM-Ascend 0.23.0RC1: 崩溃 Type Error Code Root Cause ----------- ----
+- [PR #16246](https://github.com/vllm-project/vllm-ascend/pull/16246) 进行中
+  - 中文：[性能] [GDN]跨kv缓存组共享组不变元数据
+  - 原文：[Performance][GDN] Share group-invariant metadata across kv-cache groups
+  - 说明：背景混合模型，如Qwen3.8/Qwen4-Exp （例如Qwen3.8-27B ）以3: 1交织GDN （线性注意）层和全注意层。混合KV缓存管理器将kv缓存组大小与最少层类型对齐，
 
 ### Qwen3.5
+
+#### 2026-10-18
+
+- [PR #19001](https://github.com/vllm-project/vllm-ascend/pull/19001) 已合并
+  - 中文：【修复】【模型】【releases/v0.30.0】支持 dense 序列 parallelism for the Qwen3.5 family (Qwen3.8-27B)
+  - 原文：[BugFix][Model] Support dense sequence parallelism for the Qwen3.5 family (Qwen3.8-27B) [releases/v0.30.0]
+  - 说明：Adaptation of the dense-SP 特性 for the v0.30.0 release line (vLLM v0.30.0 pin). Same content as the main-line PR. Upstream vLLM gates 序列 parallelism on use 序列 parallel moe , which requires an MoE 检查点 with expert paral
 
 #### 2026-10-17
 
@@ -997,10 +1129,6 @@
 
 #### 2026-10-16
 
-- [PR #19001](https://github.com/vllm-project/vllm-ascend/pull/19001) 进行中
-  - 中文：【修复】【模型】【releases/v0.30.0】支持 dense 序列 parallelism for the Qwen3.5 family (Qwen3.8-27B)
-  - 原文：[BugFix][Model] Support dense sequence parallelism for the Qwen3.5 family (Qwen3.8-27B) [releases/v0.30.0]
-  - 说明：Adaptation of the dense-SP 特性 for the v0.30.0 release line (vLLM v0.30.0 pin). Same content as the main-line PR. Upstream vLLM gates 序列 parallelism on use 序列 parallel moe , which requires an MoE 检查点 with expert paral
 - [PR #18968](https://github.com/vllm-project/vllm-ascend/pull/18968) 进行中
   - 中文：【功能】【模型】支持 dense 序列 parallelism for the Qwen3.5 family (Qwen3.8-27B)
   - 原文：[Feature][Model] Support dense sequence parallelism for the Qwen3.5 family (Qwen3.8-27B)
@@ -1108,7 +1236,7 @@
 - [PR #18064](https://github.com/vllm-project/vllm-ascend/pull/18064) 草稿
   - 中文：【性能】内核] 优化基于自适应调度的 Split-QKV RMSNorm MRoPE
   - 原文：[Performance][Kernel] Optimize Split-QKV RMSNorm MRoPE with adaptive dispatch
-  - 说明：The Qwen3.5 and Qwen3-VL 注意力 paths use triton 拆分 qkv rmsnorm mrope to 拆分 Q/K/V, normalize and rotate Q/K, and copy V and the optional gate. The existing 内核 processes one token row at a time and constructs full-width RoPE tem
+  - 说明：优化 the 融合 拆分-QKV, per-head RMSNorm and MRoPE operator used by Qwen3.5 and Qwen3-VL: single-token inputs expose little token parallelism, while long partitions can process paired rows. - Compute RoPE halves directly, removing rot
 
 #### 2026-09-29
 
@@ -1239,116 +1367,62 @@
   - 中文：【缺陷】: 使用vllm-ascend docker 无法启动Qwen3.5-27B
   - 原文：[Bug]: 使用vllm-ascend docker 无法启动Qwen3.5-27B
 
-### Qwen3.8
+### Qwen3.6
 
 #### 2026-10-17
 
-- [PR #19056](https://github.com/vllm-project/vllm-ascend/pull/19056) 进行中
-  - 中文：【功能】dense SP 支持 for Qwen3.8
-  - 原文：[Feature] add dense SP support for Qwen3.8
-  - 说明：新增 a scoped Qwen3.5 decoder layer override with explicit 序列-parallel all-gather and 减少-scatter boundaries. Wire opt-in FlashComm enablement and 新增 unit, collective, engine, graph-mode, MTP, and full-权重 coverage. Does this PR
+- [Issue #14152](https://github.com/vllm-project/vllm-ascend/issues/14152) 已关闭
+  - 中文：【缺陷】【310P】: Qwen3.6-27B-w8a8 fails with aclnn_parameter_error(EZ1001): bias dtype should be INT32, actual dtype is DT_FLOAT16
+  - 原文：[Bug][310P]: Qwen3.6-27B-w8a8 fails with aclnn_parameter_error(EZ1001): bias dtype should be INT32, actual dtype is DT_FLOAT16
+  - 说明：Bug Description Eco-Tech/Qwen3.6-27B-w8a8 on Atlas 300I DUO (310P3) fails during model warmup with: Eco-Tech/Qwen3.6-35B-A3B-w8a8 works fine on the same hardware/image with the same --量化 ascend flag. Both models are multimodal (bo
 
-#### 2026-10-16
+#### 2026-10-11
 
-- [PR #19001](https://github.com/vllm-project/vllm-ascend/pull/19001) 进行中
-  - 中文：【修复】【模型】【releases/v0.30.0】支持 dense 序列 parallelism for the Qwen3.5 family (Qwen3.8-27B)
-  - 原文：[BugFix][Model] Support dense sequence parallelism for the Qwen3.5 family (Qwen3.8-27B) [releases/v0.30.0]
-  - 说明：Adaptation of the dense-SP 特性 for the v0.30.0 release line (vLLM v0.30.0 pin). Same content as the main-line PR. Upstream vLLM gates 序列 parallelism on use 序列 parallel moe , which requires an MoE 检查点 with expert paral
-- [PR #18983](https://github.com/vllm-project/vllm-ascend/pull/18983) 草稿
-  - 中文：【持续集成】【模型】新增 initial Qwen3.8 Flash Next 夜间用例
-  - 原文：[CI][Model] Add initial Qwen3.8 Flash Next nightly cases
-  - 说明：新增 initial Qwen3.8-Flash-Next single-node 夜间 configurations for A3 W8A8 (TP8) and A5 W8A8/MXFP8 (TP4), register their runner 路由, and 新增 the corresponding model/dataset preload entries. Each case currently runs a non-thinking tex
-- [PR #18968](https://github.com/vllm-project/vllm-ascend/pull/18968) 进行中
-  - 中文：【功能】【模型】支持 dense 序列 parallelism for the Qwen3.5 family (Qwen3.8-27B)
-  - 原文：[Feature][Model] Support dense sequence parallelism for the Qwen3.5 family (Qwen3.8-27B)
-  - 说明：Upstream vLLM gates 序列 parallelism on use 序列 parallel moe , which requires an MoE 检查点 with expert parallelism. As a result, dense Qwen3.5-family 检查点 (Qwen3.5-27B / Qwen3.6-27B / Qwen3.8-27B , model type qwen3 5 te
-- [PR #18921](https://github.com/vllm-project/vllm-ascend/pull/18921) 进行中
-  - 中文：【修复】【Qwen3.8】Preserve PLE history and multi-token 解码 state
-  - 原文：[BugFix][Qwen3.8] Preserve PLE history and multi-token decode state
-  - 说明：1. PLE context can contain placeholder tokens during asynchronous scheduling PLE constructs n-gram embeddings from the current input tokens and their preceding token history. This history must contain the actual tokens consumed by the model
-
-#### 2026-10-15
-
-- [Issue #18828](https://github.com/vllm-project/vllm-ascend/issues/18828) 进行中
-  - 中文：【缺陷】: Qwen3.8-27B inference hangs with AI Core error and 507057 on v0.30.0rc2 (TP=4, MTP, FULL_DECODE_ONLY)
-  - 原文：[Bug]: Qwen3.8-27B inference hangs with AI Core error and 507057 on v0.30.0rc2 (TP=4, MTP, FULL_DECODE_ONLY)
-
-#### 2026-10-14
-
-- [Issue #18664](https://github.com/vllm-project/vllm-ascend/issues/18664) 进行中
-  - 中文：[Doc] ： `/zh-cn/v0.30.0rc1/user_guide/release_notes.html'的问题
-  - 原文：[Doc]: Questions for `/zh-cn/v0.30.0rc1/user_guide/release_notes.html`
-  - 说明：📚 The doc issue 1.官方0.30.0rc1文档中写的dsv4.1做了tq4特性优化，实际保持不支持； 2. 0.30.0rc1镜像实际是9.1.0，文档上写的9.2.0，且同配置qwen3.8 27b性能不及0.23.0镜像（官方文档描述有优化）； 3. 0.30.0rc1不支持fuse muls add为true的配置，glm5.3 flash双机混部关闭该选项后性能也不及0.23.0镜像（支持为true）。 Suggest a potential alt
-- [PR #18621](https://github.com/vllm-project/vllm-ascend/pull/18621) 进行中
-  - 中文：[BugFix] [KV Cache]恢复连续混合注意力+曼巴KV缓存布局
-  - 原文：[BugFix][KV Cache] Restore contiguous hybrid Attention+Mamba KV cache layout
-  - 说明：恢复 the contiguous per-layer K/V allocation for the ordinary 注意力 layers of hybrid 注意力+Mamba models (e.g. Qwen3.5 / Qwen3.8, qwen3 5 GDN) in MRv1, undoing the generic non-contiguous block-major layout introduced by 14340 for
-- [Issue #18619](https://github.com/vllm-project/vllm-ascend/issues/18619) 进行中
-  - 中文：【Bug】： Atlas A2上的Qwen3.8-27B (qwen3_5 GDN hybrid) - P/D分解+ MTP +前缀缓存间歇性产生乱码输出
-  - 原文：[Bug]: Qwen3.8-27B (qwen3_5 GDN hybrid) on Atlas A2 - P/D disaggregation + MTP + prefix caching intermittently produces garbled output
-
-#### 2026-10-13
-
-- [Issue #18615](https://github.com/vllm-project/vllm-ascend/issues/18615) 进行中
-  - 中文：【缺陷】: Qwen3.8-37B-w8a8在v0.30.0rc1上性能劣化严重
-  - 原文：[Bug]: Qwen3.8-37B-w8a8在v0.30.0rc1上性能劣化严重
-- [Issue #18611](https://github.com/vllm-project/vllm-ascend/issues/18611) 进行中
-  - 中文：[Bug]: qwen3-8-flash-next （ GDN 混合架构） ~ 1% 请求推理跑飞：推理无限循环打满max_tokens、空回 （ GPU sglang/vllm 均无此问题）
-  - 原文：[Bug]: qwen3-8-flash-next（GDN 混合架构）~1% 请求推理跑飞：reasoning 无限循环打满 max_tokens、空回（GPU sglang/vllm 均无此问题）
-  - 说明：环境 项 值 --- --- 硬件 Atlas 800I A3（hpu910a3）16 卡 拓扑 TP8 × DP2， --max-num-seqs 8 （每 DP 槽 8 并发） 模型 qwen3-8-flash-next（GDN 混合架构，内部模型） 镜像 qwen3.8-next-a3-openeuler （ 0day 镜像，run a 轮所用——首次发现跑飞的运行环境） vllm 0.26.1.dev18+g3310aa047 vllm-ascend 内部构建（未开
-- [PR #16533](https://github.com/vllm-project/vllm-ascend/pull/16533) 已关闭
-  - 中文：壮举：支持Mooncake分层KV池上的混合多组模型
-  - 原文：feat: support hybrid multi-group models on Mooncake layerwise KV pool
-  - 说明：启用 Qwen3.8-style hybrid (GDN + full 注意力) models with the Mooncake backend block-key layerwise KV pool: - make layerwise block key embeds the group id for multi-group layouts (single-group keeps the legacy key format) so per-group
-
-#### 2026-10-12
-
-- [PR #18380](https://github.com/vllm-project/vllm-ascend/pull/18380) 已合并
-  - 中文：【文档】【杂项】更新 image version to v0.30.0rc1
-  - 原文：[Doc][Misc] Update image version to v0.30.0rc1
-  - 说明：This PR 更新 the hardcoded docker image versions in the Qwen3.5/3.6 and Qwen3.8 tutorial documentation to use v0.30.0rc1 instead of template variables or older tags. No, this is a documentat
+- [PR #18274](https://github.com/vllm-project/vllm-ascend/pull/18274) 已合并
+  - 中文：[Cherry-pick] [releases/v0.30.0] [CI] [Test]更新Qwen3.6 310P测试配置（来自# 18273 ）
+  - 原文：[Cherry-pick][releases/v0.30.0][CI][Test] Update Qwen3.6 310P test configurations (from #18273)
+  - 说明：Cherry-pick of PR 18273 onto releases/v0.30.0 . Original PR: 18273 Original author: @czydyy --- Backports the Qwen3.6 310P test 配置 changes from 18000 to main. It removes unused sampling parameters from the 27B DUO and 35B MTP cas
+- [PR #18273](https://github.com/vllm-project/vllm-ascend/pull/18273) 已合并
+  - 中文：【持续集成】【测试】更新 Qwen3.6 310P test configurations
+  - 原文：[CI][Test] Update Qwen3.6 310P test configurations
+  - 说明：Backports the Qwen3.6 310P test 配置 changes from 18000 to main. It removes unused sampling parameters from the 27B DUO and 35B MTP cases and 更新 the 27B and 35B DUO 性能 baselines. GLM changes from 18000 are excluded. D
 
 #### 2026-10-10
 
+- [PR #18248](https://github.com/vllm-project/vllm-ascend/pull/18248) 进行中
+  - 中文：【文档】【模型】更新 Qwen3.6-35B-A3B deployment for 950DT and Atlas 300I DUO
+  - 原文：[Doc][Model] Update Qwen3.6-35B-A3B deployment for 950DT and Atlas 300I DUO
+  - 说明：补充文档 Qwen3.6-35B-A3B W8A8 MXFP8 服务 on a single NPU of a 950DT Products node, including the model 权重 entries, startup command, and matching parameter explanations. 新增 the C8-specific KV 缓存 options inside the 950DT deployment
+- [Issue #18240](https://github.com/vllm-project/vllm-ascend/issues/18240) 进行中
+  - 中文：[Bug] DFlash2草稿在APIServer中被拒绝： “目前不支持模型架构['DFlash2DraftModel']” （插件注册时间？ ）
+  - 原文：[Bug] DFlash2 draft rejected in APIServer: "Model architectures ['DFlash2DraftModel'] are not supported for now" (plugin registration timing?)
+  - 说明：Bug Description 服务 Qwen3.8-27B with a DFlash2 draft model (following the official 投机-解码 guide example) fails at startup in the APIServer process: SpeculativeConfig validation rejects the draft architecture DFlash2DraftMo
 - [Issue #18239](https://github.com/vllm-project/vllm-ascend/issues/18239) 进行中
   - 中文：【缺陷】【MRV2】Qwen3.8-27B + MTP on Model Runner V2: GDN 元数据 KeyError 'language_model.model.layers.0.linear_attn' during FULL_DECODE_ONLY capture
   - 原文：[Bug][MRV2] Qwen3.8-27B + MTP on Model Runner V2: GDN metadata KeyError 'language_model.model.layers.0.linear_attn' during FULL_DECODE_ONLY capture
   - 说明：Bug Description 服务 Qwen3.8-27B (architecture Qwen3 5ForConditionalGeneration , hybrid Gated-DeltaNet + full-注意力) on Model Runner V2 with MTP 投机解码 crashes during ACLGraph capture ( FULL 解码 ONLY warmup forward).
-- [PR #18159](https://github.com/vllm-project/vllm-ascend/pull/18159) 草稿
-  - 中文：【测试】【功能】新增Qwen3.8-Flash-Next四层无PLE案例
-  - 原文：[Test][Feature] Add Qwen3.8-Flash-Next four-layer no-PLE cases
-  - 说明：新增 检查点-backed HCCL and same-device NPU IPC 权重-transfer cases for Qwen3.8-Flash-Next using four decoder layers with PLE disabled. Preserve the retained original BF16 values, 512 experts, top-10 路由, GDN, QSA and hyperconnecti
+- [PR #18214](https://github.com/vllm-project/vllm-ascend/pull/18214) 进行中
+  - 中文：[Doc] [Feature]为Qwen3.6-27B-w8a8c8-mxfp8模型添加文档
+  - 原文：[Doc][Feature] Add documentation for Qwen3.6-27B-w8a8c8-mxfp8 model
+  - 说明：This PR adds documentation and deployment instructions for the Qwen3.6-27B-w8a8c8-mxfp8 quantized model on Ascend NPUs (950DT and 950PR Products). It includes hardware requirements, startup commands, and parameter descriptions (such as --kv
+- [PR #18175](https://github.com/vllm-project/vllm-ascend/pull/18175) 进行中
+  - 中文：[Doc] [Feature]为Qwen3.6-27B-w8a8c8-mxfp8和W8A8C8常见问题添加文档
+  - 原文：[Doc][Feature] Add documentation for Qwen3.6-27B-w8a8c8-mxfp8 and W8A8C8 FAQ
+  - 说明：This PR adds documentation and deployment guidelines for the newly supported Qwen3.6-27B-w8a8c8-mxfp8 quantized model. It includes hardware requirements, a brief description, and a detailed FAQ section explaining how to use the W8A8C8 quant
 
-#### 2026-10-09
+#### 2026-09-24
 
-- [Issue #18046](https://github.com/vllm-project/vllm-ascend/issues/18046) 进行中
-  - 中文：[文档] ： `/zh-cn/latest/user_guide/feature_guide/speculative_decoding.html`使用该指导修改 num_speculative_tokens的反馈参数值后推理进程挂死
-  - 原文：[Doc]: Feedback for `/zh-cn/latest/user_guide/feature_guide/speculative_decoding.html`使用该指导修改num_speculative_tokens参数值后推理进程挂死
-  - 说明：📚 The doc issue 使用该指导部署Qwen3.8-27B-w8a8 + dflash2时，修改"num 投机 tokens"取值为1后出发性能测试vllm ascend挂死。等待一段时间后报错，RuntimeError:...error code is 507034 Suggest a potential alternative/修复 建议充分验证并修复该边界值判断问题。
+- [PR #17451](https://github.com/vllm-project/vllm-ascend/pull/17451) 进行中
+  - 中文：[CI] [MRV2]使用Qwen3.6-35B-A3B覆盖混合全/SWA DFlash解码
+  - 原文：[CI][MRV2] Cover hybrid full/SWA DFlash decoding with Qwen3.6-35B-A3B
+  - 说明：Root cause: the Qwen3.6 DFlash E2E test needs coverage for a draft model that mixes full 注意力 and sliding-window 注意力 (SWA), to catch regressions in hybrid-window DFlash 投机解码 on the Ascend v2 runner. 修复: 更新 te
 
-#### 2026-10-08
+#### 2026-09-19
 
-- [Issue #18030](https://github.com/vllm-project/vllm-ascend/issues/18030) 进行中
-  - 中文：【缺陷】【v0.23.0】: 启用 mooncake 池化 on Qwen3.8-27B 导致 请求积压
-  - 原文：[Bug][v0.23.0]: enable mooncake pooling on Qwen3.8-27B caused request backlog
-- [PR #18027](https://github.com/vllm-project/vllm-ascend/pull/18027) 进行中
-  - 中文：[PERF] [QSA]避免通过do_not_specialize对QSA Triton内核进行每次预填重新编译
-  - 原文：[Perf][QSA] Avoid per-prefill recompilation of QSA Triton kernels via do_not_specialize
-  - 说明：This PR is based on 17762 ("支持 Qwen3.8 Flash Next on Ascend") and applies an 优化 on top of its qwen4 exp/qsa.py Triton 内核. The QSA 拆分-k and 合并 Triton 内核 declare num rows , num requests and num 缓存 blocks as s
-
-#### 2026-09-20
-
-- [PR #16981](https://github.com/vllm-project/vllm-ascend/pull/16981) 进行中
-  - 中文：【功能】【模型】Qwen3.8 Flash Next 支持
-  - 原文：[Feature][Model] Add Qwen3.8 Flash Next support
-  - 说明：Summary This ports the Qwen3.8 Flash Next 支持 originally developed in 15162 onto the current main APIs, while reusing the upstream Qwen4Exp model implementation instead of copying upstream model code into the plugin. The change adds: -
-
-#### 2026-09-17
-
-- [PR #16782](https://github.com/vllm-project/vllm-ascend/pull/16782) 已合并
-  - 中文：【Doc】【Misc】添加Qwen3.8-2.4T-A95B的预期输出和服务验证
-  - 原文：[Doc][Misc] Add expected output and service verification for Qwen3.8-2.4T-A95B
-  - 说明：修复 errors in the Qwen series documentation. No. Read the new doc - vLLM main:
+- [Issue #16916](https://github.com/vllm-project/vllm-ascend/issues/16916) 已关闭
+  - 中文：[Bug] ：混合GDN模型（ Qwen3.6-35B-A3B ） ：长预填序列化默认max_num_batched_tokens = 2048 （ < 70GB分支） +曼巴对齐模式
+  - 原文：[Bug]: Hybrid GDN models (Qwen3.6-35B-A3B): long prefills serialize with default max_num_batched_tokens=2048 (<70GB branch) + mamba align mode
+  - 说明：What happened? 服务 a hybrid GDN model ( Qwen3.6-35B-A3B , INT4 W4A16, 40 layers: linear-注意力/GDN + full 注意力) on Atlas 800 A3 with --启用-前缀-缓存 (mamba 缓存 mode resolves to 对齐 ): concurrent long prefills are sch
 
 #### 2026-09-15
 
@@ -1357,12 +1431,12 @@
   - 原文：[Doc][BugFix] Fix incorrect Qwen3.6 and Qwen3.8 model paths for Atlas 300I DUO and Atlas 800
   - 说明：This PR corrects the model paths for Qwen3.6-27B-w8a8 and Qwen3.8-27B-w8a8 in the documentation: - For Qwen3.5-27B-Qwen3.6-27B.md , it fixes the model path under the Atlas 800 A3/A2 section to use Eco-Tech/Qwen3.6-27B-w8a8 instead of the -3
 
-#### 2026-09-10
+#### 2026-08-13
 
-- [PR #16246](https://github.com/vllm-project/vllm-ascend/pull/16246) 进行中
-  - 中文：[性能] [GDN]跨kv缓存组共享组不变元数据
-  - 原文：[Performance][GDN] Share group-invariant metadata across kv-cache groups
-  - 说明：背景混合模型，如Qwen3.8/Qwen4-Exp （例如Qwen3.8-27B ）以3: 1交织GDN （线性注意）层和全注意层。混合KV缓存管理器将kv缓存组大小与最少层类型对齐，
+- [PR #14235](https://github.com/vllm-project/vllm-ascend/pull/14235) 进行中
+  - 中文：[BugFix] [Ascend NPU]修复DP级联崩溃并添加DP容错
+  - 原文：[BugFix][Ascend NPU] Fix DP cascade crash and add DP fault tolerance
+  - 说明：Problem In DP4×TP2+EP8 topology on Ascend 910B2 × 8, running Qwen3.6-35B-A3B-w8a8 with FULL 解码 ONLY aclgraph mode, three 崩溃 types were observed in production on vLLM-Ascend 0.23.0RC1: 崩溃 Type Error Code Root Cause ----------- ----
 
 ### Qwen3
 
@@ -1597,7 +1671,7 @@
 - [PR #18064](https://github.com/vllm-project/vllm-ascend/pull/18064) 草稿
   - 中文：【性能】内核] 优化基于自适应调度的 Split-QKV RMSNorm MRoPE
   - 原文：[Performance][Kernel] Optimize Split-QKV RMSNorm MRoPE with adaptive dispatch
-  - 说明：The Qwen3.5 and Qwen3-VL 注意力 paths use triton 拆分 qkv rmsnorm mrope to 拆分 Q/K/V, normalize and rotate Q/K, and copy V and the optional gate. The existing 内核 processes one token row at a time and constructs full-width RoPE tem
+  - 说明：优化 the 融合 拆分-QKV, per-head RMSNorm and MRoPE operator used by Qwen3.5 and Qwen3-VL: single-token inputs expose little token parallelism, while long partitions can process paired rows. - Compute RoPE halves directly, removing rot
 
 #### 2026-09-28
 
@@ -1631,6 +1705,10 @@
 
 #### 2026-10-18
 
+- [PR #19107](https://github.com/vllm-project/vllm-ascend/pull/19107) 进行中
+  - 中文：【修复】【算子】遵循 model RMSNorm epsilon in MLAPO
+  - 原文：[BugFix][Ops] Honor model RMSNorm epsilon in MLAPO
+  - 说明：MLAPO uses a 修复 1e-6 for both Q and KV RMSNorm, even when the model's layers specify a different epsilon. GLM-5.2 检查点 with rms norm eps=1e-5 therefore use a different normalization formula in the 融合 path than in the native pat
 - [PR #19094](https://github.com/vllm-project/vllm-ascend/pull/19094) 进行中
   - 中文：【性能】【注意力】避免 redundant wk_weights_proj in SFA 索引器 top-k selection
   - 原文：[Performance][Attention] Avoid redundant wk_weights_proj in SFA indexer top-k selection
@@ -2167,6 +2245,13 @@
   - 中文：[错误] ： GLM-4.6V视觉编码器在910C上没有有效的TP并行度—并发图像请求通过编码器串行化
   - 原文：[Bug]: GLM-4.6V vision encoder has no effective TP parallelism on 910C — concurrent image requests serialize through the encoder
 
+#### 2026-07-20
+
+- [PR #11453](https://github.com/vllm-project/vllm-ascend/pull/11453) 已合并
+  - 中文：【重构】【Patch】移除 obsolete parser patches
+  - 原文：[Refactor][Patch] Remove obsolete parser patches
+  - 说明：vLLM v0.24.0 and the verified main revision no longer need these compatibility patches: - patch glm47 工具调用 parser.py - patch glm 工具调用 streaming.py - patch tool choice none content.py This PR removes the patches, their registration
+
 ### GLM-4.7
 
 #### 2026-10-11
@@ -2441,6 +2526,13 @@
   - 原文：feat: support Kimi-K3 DSpark Block5
   - 说明：This PR adds 支持 for the Kimi-K3-DSpark-Block5 draft model. - Read causal 注意力 settings from the 检查点 配置. - Validate that the trained DSpark block size matches num 投机 tokens. - Preserve compatibility with
 
+#### 2026-08-12
+
+- [PR #13520](https://github.com/vllm-project/vllm-ascend/pull/13520) 已合并
+  - 中文：【0.26.0rc】【修复】【模型】对齐 Kimi K3 frontend with upstream
+  - 原文：[0.26.0rc][BugFix][Model] Align Kimi K3 frontend with upstream
+  - 说明：本 PR 将 releases/v0.26.0rc 中的 Kimi K3 Python frontend 行为对齐到当前上游 vLLM 已合入实现，改动限于 K3 patch、对应单测和 patch 文档： - 回移 streaming 检查从每步扫描完整历史改为只扫描当前 delta 和 marker carry window，避免长上下文下 O(context/step) 开销。 - 回移 name:index 构造 工具调用 ID，改用 vLLM 默认随机 I
+
 ### Kimi K2
 
 #### 2026-10-17
@@ -2530,6 +2622,27 @@
   - 中文：【文档】【杂项】更新 Ascend environment for Qwen3 and MiniMax-M2/M3
   - 原文：[Doc][Misc] Update Ascend environment for Qwen3 and MiniMax-M2/M3
   - 说明：This PR 更新 and cleans up the recommended Ascend environment variables for Qwen3 and MiniMax-M2/M3 models. - Removes redundant or obsolete environment variables (such as OMP NUM THREADS , TASK QUEUE 启用 , VLLM ASCEND BALANCE SCHEDULI
+
+#### 2026-07-20
+
+- [PR #12293](https://github.com/vllm-project/vllm-ascend/pull/12293) 已合并
+  - 中文：【Cherry-pick】【releases/v0.24.0rc】【重构】【Patch】Replace MiniMax parser backports (from #11384)
+  - 原文：[Cherry-pick][releases/v0.24.0rc][Refactor][Patch] Replace MiniMax parser backports (from #11384)
+  - 说明：Cherry-pick of 11384 onto releases/v0.24.0rc . This PR: - removes the stale MiniMax-M2 工具调用 parser and usage-accounting patches - adds patch parser reasoning usage.py as a backport of - preserves completion tokens details.reasoning tok
+
+#### 2026-07-17
+
+- [PR #11384](https://github.com/vllm-project/vllm-ascend/pull/11384) 已合并
+  - 中文：【重构】【Patch】Replace MiniMax parser backports
+  - 原文：[Refactor][Patch] Replace MiniMax parser backports
+  - 说明：Replace stale MiniMax parser backports with the current vLLM parser-engine path for vLLM 0.24. This PR: - deletes patch minimax m2 工具调用 parser.py - deletes patch minimax usage accounting.py - adds patch parser reasoning usage.py as a b
+
+#### 2026-06-26
+
+- [PR #10906](https://github.com/vllm-project/vllm-ascend/pull/10906) 已合并
+  - 中文：【重构】【Patch】Trim upstreamed MiniMax-M2 hooks
+  - 原文：[Refactor][Patch] Trim upstreamed MiniMax-M2 hooks
+  - 说明：WIP follow-up for This PR trims the MiniMax-M2 patch files after the main2main 更新 to vLLM v0.23.0 , but keeps the PR in draft while maintainers decide the long-term home for the remaining Ascend-specific behavior. 移除 from vllm asce
 
 ## Gemma
 
@@ -2651,6 +2764,58 @@
 
 #### 2026-10-18
 
+- [Issue #19114](https://github.com/vllm-project/vllm-ascend/issues/19114) 进行中
+  - 中文：【RFC】: 对齐 Ascend HiSparse with upstream HMA and 新增 direct packed 稀疏 注意力
+  - 原文：[RFC]: Align Ascend HiSparse with upstream HMA and add direct packed sparse attention
+  - 说明：Motivation. Motivation. 支持 upstream Hybrid HiSparse on Ascend for 稀疏 MLA/DSA models, including colocated 预填充/解码 and long contexts. Reuse upstream scheduling, Hybrid 显存 Allocator (HMA) allocation, 前缀缓存, and tar
+- [Issue #19113](https://github.com/vllm-project/vllm-ascend/issues/19113) 进行中
+  - 中文：【RFC】: 对齐 Ascend HiSparse with upstream HMA and 新增 direct packed 稀疏 注意力
+  - 原文：[RFC]: Align Ascend HiSparse with upstream HMA and add direct packed sparse attention
+  - 说明：Motivation. 支持 upstream Hybrid HiSparse on Ascend for 稀疏 MLA/DSA models, including colocated 预填充/解码 and long contexts. Reuse upstream scheduling, Hybrid 显存 Allocator (HMA) allocation, 前缀缓存, and target/draft co
+- [PR #19090](https://github.com/vllm-project/vllm-ascend/pull/19090) 已合并
+  - 中文：【修复】【KVPool】【v0.30.0】Isolate Memcache transfer failures
+  - 原文：[BugFix][KVPool][v0.30.0] Isolate Memcache transfer failures
+  - 说明：From main Memcache returns failed operation statuses, but Python transfer paths can raise on these results and leave layer fences or queue tasks incomplete. Handle returned statuses inside AscendStoreConnector: failed readiness queries beco
+- [PR #19101](https://github.com/vllm-project/vllm-ascend/pull/19101) 已合并
+  - 中文：【修复】【KVPool】Isolate Memcache transfer failures
+  - 原文：[BugFix][KVPool] Isolate Memcache transfer failures
+  - 说明：Main-branch counterpart of 19090. Memcache returns failed operation statuses, but Python transfer paths can raise on these results and leave layer fences or queue tasks incomplete. Handle returned statuses inside AscendStoreConnector. Synch
+- [PR #19038](https://github.com/vllm-project/vllm-ascend/pull/19038) 已合并
+  - 中文：【v0.30.0】【性能】【SpecDecode】Skip audited FlashMLA CPU length synchronization
+  - 原文：[v0.30.0][Performance][SpecDecode] Skip audited FlashMLA CPU length synchronization
+  - 说明：Follow-up to 18758; that FlashMLA integration is not included in this diff. Keep both Ascend V2 投机-解码 CPU length synchronization 优化 in this existing PR: 1. DSpark draft: skip the blocking D2H length copy only with
+- [PR #19059](https://github.com/vllm-project/vllm-ascend/pull/19059) 已合并
+  - 中文：【v0.30.0】【持续集成】【修复】GLM-5.3-Flash PD 夜间 hangs and refresh baseline
+  - 原文：[v0.30.0][CI][BugFix] Fix GLM-5.3-Flash PD nightly hangs and refresh baseline
+  - 说明：Mitigate GLM-5.3-Flash PD 夜间 startup hangs in GLM-5.3-Flash-W8A8-130k-PD.yaml : - Incorporate the workaround from 19049: set TORCH EXTENSIONS DIR=/tmp/torch extensions/glm53 in env common , so both 预填充 and 解码 use pod-local Torc
+- [PR #19098](https://github.com/vllm-project/vllm-ascend/pull/19098) 已合并
+  - 中文：【修复】【v0.30.0】【EPLB】Fence staging-buffer reuse before HIXL READs
+  - 原文：[BugFix][v0.30.0][EPLB] Fence staging-buffer reuse before HIXL READs
+  - 说明：Backport the HIXL staging-buffer synchronization and its unit test from f978348e9045fb045a4281d189339ef2ca1f1a45 ( 17681) to releases/v0.30.0 . The release branch at 5ba1e2ad4d1d is missing these hunks. Also carry the matching CPU fallback
+- [PR #19084](https://github.com/vllm-project/vllm-ascend/pull/19084) 已合并
+  - 中文：【修复】【v0.30.0】Prevent GLM KPool empty-work 显存 corruption on A3
+  - 原文：[BugFix][v0.30.0] Prevent GLM KPool empty-work memory corruption on A3
+  - 说明：Backport the A3 GLM KPool 修复 from 19073 to releases/v0.30.0, which already contains the CANN pooled-索引器 integration from 18289. On the reproduced A3 stack, CANN PoolKeyIndexer entered an empty-work initialization path that wrote beyond
+- [PR #16936](https://github.com/vllm-project/vllm-ascend/pull/16936) 已合并
+  - 中文：【修复】Preserve GLM-5.3-Flash MRV2 MTP capture lifecycle
+  - 原文：[BugFix] Preserve GLM-5.3-Flash MRV2 MTP capture lifecycle
+  - 说明：When index share for mtp iteration is 启用, MTP 运行时 computes top-k in the first draft step and reuses those indices in later steps. The Ascend MRV2 capture override omitted the existing lifecycle hooks and captured 解码 with skip t
+- [PR #19073](https://github.com/vllm-project/vllm-ascend/pull/19073) 已合并
+  - 中文：【修复】Prevent GLM KPool empty-work 显存 corruption on A3
+  - 原文：[BugFix] Prevent GLM KPool empty-work memory corruption on A3
+  - 说明：修复 A3 GLM KPool 显存 corruption when DSA-CP leaves a local shard with queries but no completed pooled keys. On the reproduced A3 stack, CANN PoolKeyIndexer entered an empty-work initialization path that wrote beyond its TND output alloca
+- [PR #19106](https://github.com/vllm-project/vllm-ascend/pull/19106) 已合并
+  - 中文：【修复】【持续集成】Keep the image's daily deps in 夜间 e2e 运行时 installs
+  - 原文：[BugFix][CI] Keep the image's daily deps in nightly e2e runtime installs
+  - 说明：From main branch This is a temporary solution; a final method will be provided later. requirements-夜间.txt, now used by the 夜间 image layer and the e2e 运行时 install, has no -r requirements.txt: that stopped the daily torch-npu fr
+- [PR #19104](https://github.com/vllm-project/vllm-ascend/pull/19104) 已合并
+  - 中文：【修复】【持续集成】Keep the image's daily deps in 夜间 e2e 运行时 installs
+  - 原文：[BugFix][CI] Keep the image's daily deps in nightly e2e runtime installs
+  - 说明：This is a temporary solution; a final method will be provided later. requirements-夜间.txt, now used by the 夜间 image layer and the e2e 运行时 install, has no -r requirements.txt : that stopped the daily torch-npu from being replace
+- [PR #19013](https://github.com/vllm-project/vllm-ascend/pull/19013) 已合并
+  - 中文：【修复】Bound MLA 预填充 npu_attention_update inputs with 16-way staged merging
+  - 原文：[BugFix] Bound MLA prefill npu_attention_update inputs with 16-way staged merging
+  - 说明：Backports the bounded 16-way staged torch npu.npu 注意力 更新 合并 修复 in MLA chunked 预填充 from main ( 19012) to releases/v0.30.0 . In vllm ascend/注意力/mla v1.py ( compute 预填充 context ), 预填充 previously accumulated quer
 - [PR #19096](https://github.com/vllm-project/vllm-ascend/pull/19096) 进行中
   - 中文：【功能】Window-capped per-group KV pools for hybrid full+sliding 注意力 (NPU 前缀-缓存 capacity)
   - 原文：[Feature] Window-capped per-group KV pools for hybrid full+sliding attention (NPU prefix-cache capacity)
@@ -3562,6 +3727,21 @@
   - 中文：[BugFix]在310P上以图模式修复lora并打开MRV2 lora
   - 原文：[BugFix] fix lora in graph-mode on 310P and open MRV2 lora
   - 说明：When running model with lora on 310P and using graph-mode, error occurs that a torch operator "torch.repeat interleave" in sgmv need stream synchronize but graph-mode not 支持. This PR will check device type and 图模式 and then use b
+- [PR #17248](https://github.com/vllm-project/vllm-ascend/pull/17248) 已合并
+  - 中文：【修复】【Engram】Allow same-node external DP launches
+  - 原文：[Bugfix][Engram] Allow same-node external DP launches
+  - 说明：修复 the external-DP startup 回退 from 17134. With --data-parallel-rank , vLLM sets data parallel size local=1 even when all DP ranks share a node. The Engram check incorrectly rejects TP4/DP4 预填充 and TP2/DP8 解码 deployments. Al
+
+#### 2026-09-22
+
+- [PR #17243](https://github.com/vllm-project/vllm-ascend/pull/17243) 已合并
+  - 中文：【修复】【Engram】Guard 配置 patch when upstream Engram is unavailable
+  - 原文：[Bugfix][Engram] Guard config patch when upstream Engram is unavailable
+  - 说明：修复 the 夜间 startup 回退 introduced by 17134. vLLM builds without vllm.配置.engram fail during platform patch import, including non-Engram models. 恢复 the module availability guard around the Engram patch. Reported failure:
+- [PR #17134](https://github.com/vllm-project/vllm-ascend/pull/17134) 已合并
+  - 中文：【功能】【Engram】Share host head shards across local DP replicas
+  - 原文：[Feature][Engram] Share host head shards across local DP replicas
+  - 说明：Follow up on 16925 with DP-共享 Engram host storage. Replace CPU owner sorting and variable all-to-all query 路由 with uniform head shards. With sharing 启用, local DP replicas at the same TP position map one physical host shard, qu
 
 #### 2026-09-21
 
@@ -3573,6 +3753,10 @@
   - 中文：【功能】【MRV2】新增Ascend后端超级内核优化支持
   - 原文：[Feature][MRV2] Add Super Kernel optimization support for Ascend backend
   - 说明：Super 内核 支持 has already been introduced in MRV( This PR adds the necessary adaptations for MRV2. yes，the new 配置 of npugraph ex is as follow: vLLM main: - vLLM main:
+- [PR #16161](https://github.com/vllm-project/vllm-ascend/pull/16161) 已合并
+  - 中文：【修复】【Sampling】Validate stop and allowed token ids
+  - 原文：[BugFix][Sampling] Validate stop and allowed token ids
+  - 说明：Backport PR 15339 to releases/v0.27.1rc . Validate client-supplied stop token ids and allowed token ids against the model vocabulary before device-side logits indexing, preventing out-of-bounds failures on Ascend. Invalid token ids are reje
 
 #### 2026-09-20
 
@@ -3594,6 +3778,10 @@
 
 #### 2026-09-17
 
+- [PR #16539](https://github.com/vllm-project/vllm-ascend/pull/16539) 已合并
+  - 中文：【v0.26.0rc】【修复】Validate stop and allowed token ids
+  - 原文：[v0.26.0rc][BugFix] Validate stop and allowed token ids
+  - 说明：Backport of 15339 (main) and 16161 ( releases/v0.27.1rc ) to releases/v0.26.0rc . Validate client-supplied stop token ids and allowed token ids against the model vocabulary before device-side logits indexing, so an out-of-vocab id can no lo
 - [PR #16661](https://github.com/vllm-project/vllm-ascend/pull/16661) 已合并
   - 中文：【修复】【Config】Strip upstream-injected GDN/KDA 预填充 backend keys on Ascend
   - 原文：[BugFix][Config] Strip upstream-injected GDN/KDA prefill backend keys on Ascend
@@ -3609,6 +3797,10 @@
 
 #### 2026-09-16
 
+- [PR #16714](https://github.com/vllm-project/vllm-ascend/pull/16714) 已合并
+  - 中文：【v0.26.0rc2】【修复】Validate stop and allowed token ids
+  - 原文：[v0.26.0rc2][bugfix] Validate stop and allowed token ids
+  - 说明：Cherry-pick of 16539 into rfc/0.26.0rc1-bugfix for the v0.26.0rc2 release. Validate client-supplied stop token ids and allowed token ids against the model vocabulary before device-side logits indexing, so an out-of-vocab id can no longer tr
 - [PR #16139](https://github.com/vllm-project/vllm-ascend/pull/16139) 已合并
   - 中文：【算子】【功能】支持 AddRmsNormBias on Ascend A5
   - 原文：[Ops][Feature] Support AddRmsNormBias on Ascend A5
@@ -3758,9 +3950,31 @@
   - 中文：【MRV2】【功能】SFA C8 supports ModelRunnerV2.
   - 原文：[MRV2][Feature] SFA C8 supports ModelRunnerV2.
   - 说明：此PR增加了对SFA型号A3和A5 C8功能的支持，包括启用稀疏sfa c8和启用稀疏li c8交换机。否- vLLM版本： v0.26.0 - vLLM主：
+- [PR #12440](https://github.com/vllm-project/vllm-ascend/pull/12440) 已合并
+  - 中文：【修复】【模型】移除 obsolete Hunyuan tokenizer compatibility patch
+  - 原文：[BugFix][Model] Remove obsolete Hunyuan tokenizer compatibility patch
+  - 说明：切换 the HunyuanOCR CI source from the stale ModelScope snapshot to vllm-ascend/HunyuanOCR , a mirror pinned to Hugging Face commit 449e7d471a8a1ef5bd5d652e4881183d7252cbc7 . The aligned artifacts expose the named Hunyuan image-token sche
+
+#### 2026-08-11
+
+- [PR #13604](https://github.com/vllm-project/vllm-ascend/pull/13604) 已合并
+  - 中文：【修复】【v0.26.0rc】Report GLM reasoning token usage
+  - 原文：[BugFix][v0.26.0rc] Report GLM reasoning token usage
+  - 说明：This is the v0.26.0rc follow-up to 13079 for 13070. GLM chat templates place the opening <think marker in the prompt. The vLLM v0.26.0 parser engine counts explicit <think ...</think spans correctly, but starts generated-token counting at d
+
+#### 2026-08-09
+
+- [PR #13865](https://github.com/vllm-project/vllm-ascend/pull/13865) 已合并
+  - 中文：【v0.23.0】【修复】【Worker】Preserve async accepted-token snapshot
+  - 原文：[v0.23.0][BugFix][Worker] Preserve async accepted-token snapshot
+  - 说明：Fixes 13863. Release-branch counterpart of 13864. Async scheduling can condense and reuse InputBatch rows before the next model iteration remaps accepted-token counts through prev positions . Because the previous counts are currently stored
 
 #### 2026-08-06
 
+- [PR #13518](https://github.com/vllm-project/vllm-ascend/pull/13518) 已合并
+  - 中文：【修复】【v0.23.0】【P/D】Prevent premature SWA KV reuse under async scheduling
+  - 原文：[BugFix][v0.23.0][P/D] Prevent premature SWA KV reuse under async scheduling
+  - 说明：Fixes 13501. vLLM v0.23 advances request.num computed tokens when a batch is scheduled. Under async scheduling, this optimistic value can include tokens from device steps whose outputs have not been processed yet. SWA and chunked-local prun
 - [PR #13684](https://github.com/vllm-project/vllm-ascend/pull/13684) 已合并
   - 中文：[BugFix]修复了在启用DeepSeek Overlay C8和MTP的情况下加载大量权限集时发生的错误。
   - 原文：[BugFix] Fixed an error that occurred when loading heavy permission sets with DeepSeek Overlay C8 and MTP enabled.
@@ -3772,3 +3986,53 @@
   - 中文：【功能】【MRV2】GQA C8 modelrunnerv2 adaptation
   - 原文：[Feature][MRV2] GQA C8 modelrunnerv2 adaptation
   - 说明：此PR修复了modelrunnerv1和modelrunnerv2中由图模式编译期间属性状态值不一致引起的错误。no - vLLM version: v0.25.1 - vLLM main:
+
+#### 2026-07-21
+
+- [PR #12294](https://github.com/vllm-project/vllm-ascend/pull/12294) 已合并
+  - 中文：【Cherry-pick】【releases/v0.24.0rc】【重构】【Patch】移除 obsolete parser patches (from #11453)
+  - 原文：[Cherry-pick][releases/v0.24.0rc][Refactor][Patch] Remove obsolete parser patches (from #11453)
+  - 说明：Cherry-pick of 11453 onto releases/v0.24.0rc . This PR removes these compatibility patches, their registrations, patch documentation, and dedicated unit tests: - patch glm47 工具调用 parser.py - patch glm 工具调用 streaming.py - patch too
+
+#### 2026-07-14
+
+- [PR #11887](https://github.com/vllm-project/vllm-ascend/pull/11887) 已合并
+  - 中文：【v0.23.0】【修复】【PD】Carry explicit total KV heads in Mooncake transfer groups
+  - 原文：[v0.23.0][BugFix][PD] Carry explicit total KV heads in Mooncake transfer groups
+  - 说明：Backport of 11886 to releases/v0.23.0 . num kv heads in a serialized KV 缓存 spec describes the rank-local 缓存 layout. It cannot reliably recover the model-level head count with local heads TP : heads may be replicated when TP exceeds th
+
+#### 2026-07-13
+
+- [PR #11886](https://github.com/vllm-project/vllm-ascend/pull/11886) 已合并
+  - 中文：【修复】【PD】Carry explicit total KV heads in Mooncake transfer groups
+  - 原文：[BugFix][PD] Carry explicit total KV heads in Mooncake transfer groups
+  - 说明：num kv heads in a serialized KV 缓存 spec describes the rank-local 缓存 layout. It cannot reliably recover the model-level head count with local heads TP : heads may be replicated when TP exceeds the global KV-head count, and a speculativ
+
+#### 2026-07-10
+
+- [PR #11635](https://github.com/vllm-project/vllm-ascend/pull/11635) 已合并
+  - 中文：【修复】【v0.23.0】Guard mixed structured output backends
+  - 原文：[BugFix][v0.23.0] Guard mixed structured output backends
+  - 说明：Backport 11589 to releases/v0.23.0 . This keeps the vLLM-Ascend patch behavior aligned with main, with the release-specific wrapper signature 必填 by the vLLM commit pinned by this branch. Matched vLLM: The matched vLLM commit comes fro
+- [PR #11589](https://github.com/vllm-project/vllm-ascend/pull/11589) 已合并
+  - 中文：【修复】Guard mixed structured output backends
+  - 原文：[BugFix] Guard mixed structured output backends
+  - 说明：Fixes 11588. This PR adds a vllm-ascend guard for V1 structured outputs when backend=auto resolves different requests to different backends in the same engine lifetime. V1 structured outputs use one engine-level backend manager. In the repo
+
+#### 2026-07-08
+
+- [PR #11505](https://github.com/vllm-project/vllm-ascend/pull/11505) 已合并
+  - 中文：【修复】【v0.23.0】避免 partial MiniMax parameter arguments
+  - 原文：[BugFix][v0.23.0] Avoid partial MiniMax parameter arguments
+  - 说明：Fixes 10758. Backports the MiniMax streaming fixes from 11384 to releases/v0.23.0 . The main-branch 11384 can 移除 the stale local MiniMax parser patch because main has moved to the newer vLLM parser-engine MiniMax path. The releases/v0.2
+
+#### 2026-06-29
+
+- [PR #11051](https://github.com/vllm-project/vllm-ascend/pull/11051) 已合并
+  - 中文：【修复】【0.22.1】Scope MiniMax usage accounting patch
+  - 原文：[BugFix][0.22.1] Scope MiniMax usage accounting patch
+  - 说明：Backport/release PR paired with 11050 for releases/v0.22.1rc . This PR narrows the MiniMax reasoning-token usage-accounting backport so it fixes vllm-project/vllm 37988 without 路由 other models through the MiniMax request path. Changes:
+- [PR #11050](https://github.com/vllm-project/vllm-ascend/pull/11050) 已合并
+  - 中文：【修复】【Platform】Scope MiniMax usage accounting patch
+  - 原文：[BugFix][Platform] Scope MiniMax usage accounting patch
+  - 说明：This PR narrows the MiniMax reasoning-token usage-accounting backport so it fixes vllm-project/vllm 37988 without 路由 other models through the MiniMax request path. Changes: - move the chat usage accounting backport into patch minimax u
