@@ -3,289 +3,36 @@
   "timezone": "Asia/Shanghai",
   "groups": [
     {
-      "id": "minimax-m2",
-      "name": "MiniMax-M2",
-      "family": "MiniMax",
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
       "items": [
         {
           "kind": "pr",
-          "number": 7700,
-          "title": "[v0.18.0][Bugfix][Platform] Fix MiniMax M2 reasoning token usage accounting",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/7700",
-          "author": "QwertyJack",
-          "labels": [],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-03-26T14:44:12Z",
-          "updatedAt": "2026-10-18T16:42:21Z",
-          "closedAt": "2026-03-27T02:45:28Z",
-          "mergedAt": "2026-03-27T02:45:28Z",
-          "comments": 0,
-          "excerpt": "This backports the MiniMax M2 reasoning-token usage accounting fix onto releases/v0.18.0 for vllm-ascend. Related upstream vLLM issue: The release branch does not include the other local GLM patch commit, so this PR keeps the MiniMax change",
-          "modelIds": [
-            "minimax-m2"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【v0.18.0】【修复】【Platform】MiniMax M2 reasoning token usage accounting",
-          "excerptZh": "This backports the MiniMax M2 reasoning-token usage accounting 修复 onto releases/v0.18.0 for vllm-ascend. Related upstream vLLM issue: The release branch does not include the other local GLM patch commit, so this PR keeps the MiniMax change"
-        },
-        {
-          "kind": "pr",
-          "number": 9784,
-          "title": "[BugFix][v0.20.2rc] Backport MiniMax M2 tool call streaming to v0.20.2rc",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/9784",
-          "author": "QwertyJack",
-          "labels": [],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-05-31T07:11:43Z",
-          "updatedAt": "2026-10-18T16:41:42Z",
-          "closedAt": "2026-06-01T15:09:10Z",
-          "mergedAt": "2026-06-01T15:09:10Z",
-          "comments": 0,
-          "excerpt": "Backports 9742 to releases/v0.20.2rc . Fixes vLLM issue 39649: for the Ascend-patched vLLM 0.20.2 release branch. This PR backports the MiniMax M2 incremental tool-call streaming parser behavior used by upstream vLLM. The existing minimax m",
-          "modelIds": [
-            "minimax-m2"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】【v0.20.2rc】Backport MiniMax M2 工具调用 streaming to v0.20.2rc",
-          "excerptZh": "Backports 9742 to releases/v0.20.2rc . Fixes vLLM issue 39649: for the Ascend-patched vLLM 0.20.2 release branch. This PR backports the MiniMax M2 incremental 工具调用 streaming parser behavior used by upstream vLLM. The existing minimax m"
-        },
-        {
-          "kind": "pr",
-          "number": 12293,
-          "title": "[Cherry-pick][releases/v0.24.0rc][Refactor][Patch] Replace MiniMax parser backports (from #11384)",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/12293",
-          "author": "QwertyJack",
+          "number": 18936,
+          "title": "[Feature][Model] Extend DeepSeek V4.1 decoder bounded replay across model runners",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18936",
+          "author": "cocobronie2333-dot",
           "labels": [
-            "module:tests"
+            "module:tests",
+            "module:core",
+            "ready-precise"
           ],
           "state": "closed",
           "draft": false,
-          "createdAt": "2026-07-17T13:43:18Z",
-          "updatedAt": "2026-10-18T16:40:26Z",
-          "closedAt": "2026-07-20T11:57:12Z",
-          "mergedAt": "2026-07-20T11:57:12Z",
+          "createdAt": "2026-10-16T02:40:27Z",
+          "updatedAt": "2026-10-19T13:52:23Z",
+          "closedAt": "2026-10-19T13:52:23Z",
+          "mergedAt": "2026-10-19T13:52:23Z",
           "comments": 0,
-          "excerpt": "Cherry-pick of 11384 onto releases/v0.24.0rc . This PR: - removes the stale MiniMax-M2 tool-call parser and usage-accounting patches - adds patch parser reasoning usage.py as a backport of - preserves completion tokens details.reasoning tok",
+          "excerpt": "- Extend DeepSeek V4.1 decoder bounded replay across Model Runner V1 and V2, including SWA cache and replay-start handling. - Simplify replay compatibility patches and add regression coverage for cache, replay, worker, and multi-card behavi",
           "modelIds": [
-            "minimax-m2"
+            "ds-v4.1"
           ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【Cherry-pick】【releases/v0.24.0rc】【重构】【Patch】Replace MiniMax parser backports (from #11384)",
-          "excerptZh": "Cherry-pick of 11384 onto releases/v0.24.0rc . This PR: - removes the stale MiniMax-M2 工具调用 parser and usage-accounting patches - adds patch parser reasoning usage.py as a backport of - preserves completion tokens details.reasoning tok"
-        },
-        {
-          "kind": "pr",
-          "number": 10906,
-          "title": "[Refactor][Patch] Trim upstreamed MiniMax-M2 hooks",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/10906",
-          "author": "QwertyJack",
-          "labels": [],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-06-24T12:31:38Z",
-          "updatedAt": "2026-10-18T16:32:38Z",
-          "closedAt": "2026-06-26T10:12:59Z",
-          "mergedAt": "2026-06-26T10:12:59Z",
-          "comments": 0,
-          "excerpt": "WIP follow-up for This PR trims the MiniMax-M2 patch files after the main2main update to vLLM v0.23.0 , but keeps the PR in draft while maintainers decide the long-term home for the remaining Ascend-specific behavior. Removed from vllm asce",
-          "modelIds": [
-            "minimax-m2"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【重构】【Patch】Trim upstreamed MiniMax-M2 hooks",
-          "excerptZh": "WIP follow-up for This PR trims the MiniMax-M2 patch files after the main2main 更新 to vLLM v0.23.0 , but keeps the PR in draft while maintainers decide the long-term home for the remaining Ascend-specific behavior. 移除 from vllm asce"
-        },
-        {
-          "kind": "pr",
-          "number": 9742,
-          "title": "[BugFix][Parser] Backport MiniMax M2 tool call streaming",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/9742",
-          "author": "QwertyJack",
-          "labels": [
-            "module:tests"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-05-30T04:49:43Z",
-          "updatedAt": "2026-10-18T16:32:04Z",
-          "closedAt": "2026-05-31T06:39:29Z",
-          "mergedAt": "2026-05-31T06:39:29Z",
-          "comments": 0,
-          "excerpt": "Fixes vLLM issue 39649: for the Ascend-patched vLLM 0.20.2 runtime. This PR backports the MiniMax M2 incremental tool-call streaming parser behavior used by upstream vLLM. The existing minimax m2 tool parser waits for a complete <invoke ...",
-          "modelIds": [
-            "minimax-m2"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】【Parser】Backport MiniMax M2 工具调用 streaming",
-          "excerptZh": "Fixes vLLM issue 39649: for the Ascend-patched vLLM 0.20.2 运行时. This PR backports the MiniMax M2 incremental 工具调用 streaming parser behavior used by upstream vLLM. The existing minimax m2 tool parser waits for a complete <invoke ..."
-        },
-        {
-          "kind": "pr",
-          "number": 11384,
-          "title": "[Refactor][Patch] Replace MiniMax parser backports",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/11384",
-          "author": "QwertyJack",
-          "labels": [
-            "module:tests"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-07-03T03:26:59Z",
-          "updatedAt": "2026-10-18T16:32:00Z",
-          "closedAt": "2026-07-17T10:58:05Z",
-          "mergedAt": "2026-07-17T10:58:05Z",
-          "comments": 0,
-          "excerpt": "Replace stale MiniMax parser backports with the current vLLM parser-engine path for vLLM 0.24. This PR: - deletes patch minimax m2 tool call parser.py - deletes patch minimax usage accounting.py - adds patch parser reasoning usage.py as a b",
-          "modelIds": [
-            "minimax-m2"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【重构】【Patch】Replace MiniMax parser backports",
-          "excerptZh": "Replace stale MiniMax parser backports with the current vLLM parser-engine path for vLLM 0.24. This PR: - deletes patch minimax m2 工具调用 parser.py - deletes patch minimax usage accounting.py - adds patch parser reasoning usage.py as a b"
-        }
-      ]
-    },
-    {
-      "id": "glm-4",
-      "name": "GLM-4",
-      "family": "GLM",
-      "items": [
-        {
-          "kind": "pr",
-          "number": 7710,
-          "title": "[Bugfix][Platform] Fix GLM47 tool-call finish backfill",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/7710",
-          "author": "QwertyJack",
-          "labels": [],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-03-27T02:56:46Z",
-          "updatedAt": "2026-10-18T16:42:18Z",
-          "closedAt": "2026-03-28T01:15:05Z",
-          "mergedAt": "2026-03-28T01:15:05Z",
-          "comments": 0,
-          "excerpt": "This rebases the GLM47 tool-call parser fix onto releases/v0.18.0 after the MiniMax usage-accounting patch merged upstream on March 27, 2026. It fixes OpenAI chat tool-call streaming for GLM47 by: - draining terminal parser chunks that cont",
-          "modelIds": [
-            "glm-4"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】【Platform】GLM47 工具调用 finish backfill",
-          "excerptZh": "This rebases the GLM47 工具调用 parser 修复 onto releases/v0.18.0 after the MiniMax usage-accounting patch merged upstream on March 27, 2026. It fixes OpenAI chat 工具调用 streaming for GLM47 by: - draining terminal parser chunks that cont"
-        },
-        {
-          "kind": "pr",
-          "number": 9902,
-          "title": "[BugFix][v0.20.2rc] Patch GLM47 inline zero-arg streaming tool calls",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/9902",
-          "author": "QwertyJack",
-          "labels": [],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-06-02T14:52:39Z",
-          "updatedAt": "2026-10-18T16:41:32Z",
-          "closedAt": "2026-06-03T06:40:12Z",
-          "mergedAt": "2026-06-03T06:40:12Z",
-          "comments": 0,
-          "excerpt": "Summary - backport a temporary vLLM-Ascend monkeypatch for the upstream GLM47 streaming parser bug where complete inline zero-argument tool calls such as <tool call get current time</tool call are dropped - keep incomplete inline regions bu",
-          "modelIds": [
-            "glm-4"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】【v0.20.2rc】Patch GLM47 inline zero-arg streaming tool calls",
-          "excerptZh": "Summary - backport a temporary vLLM-Ascend monkeypatch for the upstream GLM47 streaming parser bug where complete inline zero-argument tool calls such as <工具调用 get current time</工具调用 are dropped - keep incomplete inline regions bu"
-        },
-        {
-          "kind": "pr",
-          "number": 9901,
-          "title": "[BugFix] Patch GLM47 inline zero-arg streaming tool calls",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/9901",
-          "author": "QwertyJack",
-          "labels": [
-            "module:tests"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-06-02T14:52:39Z",
-          "updatedAt": "2026-10-18T16:31:54Z",
-          "closedAt": "2026-06-03T06:39:53Z",
-          "mergedAt": "2026-06-03T06:39:53Z",
-          "comments": 0,
-          "excerpt": "Summary - add a temporary vLLM-Ascend monkeypatch for the upstream GLM47 streaming parser bug where complete inline zero-argument tool calls such as <tool call get current time</tool call are dropped - keep incomplete inline regions buffere",
-          "modelIds": [
-            "glm-4"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】Patch GLM47 inline zero-arg streaming tool calls",
-          "excerptZh": "Summary - 新增 a temporary vLLM-Ascend monkeypatch for the upstream GLM47 streaming parser bug where complete inline zero-argument tool calls such as <工具调用 get current time</工具调用 are dropped - keep incomplete inline regions buffere"
-        },
-        {
-          "kind": "pr",
-          "number": 11453,
-          "title": "[Refactor][Patch] Remove obsolete parser patches",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/11453",
-          "author": "QwertyJack",
-          "labels": [
-            "module:tests"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-07-05T08:00:36Z",
-          "updatedAt": "2026-10-18T16:31:04Z",
-          "closedAt": "2026-07-20T01:21:30Z",
-          "mergedAt": "2026-07-20T01:21:29Z",
-          "comments": 0,
-          "excerpt": "vLLM v0.24.0 and the verified main revision no longer need these compatibility patches: - patch glm47 tool call parser.py - patch glm tool call streaming.py - patch tool choice none content.py This PR removes the patches, their registration",
-          "modelIds": [
-            "glm-4"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【重构】【Patch】移除 obsolete parser patches",
-          "excerptZh": "vLLM v0.24.0 and the verified main revision no longer need these compatibility patches: - patch glm47 工具调用 parser.py - patch glm 工具调用 streaming.py - patch tool choice none content.py This PR removes the patches, their registration"
-        }
-      ]
-    },
-    {
-      "id": "kimi-k3",
-      "name": "Kimi K3",
-      "family": "Kimi",
-      "items": [
-        {
-          "kind": "pr",
-          "number": 13520,
-          "title": "[0.26.0rc][BugFix][Model] Align Kimi K3 frontend with upstream",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/13520",
-          "author": "QwertyJack",
-          "labels": [
-            "documentation",
-            "module:tests"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-08-05T00:14:47Z",
-          "updatedAt": "2026-10-18T16:41:35Z",
-          "closedAt": "2026-08-12T01:53:04Z",
-          "mergedAt": "2026-08-12T01:53:04Z",
-          "comments": 0,
-          "excerpt": "本 PR 将 releases/v0.26.0rc 中的 Kimi K3 Python frontend 行为对齐到当前上游 vLLM 已合入实现，改动限于 K3 patch、对应单测和 patch 文档： - 回移 streaming 检查从每步扫描完整历史改为只扫描当前 delta 和 marker carry window，避免长上下文下 O(context/step) 开销。 - 回移 name:index 构造 tool-call ID，改用 vLLM 默认随机 I",
-          "modelIds": [
-            "kimi-k3"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【0.26.0rc】【修复】【模型】对齐 Kimi K3 frontend with upstream",
-          "excerptZh": "本 PR 将 releases/v0.26.0rc 中的 Kimi K3 Python frontend 行为对齐到当前上游 vLLM 已合入实现，改动限于 K3 patch、对应单测和 patch 文档： - 回移 streaming 检查从每步扫描完整历史改为只扫描当前 delta 和 marker carry window，避免长上下文下 O(context/step) 开销。 - 回移 name:index 构造 工具调用 ID，改用 vLLM 默认随机 I"
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【功能】【模型】Extend DeepSeek V4.1 decoder bounded replay across model runners",
+          "excerptZh": "- Extend DeepSeek V4.1 decoder bounded replay across Model Runner V1 and V2, including SWA 缓存 and replay-start handling. - Simplify replay compatibility patches and 新增 回退 coverage for 缓存, replay, worker, and multi-card behavi"
         }
       ]
     },
@@ -296,243 +43,247 @@
       "items": [
         {
           "kind": "pr",
-          "number": 10298,
-          "title": "[BugFix][v0.20.2rc] Fix DeepSeek-V4 compressed prefix lookup",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/10298",
-          "author": "QwertyJack",
-          "labels": [],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-06-10T13:26:10Z",
-          "updatedAt": "2026-10-18T16:41:12Z",
-          "closedAt": "2026-06-11T08:50:11Z",
-          "mergedAt": "2026-06-11T08:50:11Z",
-          "comments": 0,
-          "excerpt": "Related issue: 10296 This is the releases/v0.20.2rc backport for the DeepSeek-V4 compressed KV prefix-cache hash issue. PR 9903 fixed the right root-cause direction on main , but it is not sufficient as-is for this release line: - the 9903",
-          "modelIds": [
-            "ds-v4"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】【v0.20.2rc】DeepSeek-V4 compressed 前缀 lookup",
-          "excerptZh": "Related issue: 10296 This is the releases/v0.20.2rc backport for the DeepSeek-V4 compressed KV 前缀-缓存 hash issue. PR 9903 修复 the right root-cause direction on main , but it is not sufficient as-is for this release line: - the 9903"
-        },
-        {
-          "kind": "pr",
-          "number": 15349,
-          "title": "[v0.25.1rc][BugFix][Frontend] Handle DeepSeek V4 trailing system messages",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/15349",
-          "author": "QwertyJack",
+          "number": 18684,
+          "title": "[BugFix][MoE] Fix CANN MegaMoE weight preparation for DeepSeekV4 W4A8 MXFP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18684",
+          "author": "LXX1122",
           "labels": [
-            "module:tests",
+            "module:quantization",
             "ready-precise"
           ],
           "state": "closed",
           "draft": false,
-          "createdAt": "2026-08-30T11:56:55Z",
-          "updatedAt": "2026-10-18T16:41:05Z",
-          "closedAt": "2026-08-31T00:48:27Z",
-          "mergedAt": "2026-08-31T00:48:27Z",
+          "createdAt": "2026-10-14T07:14:57Z",
+          "updatedAt": "2026-10-19T12:23:58Z",
+          "closedAt": "2026-10-19T12:23:58Z",
+          "mergedAt": "2026-10-19T12:23:57Z",
           "comments": 0,
-          "excerpt": "Backport the DeepSeek V4 trailing-system renderer fix from 15317 to the v0.25.1rc release branch. When a DeepSeek V4 request ends with a system message, the v0.25 renderer can leave the prompt at an invalid system-message boundary. Generati",
+          "excerpt": "Refs 17452 What this PR does / why? When CANN MegaMoE is enabled for DeepSeek W4A8 MXFP MoE, startup fails because AscendW4A8MXFPDSDynamicFusedMoEMethod overrides the common process weights after loading() implementation. The DeepSeek-speci",
           "modelIds": [
             "ds-v4"
           ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【v0.25.1rc】【修复】【Frontend】Handle DeepSeek V4 trailing system messages",
-          "excerptZh": "Backport the DeepSeek V4 trailing-system renderer 修复 from 15317 to the v0.25.1rc release branch. When a DeepSeek V4 request ends with a system message, the v0.25 renderer can leave the prompt at an invalid system-message boundary. Generati"
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【修复】【MoE】CANN MegaMoE 权重 preparation for DeepSeekV4 W4A8 MXFP",
+          "excerptZh": "Refs 17452 What this PR does / why? When CANN MegaMoE is 启用 for DeepSeek W4A8 MXFP MoE, startup fails because AscendW4A8MXFPDSDynamicFusedMoEMethod overrides the common process 权重 after 加载() implementation. The DeepSeek-speci"
         },
         {
           "kind": "pr",
-          "number": 14035,
-          "title": "[v0.25.1rc][BugFix][Frontend] Align DeepSeek V4 system tool rendering",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/14035",
-          "author": "QwertyJack",
+          "number": 19199,
+          "title": "[BugFix][MoE][v0.30.0] Fix CANN MegaMoE weight preparation for DeepSeekV4 W4A8 MXFP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19199",
+          "author": "LXX1122",
           "labels": [
-            "module:tests"
+            "module:quantization",
+            "ready-precise"
           ],
-          "state": "closed",
+          "state": "open",
           "draft": false,
-          "createdAt": "2026-08-11T14:33:27Z",
-          "updatedAt": "2026-10-18T16:41:02Z",
-          "closedAt": "2026-08-14T00:43:49Z",
-          "mergedAt": "2026-08-14T00:43:49Z",
+          "createdAt": "2026-10-19T11:50:37Z",
+          "updatedAt": "2026-10-19T15:56:11Z",
+          "closedAt": null,
+          "mergedAt": null,
           "comments": 0,
-          "excerpt": "This is a follow-up to 13519. The v0.25.1 release monkey patch inherited an upstream Python renderer mismatch reported in For DeepSeek V4 requests containing both an existing system message and top-level tools, the Python wrapper always ins",
+          "excerpt": "Port 18684 to releases/v0.30.0 . Refs 17452. In releases/v0.30.0 , the DeepSeek W4A8 MXFP process weights after loading() override preserves the EPLB-specific byte normalization but applies the non-MegaMoE transformation for all other cases",
           "modelIds": [
             "ds-v4"
           ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【v0.25.1rc】【修复】【Frontend】对齐 DeepSeek V4 system tool rendering",
-          "excerptZh": "This is a follow-up to 13519. The v0.25.1 release monkey patch inherited an upstream Python renderer mismatch reported in For DeepSeek V4 requests containing both an existing system message and top-level tools, the Python wrapper always ins"
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【修复】【MoE】【v0.30.0】CANN MegaMoE 权重 preparation for DeepSeekV4 W4A8 MXFP",
+          "excerptZh": "Port 18684 to releases/v0.30.0 . Refs 17452. In releases/v0.30.0 , the DeepSeek W4A8 MXFP process 权重 after 加载() override preserves the EPLB-specific byte normalization but applies the non-MegaMoE transformation for all other cases"
         },
         {
           "kind": "pr",
-          "number": 14397,
-          "title": "[BugFix][v0.26.0][Model] Propagate DeepSeek V4 routed SwiGLU limit",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/14397",
-          "author": "QwertyJack",
+          "number": 19190,
+          "title": "[Feature][DSA] Share O-projection buffers across DeepSeek layers",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19190",
+          "author": "rikakuhi",
           "labels": [
-            "module:tests"
+            "documentation",
+            "module:tests",
+            "module:core",
+            "ready-precise"
           ],
-          "state": "closed",
+          "state": "open",
           "draft": false,
-          "createdAt": "2026-08-17T03:32:58Z",
-          "updatedAt": "2026-10-18T16:40:59Z",
-          "closedAt": "2026-08-17T03:58:17Z",
-          "mergedAt": "2026-08-17T03:58:17Z",
+          "createdAt": "2026-10-19T09:46:27Z",
+          "updatedAt": "2026-10-19T15:04:23Z",
+          "closedAt": null,
+          "mergedAt": null,
           "comments": 0,
-          "excerpt": "Ports 14364 to releases/v0.26.0rc . DeepSeek V4 reads config.swiglu limit and already passes it to the shared expert, but the Ascend model adapter does not pass it to routed experts. Checkpoints with swiglu limit=10.0 therefore execute rout",
+          "excerpt": "This PR reduces resident OTP communication-buffer memory for DeepSeek V4 and V4.1 by sharing address-stable O-projection exchange scratch across sequential DSA layers. It reserves the shared buffers before KV-cache profiling and sizes them ",
           "modelIds": [
             "ds-v4"
           ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】【v0.26.0】【模型】传递 DeepSeek V4 routed SwiGLU limit",
-          "excerptZh": "Ports 14364 to releases/v0.26.0rc . DeepSeek V4 reads 配置.swiglu limit and already passes it to the 共享专家, but the Ascend model adapter does not pass it to routed experts. 检查点 with swiglu limit=10.0 therefore execute rout"
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【功能】【DSA】Share O-projection buffers across DeepSeek layers",
+          "excerptZh": "This PR reduces resident OTP 通信-buffer 显存 for DeepSeek V4 and V4.1 by sharing address-stable O-projection exchange scratch across sequential DSA layers. It reserves the 共享 buffers before KV-缓存 profiling and sizes them"
         },
         {
           "kind": "pr",
-          "number": 14364,
-          "title": "[BugFix][v0.25.1][Model] Propagate DeepSeek V4 routed SwiGLU limit",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/14364",
-          "author": "QwertyJack",
-          "labels": [
-            "module:tests"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-08-16T01:40:00Z",
-          "updatedAt": "2026-10-18T16:40:56Z",
-          "closedAt": "2026-08-17T03:57:58Z",
-          "mergedAt": "2026-08-17T03:57:58Z",
-          "comments": 0,
-          "excerpt": "DeepSeek V4 reads config.swiglu limit and already passes it to the shared expert, but the Ascend model adapter does not pass it to the routed FusedMoE . As a result, checkpoints with swiglu limit=10.0 execute routed experts without the requ",
-          "modelIds": [
-            "ds-v4"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】【v0.25.1】【模型】传递 DeepSeek V4 routed SwiGLU limit",
-          "excerptZh": "DeepSeek V4 reads 配置.swiglu limit and already passes it to the 共享专家, but the Ascend model adapter does not pass it to the routed FusedMoE . As a result, 检查点 with swiglu limit=10.0 execute routed experts without the requ"
-        },
-        {
-          "kind": "pr",
-          "number": 14624,
-          "title": "[v0.26.0rc][BugFix][Frontend] Align DeepSeek V4 frontend behavior",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/14624",
-          "author": "QwertyJack",
-          "labels": [
-            "module:tests"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-08-20T05:43:49Z",
-          "updatedAt": "2026-10-18T16:40:52Z",
-          "closedAt": "2026-08-24T11:36:46Z",
-          "mergedAt": "2026-08-24T11:36:46Z",
-          "comments": 0,
-          "excerpt": "Ports the remaining DeepSeek V4 frontend fixes from the v0.25 release branch to releases/v0.26.0rc : - 14035: attach tools to an existing system message instead of inserting a second system message; - 14521: stream long schema-typed string ",
-          "modelIds": [
-            "ds-v4"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【v0.26.0rc】【修复】【Frontend】对齐 DeepSeek V4 frontend behavior",
-          "excerptZh": "Ports the remaining DeepSeek V4 frontend fixes from the v0.25 release branch to releases/v0.26.0rc : - 14035: attach tools to an existing system message instead of inserting a second system message; - 14521: stream long schema-typed string"
-        },
-        {
-          "kind": "pr",
-          "number": 14952,
-          "title": "[v0.26.0rc][BugFix][Frontend] Select DeepSeek V4 effort mapping by checkpoint config",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/14952",
-          "author": "QwertyJack",
+          "number": 19203,
+          "title": "[BugFix][v0.30.0] Validate DeepSeek V4 tensor parallel limits",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19203",
+          "author": "dragondream-chen",
           "labels": [
             "module:tests",
-            "deepseek-v4"
+            "module:core",
+            "ready-precise"
           ],
-          "state": "closed",
+          "state": "open",
           "draft": false,
-          "createdAt": "2026-08-25T14:02:10Z",
-          "updatedAt": "2026-10-18T16:40:49Z",
-          "closedAt": "2026-08-27T14:09:46Z",
-          "mergedAt": "2026-08-27T14:09:46Z",
+          "createdAt": "2026-10-19T12:59:02Z",
+          "updatedAt": "2026-10-19T13:17:08Z",
+          "closedAt": null,
+          "mergedAt": null,
           "comments": 0,
-          "excerpt": "Fixes 14951. 13993 added the post-Preview DeepSeek V4 reasoning-effort mapping to the v0.26 release stack, but applied it to every DeepSeek V4 checkpoint. The official V4 Preview encoders use different semantics: default/high has no effort ",
+          "excerpt": "Backport 18418 to releases/v0.30.0 with the same implementation and regression tests. The stable patch ID matches the original commit ( 5a4e365f73adbfe6aae8436c8c234cf1b213b9e5 ). - Validate tensor parallel limits for DeepSeek V4.1, V4 Flas",
           "modelIds": [
             "ds-v4"
           ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【v0.26.0rc】【修复】【Frontend】Select DeepSeek V4 effort mapping by 检查点 配置",
-          "excerptZh": "Fixes 14951. 13993 新增 the post-Preview DeepSeek V4 reasoning-effort mapping to the v0.26 release stack, but applied it to every DeepSeek V4 检查点. The official V4 Preview encoders use different semantics: default/high has no effort"
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【修复】【v0.30.0】Validate DeepSeek V4 张量并行 limits",
+          "excerptZh": "Backport 18418 to releases/v0.30.0 with the same implementation and 回退 tests. The stable patch ID matches the original commit ( 5a4e365f73adbfe6aae8436c8c234cf1b213b9e5 ). - Validate 张量并行 limits for DeepSeek V4.1, V4 Flas"
         },
         {
           "kind": "pr",
-          "number": 13519,
-          "title": "[v0.25.1rc][BugFix][Frontend] Align DeepSeek V4 reasoning effort with vLLM",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/13519",
-          "author": "QwertyJack",
+          "number": 18799,
+          "title": "[Performance][DSA] Shard DeepSeek-V4 prefill indexer rows across TP ranks",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18799",
+          "author": "zzy-6666",
           "labels": [
-            "module:tests"
+            "module:tests",
+            "module:core",
+            "merge-conflicts"
           ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-08-04T23:14:30Z",
-          "updatedAt": "2026-10-18T16:40:46Z",
-          "closedAt": "2026-08-11T02:59:05Z",
-          "mergedAt": "2026-08-11T02:59:05Z",
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-15T03:11:21Z",
+          "updatedAt": "2026-10-19T12:54:32Z",
+          "closedAt": null,
+          "mergedAt": null,
           "comments": 0,
-          "excerpt": "This is a follow-up to 13314 that aligns the v0.25.1 release implementation with the behavior merged in The vLLM v0.25.1 stack predates that merge, and vLLM Ascend does not include the upstream Rust frontend renderer. This PR updates the ex",
+          "excerpt": "DeepSeek-V4 currently replicates the Indexer KV cache across tensor-parallel ranks. During prefill, every TP rank also executes Quant Lightning Indexer (QLI) and TopK selection for all query rows, which introduces duplicated computation. Th",
           "modelIds": [
             "ds-v4"
           ],
           "action": "updated",
-          "score": 3,
-          "titleZh": "【v0.25.1rc】【修复】【Frontend】对齐 DeepSeek V4 reasoning effort with vLLM",
-          "excerptZh": "This is a follow-up to 13314 that aligns the v0.25.1 release implementation with the behavior merged in The vLLM v0.25.1 stack predates that 合并, and vLLM Ascend does not include the upstream Rust frontend renderer. This PR 更新 the ex"
+          "score": 2,
+          "titleZh": "[性能] [DSA]碎片DeepSeek-V4跨TP排名预填索引器行",
+          "excerptZh": "DeepSeek-V4 currently replicates the 索引器 KV 缓存 across tensor-parallel ranks. During 预填充, every TP rank also executes Quant Lightning 索引器 (QLI) and TopK selection for all query rows, which introduces duplicated computation. Th"
         }
       ]
     },
     {
-      "id": "ds-v4.1",
-      "name": "DeepSeek V4.1",
-      "family": "DeepSeek",
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
       "items": [
         {
+          "kind": "issue",
+          "number": 19208,
+          "title": "[Bug]: PR950PD分离场景下跑测试脚本（测试脚本的输入为26K），D节点启动服务时不设置--no-swa-bounded-replay报错：RuntimeError: synchronize:../torch_npu/csrc/core/npu/NPUEvent.cpp:215 NPU function error: aclrtSynchronizeEvent(event_), error code is 507015",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/19208",
+          "author": "wangjian668766",
+          "labels": [
+            "bug"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-19T14:49:18Z",
+          "updatedAt": "2026-10-19T14:49:18Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "",
+          "modelIds": [],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【缺陷】: PR950PD分离场景下跑测试脚本（测试脚本的输入为26K），D节点启动服务时不设置--no-swa-bounded-replay报错：RuntimeError: synchronize:../torch_npu/csrc/core/npu/NPUEvent.cpp:215 NPU function error: aclrtSynchronizeEvent(event_), error code is 507015",
+          "excerptZh": ""
+        },
+        {
+          "kind": "issue",
+          "number": 19207,
+          "title": "[Bug]:PR950PD分离场景下跑精度测试，P节点报错【ValueError: could not broadcast input array from shape (32,) into shape (16,)】",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/19207",
+          "author": "wangjian668766",
+          "labels": [
+            "bug"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-19T14:44:12Z",
+          "updatedAt": "2026-10-19T14:44:12Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "",
+          "modelIds": [],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【缺陷】:PR950PD分离场景下跑精度测试，P节点报错【ValueError: could not broadcast input array from shape (32,) into shape (16,)】",
+          "excerptZh": ""
+        },
+        {
           "kind": "pr",
-          "number": 18052,
-          "title": "[BugFix][Model][v0.30.0] Fix Engram history and lookup timing in model runner v2",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/18052",
-          "author": "QwertyJack",
+          "number": 19138,
+          "title": "[Feature][MRV2][SpecDecode] Support block verification in MRV2",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19138",
+          "author": "SOMEONEUNSEEN",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-19T03:18:56Z",
+          "updatedAt": "2026-10-19T14:21:40Z",
+          "closedAt": "2026-10-19T14:21:39Z",
+          "mergedAt": "2026-10-19T14:21:39Z",
+          "comments": 0,
+          "excerpt": "Implement upstream block verification for Ascend Model Runner V2. Previously, use block verification was accepted but ignored. - Reuse upstream cumulative probability-ratio and residual-mass kernels. - Add block acceptance and prefix-scaled",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【功能】【MRV2】【SpecDecode】支持 block verification in MRV2",
+          "excerptZh": "Implement upstream block verification for Ascend Model Runner V2. Previously, use block verification was accepted but ignored. - Reuse upstream cumulative probability-ratio and residual-mass 内核. - 新增 block acceptance and 前缀-scaled"
+        },
+        {
+          "kind": "pr",
+          "number": 19158,
+          "title": "[Cherry-pick][releases/v0.30.0][MRV2][BugFix] Fix MRV2 310P rejection sampler host buffer shrink(#18995)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19158",
+          "author": "Thiagor2002",
           "labels": [
             "module:tests",
             "ready-precise"
           ],
           "state": "closed",
           "draft": false,
-          "createdAt": "2026-10-09T01:59:06Z",
-          "updatedAt": "2026-10-18T16:40:19Z",
-          "closedAt": "2026-10-09T09:16:56Z",
-          "mergedAt": "2026-10-09T09:16:56Z",
+          "createdAt": "2026-10-19T06:17:00Z",
+          "updatedAt": "2026-10-19T14:14:49Z",
+          "closedAt": "2026-10-19T14:14:49Z",
+          "mergedAt": "2026-10-19T14:14:49Z",
           "comments": 0,
-          "excerpt": "Backport 17794 to releases/v0.30.0 . Fix DeepSeek V4.1 Engram history and lookup timing in model runner v2. Defer fallback lookup until the forward context is available, retain graph-captured producers and replay metadata cleanup, and prese",
-          "modelIds": [
-            "ds-v4.1"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "[BugFix] [Model] [v0.30.0]修复Model Runner v2中的Engram历史记录和查找时间",
-          "excerptZh": "Backport 17794到release/v0.30.0。修复了模型运行器v2中的DeepSeek V4.1 Engram历史记录和查找时间。推迟回退查找，直到前向上下文可用，保留图形捕获的生产商和重播元数据清理，并预先"
+          "excerpt": "Cherry-pick of PR 18995 onto releases/v0.30.0 Original PR 18995 Original author: @Thiagor2002 - In RejectionSampler310V2 , the temperature path used to assign per-step CPU tensors to sampled tokens cpu / num cpu , shrinking the preallocated",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【Cherry-pick】【releases/v0.30.0】【MRV2】【修复】MRV2 310P rejection sampler host buffer shrink(#18995)",
+          "excerptZh": "Cherry-pick of PR 18995 onto releases/v0.30.0 Original PR 18995 Original author: @Thiagor2002 - In RejectionSampler310V2 , the temperature path used to assign 每步 CPU tensors to sampled tokens cpu / num cpu , shrinking the preallocated"
         },
         {
           "kind": "pr",
-          "number": 17427,
-          "title": "[Engram][BugFix] Support multi-node DP with node-local head sharding and shared memory",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/17427",
-          "author": "QwertyJack",
+          "number": 18995,
+          "title": " [Feature][MRV2][310P] Default Model Runner V2 on Ascend 310P",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18995",
+          "author": "Thiagor2002",
           "labels": [
             "module:tests",
             "module:core",
@@ -540,71 +291,414 @@
           ],
           "state": "closed",
           "draft": false,
-          "createdAt": "2026-09-23T16:13:54Z",
-          "updatedAt": "2026-10-18T16:31:44Z",
-          "closedAt": "2026-09-30T01:48:02Z",
-          "mergedAt": "2026-09-30T01:48:02Z",
+          "createdAt": "2026-10-16T08:19:58Z",
+          "updatedAt": "2026-10-19T14:14:34Z",
+          "closedAt": "2026-10-19T14:14:34Z",
+          "mergedAt": "2026-10-19T14:14:34Z",
           "comments": 0,
-          "excerpt": "Engram uses the global DP group and rejects replicas on different nodes, preventing the multi-node DeepSeek V4.1 topology in 17236. Use vLLM's node-local Engram DP (EDP) group and size directly from The verified vLLM pin owns group initiali",
-          "modelIds": [
-            "ds-v4.1"
+          "excerpt": "Follow-up to 17681 (default Model Runner V2 + feature blacklist). On Ascend 310P, Model Runner V1 is no longer maintained, but 17681 still blacklists 310P via is 310p() , so unset VLLM USE V2 MODEL RUNNER falls back to V1. This PR removes t",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【功能】【MRV2】【310P】Default Model Runner V2 on Ascend 310P",
+          "excerptZh": "Follow-up to 17681 (default Model Runner V2 + 特性 blacklist). On Ascend 310P, Model Runner V1 is no longer maintained, but 17681 still blacklists 310P via is 310p() , so unset VLLM USE V2 MODEL RUNNER falls back to V1. This PR removes t"
+        },
+        {
+          "kind": "issue",
+          "number": 18237,
+          "title": "[Bug]: Benchmark report classification depends on parent directory names",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/18237",
+          "author": "PuppyLu",
+          "labels": [
+            "bug",
+            "triaged"
           ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "[Engram] [BugFix]支持带有节点本地头分片和共享内存的多节点DP",
-          "excerptZh": "Engram uses the global DP group and rejects replicas on different nodes, preventing the multi-node DeepSeek V4.1 topology in 17236. Use vLLM's node-local Engram DP (EDP) group and size directly from The verified vLLM pin owns group initiali"
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-10T10:23:36Z",
+          "updatedAt": "2026-10-19T13:30:09Z",
+          "closedAt": "2026-10-19T13:30:09Z",
+          "mergedAt": null,
+          "comments": 5,
+          "excerpt": "",
+          "modelIds": [],
+          "action": "closed",
+          "score": 5,
+          "titleZh": "[Bug] ：基准报告分类取决于父目录名称",
+          "excerptZh": ""
         },
         {
           "kind": "pr",
-          "number": 17513,
-          "title": "[BugFix][Engram] Support BF16 checkpoints without implicit quantization",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/17513",
-          "author": "QwertyJack",
+          "number": 19170,
+          "title": "[Refactor][KV Pool] Migrate KVPOOL_RANGE_DEBUG toggle to additional_config",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19170",
+          "author": "weijinqian0",
           "labels": [
+            "documentation",
             "module:tests",
+            "module:core",
             "ready-precise"
           ],
           "state": "closed",
           "draft": false,
-          "createdAt": "2026-09-24T12:05:38Z",
-          "updatedAt": "2026-10-18T16:31:34Z",
-          "closedAt": "2026-09-29T07:24:57Z",
-          "mergedAt": "2026-09-29T07:24:57Z",
+          "createdAt": "2026-10-19T07:41:45Z",
+          "updatedAt": "2026-10-19T12:31:10Z",
+          "closedAt": "2026-10-19T12:31:09Z",
+          "mergedAt": "2026-10-19T12:31:09Z",
           "comments": 0,
-          "excerpt": "DeepSeek V4.1 BF16 checkpoints are needed for RL rollout inference, but Engram unconditionally opens a QuaRot file and converts BF16 embedding rows to INT8. A non-quantized checkpoint now keeps BF16 tables and uses the original-basis gate w",
-          "modelIds": [
-            "ds-v4.1"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "[BugFix] [Engram]支持BF16检查点，无需隐式量化",
-          "excerptZh": "DeepSeek V4.1 BF16 检查点 are needed for RL rollout inference, but Engram unconditionally opens a QuaRot file and converts BF16 embedding rows to INT8. A non-quantized 检查点 now keeps BF16 tables and uses the original-basis gate w"
-        },
+          "excerpt": "Migrate the per-layer KVPool range-debug switch from the VLLM ASCEND KVPOOL RANGE DEBUG environment variable to the additional config.kv pool range debug field, so it flows through the centralized AscendConfig configuration path, consistent",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【重构】【KV Pool】迁移 KVPOOL_RANGE_DEBUG toggle to additional_config",
+          "excerptZh": "迁移 the per-layer KVPool range-调试 切换 from the VLLM ASCEND KVPOOL RANGE 调试 environment variable to the additional 配置.kv pool range 调试 field, so it flows through the centralized AscendConfig 配置 path, consistent"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-pro",
+      "name": "DeepSeek V4 Pro",
+      "family": "DeepSeek",
+      "items": [
         {
           "kind": "pr",
-          "number": 17794,
-          "title": "[BugFix][Model] Fix Engram history and lookup timing in model runner v2",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/17794",
-          "author": "QwertyJack",
+          "number": 19186,
+          "title": "[v0.30.0][Doc][Misc] Update DeepSeek V4 Pro A3 DSpark PD deployment for MRv2 on v0.30.0",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19186",
+          "author": "ZhangwenTaoHW",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-19T09:08:45Z",
+          "updatedAt": "2026-10-19T12:26:24Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR updates the DeepSeek-V4-Pro deployment tutorial for the Atlas 800 A3 series with DSpark. Specifically, it: - Removes the legacy \"A3 series\" deployment section to focus on the recommended DSpark-based deployment. - Updates the disagg",
+          "modelIds": [
+            "ds-v4-pro"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【v0.30.0】【文档】【杂项】更新 DeepSeek V4 Pro A3 DSpark PD deployment for MRv2 on v0.30.0",
+          "excerptZh": "This PR 更新 the DeepSeek-V4-Pro deployment tutorial for the Atlas 800 A3 series with DSpark. Specifically, it: - Removes the legacy \"A3 series\" deployment section to focus on the recommended DSpark-based deployment. - 更新 the disagg"
+        }
+      ]
+    },
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 14821,
+          "title": "[Feature][MRV2]sparse mla offload modelrunnerV2",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/14821",
+          "author": "Angazenn",
           "labels": [
             "module:tests",
+            "module:core",
+            "merge-conflicts",
             "ready-precise"
           ],
           "state": "closed",
           "draft": false,
-          "createdAt": "2026-09-30T00:14:53Z",
-          "updatedAt": "2026-10-18T16:31:10Z",
-          "closedAt": "2026-10-09T09:15:38Z",
-          "mergedAt": "2026-10-09T09:15:38Z",
+          "createdAt": "2026-08-24T08:22:24Z",
+          "updatedAt": "2026-10-19T12:57:05Z",
+          "closedAt": "2026-10-19T12:57:05Z",
+          "mergedAt": null,
           "comments": 0,
-          "excerpt": "Fix DeepSeek V4.1 Engram lookup timing in MRV2 after 16899. Reuse main's EngramModelState and defer lookup until the forward context, preserving graph-captured producers and replay metadata cleanup. TODO (follow-up): Support MRV2 Engram wit",
+          "excerpt": "This PR migrates layerwise sparse mla offload for GLM5.x to MRV2. We did not change the original logic of it. The changes are mainly 2 folds: 1. add apply layerwise kv cache plan for layerwise reuse. 2. add decode sparse mla offload metadat",
           "modelIds": [
-            "ds-v4.1"
+            "glm-5"
+          ],
+          "action": "closed",
+          "score": 4,
+          "titleZh": "【功能】【MRV2】稀疏 mla 卸载 modelrunnerV2",
+          "excerptZh": "This PR migrates layerwise 稀疏 mla 卸载 for GLM5.x to MRV2. We did not change the original logic of it. The changes are mainly 2 folds: 1. 新增 apply layerwise KV 缓存 plan for layerwise reuse. 2. 新增 解码 稀疏 mla 卸载 metadat"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19195,
+          "title": "[Doc][v0.30.0] Document D2RH workflow and Atlas 850E deployment",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19195",
+          "author": "wangxiaoteng888",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-19T11:09:03Z",
+          "updatedAt": "2026-10-19T15:24:02Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Port the latest documentation from 18135 to releases/v0.30.0. - Describe the D2RH transfer workflow with its diagram. - Add inline DeepSeek-V4-Flash P/D launch examples for Atlas 850E with UBoE networking. - Explain host-memory requirements",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【v0.30.0】补充文档 D2RH workflow and Atlas 850E deployment",
+          "excerptZh": "Port the latest documentation from 18135 to releases/v0.30.0. - Describe the D2RH transfer workflow with its diagram. - 新增 inline DeepSeek-V4-Flash P/D launch examples for Atlas 850E with UBoE networking. - Explain host-显存 requirements"
+        },
+        {
+          "kind": "pr",
+          "number": 19201,
+          "title": "[Doc][Misc] Use PCP8 DP2 for A3 DSpark prefill with Model Runner V2",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19201",
+          "author": "dragondream-chen",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-19T12:30:17Z",
+          "updatedAt": "2026-10-19T12:57:15Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Update the DeepSeek-V4-Flash A3 DSpark PD deployment example on releases/v0.30.0 to use Prefill PCP8 / DP2 / TP1 with Model Runner V2. Set export VLLM USE V2 MODEL RUNNER=1 on both DSpark nodes and document that PCP requires V2, while DSA-C",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【杂项】Use PCP8 DP2 for A3 DSpark 预填充 with Model Runner V2",
+          "excerptZh": "更新 the DeepSeek-V4-Flash A3 DSpark PD deployment example on releases/v0.30.0 to use 预填充 PCP8 / DP2 / TP1 with Model Runner V2. Set export VLLM USE V2 MODEL RUNNER=1 on both DSpark nodes and 补充文档 that PCP requires V2, while DSA-C"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18921,
+          "title": "[BugFix][Qwen3.8] Preserve PLE history and multi-token decode state",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18921",
+          "author": "sustech-lz",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-16T01:35:00Z",
+          "updatedAt": "2026-10-19T15:11:49Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "1. PLE context can contain placeholder tokens during asynchronous scheduling PLE constructs n-gram embeddings from the current input tokens and their preceding token history. This history must contain the actual tokens consumed by the model",
+          "modelIds": [
+            "qwen3.8"
           ],
           "action": "updated",
           "score": 3,
-          "titleZh": "[BugFix] [Model]修复Model Runner v2中的Engram历史记录和查找时间",
-          "excerptZh": "修复16899之后MRV2中的DeepSeek V4.1 Engram查找时间。重用main的EngramModelState并将查找延迟到正向上下文，保留图形捕获的生成器和重播元数据清理。TODO （跟进） ：支持MRV2 Engram wit"
+          "titleZh": "【修复】【Qwen3.8】Preserve PLE history and multi-token 解码 state",
+          "excerptZh": "1. PLE context can contain placeholder tokens during asynchronous scheduling PLE constructs n-gram embeddings from the current input tokens and their preceding token history. This history must contain the actual tokens consumed by the model"
+        },
+        {
+          "kind": "pr",
+          "number": 16981,
+          "title": "[Feature][Model] Add Qwen3.8 Flash Next support",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/16981",
+          "author": "shaopeng-666",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-20T06:13:37Z",
+          "updatedAt": "2026-10-19T15:04:00Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary This ports the Qwen3.8 Flash Next support originally developed in 15162 onto the current main APIs, while reusing the upstream Qwen4Exp model implementation instead of copying upstream model code into the plugin. The change adds: - ",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】Qwen3.8 Flash Next 支持",
+          "excerptZh": "Summary This ports the Qwen3.8 Flash Next 支持 originally developed in 15162 onto the current main APIs, while reusing the upstream Qwen4Exp model implementation instead of copying upstream model code into the plugin. The change adds: -"
+        },
+        {
+          "kind": "pr",
+          "number": 16246,
+          "title": "[Performance][GDN] Share group-invariant metadata across kv-cache groups",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/16246",
+          "author": "Wfd567",
+          "labels": [
+            "module:ops",
+            "merge-conflicts",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-10T09:18:16Z",
+          "updatedAt": "2026-10-19T15:00:34Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Background Hybrid models such as Qwen3.8 / Qwen4-Exp (e.g. Qwen3.8-27B) interleave GDN (linear-attention) layers and full-attention layers at 3:1. The hybrid KV cache manager aligns kv-cache group sizes to the least-numerous layer type, whi",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[性能] [GDN]跨kv缓存组共享组不变元数据",
+          "excerptZh": "背景混合模型，如Qwen3.8/Qwen4-Exp （例如Qwen3.8-27B ）以3: 1交织GDN （线性注意）层和全注意层。混合KV缓存管理器将kv缓存组大小与最少层类型对齐，"
+        },
+        {
+          "kind": "pr",
+          "number": 17249,
+          "title": "[Feat][MRV2] Adapt Qwen3.8 Flash Next to ModelRunnerV2 (graph  + MTP + async scheduling)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17249",
+          "author": "xiayingqing",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-22T11:32:21Z",
+          "updatedAt": "2026-10-19T12:48:07Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR is based on 16981 for Qwen3.8-Flash-Next. It adapts the qwen4 exp hybrid model to the V2 model runner on Ascend, enabling V2 serving with FULL aclgraph decode mode, MTP speculative decoding and async scheduling. Three commits, one p",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【Feat】【MRV2】Adapt Qwen3.8 Flash Next to ModelRunnerV2 (graph + MTP + async scheduling)",
+          "excerptZh": "This PR is based on 16981 for Qwen3.8-Flash-Next. It adapts the qwen4 exp hybrid model to the V2 model runner on Ascend, enabling V2 服务 with FULL aclgraph 解码 mode, MTP 投机解码 and async scheduling. Three commits, one p"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 14235,
+          "title": "[BugFix][Ascend NPU] Fix DP cascade crash and add DP fault tolerance",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/14235",
+          "author": "slamdunk111",
+          "labels": [
+            "module:tests",
+            "module:core",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-08-13T13:47:01Z",
+          "updatedAt": "2026-10-19T14:48:11Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Problem In DP4×TP2+EP8 topology on Ascend 910B2 × 8, running Qwen3.6-35B-A3B-w8a8 with FULL DECODE ONLY aclgraph mode, three crash types were observed in production on vLLM-Ascend 0.23.0RC1: Crash Type Error Code Root Cause ----------- ----",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[BugFix] [Ascend NPU]修复DP级联崩溃并添加DP容错",
+          "excerptZh": "Problem In DP4×TP2+EP8 topology on Ascend 910B2 × 8, running Qwen3.6-35B-A3B-w8a8 with FULL 解码 ONLY aclgraph mode, three 崩溃 types were observed in production on vLLM-Ascend 0.23.0RC1: 崩溃 Type Error Code Root Cause ----------- ----"
+        }
+      ]
+    },
+    {
+      "id": "gemma4",
+      "name": "Gemma4",
+      "family": "Gemma",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17492,
+          "title": "[Feature][Spec Decode] To support Gemma4 MTP on Model Runner V2",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17492",
+          "author": "swimming2007-doge",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-24T08:38:52Z",
+          "updatedAt": "2026-10-19T13:07:45Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds Gemma4 MTP speculative decoding support on Model Runner V2 ( VLLM USE V2 MODEL RUNNER=1 ). On stock main, Gemma4 MTP under Model Runner V2 was broken at two layers: 1. Routing : init speculator dispatched Gemma4 MTP to AscendEagleSpecu",
+          "modelIds": [
+            "gemma4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[功能] [规格解码]在Model Runner V2上支持Gemma4 MTP",
+          "excerptZh": "Adds Gemma4 MTP 投机解码 支持 on Model Runner V2 ( VLLM USE V2 MODEL RUNNER=1 ). On stock main, Gemma4 MTP under Model Runner V2 was broken at two layers: 1. 路由 : init speculator dispatched Gemma4 MTP to AscendEagleSpecu"
+        }
+      ]
+    },
+    {
+      "id": "glm-5.2",
+      "name": "GLM-5.2",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17516,
+          "title": "[Doc][Model] Align shared GLM-5.2/5.3 deployment settings and W4A4C8 examples",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17516",
+          "author": "Wyz-134",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-24T13:14:05Z",
+          "updatedAt": "2026-10-19T12:45:49Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Merge GLM-5.2/GLM-5.3 deployment documentation and align shared configurations with the maintained release guide. Script source is releases/v0.30.0 at 1bd04a362691d78286399916c03821a201b66a8e , the branch containing the earlier GLM document",
+          "modelIds": [
+            "glm-5.2"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【模型】对齐 共享 GLM-5.2/5.3 deployment settings and W4A4C8 examples",
+          "excerptZh": "合并 GLM-5.2/GLM-5.3 deployment documentation and 对齐 共享 configurations with the maintained release guide. Script source is releases/v0.30.0 at 1bd04a362691d78286399916c03821a201b66a8e , the branch containing the earlier GLM 补充文档"
         }
       ]
     }

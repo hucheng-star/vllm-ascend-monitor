@@ -1,0 +1,41 @@
+{
+  "day": "2026-10-20",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19190,
+          "title": "[Feature][DSA] Share O-projection buffers across DeepSeek layers",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19190",
+          "author": "rikakuhi",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-19T09:46:27Z",
+          "updatedAt": "2026-10-19T16:18:42Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR reduces resident OTP communication-buffer memory for DeepSeek V4 and V4.1 by sharing address-stable O-projection exchange scratch across sequential DSA layers. It reserves the shared buffers before KV-cache profiling and sizes them ",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【DSA】Share O-projection buffers across DeepSeek layers",
+          "excerptZh": "This PR reduces resident OTP 通信-buffer 显存 for DeepSeek V4 and V4.1 by sharing address-stable O-projection exchange scratch across sequential DSA layers. It reserves the 共享 buffers before KV-缓存 profiling and sizes them"
+        }
+      ]
+    }
+  ]
+}
