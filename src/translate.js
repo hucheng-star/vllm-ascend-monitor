@@ -39,7 +39,6 @@ const PHRASES = [
   ["metadata", "元数据"],
   ["optimization", "优化"],
   ["optimizations", "优化"],
-  ["performance", "性能"],
   ["precision", "精度"],
   ["accuracy", "精度"],
   ["regression", "回退"],
@@ -81,7 +80,6 @@ const PHRASES = [
   ["document", "补充文档"],
   ["serving", "服务"],
   ["runtime", "运行时"],
-  ["feature", "特性"],
   ["updates", "更新"],
   ["freezes", "卡住"],
   ["running requests", "正在运行的请求"],
@@ -131,25 +129,7 @@ const PHRASES = [
   ["sequence", "序列"],
 ];
 
-const TAGS = [
-  [/^bugfix$/i, "修复"],
-  [/^bug$/i, "缺陷"],
-  [/^perf(ormance)?$/i, "性能"],
-  [/^feature$/i, "功能"],
-  [/^ci$/i, "持续集成"],
-  [/^tests?$/i, "测试"],
-  [/^docs?$/i, "文档"],
-  [/^refactor$/i, "重构"],
-  [/^misc$/i, "杂项"],
-  [/^model$/i, "模型"],
-  [/^quant(ization)?$/i, "量化"],
-  [/^ops$/i, "算子"],
-  [/^attention$/i, "注意力"],
-  [/^kv cache$/i, "KV 缓存"],
-  [/^kv offload$/i, "KV 卸载"],
-  [/^toolparser$/i, "工具解析"],
-  [/^mrv2$/i, "MRV2"],
-];
+const PROTECTED_TERMS = ["BugFix", "Performance", "SpecDecode", "Enhancement", "Quantization", "Refactor", "Feature", "Tests", "Docs", "Misc", "Test", "Perf", "Bug", "Doc", "RFC", "Quant", "Ops", "MRV2", "MoE", "CI"];
 
 const cache = new Map();
 let quotaOpen = true;
@@ -161,22 +141,34 @@ function mostlyChinese(text) {
   return han >= 4 && han >= letters;
 }
 
+function shieldTerms(text) {
+  const slots = [];
+  const pattern = new RegExp(`\\b(${PROTECTED_TERMS.join("|")})\\b`, "gi");
+  const shielded = String(text).replace(pattern, (word) => {
+    const token = `ZXQ${slots.length}QXZ`;
+    slots.push(word);
+    return token;
+  });
+  return { shielded, slots };
+}
+
+function unshieldTerms(text, slots) {
+  return slots.reduce((out, word, index) => out.replaceAll(`ZXQ${index}QXZ`, word), String(text));
+}
+
 export function glossText(text) {
   const tags = [];
   let rest = String(text || "").replace(/\[([^\]]+)\]/g, (_, tag) => {
-    const hit = TAGS.find(([pattern]) => pattern.test(tag.trim()));
-    tags.push(hit ? hit[1] : tag.trim());
+    tags.push(tag.trim());
     return " ";
   });
   const ordered = [...PHRASES].sort((a, b) => b[0].length - a[0].length);
   for (const [phrase, zh] of ordered) {
     rest = rest.replace(new RegExp(`\\b${phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "gi"), zh);
   }
-  rest = rest.replace(/\s+/g, " ").replace(/\s+([，。])/g, "$1").trim();
-  const prefix = tags.length ? `【${tags.join("】【")}】` : "";
-  if (prefix.includes("修复")) rest = rest.replace(/^修复\s*/, "");
-  if (prefix.includes("功能")) rest = rest.replace(/^新增\s*/, "");
-  return polish(`${prefix}${rest}`);
+  rest = rest.replace(/\s+/g, " ").replace(/\s+([，。])/g, "$1").replace(/^[\s:：\-–—]+/, "").trim();
+  const prefix = tags.length ? `${tags.map((tag) => `[${tag}]`).join("")} ` : "";
+  return polish(`${prefix}${rest}`.trim());
 }
 
 function polish(text) {
@@ -221,11 +213,12 @@ async function saveCache() {
 
 async function machineTranslate(text) {
   if (!quotaOpen) return "";
-  const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text.slice(0, 420))}&langpair=en|zh-CN`;
+  const { shielded, slots } = shieldTerms(text.slice(0, 420));
+  const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(shielded)}&langpair=en|zh-CN`;
   const response = await fetch(url, { signal: AbortSignal.timeout(20000) });
   if (!response.ok) return "";
   const payload = await response.json();
-  const translated = payload.responseData?.translatedText?.trim() || "";
+  const translated = unshieldTerms(payload.responseData?.translatedText?.trim() || "", slots);
   if (payload.quotaFinished || /MYMEMORY WARNING/i.test(translated) || /QUERY LENGTH LIMIT/i.test(translated)) {
     quotaOpen = false;
     return "";

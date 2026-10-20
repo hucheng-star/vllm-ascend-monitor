@@ -3,27 +3,25 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>vLLM-Ascend 社区监控</title>
+    <title>vLLM-Ascend 社区洞察看板</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <header class="topbar">
       <div class="brand">
-        <span class="live" id="live" title="监控进程在运行"></span>
+        <span class="live" id="live" title="看板进程在运行"></span>
         <div>
-          <h1>vLLM-Ascend 社区监控</h1>
+          <h1>vLLM-Ascend 社区洞察看板</h1>
           <p id="status">正在读取本地快照…</p>
         </div>
       </div>
+      <nav id="modules" class="modules"></nav>
       <div class="top-actions">
         <button id="refresh" type="button">立即同步</button>
       </div>
     </header>
     <div id="warnings" class="warnings" hidden></div>
     <div class="layout">
-      <aside class="sidebar">
-        <nav id="modules" class="modules"></nav>
-      </aside>
       <main id="main" class="main"></main>
     </div>
     <script src="/features.js"></script>

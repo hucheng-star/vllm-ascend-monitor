@@ -6,10 +6,10 @@ const liveEl = document.querySelector("#live");
 const refreshButton = document.querySelector("#refresh");
 
 const MODULES = [
-  ["models", "模型总览", "按家族查看合入", "layers"],
-  ["community", "社区状态", "合入、Issue 与人员", "activity"],
-  ["issues", "Issue 总览", "按类别统计和浏览", "issue"],
-  ["features", "特性介绍", "最近的 PR 与 Issue", "feature"],
+  ["models", "模型总览", "", "layers"],
+  ["issues", "Issue 总览", "", "issue"],
+  ["features", "特性介绍", "", "feature"],
+  ["community", "社区状态", "", "activity"],
 ];
 
 const PR_CATEGORIES = [
@@ -27,6 +27,8 @@ const ISSUE_LABELS = {
   question: "Question",
   other: "Other",
 };
+
+const ISSUE_BOARD_ORDER = ["bugfix", "feature", "doc", "performance", "question", "other"];
 
 const ICONS = {
   activity: "M3 12h4l2.5-6 4 12L16 8h5",
@@ -48,8 +50,8 @@ const ICONS = {
 
 let state = null;
 let selected = "models";
-let issueFilter = "all";
 let modelQuery = "";
+let issueQuery = "";
 let activeModel = "";
 let activeFeature = "";
 let activePrinciple = "";
@@ -146,8 +148,69 @@ function prCategory(item) {
   return PR_CATEGORIES.some(([id]) => id === category) ? category : "other";
 }
 
-function sentence(item) {
-  return (item.titleZh || item.title || "").trim();
+function sameTitle(a, b) {
+  const norm = (text) => String(text).toLowerCase().replace(/[\[\]【】()（）：:，,.\s]/g, "");
+  return norm(a) === norm(b);
+}
+
+function translatedTitle(item) {
+  const original = String(item.title || "").trim();
+  let zh = String(item.titleZh || "").trim();
+  if (!zh) return "";
+  const tags = [...original.matchAll(/\[([^\]\n]+)\]/g)].map((match) => match[1].trim()).filter(Boolean);
+  if (!tags.length) return zh;
+  zh = zh.replace(/^(?:\s*(?:【[^】]*】|\[[^\]]*\])\s*)+/, "").replace(/^[：:]\s*/, "").trim();
+  return `${tags.map((tag) => `[${tag}]`).join("")} ${zh}`.trim();
+}
+
+function tagKind(name) {
+  const text = String(name || "").trim();
+  if (/^(bugfix|bug|缺陷|修复)$/i.test(text)) return "bug";
+  if (/^(feat|feature|features|enhancement|功能|特性)$/i.test(text)) return "feature";
+  if (/^(perf|performance|性能)$/i.test(text)) return "perf";
+  if (/^(doc|docs|文档)$/i.test(text)) return "doc";
+  if (/^rfc$/i.test(text)) return "rfc";
+  if (/^(ci|tests?|测试)$/i.test(text)) return "ci";
+  if (/^(refactor|misc|chore|重构|杂项)$/i.test(text)) return "misc";
+  return "other";
+}
+
+function appendTaggedText(parent, text) {
+  const source = stageTerms(String(text || ""));
+  const pattern = /\[([^\]\n]+)\]|【([^】\n]+)】/g;
+  let last = 0;
+  for (const match of source.matchAll(pattern)) {
+    const label = String(match[1] || match[2] || "").trim();
+    const mark = label.length > 0 && label.length <= 28 && !/[：:，。,.!?？！]/.test(label);
+    if (match.index > last) parent.append(document.createTextNode(source.slice(last, match.index)));
+    if (!mark) {
+      parent.append(document.createTextNode(match[0]));
+      last = match.index + match[0].length;
+      continue;
+    }
+    const chip = document.createElement("span");
+    chip.className = `term tag-${tagKind(label)}`;
+    chip.textContent = match[0];
+    parent.append(chip);
+    last = match.index + match[0].length;
+  }
+  if (last < source.length) parent.append(document.createTextNode(source.slice(last)));
+}
+
+function titlePair(item, prefix = "#", className = "") {
+  const original = String(item.title || "").trim();
+  const zh = translatedTitle(item);
+  const distinct = zh && original && !sameTitle(zh, original);
+  const wrap = el("div", ["title-pair", className].filter(Boolean).join(" "));
+  const link = externalLink(item.url, "");
+  appendTaggedText(link, `${prefix}${item.number} ${distinct ? zh : (zh || original)}`);
+  wrap.append(link);
+  if (distinct) {
+    const line = el("p", "original");
+    appendTaggedText(line, original);
+    wrap.append(line);
+  }
+  return wrap;
 }
 
 function externalLink(href, text, className) {
@@ -166,7 +229,8 @@ function renderModules() {
     const mark = el("span", "module-icon");
     mark.append(icon(iconName));
     const copy = el("span", "module-copy");
-    copy.append(el("strong", null, label), el("small", null, hint));
+    copy.append(el("strong", null, label));
+    if (hint) copy.append(el("small", null, hint));
     button.append(mark, copy);
     button.addEventListener("click", () => select(id));
     modulesEl.append(button);
@@ -285,10 +349,7 @@ function renderCommunity() {
     const card = el("button");
     card.type = "button";
     card.append(el("strong", null, ISSUE_LABELS[category.id] || category.name), el("b", null, String(category.month)), el("small", null, `开放 ${category.open}`));
-    card.addEventListener("click", () => {
-      issueFilter = category.id;
-      select("issues");
-    });
+    card.addEventListener("click", () => select("issues"));
     issues.append(card);
   }
   wrap.append(issues);
@@ -330,27 +391,74 @@ function uniqueHistory(kind) {
   return [...map.values()];
 }
 
-function renderBrief() {
-  const today = state.today?.day;
-  const yesterday = today ? shiftDay(today, -1) : "";
-  const items = uniqueHistory();
-  const merged = items.filter((item) => item.kind === "pr" && (item.progressAction === "merged" || item.mergedAt) && [today, yesterday].includes(item.day)).slice(0, 4);
-  const fresh = items.filter((item) => item.day === today && item.progressAction !== "merged" && !item.mergedAt).slice(0, 3);
-  const band = el("section", "brief");
-  const copy = el("div");
-  copy.append(el("h2", null, `${today || ""} 早报`));
-  copy.append(el("p", "lead", `昨天到今天记录了 ${merged.length} 条已合并改动，${fresh.length} 条仍在讨论。下面按模型看本月合入。`));
-  band.append(copy);
-  const list = el("div", "brief-list");
-  for (const item of [...merged, ...fresh]) {
-    const row = el("p");
-    row.append(el("span", item.mergedAt || item.progressAction === "merged" ? "badge merged" : "badge open", item.mergedAt || item.progressAction === "merged" ? "已合并" : "讨论中"));
-    row.append(externalLink(item.url, `#${item.number} ${sentence(item)}`));
-    list.append(row);
+function briefItems(day) {
+  const map = new Map();
+  for (const group of state.history?.groups || []) {
+    const bucket = (group.days || []).find((entry) => entry.day === day);
+    if (!bucket) continue;
+    for (const item of bucket.items || []) {
+      const key = `${item.kind}:${item.number}`;
+      if (!map.has(key)) map.set(key, { ...item, families: [] });
+      const row = map.get(key);
+      if (group.id !== "platform" && group.family && group.family !== "平台与通用" && !row.families.includes(group.family)) {
+        row.families.push(group.family);
+      }
+    }
   }
-  if (!merged.length && !fresh.length) list.append(el("p", "empty", "这两天没有新的模型进展。"));
-  band.append(list);
-  return band;
+  const rank = (item) => (item.kind === "pr" && (item.mergedAt || item.progressAction === "merged") ? 0 : 1);
+  return [...map.values()].sort((a, b) => rank(a) - rank(b) || b.number - a.number);
+}
+
+function briefLabel(item) {
+  if (item.kind === "pr" && (item.mergedAt || item.progressAction === "merged")) return ["已合并", "badge merged"];
+  if (item.progressAction === "closed") return ["已关闭", "badge open"];
+  if (item.progressAction === "draft") return ["草稿", "badge open"];
+  if (item.kind === "issue") return ["Issue", "badge open"];
+  return ["讨论中", "badge open"];
+}
+
+function displayDate(day) {
+  const [, month, date] = String(day).split("-");
+  return `${Number(month)}月${Number(date)}日`;
+}
+
+function shanghaiDate(iso) {
+  const time = Date.parse(iso || "");
+  if (Number.isNaN(time)) return String(iso || "").slice(0, 10);
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Shanghai",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(time);
+}
+
+function issueMatches(item, query) {
+  if (!query) return true;
+  const hay = `${item.number} ${item.title || ""} ${item.titleZh || ""} ${item.excerpt || ""} ${item.excerptZh || ""}`.toLowerCase();
+  return hay.includes(query);
+}
+
+function renderBriefColumn(day) {
+  const items = briefItems(day);
+  const merged = items.filter((item) => item.kind === "pr" && (item.mergedAt || item.progressAction === "merged")).length;
+  const article = el("article", "brief-day");
+  const head = el("header", "brief-day-head");
+  head.append(el("h3", null, displayDate(day)));
+  head.append(el("small", null, `合入 ${merged} · 共 ${items.length} 条`));
+  article.append(head);
+  const body = el("div", "brief-body");
+  if (!items.length) body.append(el("p", "empty", "这一天没有记录到进展。"));
+  for (const item of items) {
+    const row = el("div", "brief-item");
+    const [label, badge] = briefLabel(item);
+    row.append(el("span", badge, label));
+    row.append(titlePair(item));
+    if (item.families.length) row.append(el("small", null, item.families.slice(0, 3).join(" · ")));
+    body.append(row);
+  }
+  article.append(body);
+  return article;
 }
 
 function modelRecords(model) {
@@ -398,7 +506,7 @@ function renderModelDetail(model) {
     section.append(el("h3", null, `${name} · ${list.length}`));
     if (!list.length) section.append(el("p", "empty", "本月没有这一类合入。"));
     for (const item of list.slice(0, 12)) {
-      section.append(externalLink(item.url, `#${item.number} ${sentence(item)}`, "pr-line"));
+      section.append(titlePair(item, "#", "pr-line"));
     }
     if (list.length > 12) section.append(el("p", "empty", `还有 ${list.length - 12} 条`));
     grid.append(section);
@@ -409,7 +517,7 @@ function renderModelDetail(model) {
   talk.append(el("h3", null, `仍在讨论 · ${open.length}`));
   if (!open.length) talk.append(el("p", "empty", "没有还开着的 PR。"));
   for (const item of open.slice(0, 10)) {
-    talk.append(externalLink(item.url, `#${item.number} ${sentence(item)}`, "pr-line"));
+    talk.append(titlePair(item, "#", "pr-line"));
   }
   wrap.append(talk);
   mainEl.replaceChildren(wrap);
@@ -427,27 +535,30 @@ function renderModelBoard() {
 
   const query = modelQuery.trim().toLowerCase();
   const models = (state.models || []).filter((model) => model.id !== "platform" && (!query || `${model.name} ${model.family}`.toLowerCase().includes(query)));
-  const wrap = document.createDocumentFragment();
-  wrap.append(renderBrief());
+  const today = state.community?.today || state.today?.day || "";
+  const stage = el("div", "model-stage");
 
-  const toolbar = el("div", "toolbar");
+  const left = el("aside", "family-pane");
+  const familyHead = el("header", "pane-head");
+  familyHead.append(el("h2", null, "模型家族"));
   const input = el("input");
   input.type = "search";
-  input.placeholder = "筛选模型，例如 DeepSeek、Qwen、GLM";
+  input.placeholder = "搜索模型";
   input.value = modelQuery;
   input.addEventListener("input", () => {
     modelQuery = input.value;
     render();
-    const next = mainEl.querySelector("input");
+    const next = mainEl.querySelector(".family-pane input");
     if (next) {
       next.focus();
       const end = next.value.length;
       next.setSelectionRange(end, end);
     }
   });
-  toolbar.append(el("h3", null, "模型家族"), input);
-  wrap.append(toolbar);
+  familyHead.append(input);
+  left.append(familyHead);
 
+  const familyScroll = el("div", "family-scroll");
   const families = [];
   for (const model of models) {
     let family = families.find((entry) => entry.name === model.family);
@@ -457,9 +568,12 @@ function renderModelBoard() {
     }
     family.models.push(model);
   }
-
+  if (!families.length) familyScroll.append(el("p", "empty", "没有匹配的模型。"));
   for (const family of families) {
-    wrap.append(el("h3", "family-name", family.name));
+    const block = el("section", "family-block");
+    const title = el("h3", "family-name");
+    title.append(el("span", null, family.name), el("b", null, String(family.models.length)));
+    block.append(title);
     const tiles = el("div", "tiles");
     for (const model of family.models) {
       const { merged } = modelRecords(model);
@@ -476,27 +590,73 @@ function renderModelBoard() {
       });
       tiles.append(tile);
     }
-    wrap.append(tiles);
+    block.append(tiles);
+    familyScroll.append(block);
   }
-  mainEl.replaceChildren(wrap);
+  left.append(familyScroll);
+
+  const right = el("section", "brief-pane");
+  const briefHead = el("header", "pane-head");
+  briefHead.append(el("h2", null, "早报"));
+  briefHead.append(el("p", null, "连续三天，按上海时间。"));
+  right.append(briefHead);
+  const grid = el("div", "brief-grid");
+  if (today) {
+    for (const day of [today, shiftDay(today, -1), shiftDay(today, -2)]) grid.append(renderBriefColumn(day));
+  } else {
+    grid.append(el("p", "empty", "同步一次后，这里会显示最近三天的早报。"));
+  }
+  right.append(grid);
+  stage.append(left, right);
+
+  const keptFamily = mainEl.querySelector(".family-scroll")?.scrollTop || 0;
+  const keptBriefs = [...mainEl.querySelectorAll(".brief-body")].map((node) => node.scrollTop);
+  mainEl.classList.add("pin-models");
+  mainEl.replaceChildren(stage);
+  const nextFamily = mainEl.querySelector(".family-scroll");
+  if (nextFamily) nextFamily.scrollTop = keptFamily;
+  [...mainEl.querySelectorAll(".brief-body")].forEach((node, index) => {
+    node.scrollTop = keptBriefs[index] || 0;
+  });
 }
 
 function issueEntry(item) {
   const block = el("article", "issue-entry");
-  const zh = (item.titleZh || "").trim();
-  const en = (item.title || "").trim();
-  block.append(externalLink(item.url, `#${item.number} ${zh || en}`));
-  if (zh && en && zh !== en) block.append(el("p", "original", en));
+  block.append(titlePair(item));
   if (item.author) block.append(el("p", "muted", item.author));
   return block;
+}
+
+function monthIssues(categoryId) {
+  const month = state.community?.month || "";
+  return uniqueHistory("issue")
+    .filter((item) => classify(item) === categoryId)
+    .filter((item) => !month || shanghaiDate(item.createdAt).slice(0, 7) === month.slice(0, 7))
+    .sort((a, b) => String(b.createdAt || "").localeCompare(String(a.createdAt || "")));
 }
 
 function renderIssues() {
   const community = state.community;
   const wrap = document.createDocumentFragment();
-  const hero = el("div", "page-head");
-  hero.append(el("h2", null, "Issue 总览"));
-  hero.append(el("p", null, "类别保持 Bug、Feature、Perf、Docs、Question、Other。每条先显示中文，下面是英文原标题。"));
+  const hero = el("div", "page-head issue-hero");
+  const copy = el("div");
+  copy.append(el("h2", null, "Issue 总览"));
+  copy.append(el("p", null, "六个类别同屏。每格标题固定，条目在格子里滚动。"));
+  const search = el("input", "issue-search");
+  search.type = "search";
+  search.placeholder = "搜索类似问题";
+  search.value = issueQuery;
+  search.addEventListener("input", () => {
+    issueQuery = search.value;
+    render();
+    const next = mainEl.querySelector(".issue-search");
+    if (next) {
+      next.focus();
+      const end = next.value.length;
+      next.setSelectionRange(end, end);
+    }
+  });
+  hero.append(copy, search);
   wrap.append(hero);
   if (!community) {
     wrap.append(el("p", "empty", "同步一次后，这里会按类别列出 Issue。"));
@@ -504,42 +664,50 @@ function renderIssues() {
     return;
   }
 
-  const summary = el("section", "issue-line");
-  for (const category of community.issues.categories) {
-    const card = el("button", issueFilter === category.id ? "active" : "");
-    card.type = "button";
-    card.append(
-      el("strong", null, ISSUE_LABELS[category.id] || category.id),
-      el("b", null, String(category.month)),
-      el("small", null, `本月 · 开放 ${category.open}`),
-    );
-    card.addEventListener("click", () => {
-      issueFilter = issueFilter === category.id ? "all" : category.id;
-      render();
-      const target = document.getElementById(`issue-${category.id}`);
-      if (target) target.scrollIntoView({ block: "nearest" });
-    });
-    summary.append(card);
+  const categories = ISSUE_BOARD_ORDER
+    .map((id) => community.issues.categories.find((category) => category.id === id))
+    .filter(Boolean);
+  const summary = el("section", "issue-summary");
+  const line = el("div", "issue-line");
+  for (const category of categories) {
+    const card = el("article");
+    const count = el("div", "count");
+    count.append(el("b", null, String(category.month)));
+    count.append(el("small", null, "本月"));
+    card.append(el("strong", null, ISSUE_LABELS[category.id] || category.id), count);
+    line.append(card);
   }
+  summary.append(line);
   wrap.append(summary);
 
+  const query = issueQuery.trim().toLowerCase();
   const board = el("section", "issue-board");
-  for (const category of community.issues.categories) {
-    if (issueFilter !== "all" && issueFilter !== category.id) continue;
-    const section = el("section", issueFilter === category.id ? "active" : "");
+  for (const category of categories) {
+    const section = el("section");
     section.id = `issue-${category.id}`;
-    const heading = el("h3");
-    heading.append(el("strong", null, ISSUE_LABELS[category.id] || category.id));
-    heading.append(el("span", null, String(category.month)));
+    const heading = el("header", "issue-card-head");
+    const title = el("h3");
+    title.append(el("strong", null, ISSUE_LABELS[category.id] || category.id));
+    title.append(el("span", null, `本月 ${category.month} · 开放 ${category.open}`));
+    heading.append(title);
     section.append(heading);
-    const rows = category.recent || [];
-    if (!rows.length) section.append(el("p", "empty", "这个类别还没有记录。"));
-    for (const item of rows) section.append(issueEntry(item));
-    if (category.month > rows.length) section.append(el("p", "muted", `本月还有 ${category.month - rows.length} 条`));
+    const body = el("div", "issue-card-body");
+    const pool = query
+      ? uniqueHistory("issue").filter((item) => classify(item) === category.id && issueMatches(item, query)).sort((a, b) => String(b.createdAt || "").localeCompare(String(a.createdAt || "")))
+      : monthIssues(category.id);
+    if (!pool.length) body.append(el("p", "empty", query ? "没有类似问题。" : "本月还没有这一类。"));
+    for (const item of pool) body.append(issueEntry(item));
+    section.append(body);
     board.append(section);
   }
   wrap.append(board);
+
+  const kept = [...mainEl.querySelectorAll(".issue-card-body")].map((node) => node.scrollTop);
+  mainEl.classList.add("pin-issues");
   mainEl.replaceChildren(wrap);
+  [...mainEl.querySelectorAll(".issue-card-body")].forEach((node, index) => {
+    node.scrollTop = kept[index] || 0;
+  });
 }
 
 function appendFeatureName(parent, feature, titleTag) {
@@ -594,11 +762,8 @@ function featureFilterBar(feature, matched) {
 
 function featureEntry(item) {
   const block = el("article", "issue-entry");
-  const zh = (item.titleZh || "").trim();
-  const en = (item.title || "").trim();
-  const kind = item.kind === "pr" ? "PR" : "Issue";
-  block.append(externalLink(item.url, `${kind} #${item.number} ${zh || en}`));
-  if (zh && en && zh !== en) block.append(el("p", "original", en));
+  const kind = item.kind === "pr" ? "PR #" : "Issue #";
+  block.append(titlePair(item, kind));
   if (item.day) block.append(el("p", "muted", item.day));
   return block;
 }
@@ -768,7 +933,7 @@ function renderFeatures() {
   const wrap = document.createDocumentFragment();
   const hero = el("div", "page-head");
   hero.append(el("h2", null, "特性介绍"));
-  hero.append(el("p", null, "先从总览跳到某个特性。方块右上角的图标可以打开原理解读。每块默认显示该特性的全部最近动态，也可以按模型类别查看。"));
+  hero.append(el("p", null, "左边是特性总览，右边是每条特性的最近动态。方块上的图标可以打开原理解读。"));
   wrap.append(hero);
   const glossary = el("details", "glossary");
   glossary.append(el("summary", null, "名词说明"));
@@ -823,8 +988,9 @@ function renderFeatures() {
     links.append(button);
   }
   index.append(indexHead, links);
-  wrap.append(index);
+  const stage = el("div", "feature-stage");
   const board = el("section", "feature-board");
+  stage.append(index, board);
   for (const { feature, matched } of rows) {
     const card = el("article", "feature-card");
     card.id = `feature-${feature.id}`;
@@ -849,14 +1015,34 @@ function renderFeatures() {
     });
     board.append(card);
   }
-  wrap.append(board);
+  wrap.append(stage);
+  const keptIndex = mainEl.querySelector(".feature-index")?.scrollTop || 0;
   const kept = mainEl.querySelector(".feature-board")?.scrollTop || 0;
   mainEl.classList.add("pin-overview");
   mainEl.replaceChildren(wrap);
-  if (kept) mainEl.querySelector(".feature-board").scrollTop = kept;
+  const nextIndex = mainEl.querySelector(".feature-index");
+  const nextBoard = mainEl.querySelector(".feature-board");
+  if (nextIndex) nextIndex.scrollTop = keptIndex;
+  if (nextBoard && kept) nextBoard.scrollTop = kept;
 }
 
 mainEl.addEventListener("wheel", (event) => {
+  if (mainEl.classList.contains("pin-issues")) {
+    const card = event.target.closest(".issue-board section");
+    const scroller = card?.querySelector(":scope > .issue-card-body");
+    if (!scroller || scroller.contains(event.target)) return;
+    scroller.scrollTop += event.deltaY;
+    event.preventDefault();
+    return;
+  }
+  if (mainEl.classList.contains("pin-models")) {
+    const pane = event.target.closest(".family-pane, .brief-day");
+    const scroller = pane?.querySelector(":scope > .family-scroll, :scope > .brief-body");
+    if (!scroller || scroller.contains(event.target)) return;
+    scroller.scrollTop += event.deltaY;
+    event.preventDefault();
+    return;
+  }
   if (!mainEl.classList.contains("pin-overview")) return;
   const board = mainEl.querySelector(".feature-board");
   if (!board || board.contains(event.target)) return;
@@ -870,7 +1056,7 @@ mainEl.addEventListener("wheel", (event) => {
 
 function render() {
   if (!state?.generatedAt) {
-    mainEl.classList.remove("pin-overview");
+    mainEl.classList.remove("pin-overview", "pin-models", "pin-issues");
     statusEl.textContent = state?.pending ? "正在从 GitHub 和文档站同步…" : "等待第一次同步";
     mainEl.replaceChildren(el("p", "empty", "第一次同步会拉取版本说明、PR 和 Issue，通常需要十几秒。"));
     modulesEl.replaceChildren();
@@ -883,7 +1069,7 @@ function render() {
   warningsEl.hidden = !state.warnings?.length;
   warningsEl.textContent = (state.warnings || []).join("；");
   renderModules();
-  mainEl.classList.remove("pin-overview");
+  mainEl.classList.remove("pin-overview", "pin-models", "pin-issues");
   if (selected === "models") renderModelBoard();
   else if (selected === "issues") renderIssues();
   else if (selected === "features") renderFeatures();
