@@ -1,0 +1,36 @@
+{
+  "day": "2026-10-21",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19305,
+          "title": "[Performance] Overlap mHC pre/post with Sinkhorn for the A2 preMix path",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19305",
+          "author": "liuyao0",
+          "labels": [],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-20T17:23:49Z",
+          "updatedAt": "2026-10-20T17:50:04Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary The Atlas A2 (non-arch35) preMix path of npu hc pre v3 is ~1.5x slower than the non-premix path at large token counts. DSV4.1 calls hc pre twice per decoder layer and both calls use the delayed pre mix , so this is on the prefill ho",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【性能】重叠 mHC pre/post with Sinkhorn for the A2 preMix path",
+          "excerptZh": "Summary The Atlas A2 (non-arch35) preMix path of npu hc pre v3 is ~1.5x slower than the non-premix path at large token counts. DSV4.1 calls hc pre twice per decoder layer and both calls use the delayed pre mix , so this is on the 预填充 ho"
+        }
+      ]
+    }
+  ]
+}
