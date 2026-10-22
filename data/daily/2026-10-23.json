@@ -1,0 +1,102 @@
+{
+  "day": "2026-10-23",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19535,
+          "title": "[Cherry-pick][main][CI][Docker] Update pinned dependency build dates for v0.30.0 (from #19532)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19535",
+          "author": "vllm-ascend-ci",
+          "labels": [
+            "ci/build"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-22T17:24:00Z",
+          "updatedAt": "2026-10-22T18:15:14Z",
+          "closedAt": "2026-10-22T18:15:14Z",
+          "mergedAt": "2026-10-22T18:15:14Z",
+          "comments": 0,
+          "excerpt": "Cherry-pick of PR 19532 onto main . Original PR: 19532 Original author: @czydyy --- Update the pinned daily build dates across the v0.30.0 Dockerfile variants: - memcache and memfabric: 20261022.5 (where installed) - torch-npu: 20261015.5 K",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【Cherry-pick】【main】【持续集成】【Docker】更新 pinned dependency build dates for v0.30.0 (from #19532)",
+          "excerptZh": "Cherry-pick of PR 19532 onto main . Original PR: 19532 Original author: @czydyy --- 更新 the pinned daily build dates across the v0.30.0 Dockerfile variants: - memcache and memfabric: 20261022.5 (where installed) - torch-npu: 20261015.5 K"
+        }
+      ]
+    },
+    {
+      "id": "gemma4",
+      "name": "Gemma4",
+      "family": "Gemma",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19462,
+          "title": "[BugFix][Worker] Restore Gemma 4 KV cache capacity on Model Runner V2",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19462",
+          "author": "Alex-stack-hub",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-22T07:44:45Z",
+          "updatedAt": "2026-10-22T17:32:15Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "cherry-pick from 19264 (9df8e7fcb0733e52e7a6b4d37aaf95bd00fd8964) Backport the merged Gemma 4 KV cache fix to releases/v0.30.0 . Related issue: 19259. The private allocation introduced by 14872 reduces the Gemma 4 full/sliding KV budget by ",
+          "modelIds": [
+            "gemma4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【Worker】恢复 Gemma 4 KV 缓存 capacity on Model Runner V2",
+          "excerptZh": "cherry-pick from 19264 (9df8e7fcb0733e52e7a6b4d37aaf95bd00fd8964) Backport the merged Gemma 4 KV 缓存 修复 to releases/v0.30.0 . Related issue: 19259. The private allocation introduced by 14872 reduces the Gemma 4 full/sliding KV budget by"
+        }
+      ]
+    },
+    {
+      "id": "qwen2.5",
+      "name": "Qwen2.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19531,
+          "title": "[Test] Add Qwen2.5-1.5B-apeach classification e2e test and tutorial (issue #10680)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19531",
+          "author": "yanggg1133",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-22T15:28:00Z",
+          "updatedAt": "2026-10-22T17:58:25Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "What does this PR do? Adds a functional e2e classification test for jason9693/Qwen2.5-1.5B-apeach (Korean harmful-content classifier, Qwen2ForSequenceClassification ) plus a user-facing tutorial, per 10680. Acceptance-criteria scoping (expl",
+          "modelIds": [
+            "qwen2.5"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 Qwen2.5-1.5B-apeach classification e2e test and tutorial (issue #10680)",
+          "excerptZh": "What does this PR do? Adds a functional e2e classification test for jason9693/Qwen2.5-1.5B-apeach (Korean harmful-content classifier, Qwen2ForSequenceClassification ) plus a user-facing tutorial, per 10680. Acceptance-criteria scoping (expl"
+        }
+      ]
+    }
+  ]
+}

@@ -3,39 +3,160 @@
   "timezone": "Asia/Shanghai",
   "groups": [
     {
-      "id": "ds-v4-flash",
-      "name": "DeepSeek V4 Flash",
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
       "family": "DeepSeek",
       "items": [
         {
-          "kind": "issue",
-          "number": 19116,
-          "title": "[Bug]: Speculative execution must be enabled on all DeepSeek-V4-Flash-0731-W8A8 PD nodes. In some scenarios with high concurrency, enabling dspark will significantly increase the TTFT, in some cases even increasing it by several times.",
-          "url": "https://github.com/vllm-project/vllm-ascend/issues/19116",
-          "author": "gygdh-001",
+          "kind": "pr",
+          "number": 19522,
+          "title": "[v0.31.0rc][Test][BugFix] Stabilize DeepSeek V4.1 MRV2 PCP nightly startup",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19522",
+          "author": "vrooml",
           "labels": [
-            "bug",
-            "triaged",
-            "llm-model",
-            "deepseek",
-            "deepseek-v4"
+            "module:tests"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-22T12:45:38Z",
+          "updatedAt": "2026-10-22T13:18:59Z",
+          "closedAt": "2026-10-22T13:18:59Z",
+          "mergedAt": "2026-10-22T13:18:59Z",
+          "comments": 0,
+          "excerpt": "Release counterpart of 19477, targeting releases/v0.31.0rc . The main PR is still open; both branches need this configuration fix. After the PCP-local profile token-budget optimization was reverted, the DeepSeek V4.1 Flash MRV2+PCP nightly ",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【v0.31.0rc】【测试】【修复】Stabilize DeepSeek V4.1 MRV2 PCP 夜间 startup",
+          "excerptZh": "Release counterpart of 19477, targeting releases/v0.31.0rc . The main PR is still open; both branches need this 配置 修复. After the PCP-local profile token-budget 优化 was reverted, the DeepSeek V4.1 Flash MRV2+PCP 夜间"
+        },
+        {
+          "kind": "pr",
+          "number": 19514,
+          "title": "[BugFix][v0.30.0][EPLB] Support DeepSeek V4.1 flattened text config",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19514",
+          "author": "xbwcj",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-22T12:07:02Z",
+          "updatedAt": "2026-10-22T12:27:32Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Fixes 18166. DeepSeek V4.1 with Dynamic EPLB fails during EPLB warmup: VllmEplbAdaptor currently assumes that any model exposing language model has a nested model.config.text config . DeepSeek V4.1 is wrapped as a language model, but vLLM's",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【修复】【v0.30.0】【EPLB】支持 DeepSeek V4.1 flattened text 配置",
+          "excerptZh": "Fixes 18166. DeepSeek V4.1 with Dynamic EPLB fails during EPLB warmup: VllmEplbAdaptor currently assumes that any model exposing language model has a nested model.配置.text 配置 . DeepSeek V4.1 is wrapped as a language model, but vLLM's"
+        },
+        {
+          "kind": "pr",
+          "number": 19477,
+          "title": "[Test][BugFix] Stabilize DeepSeek V4.1 MRV2 PCP nightly startup",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19477",
+          "author": "vrooml",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-22T08:26:24Z",
+          "updatedAt": "2026-10-22T13:17:55Z",
+          "closedAt": "2026-10-22T13:17:55Z",
+          "mergedAt": "2026-10-22T13:17:55Z",
+          "comments": 0,
+          "excerpt": "The DeepSeek-V4.1-Flash-w8a8-PD-MRV2 nightly can fail during Prefill startup because the 1M-context KV cache requires about 5.56 GiB per rank while only about 5.07 GiB remains after model profiling. Root cause: 19243 reverted the PCP-local ",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【测试】【修复】Stabilize DeepSeek V4.1 MRV2 PCP 夜间 startup",
+          "excerptZh": "The DeepSeek-V4.1-Flash-w8a8-PD-MRV2 夜间 can fail during 预填充 startup because the 1M-context KV 缓存 requires about 5.56 GiB per rank while only about 5.07 GiB remains after model profiling. Root cause: 19243 reverted the PCP-local"
+        },
+        {
+          "kind": "pr",
+          "number": 18491,
+          "title": "[BugFix] fix sleep mode bug of deepseekv4.1",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18491",
+          "author": "shiyuan680",
+          "labels": [
+            "module:tests"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-19T01:01:15Z",
-          "updatedAt": "2026-10-21T22:15:23Z",
+          "createdAt": "2026-10-13T01:52:58Z",
+          "updatedAt": "2026-10-22T12:56:56Z",
           "closedAt": null,
           "mergedAt": null,
-          "comments": 3,
-          "excerpt": "",
+          "comments": 0,
+          "excerpt": "Adds a DeepSeek-V4.1 lane to the one-card NPU IPC weight-transfer e2e test, and fixes five defects in the --enable-sleep-mode + layerwise weight-update + ACL-graph-replay path that the new lane exposed. None of the five is V4.1-specific; ea",
           "modelIds": [
-            "ds-v4-flash",
-            "ds-v4"
+            "ds-v4.1"
           ],
           "action": "updated",
-          "score": 6,
-          "titleZh": "【缺陷】: 投机 execution must be 启用 on all DeepSeek-V4-Flash-0731-W8A8 PD nodes. In some scenarios with high concurrency, enabling dspark will significantly increase the TTFT, in some cases even increasing it by several times.",
-          "excerptZh": ""
+          "score": 3,
+          "titleZh": "【修复】sleep mode bug of deepseekv4.1",
+          "excerptZh": "Adds a DeepSeek-V4.1 lane to the one-card NPU IPC 权重-transfer e2e test, and fixes five defects in the --启用-sleep-mode + layerwise 权重-更新 + ACL-graph-replay path that the new lane exposed. None of the five is V4.1-specific; ea"
+        },
+        {
+          "kind": "pr",
+          "number": 19362,
+          "title": "[Performance][MRV2] Specialize DeepSeek V4.1-Flash PCP metadata construction by consumer",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19362",
+          "author": "jwkkkkkkdada",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-21T08:15:07Z",
+          "updatedAt": "2026-10-22T12:36:16Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4.1 PCP builds metadata for multiple cache groups in each build attn metadata() call. Although query operators consume rank-local metadata and cache updates consume scheduler-global metadata, the existing builders prepare fields f",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】【MRV2】Specialize DeepSeek V4.1-Flash PCP 元数据 construction by consumer",
+          "excerptZh": "DeepSeek V4.1 PCP builds 元数据 for multiple 缓存 groups in each build attn 元数据() call. Although query operators consume rank-local 元数据 and 缓存 更新 consume 调度器-global 元数据, the existing builders prepare fields f"
+        },
+        {
+          "kind": "pr",
+          "number": 17366,
+          "title": "[Performance][RFork] Deduplicate tensor scans and reuse layout digests",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17366",
+          "author": "yangsonglin13",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-23T07:01:28Z",
+          "updatedAt": "2026-10-22T12:15:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Reduce RFork loading overhead and support DeepSeek V4.1 and MTP loading with vLLM v0.31.0 , matching .github/vllm-release-tag.commit . The vLLM main footer identifies the separate verified main CI baseline. - Tensor traversal and registrati",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】【RFork】Deduplicate tensor scans and reuse layout digests",
+          "excerptZh": "减少 RFork 加载 overhead and 支持 DeepSeek V4.1 and MTP 加载 with vLLM v0.31.0 , matching .github/vllm-release-tag.commit . The vLLM main footer identifies the separate verified main CI baseline. - Tensor traversal and registrati"
         }
       ]
     },
@@ -45,34 +166,145 @@
       "family": "DeepSeek",
       "items": [
         {
-          "kind": "issue",
-          "number": 19116,
-          "title": "[Bug]: Speculative execution must be enabled on all DeepSeek-V4-Flash-0731-W8A8 PD nodes. In some scenarios with high concurrency, enabling dspark will significantly increase the TTFT, in some cases even increasing it by several times.",
-          "url": "https://github.com/vllm-project/vllm-ascend/issues/19116",
-          "author": "gygdh-001",
+          "kind": "pr",
+          "number": 19507,
+          "title": "feat(deepseek-v41): integrate native MXFP8 Engram offload and overlap",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19507",
+          "author": "nklkj-hw",
           "labels": [
-            "bug",
-            "triaged",
-            "llm-model",
-            "deepseek",
-            "deepseek-v4"
+            "documentation",
+            "module:tests",
+            "module:core"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-19T01:01:15Z",
-          "updatedAt": "2026-10-21T22:15:23Z",
+          "createdAt": "2026-10-22T11:31:14Z",
+          "updatedAt": "2026-10-22T12:55:39Z",
           "closedAt": null,
           "mergedAt": null,
-          "comments": 3,
-          "excerpt": "",
+          "comments": 0,
+          "excerpt": "Port the final behavior of local PR24, PR60 and PR70 onto the current ds41-wheel and upstream Engram architecture. Add an opt-in row-sharded ElasticBuffer backend with native E4M3/E8M0 checkpoint loading, tensor-scale ABI checks, startup pr",
           "modelIds": [
-            "ds-v4-flash",
+            "ds-v4"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "feat(deepseek-v41): integrate native MXFP8 Engram 卸载 and 重叠",
+          "excerptZh": "Port the final behavior of local PR24, PR60 and PR70 onto the current ds41-wheel and upstream Engram architecture. 新增 an opt-in row-sharded ElasticBuffer backend with native E4M3/E8M0 检查点 加载, tensor-scale ABI checks, startup pr"
+        },
+        {
+          "kind": "pr",
+          "number": 19125,
+          "title": "[BugFix][Platform] Keep the DeepSeek V4 block size the cache is built with",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19125",
+          "author": "Pingzii",
+          "labels": [
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-19T02:16:12Z",
+          "updatedAt": "2026-10-22T12:29:47Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek-V4 on A5 dies at cache-spec construction unless --block-size is passed. Reproduced on A5 (ascend950) with DeepSeek-V4-Flash, DP8 + EP, no --block-size : The page-padding tables are keyed on the physical block size, and only 32/64/1",
+          "modelIds": [
             "ds-v4"
           ],
           "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【Platform】Keep the DeepSeek V4 block size the 缓存 is built with",
+          "excerptZh": "DeepSeek-V4 on A5 dies at 缓存-spec construction unless --block-size is passed. Reproduced on A5 (ascend950) with DeepSeek-V4-Flash, DP8 + EP, no --block-size : The page-padding tables are keyed on the physical block size, and only 32/64/1"
+        },
+        {
+          "kind": "pr",
+          "number": 19355,
+          "title": "[Performance][MRV2] Skip CPU length synchronization for DeepSeek V4",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19355",
+          "author": "linfeng-yuan",
+          "labels": [
+            "module:tests",
+            "module:core",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-21T07:56:49Z",
+          "updatedAt": "2026-10-22T12:21:57Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "MRV2 exempts DeepSeek V4.1 from copying rejection-corrected token counts back to the CPU and waiting for that copy on the next step, but V4 takes the synchronous path even though its attention uses device sequence lengths. This can interrup",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】【MRV2】Skip CPU length synchronization for DeepSeek V4",
+          "excerptZh": "MRV2 exempts DeepSeek V4.1 from copying rejection-corrected token counts back to the CPU and waiting for that copy on the next step, but V4 takes the synchronous path even though its 注意力 uses device 序列 lengths. This can interrup"
+        },
+        {
+          "kind": "pr",
+          "number": 18891,
+          "title": "[BugFix][Platform] Reject KV cache dtypes the attention backend cannot store",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18891",
+          "author": "Pingzii",
+          "labels": [
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-15T11:21:02Z",
+          "updatedAt": "2026-10-22T12:13:37Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "A DeepSeek V4 launch on A5 with no --kv-cache-dtype dies inside the operator: aclnnMixedQuantSparseFlashMla: Parameter ori kv head dimension ... value 512. It should be 608. A5 picks the KV layout from the literal cache config.cache dtype :",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【Platform】Reject KV 缓存 dtypes the 注意力 backend cannot store",
+          "excerptZh": "A DeepSeek V4 launch on A5 with no --kv-缓存-dtype dies inside the operator: aclnnMixedQuantSparseFlashMla: Parameter ori kv head dimension ... value 512. It should be 608. A5 picks the KV layout from the literal 缓存 配置.缓存 dtype :"
+        }
+      ]
+    },
+    {
+      "id": "glm-4.7",
+      "name": "GLM-4.7",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19520,
+          "title": "Xlite/support glm 4.7 flash",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19520",
+          "author": "dengtianmin",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-22T12:44:59Z",
+          "updatedAt": "2026-10-22T12:53:01Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Does this PR introduce any user-facing change? --- Checklist Testing - [ ] Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque",
+          "modelIds": [
+            "glm-4.7"
+          ],
+          "action": "opened",
           "score": 6,
-          "titleZh": "【缺陷】: 投机 execution must be 启用 on all DeepSeek-V4-Flash-0731-W8A8 PD nodes. In some scenarios with high concurrency, enabling dspark will significantly increase the TTFT, in some cases even increasing it by several times.",
-          "excerptZh": ""
+          "titleZh": "Xlite/支持 glm 4.7 flash",
+          "excerptZh": "【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque"
         }
       ]
     },
@@ -83,53 +315,410 @@
       "items": [
         {
           "kind": "pr",
-          "number": 19376,
-          "title": "[v0.30.0][BugFix][Ops] Fix GDN recurrent state indices exceeding the token count",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19376",
-          "author": "chenxi-hh",
+          "number": 19457,
+          "title": "[BugFix] Preserve GLM-Next shared-pool KV budget",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19457",
+          "author": "vrooml",
           "labels": [
             "module:tests",
-            "module:ops",
             "ready-precise"
           ],
           "state": "closed",
           "draft": false,
-          "createdAt": "2026-10-21T09:34:29Z",
-          "updatedAt": "2026-10-21T17:05:02Z",
-          "closedAt": "2026-10-21T17:05:02Z",
-          "mergedAt": "2026-10-21T17:05:02Z",
+          "createdAt": "2026-10-22T07:29:36Z",
+          "updatedAt": "2026-10-22T13:16:54Z",
+          "closedAt": "2026-10-22T13:16:54Z",
+          "mergedAt": "2026-10-22T13:16:53Z",
           "comments": 0,
-          "excerpt": "The CANN recurrent gated delta rule kernel requires len(ssm state indices) == T , where T is the number of q/k/v rows. Three call sites in vllm ascend/ops/gdn.py violated this contract: - Pure-decode path passed the request-granularity buff",
+          "excerpt": "GLM-5.3-Flash MRV1 fails the 1M-context KV capacity check after 19079 correctly classifies KPool attention as SFA. This sets use sparse=True , bypasses the generic hybrid-backing exemption, and triggers a per-layer discount even though the ",
           "modelIds": [],
           "action": "merged",
           "score": 5,
-          "titleZh": "【v0.30.0】【修复】【算子】GDN recurrent state indices exceeding the token count",
-          "excerptZh": "The CANN recurrent gated delta rule 内核 requires len(ssm state indices) == T , where T is the number of q/k/v rows. Three call sites in vllm ascend/ops/gdn.py violated this contract: - Pure-解码 path passed the request-granularity buff"
+          "titleZh": "【修复】Preserve GLM-Next 共享-pool KV budget",
+          "excerptZh": "GLM-5.3-Flash MRV1 fails the 1M-context KV capacity check after 19079 correctly classifies KPool 注意力 as SFA. This sets use 稀疏=True , bypasses the generic hybrid-backing exemption, and triggers a per-layer discount even though the"
         },
         {
           "kind": "pr",
-          "number": 19378,
-          "title": "[BugFix][Ops] Fix GDN recurrent state indices exceeding the token count",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19378",
-          "author": "chenxi-hh",
+          "number": 19480,
+          "title": "[BugFix][KVTransfer] Sync physical layer count for layerwise PP pooling",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19480",
+          "author": "caozq99",
           "labels": [
             "module:tests",
-            "module:ops",
             "ready-precise"
           ],
           "state": "closed",
           "draft": false,
-          "createdAt": "2026-10-21T09:42:04Z",
-          "updatedAt": "2026-10-21T17:05:01Z",
-          "closedAt": "2026-10-21T17:05:01Z",
-          "mergedAt": "2026-10-21T17:05:01Z",
+          "createdAt": "2026-10-22T08:31:33Z",
+          "updatedAt": "2026-10-22T12:57:42Z",
+          "closedAt": "2026-10-22T10:49:23Z",
+          "mergedAt": "2026-10-22T10:49:23Z",
           "comments": 0,
-          "excerpt": "The CANN recurrent gated delta rule kernel requires len(ssm state indices) == T , where T is the number of q/k/v rows. Three call sites in vllm ascend/ops/gdn.py violated this contract: - Pure-decode path passed the request-granularity buff",
+          "excerpt": "Layerwise GVA pooling can skip trailing physical KV layers under pipeline parallelism. layerwise key layers is initialized from the logical layer count, but cache registration can subsequently expand num layers . In a multi-group PP configu",
           "modelIds": [],
           "action": "merged",
           "score": 5,
-          "titleZh": "【修复】【算子】GDN recurrent state indices exceeding the token count",
-          "excerptZh": "The CANN recurrent gated delta rule 内核 requires len(ssm state indices) == T , where T is the number of q/k/v rows. Three call sites in vllm ascend/ops/gdn.py violated this contract: - Pure-解码 path passed the request-granularity buff"
+          "titleZh": "【修复】【KVTransfer】Sync physical layer count for layerwise PP 池化",
+          "excerptZh": "Layerwise GVA 池化 can skip trailing physical KV layers under pipeline parallelism. layerwise key layers is initialized from the logical layer count, but 缓存 registration can subsequently expand num layers . In a multi-group PP configu"
+        },
+        {
+          "kind": "pr",
+          "number": 19479,
+          "title": "[BugFix][KVTransfer][v0.30.0] Sync physical layer count for layerwise PP pooling",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19479",
+          "author": "caozq99",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-22T08:31:28Z",
+          "updatedAt": "2026-10-22T12:53:38Z",
+          "closedAt": "2026-10-22T10:50:03Z",
+          "mergedAt": "2026-10-22T10:50:03Z",
+          "comments": 0,
+          "excerpt": "Backport the physical-layer count fix for layerwise PP KV pooling to releases/v0.30.0 . Cache registration can expand a worker's physical KV layer count after layerwise key layers is initialized. The multi-group GVA/PP path then keeps a sta",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【KVTransfer】【v0.30.0】Sync physical layer count for layerwise PP 池化",
+          "excerptZh": "Backport the physical-layer count 修复 for layerwise PP KV 池化 to releases/v0.30.0 . 缓存 registration can expand a worker's physical KV layer count after layerwise key layers is initialized. The multi-group GVA/PP path then keeps a sta"
+        },
+        {
+          "kind": "pr",
+          "number": 18717,
+          "title": "[Performance][Attention] Enable CANN FlashAttn for A5 V2 GLM DFlash2 eager drafts",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18717",
+          "author": "jiajinzhu2",
+          "labels": [
+            "module:tests",
+            "module:core",
+            "ready-all"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-14T09:58:04Z",
+          "updatedAt": "2026-10-22T12:06:15Z",
+          "closedAt": "2026-10-22T12:06:15Z",
+          "mergedAt": "2026-10-22T12:06:14Z",
+          "comments": 0,
+          "excerpt": "Enable CANN FlashAttn for GLM-5.3 + DFlash2 on Ascend A5. Use device-side sequence lengths and reuse attention metadata across draft layers to reduce CPU synchronization and preparation overhead. Does this PR introduce any user-facing chang",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【性能】【注意力】启用 CANN FlashAttn for A5 V2 GLM DFlash2 eager drafts",
+          "excerptZh": "启用 CANN FlashAttn for GLM-5.3 + DFlash2 on Ascend A5. Use device-side 序列 lengths and reuse 注意力 元数据 across draft layers to 减少 CPU synchronization and preparation overhead. Does this PR introduce any user-facing chang"
+        }
+      ]
+    },
+    {
+      "id": "qwen2.5",
+      "name": "Qwen2.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 10680,
+          "title": "[Contribution] 任务 #33：Qwen2.5-1.5B-apeach 离线推理功能测试",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/10680",
+          "author": "MINGJING-WU",
+          "labels": [
+            "help wanted"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-06-18T02:46:00Z",
+          "updatedAt": "2026-10-22T15:28:29Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 3,
+          "excerpt": "任务描述 该任务拆分自 9079，任务 ID： 33。 适配社区模型 Qwen2.5-1.5B-apeach，补充对应用例和模型适配使用文档，并最终上库。 验收标准 1. 在 tests/e2e/models/configs 添加完整测试用例。 2. 在 docs/source/tutorials/models 创建模型适配教程文档。 3. 在对应issue下提交 SKILL.md （记录AI辅助开发经验、有效提示词及最佳实践）。 对接人 @jyoung6652 认领状态 已",
+          "modelIds": [
+            "qwen2.5"
+          ],
+          "action": "updated",
+          "score": 4,
+          "titleZh": "【Contribution】任务 #33：Qwen2.5-1.5B-apeach 离线推理功能测试",
+          "excerptZh": "任务描述 该任务拆分自 9079，任务 ID： 33。 适配社区模型 Qwen2.5-1.5B-apeach，补充对应用例和模型适配使用文档，并最终上库。 验收标准 1. 在 tests/e2e/models/configs 添加完整测试用例。 2. 在 docs/source/tutorials/models 创建模型适配教程文档。 3. 在对应issue下提交 SKILL.md （记录AI辅助开发经验、有效提示词及最佳实践）。 对接人 @jyoung6652 认领状态 已"
+        },
+        {
+          "kind": "pr",
+          "number": 19531,
+          "title": "[Test] Add Qwen2.5-1.5B-apeach classification e2e test and tutorial (issue #10680)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19531",
+          "author": "yanggg1133",
+          "labels": [
+            "documentation",
+            "ci/build",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization",
+            "module:tools",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-22T15:28:00Z",
+          "updatedAt": "2026-10-22T15:44:53Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "What does this PR do? Adds a functional e2e classification test for jason9693/Qwen2.5-1.5B-apeach (Korean harmful-content classifier, Qwen2ForSequenceClassification ) plus a user-facing tutorial, per 10680. Acceptance-criteria scoping (expl",
+          "modelIds": [
+            "qwen2.5"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【测试】新增 Qwen2.5-1.5B-apeach classification e2e test and tutorial (issue #10680)",
+          "excerptZh": "What does this PR do? Adds a functional e2e classification test for jason9693/Qwen2.5-1.5B-apeach (Korean harmful-content classifier, Qwen2ForSequenceClassification ) plus a user-facing tutorial, per 10680. Acceptance-criteria scoping (expl"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19476,
+          "title": "[Doc][v0.30.0] Backport Qwen3.5-397B-A17B deployment guide",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19476",
+          "author": "dypforever",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-22T08:26:21Z",
+          "updatedAt": "2026-10-22T14:54:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Backport the documentation updates from 18233 to releases/v0.30.0 . Update the Qwen3.5-397B-A17B deployment guide for vLLM-Ascend v0.30.0 and align the commands, proxy examples, and configuration summary. - Use MooncakeConnectorV1 for A3/A2",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【v0.30.0】Backport Qwen3.5-397B-A17B deployment guide",
+          "excerptZh": "Backport the documentation 更新 from 18233 to releases/v0.30.0 . 更新 the Qwen3.5-397B-A17B deployment guide for vLLM-Ascend v0.30.0 and 对齐 the commands, proxy examples, and 配置 summary. - Use MooncakeConnectorV1 for A3/A2"
+        },
+        {
+          "kind": "pr",
+          "number": 18233,
+          "title": "[Doc][Misc] Correct and extend Qwen3.5-397B-A17B deployment guide",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18233",
+          "author": "dypforever",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-10T09:54:09Z",
+          "updatedAt": "2026-10-22T14:54:34Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Update the Qwen3.5-397B-A17B deployment guide for vLLM-Ascend v0.30.0 and align the commands, proxy examples, and configuration summary. - Use MooncakeConnectorV1 for A3/A2 PD and MooncakeConnectorV2 for 950DT PD, paired with the standard P",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【杂项】Correct and extend Qwen3.5-397B-A17B deployment guide",
+          "excerptZh": "更新 the Qwen3.5-397B-A17B deployment guide for vLLM-Ascend v0.30.0 and 对齐 the commands, proxy examples, and 配置 summary. - Use MooncakeConnectorV1 for A3/A2 PD and MooncakeConnectorV2 for 950DT PD, paired with the standard P"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19297,
+          "title": "[Cherry-pick][releases/v0.30.0][Doc][Model] Update Qwen3.6-35B-A3B deployment for 950DT and Atlas 300I DUO (from #18248)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19297",
+          "author": "vllm-ascend-ci",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-20T13:22:58Z",
+          "updatedAt": "2026-10-22T14:33:17Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Cherry-pick of PR 18248 onto releases/v0.30.0 . Original PR: 18248 Original author: @zsponly --- Document Qwen3.6-35B-A3B W8A8 MXFP8 serving on a single NPU of a 950DT Products node, including the model weight entries, startup command, and ",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【Cherry-pick】【releases/v0.30.0】【文档】【模型】更新 Qwen3.6-35B-A3B deployment for 950DT and Atlas 300I DUO (from #18248)",
+          "excerptZh": "Cherry-pick of PR 18248 onto releases/v0.30.0 . Original PR: 18248 Original author: @zsponly --- 补充文档 Qwen3.6-35B-A3B W8A8 MXFP8 服务 on a single NPU of a 950DT Products node, including the model 权重 entries, startup command, and"
+        },
+        {
+          "kind": "pr",
+          "number": 18248,
+          "title": "[Doc][Model] Update Qwen3.6-35B-A3B docs for 950DT and A2/A3",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18248",
+          "author": "zsponly",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-10T12:32:30Z",
+          "updatedAt": "2026-10-22T14:55:29Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "- Document Qwen3.6-35B-A3B deployment on 950DT Products with a single-NPU W8A8 MXFP8 example, C8 KV-cache option, 950DT image, and model weight entries. The W4A8 MXFP4 download link is intentionally left blank until it is available. - Updat",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【模型】更新 Qwen3.6-35B-A3B docs for 950DT and A2/A3",
+          "excerptZh": "- 补充文档 Qwen3.6-35B-A3B deployment on 950DT Products with a single-NPU W8A8 MXFP8 example, C8 KV-缓存 option, 950DT image, and model 权重 entries. The W4A8 MXFP4 download link is intentionally left blank until it is available. - Updat"
+        }
+      ]
+    },
+    {
+      "id": "gemma4",
+      "name": "Gemma4",
+      "family": "Gemma",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17492,
+          "title": "[Feature][Spec Decode] To support Gemma4 MTP on Model Runner V2",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17492",
+          "author": "swimming2007-doge",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-24T08:38:52Z",
+          "updatedAt": "2026-10-22T13:40:51Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds Gemma4 MTP speculative decoding support on Model Runner V2 ( VLLM USE V2 MODEL RUNNER=1 ). On stock main, Gemma4 MTP under Model Runner V2 was broken at two layers: 1. Routing : init speculator dispatched Gemma4 MTP to AscendEagleSpecu",
+          "modelIds": [
+            "gemma4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[功能] [规格解码]在Model Runner V2上支持Gemma4 MTP",
+          "excerptZh": "Adds Gemma4 MTP 投机解码 支持 on Model Runner V2 ( VLLM USE V2 MODEL RUNNER=1 ). On stock main, Gemma4 MTP under Model Runner V2 was broken at two layers: 1. 路由 : init speculator dispatched Gemma4 MTP to AscendEagleSpecu"
+        }
+      ]
+    },
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19346,
+          "title": "[Feature][MRV2]Enable the four-card GLM-5.3-Flash smoke on Model Runner V2",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19346",
+          "author": "yjyang62",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-21T06:36:53Z",
+          "updatedAt": "2026-10-22T12:20:43Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "tests/e2e/pull request/four card/test glm5 3 flash.py is a TP4 functional smoke for GLM-5.3-Flash. It was skipped because the case pinned Model Runner V1, and V1 is outside the default CI path. This turns that smoke back on and runs it on M",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【MRV2】启用 the four-card GLM-5.3-Flash smoke on Model Runner V2",
+          "excerptZh": "tests/e2e/pull request/four card/test glm5 3 flash.py is a TP4 functional smoke for GLM-5.3-Flash. It was skipped because the case pinned Model Runner V1, and V1 is outside the default CI path. This turns that smoke back on and runs it on M"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18973,
+          "title": "[Doc][v0.30.0] Add DeepSeek-V4-Flash-0731 deployment instructions for Ascend 950DT",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18973",
+          "author": "LXX1122",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-16T06:34:43Z",
+          "updatedAt": "2026-10-22T15:43:41Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add DeepSeek-V4-Flash-0731 deployment instructions for Ascend 950DT on vLLM-Ascend v0.30.0. The existing A2/A3 deployment commands are retained; some A3 examples have Markdown indentation changes. - Add the 950DT model entry and the version",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【v0.30.0】新增 DeepSeek-V4-Flash-0731 deployment instructions for Ascend 950DT",
+          "excerptZh": "新增 DeepSeek-V4-Flash-0731 deployment instructions for Ascend 950DT on vLLM-Ascend v0.30.0. The existing A2/A3 deployment commands are retained; some A3 examples have Markdown indentation changes. - 新增 the 950DT model entry and the version"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18159,
+          "title": "[Test][Feature] Add Qwen3.8-Flash-Next four-layer no-PLE cases",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18159",
+          "author": "Windfeng8",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-10T02:12:56Z",
+          "updatedAt": "2026-10-22T12:20:14Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add checkpoint-backed HCCL and same-device NPU IPC weight-transfer cases for Qwen3.8-Flash-Next using four decoder layers with PLE disabled. Preserve the retained original BF16 values, 512 experts, top-10 routing, GDN, QSA and hyperconnecti",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": -1,
+          "titleZh": "【测试】【功能】新增Qwen3.8-Flash-Next四层无PLE案例",
+          "excerptZh": "新增 检查点-backed HCCL and same-device NPU IPC 权重-transfer cases for Qwen3.8-Flash-Next using four decoder layers with PLE disabled. Preserve the retained original BF16 values, 512 experts, top-10 路由, GDN, QSA and hyperconnecti"
         }
       ]
     }
