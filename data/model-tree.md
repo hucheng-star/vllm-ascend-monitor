@@ -1,6 +1,6 @@
 # vLLM-Ascend 模型版本树
 
-更新时间：2026-10-22T23:00:15.146Z
+更新时间：2026-10-23T23:00:02.039Z
 
 版本按日期由近到远排列。同一条说明若点名多个模型，会同时出现在这些模型下。
 
@@ -79,7 +79,7 @@
 
 #### v0.30.0rc1 · 2026.10.11（中文）
 
-这是 vLLM Ascend v0.30.0rc1，一个以模型为核心的版本，基于 v0.29 发布线构建，并通过 main2main 流程与上游 vLLM v0.30.0 对齐。本版本聚焦四个旗舰模型： DeepSeek V4.1 、 GLM-5.3 、 GLM-5.3-Flash 和 Qwen3.8-27B ，并强化了它们所依赖的共享执行栈（Model Runner V2、PCP/DCP 并行、KV Cache Pool 以及投机解码）。以下声明范围之外的模型或硬件组合不属于本版本的发布承诺。请参阅 官方文档 开始使用。
+This is vLLM Ascend v0.30.0rc1, a model-focused release built on the v0.29 release line and aligned with upstream vLLM v0.30.0 via the main2main pipeline. This release focuses on four flagship models: DeepSeek V4.1 , GLM-5.3 , GLM-5.3-Flash , and Qwen3.8-27B , and hardens the shared execution stacks they rely on (Model Runner V2, PCP/DCP parallelism, KV Cache Pool, and speculative decoding). Model or hardware combinations outside the scope declared below are not part of the release claims. Please follow the official documentation to get started.
 
 ##### 亮点
 
@@ -206,7 +206,7 @@
 
 ##### 已知问题
 
-- DeepSeek-V4 KV Pool ：为 DeepSeek-V4 启用 KV Pool 时，必须添加 --no-disable-hybrid-kv-cache-manager 标志，否则服务在启动时会 OOM。此外，DSv4 的 KV Pool 会存储所有压缩率族的所有状态——存储 1M token 的序列大约需要 300GB，这与上游 vLLM 的行为相同。 [#9975](https://github.com/vllm-project/vllm-ascend/issues/9975)
+- DeepSeek-V4 KV Pool : When enabling KV Pool for DeepSeek-V4, the --no-disable-hybrid-kv-cache-manager flag must be added, otherwise the service will OOM at startup. Additionally, KV Pool for DSv4 stores all states for all compression ratio families — storing a sequence of 1M tokens takes approximately 300GB, which is the same behavior as upstream vLLM. [#9975](https://github.com/vllm-project/vllm-ascend/issues/9975)
 
 #### v0.22.1rc1 · 2026.06.30（中文）
 
@@ -581,7 +581,7 @@
 
 #### v0.30.0rc1 · 2026.10.11（中文）
 
-这是 vLLM Ascend v0.30.0rc1，一个以模型为核心的版本，基于 v0.29 发布线构建，并通过 main2main 流程与上游 vLLM v0.30.0 对齐。本版本聚焦四个旗舰模型： DeepSeek V4.1 、 GLM-5.3 、 GLM-5.3-Flash 和 Qwen3.8-27B ，并强化了它们所依赖的共享执行栈（Model Runner V2、PCP/DCP 并行、KV Cache Pool 以及投机解码）。以下声明范围之外的模型或硬件组合不属于本版本的发布承诺。请参阅 官方文档 开始使用。
+This is vLLM Ascend v0.30.0rc1, a model-focused release built on the v0.29 release line and aligned with upstream vLLM v0.30.0 via the main2main pipeline. This release focuses on four flagship models: DeepSeek V4.1 , GLM-5.3 , GLM-5.3-Flash , and Qwen3.8-27B , and hardens the shared execution stacks they rely on (Model Runner V2, PCP/DCP parallelism, KV Cache Pool, and speculative decoding). Model or hardware combinations outside the scope declared below are not part of the release claims. Please follow the official documentation to get started.
 
 ##### 亮点
 
@@ -617,7 +617,7 @@
 
 ##### 已知问题
 
-- Qwen3.6-35B-A3B 在启用 MTP/推测解码时可能关闭，在 shape/dtype 处理期间报告 numAcceptedTokens[0]=4 exceeds varlen segment length=3 。 [#9956](https://github.com/vllm-project/vllm-ascend/issues/9956)
+- Qwen3.6-35B-A3B may shut down when MTP/speculative decoding is enabled, with numAcceptedTokens[0]=4 exceeds varlen segment length=3 reported during shape/dtype processing. [#9956](https://github.com/vllm-project/vllm-ascend/issues/9956)
 
 #### v0.21.0rc1 · 2026.06.16（中文）
 
@@ -1049,7 +1049,7 @@
 
 ##### 已知问题
 
-- 本版本中 Qwen3-Next 不支持专家并行和 MTP 特性。如果输入过长，会导致内存溢出。我们将在下一版本中改进。
+- Qwen3-Next doesn't support expert parallelism and MTP features in this release. And it'll be oom if the input is too long. We'll improve it in the next release
 
 ##### 核心
 
@@ -1071,7 +1071,7 @@
 
 ##### 已知问题
 
-- 在启用专家并行运行 Qwen3-Next 时，请将 HCCLBUFFSIZE 环境变量设置为合适的值，例如 1024。
+- When running Qwen3-Next with expert parallelism enabled, please set HCCLBUFFSIZE environment variable to a suitable value, such as 1024.
 
 #### v0.11.0rc0 · 2025.09.30（中文）
 
@@ -1084,7 +1084,7 @@
 
 ##### 亮点
 
-- 新增对 Qwen3-Next 的支持。请注意，专家并行和 MTP 功能在此版本中不可用。我们将很快添加对它们的支持。请按照 官方指南 开始使用。 [#2917](https://github.com/vllm-project/vllm-ascend/issues/2917)
+- Added support for Qwen3-Next. Please note that the expert parallelism and MTP features do not work with this release. We will be adding support for them soon. Follow the official guide to get started. [#2917](https://github.com/vllm-project/vllm-ascend/issues/2917)
 
 ##### 已知问题
 
@@ -1304,7 +1304,7 @@
 
 ##### 已知问题
 
-- qwen2.5 VL 的精度不是很好。这是由 CANN 引起的缺陷，我们将尽快修复。
+- The accuracy of qwen2.5 VL is not very good. This is a bug caused by CANN, we will fix it soon.
 
 #### v0.10.2rc1 · 2025.09.16（中文）
 
@@ -1478,9 +1478,9 @@
 ##### 已知问题
 
 - 使用 CANN 9.0.0 时，GLM5.1 1P1D 四机部署在 140k 上下文性能测试期间可能挂起，启用 MC2 的 Kimi-K2.5 在单节点 A3 上可能遇到 OOM。 [#10963](https://github.com/vllm-project/vllm-ascend/issues/10963)
-- GLM5/GLM5.1 W4A8 部署在某些高级配置下存在已知问题。CANN 9.0 搭配 MC2 可能返回不准确的输出，FlashComm 可能在模型启动期间失败，MTP 权重加载在 1P1D A3 部署中可能失败。 [#9395](https://github.com/vllm-project/vllm-ascend/issues/9395) [#9658](https://github.com/vllm-project/vllm-ascend/issues/9658) [#9655](https://github.com/vllm-project/vllm-ascend/issues/9655)
-- GLM-5.1 部署在将 Expert Parallel 与 FULL 图模式一起使用时，可能遇到 MoeDistributeDispatchV2 /NPU 图失败。已报告的解决方法是针对 FULL 图模式禁用 Expert Parallel，或使用 PIECEWISE/eager 模式。 [#9503](https://github.com/vllm-project/vllm-ascend/issues/9503)
-- GLM-5.1 在长时间运行服务后，在 200k 长序列 1P1D agent 工作负载的 P 节点上可能挂起， MoeDistributeDispatchV2 / aclnnMoeDistributeDispatchV4 报告 AICore 超时。 [#9958](https://github.com/vllm-project/vllm-ascend/issues/9958)
+- GLM5/GLM5.1 W4A8 deployments have known issues in some advanced configurations. CANN 9.0 with MC2 can return inaccurate output, FlashComm can fail during model startup, and MTP weight loading can fail in 1P1D A3 deployments. [#9395](https://github.com/vllm-project/vllm-ascend/issues/9395) [#9658](https://github.com/vllm-project/vllm-ascend/issues/9658) [#9655](https://github.com/vllm-project/vllm-ascend/issues/9655)
+- GLM-5.1 deployments can hit MoeDistributeDispatchV2 /NPU graph failures when Expert Parallelism is used together with FULL graph mode. The reported workaround is to disable Expert Parallelism for FULL graph mode, or use PIECEWISE/eager mode. [#9503](https://github.com/vllm-project/vllm-ascend/issues/9503)
+- GLM-5.1 can hang on the P node in 200k long-sequence 1P1D agent workloads after long-running service, with MoeDistributeDispatchV2 / aclnnMoeDistributeDispatchV4 reporting an AICore timeout. [#9958](https://github.com/vllm-project/vllm-ascend/issues/9958)
 
 #### v0.22.1rc1 · 2026.06.30（中文）
 
@@ -1533,8 +1533,8 @@
 
 ##### 已知问题
 
-- GLM5/GLM5.1 W4A8 部署在某些高级配置下存在已知问题。CANN 9.0 搭配 MC2 可能返回不准确的输出，FlashComm 可能在模型启动期间失败，MTP 权重加载在 1P1D A3 部署中可能失败。 [#9395](https://github.com/vllm-project/vllm-ascend/issues/9395) [#9658](https://github.com/vllm-project/vllm-ascend/issues/9658) [#9655](https://github.com/vllm-project/vllm-ascend/issues/9655)
-- GLM5 W4A8 部署在将 MTP3 与 FlashComm 一起使用时，推测解码接受率可能显著降低。 [#9803](https://github.com/vllm-project/vllm-ascend/issues/9803)
+- GLM5/GLM5.1 W4A8 deployments have known issues in some advanced configurations. CANN 9.0 with MC2 can return inaccurate output, FlashComm can fail during model startup, and MTP weight loading can fail in 1P1D A3 deployments. [#9395](https://github.com/vllm-project/vllm-ascend/issues/9395) [#9658](https://github.com/vllm-project/vllm-ascend/issues/9658) [#9655](https://github.com/vllm-project/vllm-ascend/issues/9655)
+- GLM5 W4A8 deployments can see a significantly lower speculative decoding acceptance rate when MTP3 is used together with FlashComm. [#9803](https://github.com/vllm-project/vllm-ascend/issues/9803)
 
 #### v0.21.0rc1 · 2026.06.16（中文）
 
@@ -2676,7 +2676,7 @@
 
 ##### 已知问题
 
-- 旧版HDK/CANN上的FULLANDPIECEWISE ：HDK < 25.5.1 / CANN < 8.5.0 软件栈仍存在旧的流预算限制，可能导致图捕获失败或回退到 PIECEWISE 模式。建议升级到 HDK 25.5.1+ / CANN 8.5.0+ 以获得完整的 FULLANDPIECEWISE 支持。
+- FULLANDPIECEWISE on older HDK/CANN : HDK < 25.5.1 / CANN < 8.5.0 stacks still have the old stream-budget limitation, which may cause graph capture failures or fallback to PIECEWISE mode. Upgrade to HDK 25.5.1+ / CANN 8.5.0+ is recommended for full FULLANDPIECEWISE support.
 
 #### v0.22.1rc1 · 2026.06.30（中文）
 
@@ -3590,9 +3590,9 @@
 
 ##### 已知问题
 
-- 本版本中 Deepseek 3.2 仅适用于 torchair 图模式。我们将在下一版本中使其支持 aclgraph 模式。
-- Qwen2-audio 默认无法工作。临时解决方案是将 --gpu-memory-utilization 设置为合适的值，例如 0.8。
-- 如果同一节点上运行了多个 vLLM 实例，CPU 绑定功能将无法工作。
+- Deepseek 3.2 only work with torchair graph mode in this release. We'll make it work with aclgraph mode in the next release.
+- Qwen2-audio doesn't work by default. Temporary solution is to set --gpu-memory-utilization to a suitable value, such as 0.8.
+- CPU bind feature doesn't work if more than one vLLM instance is running on the same node.
 
 ##### 亮点
 
@@ -3738,10 +3738,10 @@
 
 ##### 已知问题
 
-- 长时间服务后可能会出现内存泄漏和服务卡住的问题。这是 TorchNPU 的一个缺陷，我们将尽快升级并修复。
-- 对于长序列输入场景，有时没有响应，且 kv cache 使用率会升高。这是调度器的一个缺陷，我们正在处理中。
-- Qwen2-audio 默认无法正常工作，我们正在修复。临时解决方案是将 --gpu-memory-utilization 设置为合适的值，例如 0.8。
-- 使用 aclgraph 时 DeepSeek3.2 的精度不正确。临时解决方案是根据输入的 batch size 将 cudagraphcapturesizes 设置为合适的值。
+- The memory may be leaked and the service may be stuck after long time serving. This is a bug from TorchNPU, we'll upgrade and fix it soon.
+- For long sequence input case, there is no response sometimes and the kv cache usage becomes higher. This is a bug for scheduler. We are working on it.
+- Qwen2-audio doesn't work by default, we're fixing it. Temporary solution is to set --gpu-memory-utilization to a suitable value, such as 0.8.
+- The accuracy of DeepSeek3.2 with aclgraph is not correct. Temporary solution is to set cudagraphcapturesizes to a suitable value depending on the batch size for the input.
 
 #### v0.11.0rc0 · 2025.09.30（中文）
 
@@ -3762,7 +3762,7 @@
 
 ##### 亮点
 
-- 为 aclgraph 新增量化支持。 [#2841](https://github.com/vllm-project/vllm-ascend/issues/2841)
+- Added quantization support for aclgraph [#2841](https://github.com/vllm-project/vllm-ascend/issues/2841)
 
 ##### 核心
 
@@ -4121,6 +4121,12 @@
 
 - 在某些情况下，当启用 aclgraph 时，vLLM 进程可能会因 GatherV3 错误而崩溃。我们正在处理此问题，并将在下一个版本中修复。 [#1038](https://github.com/vllm-project/vllm-ascend/issues/1038)
 - 前缀缓存功能在启用 Ascend Scheduler 但未启用分块预填充时无法正常工作。此问题将在下一个版本中修复。 [#1350](https://github.com/vllm-project/vllm-ascend/issues/1350)
+
+#### v0.9.0rc2 · 2025.06.10（英文原文）
+
+##### 亮点
+
+- Fix the import error when vllm-ascend is installed without editable way. [#1152](https://github.com/vllm-project/vllm-ascend/issues/1152)
 
 #### v0.9.0rc1 · 2025.06.09（中文）
 
