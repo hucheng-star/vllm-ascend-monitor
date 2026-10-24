@@ -1,0 +1,289 @@
+{
+  "day": "2026-10-25",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 19722,
+          "title": "[Bug]: Vector core exception (507035) in grouped_matmul_swiglu_quant_v2 kills all TP8 workers under concurrent long-prompt load (Atlas A3, DeepSeek-V4.1-Flash)",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/19722",
+          "author": "rockjimi",
+          "labels": [
+            "llm-model",
+            "deepseek"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-24T17:23:50Z",
+          "updatedAt": "2026-10-24T17:24:19Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Environment - vllm-ascend : quay.io/ascend/vllm-ascend:deepseek-v4.1-flash-a3 (vLLM 0.27.1+empty) - CANN : 9.1.0 (built-in OPP) - Platform : Atlas 800I A3, 8×910C (16 logical devices), dual TP8 instances - Model : DeepSeek-V4.1-Flash W4A8 (",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 8,
+          "titleZh": "【缺陷】: Vector core exception (507035) in grouped_matmul_swiglu_quant_v2 kills all TP8 workers under concurrent long-prompt load (Atlas A3, DeepSeek-V4.1-Flash)",
+          "excerptZh": "Environment - vllm-ascend : quay.io/ascend/vllm-ascend:deepseek-v4.1-flash-a3 (vLLM 0.27.1+empty) - CANN : 9.1.0 (built-in OPP) - Platform : Atlas 800I A3, 8×910C (16 logical devices), dual TP8 instances - Model : DeepSeek-V4.1-Flash W4A8 ("
+        },
+        {
+          "kind": "pr",
+          "number": 19586,
+          "title": "[Doc][Feature] Update A2 deployment for DeepSeek-V4.1-Flash",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19586",
+          "author": "ylyhyqsl",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-23T06:44:56Z",
+          "updatedAt": "2026-10-24T16:47:12Z",
+          "closedAt": "2026-10-24T16:47:11Z",
+          "mergedAt": "2026-10-24T16:47:11Z",
+          "comments": 0,
+          "excerpt": "This PR updates the DeepSeek-V4.1-Flash deployment guide for Atlas 800 A2 servers. Specifically, it: - Adjusts the --max-num-batched-tokens parameter from 8192 to 4096 in the Prefill node scripts. - Updates the A2 series hardware configurat",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【功能】更新 A2 deployment for DeepSeek-V4.1-Flash",
+          "excerptZh": "This PR 更新 the DeepSeek-V4.1-Flash deployment guide for Atlas 800 A2 servers. Specifically, it: - Adjusts the --max-num-batched-tokens parameter from 8192 to 4096 in the 预填充 node scripts. - 更新 the A2 series hardware configurat"
+        },
+        {
+          "kind": "pr",
+          "number": 19616,
+          "title": "[Doc][Feature] Update A2 deployment for DeepSeek-V4.1-Flash",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19616",
+          "author": "ylyhyqsl",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-23T08:37:34Z",
+          "updatedAt": "2026-10-24T16:46:49Z",
+          "closedAt": "2026-10-24T16:46:48Z",
+          "mergedAt": "2026-10-24T16:46:48Z",
+          "comments": 0,
+          "excerpt": "This PR updates the DeepSeek-V4.1-Flash deployment guide for Atlas 800 A2 servers. Specifically, it: - Adjusts the --max-num-batched-tokens parameter from 8192 to 4096 in the Prefill node scripts. - Updates the A2 series hardware configurat",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【功能】更新 A2 deployment for DeepSeek-V4.1-Flash",
+          "excerptZh": "This PR 更新 the DeepSeek-V4.1-Flash deployment guide for Atlas 800 A2 servers. Specifically, it: - Adjusts the --max-num-batched-tokens parameter from 8192 to 4096 in the 预填充 node scripts. - 更新 the A2 series hardware configurat"
+        },
+        {
+          "kind": "pr",
+          "number": 19303,
+          "title": "[Doc][v0.30.0] Add DeepSeek-V4.1-Flash deployment guide for Ascend 950DT",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19303",
+          "author": "linfeng-yuan",
+          "labels": [
+            "documentation",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-20T14:59:27Z",
+          "updatedAt": "2026-10-24T16:47:31Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "The DeepSeek-V4.1-Flash tutorial covers A2/A3 deployment but does not provide the corresponding Ascend 950DT instructions. Add the 950DT deployment path using the original checkpoint and Model Runner V2: - Container devices and UB topology ",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【v0.30.0】新增 DeepSeek-V4.1-Flash deployment guide for Ascend 950DT",
+          "excerptZh": "The DeepSeek-V4.1-Flash tutorial covers A2/A3 deployment but does not provide the corresponding Ascend 950DT instructions. 新增 the 950DT deployment path using the original 检查点 and Model Runner V2: - Container devices and UB topology"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19629,
+          "title": "[Doc] Remove DeepSeek V4 Flash Vision documentation",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19629",
+          "author": "GDzhu01",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-23T09:10:57Z",
+          "updatedAt": "2026-10-24T17:12:22Z",
+          "closedAt": "2026-10-24T17:12:22Z",
+          "mergedAt": "2026-10-24T17:12:22Z",
+          "comments": 0,
+          "excerpt": "Remove the entire DeepSeek-V4-Flash-Vision-Exp documentation from the docs site: - Delete the English model tutorial and its Chinese translation catalog. - Remove the MkDocs navigation entry and localized navigation titles. - Remove its mod",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】移除 DeepSeek V4 Flash Vision documentation",
+          "excerptZh": "移除 the entire DeepSeek-V4-Flash-Vision-Exp documentation from the docs site: - Delete the English model tutorial and its Chinese translation catalog. - 移除 the MkDocs navigation entry and localized navigation titles. - 移除 its mod"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18233,
+          "title": "[Doc][Misc] Correct and extend Qwen3.5-397B-A17B deployment guide",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18233",
+          "author": "dypforever",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-10T09:54:09Z",
+          "updatedAt": "2026-10-24T16:43:26Z",
+          "closedAt": "2026-10-24T16:43:26Z",
+          "mergedAt": "2026-10-24T16:43:26Z",
+          "comments": 0,
+          "excerpt": "Align the model guide with the author's updated deployment configurations, and resolve conflicts with the latest target branch's memory-unit cleanup. - Replace A3 PD with a single-host, 16-NPU W4A8 example: Prefill uses devices 0–7 with TP8",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【杂项】Correct and extend Qwen3.5-397B-A17B deployment guide",
+          "excerptZh": "对齐 the model guide with the author's 更新 deployment configurations, and resolve conflicts with the latest target branch's 显存-unit cleanup. - Replace A3 PD with a single-host, 16-NPU W4A8 example: 预填充 uses devices 0–7 with TP8"
+        },
+        {
+          "kind": "pr",
+          "number": 19476,
+          "title": "[Doc][v0.30.0] Backport Qwen3.5-397B-A17B deployment guide",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19476",
+          "author": "dypforever",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-22T08:26:21Z",
+          "updatedAt": "2026-10-24T16:42:15Z",
+          "closedAt": "2026-10-24T16:42:15Z",
+          "mergedAt": "2026-10-24T16:42:15Z",
+          "comments": 0,
+          "excerpt": "Backport the Qwen3.5-397B-A17B documentation updates from 18233 to releases/v0.30.0 . Align the model guide with the author's updated deployment configurations, and resolve conflicts with the latest target branch's memory-unit cleanup. - Re",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【v0.30.0】Backport Qwen3.5-397B-A17B deployment guide",
+          "excerptZh": "Backport the Qwen3.5-397B-A17B documentation 更新 from 18233 to releases/v0.30.0 . 对齐 the model guide with the author's 更新 deployment configurations, and resolve conflicts with the latest target branch's 显存-unit cleanup. - Re"
+        },
+        {
+          "kind": "pr",
+          "number": 16622,
+          "title": "[Doc] Fix inconsistent num_speculative_tokens in Qwen3.5-397B-A17B PD disaggregation tutorial",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/16622",
+          "author": "DingNova",
+          "labels": [
+            "documentation",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-15T13:47:01Z",
+          "updatedAt": "2026-10-24T19:10:00Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Fixes 16160 In section 5.5 (Prefill-Decode Disaggregation, Ascend 950DT series) of the Qwen3.5-397B-A17B tutorial, the prefill (kv producer) node config used \"num speculative tokens\": 1 while the decode node used 3 . Per docs/source/user gu",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】修复 inconsistent num_speculative_tokens in Qwen3.5-397B-A17B PD disaggregation tutorial",
+          "excerptZh": "Fixes 16160 In section 5.5 (预填充-解码 Disaggregation, Ascend 950DT series) of the Qwen3.5-397B-A17B tutorial, the 预填充 (kv producer) node 配置 used \"num 投机 tokens\": 1 while the 解码 node used 3 . Per docs/source/user gu"
+        }
+      ]
+    },
+    {
+      "id": "qwen2.5",
+      "name": "Qwen2.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19557,
+          "title": "[v0.30.0][Doc][Misc] Fix missing W8A8 cell in supported models pooling table",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19557",
+          "author": "huangwanjian",
+          "labels": [
+            "documentation",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-23T03:17:53Z",
+          "updatedAt": "2026-10-24T16:43:09Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "The Qwen2.5-Math-RM-72B row in the Pooling Models → === \"A2/A3\" tab of docs/source/user guide/support matrix/supported models.md has only 5 cells , while the table header defines 6 columns ( Model Support Note Supported Hardware W8A8 Doc ).",
+          "modelIds": [
+            "qwen2.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【v0.30.0】【文档】【杂项】修复 missing W8A8 cell in supported models 池化 table",
+          "excerptZh": "The Qwen2.5-Math-RM-72B row in the 池化 Models → === \"A2/A3\" tab of docs/source/user guide/支持 matrix/supported models.md has only 5 cells , while the table header defines 6 columns ( Model 支持 Note Supported Hardware W8A8 Doc )."
+        },
+        {
+          "kind": "pr",
+          "number": 19556,
+          "title": "[Doc][Misc] Fix missing W8A8 cell in supported models pooling table",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19556",
+          "author": "huangwanjian",
+          "labels": [
+            "documentation",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-23T03:17:43Z",
+          "updatedAt": "2026-10-24T19:26:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "The Qwen2.5-Math-RM-72B row in the Pooling Models → === \"A2/A3\" tab of docs/source/user guide/support matrix/supported models.md has only 5 cells , while the table header defines 6 columns ( Model Support Note Supported Hardware W8A8 Doc ).",
+          "modelIds": [
+            "qwen2.5"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【杂项】修复 missing W8A8 cell in supported models 池化 table",
+          "excerptZh": "The Qwen2.5-Math-RM-72B row in the 池化 Models → === \"A2/A3\" tab of docs/source/user guide/支持 matrix/supported models.md has only 5 cells , while the table header defines 6 columns ( Model 支持 Note Supported Hardware W8A8 Doc )."
+        }
+      ]
+    }
+  ]
+}
