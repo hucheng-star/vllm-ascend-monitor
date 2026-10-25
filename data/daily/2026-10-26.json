@@ -1,0 +1,71 @@
+{
+  "day": "2026-10-26",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19759,
+          "title": "[Doc][Misc] Update DeepSeek-V4-Flash pooling and startup instructions",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19759",
+          "author": "LXX1122",
+          "labels": [
+            "documentation",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-25T14:28:42Z",
+          "updatedAt": "2026-10-25T16:20:04Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "The DeepSeek-V4-Flash pooling examples are split across separate top-level sections, and the 950DT startup instructions require Decode to become healthy before Prefill starts. Group the A3 and 950DT Memcache examples under Section 5.3, iden",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【杂项】更新 DeepSeek-V4-Flash 池化 and startup instructions",
+          "excerptZh": "The DeepSeek-V4-Flash 池化 examples are 拆分 across separate top-level sections, and the 950DT startup instructions require 解码 to become healthy before 预填充 starts. Group the A3 and 950DT Memcache examples under Section 5.3, iden"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-pro",
+      "name": "DeepSeek V4 Pro",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19717,
+          "title": "[Doc][v0.30.0] Add 950DT Memcache KV Cache Pool PD deployment section to DeepSeek-V4-Pro docs",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19717",
+          "author": "lenghuixing0330",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-24T12:54:30Z",
+          "updatedAt": "2026-10-25T16:14:53Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add 950DT Memcache KV Cache Pool PD deployment section to DeepSeek-V4-Pro docs Does this PR introduce any user-facing change? --- Checklist Testing - [ ] Boundary / edge-case coverage : I reviewed whether this change involves boundary condi",
+          "modelIds": [
+            "ds-v4-pro"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【v0.30.0】新增 950DT Memcache KV 缓存 Pool PD deployment section to DeepSeek-V4-Pro docs",
+          "excerptZh": "【】新增 950DT Memcache KV 缓存 Pool PD deployment section to DeepSeek-V4-Pro docs --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary condi"
+        }
+      ]
+    }
+  ]
+}

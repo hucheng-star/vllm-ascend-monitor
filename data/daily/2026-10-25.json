@@ -3,85 +3,274 @@
   "timezone": "Asia/Shanghai",
   "groups": [
     {
+      "id": "ds-v4-pro",
+      "name": "DeepSeek V4 Pro",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19752,
+          "title": "[Doc][v0.30.0] Add A2 series KV Cache Pool deployment to DeepSeek-V4-Pro tutorial",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19752",
+          "author": "huangwanjian",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-25T12:13:20Z",
+          "updatedAt": "2026-10-25T15:12:19Z",
+          "closedAt": "2026-10-25T15:12:19Z",
+          "mergedAt": "2026-10-25T15:12:19Z",
+          "comments": 0,
+          "excerpt": "Add an === \"A2 series\" tab to section 5.3 of the DeepSeek-V4-Pro tutorial with the A2 pooling deployment verified on an Atlas 800I A2 cluster (4 Prefill + 4 Decode nodes): - retitle section 5.3 to \"KV Cache Pool Deployment\" and state in the",
+          "modelIds": [
+            "ds-v4-pro"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【v0.30.0】新增 A2 series KV 缓存 Pool deployment to DeepSeek-V4-Pro tutorial",
+          "excerptZh": "新增 an === \"A2 series\" tab to section 5.3 of the DeepSeek-V4-Pro tutorial with the A2 池化 deployment verified on an Atlas 800I A2 cluster (4 预填充 + 4 解码 nodes): - retitle section 5.3 to \"KV 缓存 Pool Deployment\" and state in the"
+        },
+        {
+          "kind": "pr",
+          "number": 19745,
+          "title": "[Doc][v0.30.0] Add Memcache KV Cache Pool deployment to DeepSeek-V4-Pro Tutorial",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19745",
+          "author": "huangwanjian",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-25T10:02:28Z",
+          "updatedAt": "2026-10-25T13:40:20Z",
+          "closedAt": "2026-10-25T13:40:20Z",
+          "mergedAt": "2026-10-25T13:40:20Z",
+          "comments": 0,
+          "excerpt": "This pull request adds a new section (Section 5.3) to the DeepSeek-V4-Pro tutorial documentation. This section provides a comprehensive guide for deploying a multi-node Prefill-Decode (PD) separation setup using the Memcache KV Cache Pool o",
+          "modelIds": [
+            "ds-v4-pro"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【v0.30.0】新增 Memcache KV 缓存 Pool deployment to DeepSeek-V4-Pro Tutorial",
+          "excerptZh": "This pull request adds a new section (Section 5.3) to the DeepSeek-V4-Pro tutorial documentation. This section provides a comprehensive guide for deploying a multi-node 预填充-解码 (PD) separation setup using the Memcache KV 缓存 Pool o"
+        },
+        {
+          "kind": "pr",
+          "number": 19718,
+          "title": "[Doc] Add 950DT Memcache KV Cache Pool PD deployment section to DeepSeek-V4-Pro docs",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19718",
+          "author": "lenghuixing0330",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-24T12:56:35Z",
+          "updatedAt": "2026-10-25T14:04:05Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add 950DT Memcache KV Cache Pool PD deployment section to DeepSeek-V4-Pro docs Does this PR introduce any user-facing change? --- Checklist Testing - [ ] Boundary / edge-case coverage : I reviewed whether this change involves boundary condi",
+          "modelIds": [
+            "ds-v4-pro"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】新增 950DT Memcache KV 缓存 Pool PD deployment section to DeepSeek-V4-Pro docs",
+          "excerptZh": "【】新增 950DT Memcache KV 缓存 Pool PD deployment section to DeepSeek-V4-Pro docs --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary condi"
+        },
+        {
+          "kind": "pr",
+          "number": 19717,
+          "title": "[Doc][v0.30.0] Add 950DT Memcache KV Cache Pool PD deployment section to DeepSeek-V4-Pro docs",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19717",
+          "author": "lenghuixing0330",
+          "labels": [
+            "documentation",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-24T12:54:30Z",
+          "updatedAt": "2026-10-25T14:03:55Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add 950DT Memcache KV Cache Pool PD deployment section to DeepSeek-V4-Pro docs Does this PR introduce any user-facing change? --- Checklist Testing - [ ] Boundary / edge-case coverage : I reviewed whether this change involves boundary condi",
+          "modelIds": [
+            "ds-v4-pro"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【v0.30.0】新增 950DT Memcache KV 缓存 Pool PD deployment section to DeepSeek-V4-Pro docs",
+          "excerptZh": "【】新增 950DT Memcache KV 缓存 Pool PD deployment section to DeepSeek-V4-Pro docs --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary condi"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19505,
+          "title": "[Doc] Add A2 workload tuning and KV pooling for DeepSeek-V4-Flash",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19505",
+          "author": "chenzhongsong93",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-22T11:17:33Z",
+          "updatedAt": "2026-10-25T14:55:58Z",
+          "closedAt": "2026-10-25T14:55:58Z",
+          "mergedAt": "2026-10-25T14:55:58Z",
+          "comments": 0,
+          "excerpt": "Document workload-specific A2 deployment settings for DeepSeek-V4-Flash-0731-w8a8 on four Atlas 800I A2 servers (32 NPUs): Prefill ExternalDP2 × TP1 × PP1 × PCP8 , Decode DP16 × TP1 , and MooncakeHybridConnector for P-to-D transfer. Each P/",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】新增 A2 workload tuning and KV 池化 for DeepSeek-V4-Flash",
+          "excerptZh": "补充文档 workload-specific A2 deployment settings for DeepSeek-V4-Flash-0731-w8a8 on four Atlas 800I A2 servers (32 NPUs): 预填充 ExternalDP2 × TP1 × PP1 × PCP8 , 解码 DP16 × TP1 , and MooncakeHybridConnector for P-to-D transfer. Each P/"
+        },
+        {
+          "kind": "pr",
+          "number": 19506,
+          "title": "[Doc][v0.30.0] Add A2 workload tuning and KV pooling for DeepSeek-V4-Flash",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19506",
+          "author": "chenzhongsong93",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-22T11:18:56Z",
+          "updatedAt": "2026-10-25T09:25:44Z",
+          "closedAt": "2026-10-25T09:25:44Z",
+          "mergedAt": "2026-10-25T09:25:44Z",
+          "comments": 0,
+          "excerpt": "Backport of 19505 to releases/v0.30.0 , preserving existing branch-specific documentation. Document workload-specific A2 deployment settings for DeepSeek-V4-Flash-0731-w8a8 on four Atlas 800I A2 servers (32 NPUs): Prefill ExternalDP2 × TP1 ",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【v0.30.0】新增 A2 workload tuning and KV 池化 for DeepSeek-V4-Flash",
+          "excerptZh": "Backport of 19505 to releases/v0.30.0 , preserving existing branch-specific documentation. 补充文档 workload-specific A2 deployment settings for DeepSeek-V4-Flash-0731-w8a8 on four Atlas 800I A2 servers (32 NPUs): 预填充 ExternalDP2 × TP1"
+        },
+        {
+          "kind": "pr",
+          "number": 19758,
+          "title": "[Doc][v0.30.0] Update DeepSeek-V4-Flash pooling and startup instructions",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19758",
+          "author": "LXX1122",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-25T14:23:53Z",
+          "updatedAt": "2026-10-25T15:55:58Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "The DeepSeek-V4-Flash pooling examples are split across separate top-level sections, and the 950DT startup instructions require Decode to become healthy before Prefill starts. Group the A3 and 950DT Memcache examples under Section 5.3, iden",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【v0.30.0】更新 DeepSeek-V4-Flash 池化 and startup instructions",
+          "excerptZh": "The DeepSeek-V4-Flash 池化 examples are 拆分 across separate top-level sections, and the 950DT startup instructions require 解码 to become healthy before 预填充 starts. Group the A3 and 950DT Memcache examples under Section 5.3, iden"
+        },
+        {
+          "kind": "pr",
+          "number": 19759,
+          "title": "[Doc][Misc] Clarify DeepSeek-V4-Flash 950DT KV cache pool heading",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19759",
+          "author": "LXX1122",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-25T14:28:42Z",
+          "updatedAt": "2026-10-25T14:33:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "The DeepSeek-V4-Flash 950DT pooled deployment heading does not identify its Memcache KV Cache Pool. Add \"with Memcache KV Cache Pool\" to Section 5.4, matching the A3 heading terminology, and retain the existing section anchor so current lin",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【杂项】Clarify DeepSeek-V4-Flash 950DT KV 缓存 pool heading",
+          "excerptZh": "The DeepSeek-V4-Flash 950DT pooled deployment heading does not identify its Memcache KV 缓存 Pool. 新增 \"with Memcache KV 缓存 Pool\" to Section 5.4, matching the A3 heading terminology, and retain the existing section anchor so current lin"
+        }
+      ]
+    },
+    {
       "id": "ds-v4.1",
       "name": "DeepSeek V4.1",
       "family": "DeepSeek",
       "items": [
         {
-          "kind": "issue",
-          "number": 19722,
-          "title": "[Bug]: Vector core exception (507035) in grouped_matmul_swiglu_quant_v2 kills all TP8 workers under concurrent long-prompt load (Atlas A3, DeepSeek-V4.1-Flash)",
-          "url": "https://github.com/vllm-project/vllm-ascend/issues/19722",
-          "author": "rockjimi",
+          "kind": "pr",
+          "number": 19740,
+          "title": "[Doc][Feature] Update A2 deployment for DeepSeek-V4.1-Flash",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19740",
+          "author": "ylyhyqsl",
           "labels": [
-            "llm-model",
-            "deepseek"
+            "documentation"
           ],
-          "state": "open",
+          "state": "closed",
           "draft": false,
-          "createdAt": "2026-10-24T17:23:50Z",
-          "updatedAt": "2026-10-24T17:24:19Z",
-          "closedAt": null,
+          "createdAt": "2026-10-25T08:26:52Z",
+          "updatedAt": "2026-10-25T12:19:48Z",
+          "closedAt": "2026-10-25T12:19:48Z",
+          "mergedAt": "2026-10-25T12:19:48Z",
+          "comments": 0,
+          "excerpt": "Update A2 deployment for DeepSeek-V4.1-Flash - vLLM main:",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【功能】更新 A2 deployment for DeepSeek-V4.1-Flash",
+          "excerptZh": "更新 A2 deployment for DeepSeek-V4.1-Flash - vLLM main:"
+        },
+        {
+          "kind": "pr",
+          "number": 19736,
+          "title": "[Doc][Feature] Update A2 deployment for DeepSeek-V4.1-Flash",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19736",
+          "author": "ylyhyqsl",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-25T07:33:42Z",
+          "updatedAt": "2026-10-25T07:58:47Z",
+          "closedAt": "2026-10-25T07:58:47Z",
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Environment - vllm-ascend : quay.io/ascend/vllm-ascend:deepseek-v4.1-flash-a3 (vLLM 0.27.1+empty) - CANN : 9.1.0 (built-in OPP) - Platform : Atlas 800I A3, 8×910C (16 logical devices), dual TP8 instances - Model : DeepSeek-V4.1-Flash W4A8 (",
+          "excerpt": "Update A2 deployment for DeepSeek-V4.1-Flash",
           "modelIds": [
             "ds-v4.1"
           ],
           "action": "opened",
-          "score": 8,
-          "titleZh": "【缺陷】: Vector core exception (507035) in grouped_matmul_swiglu_quant_v2 kills all TP8 workers under concurrent long-prompt load (Atlas A3, DeepSeek-V4.1-Flash)",
-          "excerptZh": "Environment - vllm-ascend : quay.io/ascend/vllm-ascend:deepseek-v4.1-flash-a3 (vLLM 0.27.1+empty) - CANN : 9.1.0 (built-in OPP) - Platform : Atlas 800I A3, 8×910C (16 logical devices), dual TP8 instances - Model : DeepSeek-V4.1-Flash W4A8 ("
-        },
-        {
-          "kind": "pr",
-          "number": 19586,
-          "title": "[Doc][Feature] Update A2 deployment for DeepSeek-V4.1-Flash",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19586",
-          "author": "ylyhyqsl",
-          "labels": [
-            "documentation"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-10-23T06:44:56Z",
-          "updatedAt": "2026-10-24T16:47:12Z",
-          "closedAt": "2026-10-24T16:47:11Z",
-          "mergedAt": "2026-10-24T16:47:11Z",
-          "comments": 0,
-          "excerpt": "This PR updates the DeepSeek-V4.1-Flash deployment guide for Atlas 800 A2 servers. Specifically, it: - Adjusts the --max-num-batched-tokens parameter from 8192 to 4096 in the Prefill node scripts. - Updates the A2 series hardware configurat",
-          "modelIds": [
-            "ds-v4.1"
-          ],
-          "action": "merged",
-          "score": 4,
+          "score": 3,
           "titleZh": "【文档】【功能】更新 A2 deployment for DeepSeek-V4.1-Flash",
-          "excerptZh": "This PR 更新 the DeepSeek-V4.1-Flash deployment guide for Atlas 800 A2 servers. Specifically, it: - Adjusts the --max-num-batched-tokens parameter from 8192 to 4096 in the 预填充 node scripts. - 更新 the A2 series hardware configurat"
-        },
-        {
-          "kind": "pr",
-          "number": 19616,
-          "title": "[Doc][Feature] Update A2 deployment for DeepSeek-V4.1-Flash",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19616",
-          "author": "ylyhyqsl",
-          "labels": [
-            "documentation"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-10-23T08:37:34Z",
-          "updatedAt": "2026-10-24T16:46:49Z",
-          "closedAt": "2026-10-24T16:46:48Z",
-          "mergedAt": "2026-10-24T16:46:48Z",
-          "comments": 0,
-          "excerpt": "This PR updates the DeepSeek-V4.1-Flash deployment guide for Atlas 800 A2 servers. Specifically, it: - Adjusts the --max-num-batched-tokens parameter from 8192 to 4096 in the Prefill node scripts. - Updates the A2 series hardware configurat",
-          "modelIds": [
-            "ds-v4.1"
-          ],
-          "action": "merged",
-          "score": 4,
-          "titleZh": "【文档】【功能】更新 A2 deployment for DeepSeek-V4.1-Flash",
-          "excerptZh": "This PR 更新 the DeepSeek-V4.1-Flash deployment guide for Atlas 800 A2 servers. Specifically, it: - Adjusts the --max-num-batched-tokens parameter from 8192 to 4096 in the 预填充 node scripts. - 更新 the A2 series hardware configurat"
+          "excerptZh": "更新 A2 deployment for DeepSeek-V4.1-Flash"
         },
         {
           "kind": "pr",
@@ -90,13 +279,12 @@
           "url": "https://github.com/vllm-project/vllm-ascend/pull/19303",
           "author": "linfeng-yuan",
           "labels": [
-            "documentation",
-            "merge-conflicts"
+            "documentation"
           ],
           "state": "open",
           "draft": false,
           "createdAt": "2026-10-20T14:59:27Z",
-          "updatedAt": "2026-10-24T16:47:31Z",
+          "updatedAt": "2026-10-25T09:42:11Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
@@ -108,121 +296,6 @@
           "score": 0,
           "titleZh": "【文档】【v0.30.0】新增 DeepSeek-V4.1-Flash deployment guide for Ascend 950DT",
           "excerptZh": "The DeepSeek-V4.1-Flash tutorial covers A2/A3 deployment but does not provide the corresponding Ascend 950DT instructions. 新增 the 950DT deployment path using the original 检查点 and Model Runner V2: - Container devices and UB topology"
-        }
-      ]
-    },
-    {
-      "id": "ds-v4-flash",
-      "name": "DeepSeek V4 Flash",
-      "family": "DeepSeek",
-      "items": [
-        {
-          "kind": "pr",
-          "number": 19629,
-          "title": "[Doc] Remove DeepSeek V4 Flash Vision documentation",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19629",
-          "author": "GDzhu01",
-          "labels": [
-            "documentation"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-10-23T09:10:57Z",
-          "updatedAt": "2026-10-24T17:12:22Z",
-          "closedAt": "2026-10-24T17:12:22Z",
-          "mergedAt": "2026-10-24T17:12:22Z",
-          "comments": 0,
-          "excerpt": "Remove the entire DeepSeek-V4-Flash-Vision-Exp documentation from the docs site: - Delete the English model tutorial and its Chinese translation catalog. - Remove the MkDocs navigation entry and localized navigation titles. - Remove its mod",
-          "modelIds": [
-            "ds-v4-flash"
-          ],
-          "action": "merged",
-          "score": 4,
-          "titleZh": "【文档】移除 DeepSeek V4 Flash Vision documentation",
-          "excerptZh": "移除 the entire DeepSeek-V4-Flash-Vision-Exp documentation from the docs site: - Delete the English model tutorial and its Chinese translation catalog. - 移除 the MkDocs navigation entry and localized navigation titles. - 移除 its mod"
-        }
-      ]
-    },
-    {
-      "id": "qwen3.5",
-      "name": "Qwen3.5",
-      "family": "Qwen",
-      "items": [
-        {
-          "kind": "pr",
-          "number": 18233,
-          "title": "[Doc][Misc] Correct and extend Qwen3.5-397B-A17B deployment guide",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/18233",
-          "author": "dypforever",
-          "labels": [
-            "documentation"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-10-10T09:54:09Z",
-          "updatedAt": "2026-10-24T16:43:26Z",
-          "closedAt": "2026-10-24T16:43:26Z",
-          "mergedAt": "2026-10-24T16:43:26Z",
-          "comments": 0,
-          "excerpt": "Align the model guide with the author's updated deployment configurations, and resolve conflicts with the latest target branch's memory-unit cleanup. - Replace A3 PD with a single-host, 16-NPU W4A8 example: Prefill uses devices 0–7 with TP8",
-          "modelIds": [
-            "qwen3.5"
-          ],
-          "action": "merged",
-          "score": 4,
-          "titleZh": "【文档】【杂项】Correct and extend Qwen3.5-397B-A17B deployment guide",
-          "excerptZh": "对齐 the model guide with the author's 更新 deployment configurations, and resolve conflicts with the latest target branch's 显存-unit cleanup. - Replace A3 PD with a single-host, 16-NPU W4A8 example: 预填充 uses devices 0–7 with TP8"
-        },
-        {
-          "kind": "pr",
-          "number": 19476,
-          "title": "[Doc][v0.30.0] Backport Qwen3.5-397B-A17B deployment guide",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19476",
-          "author": "dypforever",
-          "labels": [
-            "documentation"
-          ],
-          "state": "closed",
-          "draft": false,
-          "createdAt": "2026-10-22T08:26:21Z",
-          "updatedAt": "2026-10-24T16:42:15Z",
-          "closedAt": "2026-10-24T16:42:15Z",
-          "mergedAt": "2026-10-24T16:42:15Z",
-          "comments": 0,
-          "excerpt": "Backport the Qwen3.5-397B-A17B documentation updates from 18233 to releases/v0.30.0 . Align the model guide with the author's updated deployment configurations, and resolve conflicts with the latest target branch's memory-unit cleanup. - Re",
-          "modelIds": [
-            "qwen3.5"
-          ],
-          "action": "merged",
-          "score": 4,
-          "titleZh": "【文档】【v0.30.0】Backport Qwen3.5-397B-A17B deployment guide",
-          "excerptZh": "Backport the Qwen3.5-397B-A17B documentation 更新 from 18233 to releases/v0.30.0 . 对齐 the model guide with the author's 更新 deployment configurations, and resolve conflicts with the latest target branch's 显存-unit cleanup. - Re"
-        },
-        {
-          "kind": "pr",
-          "number": 16622,
-          "title": "[Doc] Fix inconsistent num_speculative_tokens in Qwen3.5-397B-A17B PD disaggregation tutorial",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/16622",
-          "author": "DingNova",
-          "labels": [
-            "documentation",
-            "merge-conflicts"
-          ],
-          "state": "open",
-          "draft": false,
-          "createdAt": "2026-09-15T13:47:01Z",
-          "updatedAt": "2026-10-24T19:10:00Z",
-          "closedAt": null,
-          "mergedAt": null,
-          "comments": 0,
-          "excerpt": "Fixes 16160 In section 5.5 (Prefill-Decode Disaggregation, Ascend 950DT series) of the Qwen3.5-397B-A17B tutorial, the prefill (kv producer) node config used \"num speculative tokens\": 1 while the decode node used 3 . Per docs/source/user gu",
-          "modelIds": [
-            "qwen3.5"
-          ],
-          "action": "updated",
-          "score": 0,
-          "titleZh": "【文档】修复 inconsistent num_speculative_tokens in Qwen3.5-397B-A17B PD disaggregation tutorial",
-          "excerptZh": "Fixes 16160 In section 5.5 (预填充-解码 Disaggregation, Ascend 950DT series) of the Qwen3.5-397B-A17B tutorial, the 预填充 (kv producer) node 配置 used \"num 投机 tokens\": 1 while the 解码 node used 3 . Per docs/source/user gu"
         }
       ]
     },
@@ -241,19 +314,19 @@
             "documentation",
             "merge-conflicts"
           ],
-          "state": "open",
+          "state": "closed",
           "draft": false,
           "createdAt": "2026-10-23T03:17:53Z",
-          "updatedAt": "2026-10-24T16:43:09Z",
-          "closedAt": null,
+          "updatedAt": "2026-10-25T09:58:35Z",
+          "closedAt": "2026-10-25T09:58:35Z",
           "mergedAt": null,
           "comments": 0,
           "excerpt": "The Qwen2.5-Math-RM-72B row in the Pooling Models → === \"A2/A3\" tab of docs/source/user guide/support matrix/supported models.md has only 5 cells , while the table header defines 6 columns ( Model Support Note Supported Hardware W8A8 Doc ).",
           "modelIds": [
             "qwen2.5"
           ],
-          "action": "updated",
-          "score": 3,
+          "action": "closed",
+          "score": 4,
           "titleZh": "【v0.30.0】【文档】【杂项】修复 missing W8A8 cell in supported models 池化 table",
           "excerptZh": "The Qwen2.5-Math-RM-72B row in the 池化 Models → === \"A2/A3\" tab of docs/source/user guide/支持 matrix/supported models.md has only 5 cells , while the table header defines 6 columns ( Model 支持 Note Supported Hardware W8A8 Doc )."
         },
@@ -267,21 +340,178 @@
             "documentation",
             "merge-conflicts"
           ],
-          "state": "open",
+          "state": "closed",
           "draft": false,
           "createdAt": "2026-10-23T03:17:43Z",
-          "updatedAt": "2026-10-24T19:26:36Z",
-          "closedAt": null,
+          "updatedAt": "2026-10-25T09:58:34Z",
+          "closedAt": "2026-10-25T09:58:34Z",
           "mergedAt": null,
           "comments": 0,
           "excerpt": "The Qwen2.5-Math-RM-72B row in the Pooling Models → === \"A2/A3\" tab of docs/source/user guide/support matrix/supported models.md has only 5 cells , while the table header defines 6 columns ( Model Support Note Supported Hardware W8A8 Doc ).",
           "modelIds": [
             "qwen2.5"
           ],
-          "action": "updated",
-          "score": 0,
+          "action": "closed",
+          "score": 1,
           "titleZh": "【文档】【杂项】修复 missing W8A8 cell in supported models 池化 table",
           "excerptZh": "The Qwen2.5-Math-RM-72B row in the 池化 Models → === \"A2/A3\" tab of docs/source/user guide/支持 matrix/supported models.md has only 5 cells , while the table header defines 6 columns ( Model 支持 Note Supported Hardware W8A8 Doc )."
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19698,
+          "title": "[Ops][Feature] Enable EVS video pruning for Qwen3.5 on Ascend NPU",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19698",
+          "author": "Suixing5208",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-24T07:27:05Z",
+          "updatedAt": "2026-10-25T15:28:59Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Closes 10648 Part of 9079 Summary - Enable the upstream EVS video-pruning path for Qwen3.5 on Ascend NPU. - Propagate the pruning method from get video pruning spec() and enable multimodal pruning in the NPU model runner. - Move CPU-side EV",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【算子】【功能】启用 EVS video pruning for Qwen3.5 on Ascend NPU",
+          "excerptZh": "Closes 10648 Part of 9079 Summary - 启用 the upstream EVS video-pruning path for Qwen3.5 on Ascend NPU. - 传递 the pruning method from get video pruning spec() and 启用 multimodal pruning in the NPU model runner. - Move CPU-side EV"
+        },
+        {
+          "kind": "pr",
+          "number": 18621,
+          "title": "[BugFix][KV Cache] Restore contiguous hybrid Attention+Mamba KV cache layout",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18621",
+          "author": "pjh456",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-13T16:34:57Z",
+          "updatedAt": "2026-10-25T09:00:23Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Restore the contiguous per-layer K/V allocation for the ordinary Attention layers of hybrid Attention+Mamba models (e.g. Qwen3.5 / Qwen3.8, qwen3 5 GDN) in MRv1, undoing the generic non-contiguous block-major layout introduced by 14340 for ",
+          "modelIds": [
+            "qwen3.8",
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[BugFix] [KV Cache]恢复连续混合注意力+曼巴KV缓存布局",
+          "excerptZh": "恢复 the contiguous per-layer K/V allocation for the ordinary 注意力 layers of hybrid 注意力+Mamba models (e.g. Qwen3.5 / Qwen3.8, qwen3 5 GDN) in MRv1, undoing the generic non-contiguous block-major layout introduced by 14340 for"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18621,
+          "title": "[BugFix][KV Cache] Restore contiguous hybrid Attention+Mamba KV cache layout",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18621",
+          "author": "pjh456",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-13T16:34:57Z",
+          "updatedAt": "2026-10-25T09:00:23Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Restore the contiguous per-layer K/V allocation for the ordinary Attention layers of hybrid Attention+Mamba models (e.g. Qwen3.5 / Qwen3.8, qwen3 5 GDN) in MRv1, undoing the generic non-contiguous block-major layout introduced by 14340 for ",
+          "modelIds": [
+            "qwen3.8",
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[BugFix] [KV Cache]恢复连续混合注意力+曼巴KV缓存布局",
+          "excerptZh": "恢复 the contiguous per-layer K/V allocation for the ordinary 注意力 layers of hybrid 注意力+Mamba models (e.g. Qwen3.5 / Qwen3.8, qwen3 5 GDN) in MRv1, undoing the generic non-contiguous block-major layout introduced by 14340 for"
+        },
+        {
+          "kind": "pr",
+          "number": 18983,
+          "title": "[CI][Model] Add initial Qwen3.8 Flash Next nightly cases",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18983",
+          "author": "zsponly",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-16T07:03:54Z",
+          "updatedAt": "2026-10-25T14:05:20Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add initial Qwen3.8-Flash-Next single-node nightly configurations for A3 W8A8 (TP8) and A5 W8A8/MXFP8 (TP4), register their runner routing, and add the corresponding model/dataset preload entries. Each case currently runs a non-thinking tex",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": -1,
+          "titleZh": "【持续集成】【模型】新增 initial Qwen3.8 Flash Next 夜间用例",
+          "excerptZh": "新增 initial Qwen3.8-Flash-Next single-node 夜间 configurations for A3 W8A8 (TP8) and A5 W8A8/MXFP8 (TP4), register their runner 路由, and 新增 the corresponding model/dataset preload entries. Each case currently runs a non-thinking tex"
+        }
+      ]
+    },
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19219,
+          "title": "V0.30.0 glm5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19219",
+          "author": "qjgggsse",
+          "labels": [
+            "module:tests",
+            "module:core",
+            "module:quantization",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-20T01:38:00Z",
+          "updatedAt": "2026-10-25T04:57:15Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Does this PR introduce any user-facing change? --- Checklist Testing - [ ] Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "V0.30.0 glm5",
+          "excerptZh": "【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque"
         }
       ]
     }
