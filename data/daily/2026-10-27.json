@@ -1,0 +1,277 @@
+{
+  "day": "2026-10-27",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19878,
+          "title": "[BugFix][v0.30.0][KV Pool] Bound PP/MTP GVA allocations by physical copy extent",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19878",
+          "author": "zouyida2052",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-26T14:55:11Z",
+          "updatedAt": "2026-10-26T16:01:18Z",
+          "closedAt": "2026-10-26T16:01:17Z",
+          "mergedAt": "2026-10-26T16:01:17Z",
+          "comments": 0,
+          "excerpt": "Follow-up to 19422 and 19421. Keep the physical KV-layer synchronization and make the GVA object large enough for every physical layer, including MTP at the last PP stage. For a GLM configuration with 78 target layers, PP partition 42,36 , ",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【v0.30.0】【KV Pool】Bound PP/MTP GVA allocations by physical copy extent",
+          "excerptZh": "Follow-up to 19422 and 19421. Keep the physical KV-layer synchronization and make the GVA object large enough for every physical layer, including MTP at the last PP stage. For a GLM 配置 with 78 target layers, PP partition 42,36 ,"
+        },
+        {
+          "kind": "pr",
+          "number": 19877,
+          "title": "[BugFix][KV Pool] Bound PP/MTP GVA allocations by physical copy extent",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19877",
+          "author": "zouyida2052",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-26T14:55:08Z",
+          "updatedAt": "2026-10-26T16:01:16Z",
+          "closedAt": "2026-10-26T16:01:15Z",
+          "mergedAt": "2026-10-26T16:01:15Z",
+          "comments": 0,
+          "excerpt": "Follow-up to 19422 and 19421. Keep the physical KV-layer synchronization and make the GVA object large enough for every physical layer, including MTP at the last PP stage. For a GLM configuration with 78 target layers, PP partition 42,36 , ",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【KV Pool】Bound PP/MTP GVA allocations by physical copy extent",
+          "excerptZh": "Follow-up to 19422 and 19421. Keep the physical KV-layer synchronization and make the GVA object large enough for every physical layer, including MTP at the last PP stage. For a GLM 配置 with 78 target layers, PP partition 42,36 ,"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19859,
+          "title": "[Attention][Feature] YOCO mask/compact prefill truncation for DeepSeek-V4.1",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19859",
+          "author": "krell11",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-26T10:59:01Z",
+          "updatedAt": "2026-10-26T17:56:32Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR adds YOCO mask/compact prefill truncation for DeepSeek-V4.1. Early layers in DeepSeek-V4.1 Flash are producers (full prefill), while later layers are consumers that only need a sliding-window view of recent tokens. Running full atte",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【注意力】【功能】YOCO mask/compact 预填充 truncation for DeepSeek-V4.1",
+          "excerptZh": "This PR adds YOCO mask/compact 预填充 truncation for DeepSeek-V4.1. Early layers in DeepSeek-V4.1 Flash are producers (full 预填充), while later layers are consumers that only need a sliding-window view of recent tokens. Running full atte"
+        },
+        {
+          "kind": "pr",
+          "number": 19303,
+          "title": "[Doc][v0.30.0] Add DeepSeek-V4.1-Flash deployment guide for Ascend 950DT",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19303",
+          "author": "linfeng-yuan",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-20T14:59:27Z",
+          "updatedAt": "2026-10-26T16:02:20Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add DeepSeek-V4.1-Flash deployment instructions for 950DT products using the original checkpoint and Model Runner V2. Cover single-server DP8 and two-server 1P1D with DP8/TP1/EP8 on both Prefill and Decode, including Memcache KV Cache Pool ",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【v0.30.0】新增 DeepSeek-V4.1-Flash deployment guide for Ascend 950DT",
+          "excerptZh": "新增 DeepSeek-V4.1-Flash deployment instructions for 950DT products using the original 检查点 and Model Runner V2. Cover single-server DP8 and two-server 1P1D with DP8/TP1/EP8 on both 预填充 and 解码, including Memcache KV 缓存 Pool"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19814,
+          "title": "[Doc][Misc] Fix Qwen3.6 and Qwen3.8 model weight names and ModelScope links",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19814",
+          "author": "AJF-cmd",
+          "labels": [
+            "documentation",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-26T06:58:19Z",
+          "updatedAt": "2026-10-26T17:07:25Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR corrects the model weight names for Qwen3.6-27B-w8a8c8-mxfp8 (removing the incorrect -fa- suffix) and adds the missing ModelScope download link for Qwen3.8-27B-w8a8c8-mxfp8 in the documentation. Does this PR introduce any user-facin",
+          "modelIds": [
+            "qwen3.8",
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【杂项】修复 Qwen3.6 and Qwen3.8 model 权重 names and ModelScope links",
+          "excerptZh": "This PR corrects the model 权重 names for Qwen3.6-27B-w8a8c8-mxfp8 (removing the incorrect -fa- suffix) and adds the missing ModelScope download link for Qwen3.8-27B-w8a8c8-mxfp8 in the documentation. Does this PR introduce any user-facin"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19814,
+          "title": "[Doc][Misc] Fix Qwen3.6 and Qwen3.8 model weight names and ModelScope links",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19814",
+          "author": "AJF-cmd",
+          "labels": [
+            "documentation",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-26T06:58:19Z",
+          "updatedAt": "2026-10-26T17:07:25Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR corrects the model weight names for Qwen3.6-27B-w8a8c8-mxfp8 (removing the incorrect -fa- suffix) and adds the missing ModelScope download link for Qwen3.8-27B-w8a8c8-mxfp8 in the documentation. Does this PR introduce any user-facin",
+          "modelIds": [
+            "qwen3.8",
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【杂项】修复 Qwen3.6 and Qwen3.8 model 权重 names and ModelScope links",
+          "excerptZh": "This PR corrects the model 权重 names for Qwen3.6-27B-w8a8c8-mxfp8 (removing the incorrect -fa- suffix) and adds the missing ModelScope download link for Qwen3.8-27B-w8a8c8-mxfp8 in the documentation. Does this PR introduce any user-facin"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19879,
+          "title": "[Doc][v0.30.0] Restructure DeepSeek-V4-Flash deployment documentation",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19879",
+          "author": "LXX1122",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-26T15:44:23Z",
+          "updatedAt": "2026-10-26T17:07:12Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Sync the DeepSeek-V4-Flash deployment-guide changes from 19759 (source commit 2738354da ) to releases/v0.30.0 . Only docs/source/tutorials/models/DeepSeek-V4-Flash.md changes. - Organize ordinary PD and KV cache pooling deployment into hard",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【v0.30.0】Restructure DeepSeek-V4-Flash deployment documentation",
+          "excerptZh": "Sync the DeepSeek-V4-Flash deployment-guide changes from 19759 (source commit 2738354da ) to releases/v0.30.0 . Only docs/source/tutorials/models/DeepSeek-V4-Flash.md changes. - Organize ordinary PD and KV 缓存 池化 deployment into hard"
+        },
+        {
+          "kind": "pr",
+          "number": 19759,
+          "title": "[Doc][Misc] Organize DeepSeek-V4-Flash PD and KV pooling deployment guides",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19759",
+          "author": "LXX1122",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-25T14:28:42Z",
+          "updatedAt": "2026-10-26T16:53:58Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Reorganize the DeepSeek-V4-Flash deployment guide into hardware-specific tabs. Group the 950DT, A3, and A2 KV Cache Pool examples under Section 5.3, move ultra-long sequence guidance into the A2 series tab, and preserve existing section anc",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【杂项】Organize DeepSeek-V4-Flash PD and KV 池化 deployment guides",
+          "excerptZh": "Reorganize the DeepSeek-V4-Flash deployment guide into hardware-specific tabs. Group the 950DT, A3, and A2 KV 缓存 Pool examples under Section 5.3, move ultra-long 序列 guidance into the A2 series tab, and preserve existing section anc"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-pro",
+      "name": "DeepSeek V4 Pro",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19808,
+          "title": "[Doc][Misc][v0.30.0] Restructure section 5.2 PD separation into tab layout for DeepSeek-V4-Pro",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19808",
+          "author": "lenghuixing0330",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-26T06:33:56Z",
+          "updatedAt": "2026-10-26T16:02:21Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Restructure Section 5.2 Multi-Node PD Separation Deployment in the DeepSeek-V4-Pro tutorial to match the tab layout used by Section 5.3. 1. Convert the three numbered subsections (5.2.1 A3 / 5.2.2 A2 / 5.2.3 950DT) into tabs in the same ord",
+          "modelIds": [
+            "ds-v4-pro"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【杂项】【v0.30.0】Restructure section 5.2 PD separation into tab layout for DeepSeek-V4-Pro",
+          "excerptZh": "Restructure Section 5.2 Multi-Node PD Separation Deployment in the DeepSeek-V4-Pro tutorial to match the tab layout used by Section 5.3. 1. Convert the three numbered subsections (5.2.1 A3 / 5.2.2 A2 / 5.2.3 950DT) into tabs in the same ord"
+        }
+      ]
+    }
+  ]
+}
