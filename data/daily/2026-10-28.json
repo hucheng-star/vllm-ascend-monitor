@@ -1,0 +1,160 @@
+{
+  "day": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "qwen3-vl",
+      "name": "Qwen3-VL",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20003,
+          "title": "[BugFix][310P] Restore CPU normalization for legacy Qwen3-VL shards",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20003",
+          "author": "zhao-stack",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-27T16:31:11Z",
+          "updatedAt": "2026-10-27T17:04:28Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Restore CPU image rescaling and normalization for the legacy Qwen3VL-8B-310p sharded checkpoint. After the vLLM 0.32 alignment in 19516, the nightly accuracy and performance cases fail before serving with missing visual.input norm.weight / ",
+          "modelIds": [
+            "qwen3-vl"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【修复】【310P】恢复 CPU normalization for legacy Qwen3-VL shards",
+          "excerptZh": "恢复 CPU image rescaling and normalization for the legacy Qwen3VL-8B-310p sharded 检查点. After the vLLM 0.32 alignment in 19516, the 夜间 精度 and 性能 cases fail before 服务 with missing visual.input norm.权重 /"
+        }
+      ]
+    },
+    {
+      "id": "glm-5.2",
+      "name": "GLM-5.2",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19983,
+          "title": "[Doc] skill modify",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19983",
+          "author": "herizhen",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-27T12:39:39Z",
+          "updatedAt": "2026-10-27T16:53:55Z",
+          "closedAt": "2026-10-27T16:53:55Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR refines the tutorials and FAQs for GLM-5.2 and GLM-5.3-Flash models. Specifically, it: - Fixes minor punctuation and capitalization (e.g., \"vllm\" to \"vLLM\"). - Clarifies server startup instructions and service ordering. - Adds a ref",
+          "modelIds": [
+            "glm-5.2"
+          ],
+          "action": "closed",
+          "score": 1,
+          "titleZh": "【文档】skill modify",
+          "excerptZh": "This PR refines the tutorials and FAQs for GLM-5.2 and GLM-5.3-Flash models. Specifically, it: - Fixes minor punctuation and capitalization (e.g., \"vllm\" to \"vLLM\"). - Clarifies server startup instructions and service ordering. - Adds a ref"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19942,
+          "title": "[Doc][v0.30.0] Use error logging in DeepSeek-V4.1-Flash MMC examples",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19942",
+          "author": "linfeng-yuan",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-27T08:05:53Z",
+          "updatedAt": "2026-10-27T16:08:58Z",
+          "closedAt": "2026-10-27T16:08:58Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "The 950DT MetaService and LocalService examples enable info logging. Set both to error , consistent with the A3 examples. Only the two MMC log-level values change. Follow-up to 19303. Validation: git diff --check , codespell, typos, and mar",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "closed",
+          "score": 1,
+          "titleZh": "【文档】【v0.30.0】Use error logging in DeepSeek-V4.1-Flash MMC examples",
+          "excerptZh": "The 950DT MetaService and LocalService examples 启用 info logging. Set both to error , consistent with the A3 examples. Only the two MMC log-level values change. Follow-up to 19303. Validation: git diff --check , codespell, typos, and mar"
+        },
+        {
+          "kind": "pr",
+          "number": 19988,
+          "title": "[Doc][v0.30.0] Clarify DeepSeek-V4.1-Flash deployment and verification",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19988",
+          "author": "linfeng-yuan",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-27T12:56:34Z",
+          "updatedAt": "2026-10-27T19:24:17Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Make the 950DT products PD and Memcache workflows executable step by step: show one shared DP launcher, explain its flags and the seven template arguments, state the required working directory, and place each role's launch command directly ",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【v0.30.0】Clarify DeepSeek-V4.1-Flash deployment and verification",
+          "excerptZh": "Make the 950DT products PD and Memcache workflows executable step by step: show one 共享 DP launcher, explain its flags and the seven template arguments, state the 必填 working directory, and place each role's launch command directly"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19960,
+          "title": "[Doc][Misc] Clarify Qwen3.6 deployment verification and benchmarking",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19960",
+          "author": "zsponly",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-27T09:20:19Z",
+          "updatedAt": "2026-10-27T16:54:14Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "- Add a /health check and startup guidance after the Qwen3.6 serving examples. - Correct the vllm bench serve random input length option and explain the benchmark target, workload parameters, and result output. - Simplify the AISBench table",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【杂项】Clarify Qwen3.6 deployment verification and benchmarking",
+          "excerptZh": "- 新增 a /health check and startup guidance after the Qwen3.6 服务 examples. - Correct the vllm bench serve random input length option and explain the benchmark target, workload parameters, and result output. - Simplify the AISBench table"
+        }
+      ]
+    }
+  ]
+}

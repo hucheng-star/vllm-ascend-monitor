@@ -8,52 +8,348 @@
       "family": "平台与通用",
       "items": [
         {
-          "kind": "pr",
-          "number": 19878,
-          "title": "[BugFix][v0.30.0][KV Pool] Bound PP/MTP GVA allocations by physical copy extent",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19878",
-          "author": "zouyida2052",
+          "kind": "issue",
+          "number": 20001,
+          "title": "[RFC]: Integrate lookahead block hashes for MTP prefix caching and align hybrid checkpoint boundaries",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20001",
+          "author": "zhenwenqi2024",
           "labels": [
-            "module:tests",
-            "ready-precise"
+            "RFC"
           ],
-          "state": "closed",
+          "state": "open",
           "draft": false,
-          "createdAt": "2026-10-26T14:55:11Z",
-          "updatedAt": "2026-10-26T16:01:18Z",
-          "closedAt": "2026-10-26T16:01:17Z",
-          "mergedAt": "2026-10-26T16:01:17Z",
+          "createdAt": "2026-10-27T15:19:28Z",
+          "updatedAt": "2026-10-27T15:19:28Z",
+          "closedAt": null,
+          "mergedAt": null,
           "comments": 0,
-          "excerpt": "Follow-up to 19422 and 19421. Keep the physical KV-layer synchronization and make the GVA object large enough for every physical layer, including MTP at the last PP stage. For a GLM configuration with 78 target layers, PP partition 42,36 , ",
+          "excerpt": "Motivation. Upstream vllm-project/vllm 61589 introduces lookahead block hashes for local prefix caching with EAGLE/EAGLE3/MTP. This RFC proposes a minimal Ascend integration focused on cache coordination and Mamba/GDN checkpoint boundaries,",
           "modelIds": [],
-          "action": "merged",
-          "score": 5,
-          "titleZh": "【修复】【v0.30.0】【KV Pool】Bound PP/MTP GVA allocations by physical copy extent",
-          "excerptZh": "Follow-up to 19422 and 19421. Keep the physical KV-layer synchronization and make the GVA object large enough for every physical layer, including MTP at the last PP stage. For a GLM 配置 with 78 target layers, PP partition 42,36 ,"
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【RFC】: Integrate lookahead block hashes for MTP 前缀缓存 and 对齐 hybrid 检查点 boundaries",
+          "excerptZh": "Motivation. Upstream vllm-project/vllm 61589 introduces lookahead block hashes for local 前缀缓存 with EAGLE/EAGLE3/MTP. This RFC proposes a minimal Ascend integration focused on 缓存 coordination and Mamba/GDN 检查点 boundaries,"
         },
         {
           "kind": "pr",
-          "number": 19877,
-          "title": "[BugFix][KV Pool] Bound PP/MTP GVA allocations by physical copy extent",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19877",
-          "author": "zouyida2052",
+          "number": 19744,
+          "title": "[BugFix][KV Transfer] Isolate dense DP replica endpoints",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19744",
+          "author": "ckeyever",
           "labels": [
+            "documentation",
             "module:tests",
             "ready-precise"
           ],
           "state": "closed",
           "draft": false,
-          "createdAt": "2026-10-26T14:55:08Z",
-          "updatedAt": "2026-10-26T16:01:16Z",
-          "closedAt": "2026-10-26T16:01:15Z",
-          "mergedAt": "2026-10-26T16:01:15Z",
+          "createdAt": "2026-10-25T09:52:48Z",
+          "updatedAt": "2026-10-27T14:31:56Z",
+          "closedAt": "2026-10-27T14:31:56Z",
+          "mergedAt": "2026-10-27T14:31:56Z",
           "comments": 0,
-          "excerpt": "Follow-up to 19422 and 19421. Keep the physical KV-layer synchronization and make the GVA object large enough for every physical layer, including MTP at the last PP stage. For a GLM configuration with 78 target layers, PP partition 42,36 , ",
+          "excerpt": "Dense-model DP engines run independently. vLLM preserves the original serving replica in parallel config.data parallel index , then resets the compute data parallel rank to zero. The connectors currently use that reset rank to allocate endp",
           "modelIds": [],
           "action": "merged",
           "score": 5,
-          "titleZh": "【修复】【KV Pool】Bound PP/MTP GVA allocations by physical copy extent",
-          "excerptZh": "Follow-up to 19422 and 19421. Keep the physical KV-layer synchronization and make the GVA object large enough for every physical layer, including MTP at the last PP stage. For a GLM 配置 with 78 target layers, PP partition 42,36 ,"
+          "titleZh": "【修复】【KV Transfer】Isolate dense DP replica endpoints",
+          "excerptZh": "Dense-model DP engines run independently. vLLM preserves the original 服务 replica in parallel 配置.data parallel index , then resets the compute data parallel rank to zero. The connectors currently use that reset rank to allocate endp"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 19995,
+          "title": "[Usage]: 310p双实例运行qwen3.8-27b的问题",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/19995",
+          "author": "feifan426",
+          "labels": [
+            "310p"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-27T14:28:07Z",
+          "updatedAt": "2026-10-27T14:50:58Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 1,
+          "excerpt": "",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【Usage】: 310p双实例运行qwen3.8-27b的问题",
+          "excerptZh": ""
+        },
+        {
+          "kind": "issue",
+          "number": 19241,
+          "title": "[Bug]: Qwen3.8-27B startup fails when VLLM_PREFIX_CACHE_RETENTION_INTERVAL=4096 is not a multiple of the hybrid Mamba scheduler block size (1536)",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/19241",
+          "author": "LZZhang-HW",
+          "labels": [
+            "bug"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-20T03:53:42Z",
+          "updatedAt": "2026-10-27T13:16:35Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 2,
+          "excerpt": "",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 6,
+          "titleZh": "【缺陷】: Qwen3.8-27B startup fails when VLLM_PREFIX_CACHE_RETENTION_INTERVAL=4096 is not a multiple of the hybrid Mamba 调度器 block size (1536)",
+          "excerptZh": ""
+        },
+        {
+          "kind": "pr",
+          "number": 19986,
+          "title": "[Doc][Model] update Qwen3.8 Flash Next deployment guidance",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19986",
+          "author": "Lethobenthos20",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-27T12:43:00Z",
+          "updatedAt": "2026-10-27T14:36:57Z",
+          "closedAt": "2026-10-27T14:36:57Z",
+          "mergedAt": "2026-10-27T14:36:57Z",
+          "comments": 0,
+          "excerpt": "- Clarifies the Qwen3.8-Flash-Next A3 deployment requirements. - Aligns the example context limit with the documented 128K configuration. - Adds capacity and service-readiness checks. - Removes the introductory PD-separation note from this ",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【模型】更新 Qwen3.8 Flash Next deployment guidance",
+          "excerptZh": "- Clarifies the Qwen3.8-Flash-Next A3 deployment requirements. - Aligns the example context limit with the documented 128K 配置. - Adds capacity and service-readiness checks. - Removes the introductory PD-separation note from this"
+        },
+        {
+          "kind": "pr",
+          "number": 19924,
+          "title": "[Doc][Misc] Clarify cudagraph_capture_sizes and update Qwen3.8-27B hardware requirements",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19924",
+          "author": "AJF-cmd",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-27T06:50:37Z",
+          "updatedAt": "2026-10-27T13:52:45Z",
+          "closedAt": "2026-10-27T13:52:45Z",
+          "mergedAt": "2026-10-27T13:52:45Z",
+          "comments": 0,
+          "excerpt": "This PR updates the documentation for Qwen3.5, Qwen3.6, and Qwen3.8 models to clarify the description of cudagraph capture sizes and correct the hardware requirements for Qwen3.8-27B-w8a8 . Specifically: - Clarifies that cudagraph capture s",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【杂项】Clarify cudagraph_capture_sizes and 更新 Qwen3.8-27B hardware requirements",
+          "excerptZh": "This PR 更新 the documentation for Qwen3.5, Qwen3.6, and Qwen3.8 models to clarify the description of cudagraph capture sizes and correct the hardware requirements for Qwen3.8-27B-w8a8 . Specifically: - Clarifies that cudagraph capture s"
+        },
+        {
+          "kind": "pr",
+          "number": 19908,
+          "title": "[Doc][Misc]Clarify Qwen3.8-2.4T-A95B deployment guide for v0.30.0",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19908",
+          "author": "Jingluo-nan",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-27T04:29:06Z",
+          "updatedAt": "2026-10-27T13:26:27Z",
+          "closedAt": "2026-10-27T13:26:27Z",
+          "mergedAt": "2026-10-27T13:26:27Z",
+          "comments": 0,
+          "excerpt": "Backports the documentation improvements from 19900 to releases/v0.30.0 : - Use TiB consistently for Qwen3.8-2.4T-A95B weight sizes. - Explain how to check startup logs during weight loading and graph capture. - Use the configured SERVICE P",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【杂项】Clarify Qwen3.8-2.4T-A95B deployment guide for v0.30.0",
+          "excerptZh": "Backports the documentation improvements from 19900 to releases/v0.30.0 : - Use TiB consistently for Qwen3.8-2.4T-A95B 权重 sizes. - Explain how to check startup logs during 权重 加载 and graph capture. - Use the configured SERVICE P"
+        },
+        {
+          "kind": "pr",
+          "number": 19900,
+          "title": "[Doc][Misc]Clarify Qwen3.8-2.4T-A95B deployment guide",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19900",
+          "author": "Jingluo-nan",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-27T03:34:59Z",
+          "updatedAt": "2026-10-27T13:26:01Z",
+          "closedAt": "2026-10-27T13:26:01Z",
+          "mergedAt": "2026-10-27T13:26:01Z",
+          "comments": 0,
+          "excerpt": "Clarifies the Qwen3.8-2.4T-A95B deployment guide to make its examples easier to follow: - Uses TiB consistently for the model weight sizes. - Explains how to check startup logs while weights load and graphs are captured. - Uses the configur",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【杂项】Clarify Qwen3.8-2.4T-A95B deployment guide",
+          "excerptZh": "Clarifies the Qwen3.8-2.4T-A95B deployment guide to make its examples easier to follow: - Uses TiB consistently for the model 权重 sizes. - Explains how to check startup logs while 权重 load and graphs are captured. - Uses the configur"
+        },
+        {
+          "kind": "pr",
+          "number": 19985,
+          "title": "[Doc][Model] update Qwen3.8 Flash Next deployment guidance",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19985",
+          "author": "Lethobenthos20",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-27T12:42:58Z",
+          "updatedAt": "2026-10-27T15:34:55Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "- Clarifies the Qwen3.8-Flash-Next A3 deployment requirements. - Aligns the example context limit with the documented 128K configuration. - Adds capacity and service-readiness checks. - Removes the introductory PD-separation note from this ",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【模型】更新 Qwen3.8 Flash Next deployment guidance",
+          "excerptZh": "- Clarifies the Qwen3.8-Flash-Next A3 deployment requirements. - Aligns the example context limit with the documented 128K 配置. - Adds capacity and service-readiness checks. - Removes the introductory PD-separation note from this"
+        },
+        {
+          "kind": "pr",
+          "number": 19893,
+          "title": "[Doc][Misc] Clarify cudagraph capture sizes and update Qwen3.8 details",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19893",
+          "author": "AJF-cmd",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-27T02:39:01Z",
+          "updatedAt": "2026-10-27T13:53:13Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR updates the documentation for Qwen3.5, Qwen3.6, and Qwen3.8 models. Specifically, it: - Clarifies the description of \\\"cudagraph capture sizes\\\" to specify that it represents batch size tiers rather than levels of graph modes, and e",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【杂项】Clarify cudagraph capture sizes and 更新 Qwen3.8 details",
+          "excerptZh": "This PR 更新 the documentation for Qwen3.5, Qwen3.6, and Qwen3.8 models. Specifically, it: - Clarifies the description of \\\"cudagraph capture sizes\\\" to specify that it represents batch size tiers rather than levels of graph modes, and e"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-next",
+      "name": "Qwen3-Next",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19959,
+          "title": "[BugFix][Platform] Fix prefix_cache_retention_interval silently ignored on hybrid models",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19959",
+          "author": "orion-t8",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-27T09:13:37Z",
+          "updatedAt": "2026-10-27T13:09:07Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Fixes 19241 --prefix-cache-retention-interval is silently ignored when serving hybrid models (e.g. Qwen3-Next) on Ascend: invalid values do not raise and the feature never takes effect. Root cause: upstream vLLM promoted VLLM PREFIX CACHE R",
+          "modelIds": [
+            "qwen3-next"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【修复】【Platform】prefix_cache_retention_interval silently ignored on hybrid models",
+          "excerptZh": "Fixes 19241 --前缀-缓存-保留-interval is silently ignored when 服务 hybrid models (e.g. Qwen3-Next) on Ascend: invalid values do not raise and the 特性 never takes effect. Root cause: upstream vLLM promoted VLLM 前缀缓存 R"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19925,
+          "title": "[Doc][Misc]fix Qwen3.5-397B benchmark command",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19925",
+          "author": "Kunkun066",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-27T06:50:54Z",
+          "updatedAt": "2026-10-27T14:36:19Z",
+          "closedAt": "2026-10-27T14:36:19Z",
+          "mergedAt": "2026-10-27T14:36:19Z",
+          "comments": 0,
+          "excerpt": "Correct the vLLM benchmark example in Section 8.2 of the Qwen3.5-397B-A17B model guide: - Use the deployed Eco-Tech/Qwen3.5-397B-A17B-w8a8 model instead of the MTP-specific checkpoint. - Replace the invalid --random-input argument with the ",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【杂项】修复 Qwen3.5-397B benchmark command",
+          "excerptZh": "Correct the vLLM benchmark example in Section 8.2 of the Qwen3.5-397B-A17B model guide: - Use the deployed Eco-Tech/Qwen3.5-397B-A17B-w8a8 model instead of the MTP-specific 检查点. - Replace the invalid --random-input argument with the"
+        },
+        {
+          "kind": "pr",
+          "number": 19931,
+          "title": "[Doc][Misc]fix Qwen3.5-397B benchmark command",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19931",
+          "author": "Kunkun066",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-27T07:26:02Z",
+          "updatedAt": "2026-10-27T14:33:52Z",
+          "closedAt": "2026-10-27T14:33:52Z",
+          "mergedAt": "2026-10-27T14:33:52Z",
+          "comments": 0,
+          "excerpt": "Correct the vLLM benchmark example in Section 8.2 of the Qwen3.5-397B-A17B model guide: - Use the deployed Eco-Tech/Qwen3.5-397B-A17B-w8a8 model instead of the MTP-specific checkpoint. - Replace the invalid --random-input argument with the ",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "merged",
+          "score": 4,
+          "titleZh": "【文档】【杂项】修复 Qwen3.5-397B benchmark command",
+          "excerptZh": "Correct the vLLM benchmark example in Section 8.2 of the Qwen3.5-397B-A17B model guide: - Use the deployed Eco-Tech/Qwen3.5-397B-A17B-w8a8 model instead of the MTP-specific 检查点. - Replace the invalid --random-input argument with the"
         }
       ]
     },
@@ -62,6 +358,61 @@
       "name": "DeepSeek V4.1",
       "family": "DeepSeek",
       "items": [
+        {
+          "kind": "pr",
+          "number": 19284,
+          "title": "[Feature][Model] Enable DeepSeek V4.1 MRV2 PP with arbitrary layer partitions",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19284",
+          "author": "LostFox11",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-20T10:22:24Z",
+          "updatedAt": "2026-10-27T15:19:16Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable experimental DeepSeek V4.1 pipeline parallelism on Model Runner V2 with arbitrary contiguous, nonempty layer partitions. - Resolve dependencies from the model's existing layer topology. Mirror source KV/index-cache pages and forward ",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】启用 DeepSeek V4.1 MRV2 PP with arbitrary layer partitions",
+          "excerptZh": "启用 experimental DeepSeek V4.1 pipeline parallelism on Model Runner V2 with arbitrary contiguous, nonempty layer partitions. - Resolve dependencies from the model's existing layer topology. Mirror source KV/index-缓存 pages and forward"
+        },
+        {
+          "kind": "pr",
+          "number": 19988,
+          "title": "[Doc][v0.30.0] Clarify DeepSeek-V4.1-Flash verification and tuning",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19988",
+          "author": "linfeng-yuan",
+          "labels": [
+            "documentation",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-27T12:56:34Z",
+          "updatedAt": "2026-10-27T13:53:43Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Connect the documented 1–100 reasoning effort range to a working request example using chat template kwargs.reasoning effort: 50 . Replace jq boolean checks with visible API responses, HTTP status codes, and checks for the generated answer ",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【v0.30.0】Clarify DeepSeek-V4.1-Flash verification and tuning",
+          "excerptZh": "Connect the documented 1–100 reasoning effort range to a working request example using chat template kwargs.reasoning effort: 50 . Replace jq boolean checks with 可见 API responses, HTTP status codes, and checks for the generated answer"
+        },
         {
           "kind": "pr",
           "number": 19859,
@@ -76,77 +427,75 @@
           "state": "open",
           "draft": false,
           "createdAt": "2026-10-26T10:59:01Z",
-          "updatedAt": "2026-10-26T17:56:32Z",
+          "updatedAt": "2026-10-27T13:33:25Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "This PR adds YOCO mask/compact prefill truncation for DeepSeek-V4.1. Early layers in DeepSeek-V4.1 Flash are producers (full prefill), while later layers are consumers that only need a sliding-window view of recent tokens. Running full atte",
+          "excerpt": "This PR adds YOCO mask/compact prefill truncation scaffolding for DeepSeek-V4.1 (config + CPU keep-tail metadata + CP=1 gather helper + L1 equivalence tests), ported from DeepInfer. Executable mask / compact are rejected until runner + atte",
           "modelIds": [
             "ds-v4.1"
           ],
           "action": "updated",
           "score": 3,
           "titleZh": "【注意力】【功能】YOCO mask/compact 预填充 truncation for DeepSeek-V4.1",
-          "excerptZh": "This PR adds YOCO mask/compact 预填充 truncation for DeepSeek-V4.1. Early layers in DeepSeek-V4.1 Flash are producers (full 预填充), while later layers are consumers that only need a sliding-window view of recent tokens. Running full atte"
-        },
+          "excerptZh": "This PR adds YOCO mask/compact 预填充 truncation scaffolding for DeepSeek-V4.1 (配置 + CPU keep-tail 元数据 + CP=1 gather helper + L1 equivalence tests), ported from DeepInfer. Executable mask / compact are rejected until runner + atte"
+        }
+      ]
+    },
+    {
+      "id": "glm-5.2",
+      "name": "GLM-5.2",
+      "family": "GLM",
+      "items": [
         {
           "kind": "pr",
-          "number": 19303,
-          "title": "[Doc][v0.30.0] Add DeepSeek-V4.1-Flash deployment guide for Ascend 950DT",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19303",
-          "author": "linfeng-yuan",
+          "number": 19921,
+          "title": "[Doc] skill modify",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19921",
+          "author": "herizhen",
           "labels": [
             "documentation"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-20T14:59:27Z",
-          "updatedAt": "2026-10-26T16:02:20Z",
+          "createdAt": "2026-10-27T06:28:55Z",
+          "updatedAt": "2026-10-27T14:59:57Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Add DeepSeek-V4.1-Flash deployment instructions for 950DT products using the original checkpoint and Model Runner V2. Cover single-server DP8 and two-server 1P1D with DP8/TP1/EP8 on both Prefill and Decode, including Memcache KV Cache Pool ",
+          "excerpt": "This PR refines the tutorials and FAQs for GLM-5.2 and GLM-5.3-Flash models. Specifically, it: - Fixes minor punctuation and capitalization (e.g., \"vllm\" to \"vLLM\"). - Clarifies server startup instructions and service ordering. - Adds a ref",
           "modelIds": [
-            "ds-v4.1"
+            "glm-5.2"
           ],
-          "action": "updated",
-          "score": 0,
-          "titleZh": "【文档】【v0.30.0】新增 DeepSeek-V4.1-Flash deployment guide for Ascend 950DT",
-          "excerptZh": "新增 DeepSeek-V4.1-Flash deployment instructions for 950DT products using the original 检查点 and Model Runner V2. Cover single-server DP8 and two-server 1P1D with DP8/TP1/EP8 on both 预填充 and 解码, including Memcache KV 缓存 Pool"
-        }
-      ]
-    },
-    {
-      "id": "qwen3.8",
-      "name": "Qwen3.8",
-      "family": "Qwen",
-      "items": [
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】skill modify",
+          "excerptZh": "This PR refines the tutorials and FAQs for GLM-5.2 and GLM-5.3-Flash models. Specifically, it: - Fixes minor punctuation and capitalization (e.g., \"vllm\" to \"vLLM\"). - Clarifies server startup instructions and service ordering. - Adds a ref"
+        },
         {
           "kind": "pr",
-          "number": 19814,
-          "title": "[Doc][Misc] Fix Qwen3.6 and Qwen3.8 model weight names and ModelScope links",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19814",
-          "author": "AJF-cmd",
+          "number": 19998,
+          "title": "[Doc] skill modify",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19998",
+          "author": "herizhen",
           "labels": [
-            "documentation",
-            "merge-conflicts"
+            "documentation"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-26T06:58:19Z",
-          "updatedAt": "2026-10-26T17:07:25Z",
+          "createdAt": "2026-10-27T14:40:07Z",
+          "updatedAt": "2026-10-27T14:55:45Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "This PR corrects the model weight names for Qwen3.6-27B-w8a8c8-mxfp8 (removing the incorrect -fa- suffix) and adds the missing ModelScope download link for Qwen3.8-27B-w8a8c8-mxfp8 in the documentation. Does this PR introduce any user-facin",
+          "excerpt": "This PR refines the tutorials and FAQs for GLM-5.2 and GLM-5.3-Flash models. Specifically, it: - Fixes minor punctuation and capitalization (e.g., \"vllm\" to \"vLLM\"). - Clarifies server startup instructions and service ordering. - Adds a ref",
           "modelIds": [
-            "qwen3.8",
-            "qwen3.6"
+            "glm-5.2"
           ],
-          "action": "updated",
-          "score": 0,
-          "titleZh": "【文档】【杂项】修复 Qwen3.6 and Qwen3.8 model 权重 names and ModelScope links",
-          "excerptZh": "This PR corrects the model 权重 names for Qwen3.6-27B-w8a8c8-mxfp8 (removing the incorrect -fa- suffix) and adds the missing ModelScope download link for Qwen3.8-27B-w8a8c8-mxfp8 in the documentation. Does this PR introduce any user-facin"
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】skill modify",
+          "excerptZh": "This PR refines the tutorials and FAQs for GLM-5.2 and GLM-5.3-Flash models. Specifically, it: - Fixes minor punctuation and capitalization (e.g., \"vllm\" to \"vLLM\"). - Clarifies server startup instructions and service ordering. - Adds a ref"
         }
       ]
     },
@@ -157,30 +506,53 @@
       "items": [
         {
           "kind": "pr",
-          "number": 19814,
-          "title": "[Doc][Misc] Fix Qwen3.6 and Qwen3.8 model weight names and ModelScope links",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19814",
-          "author": "AJF-cmd",
+          "number": 19960,
+          "title": "[Doc][Misc] Clarify Qwen3.6 deployment verification and benchmarking",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19960",
+          "author": "zsponly",
           "labels": [
-            "documentation",
-            "merge-conflicts"
+            "documentation"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-26T06:58:19Z",
-          "updatedAt": "2026-10-26T17:07:25Z",
+          "createdAt": "2026-10-27T09:20:19Z",
+          "updatedAt": "2026-10-27T14:45:00Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "This PR corrects the model weight names for Qwen3.6-27B-w8a8c8-mxfp8 (removing the incorrect -fa- suffix) and adds the missing ModelScope download link for Qwen3.8-27B-w8a8c8-mxfp8 in the documentation. Does this PR introduce any user-facin",
+          "excerpt": "- Add a /health check and startup guidance after the Qwen3.6 serving examples. - Correct the vllm bench serve random input length option and explain the benchmark target, workload parameters, and result output. - Simplify the AISBench table",
           "modelIds": [
-            "qwen3.8",
             "qwen3.6"
           ],
-          "action": "updated",
-          "score": 0,
-          "titleZh": "【文档】【杂项】修复 Qwen3.6 and Qwen3.8 model 权重 names and ModelScope links",
-          "excerptZh": "This PR corrects the model 权重 names for Qwen3.6-27B-w8a8c8-mxfp8 (removing the incorrect -fa- suffix) and adds the missing ModelScope download link for Qwen3.8-27B-w8a8c8-mxfp8 in the documentation. Does this PR introduce any user-facin"
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【杂项】Clarify Qwen3.6 deployment verification and benchmarking",
+          "excerptZh": "- 新增 a /health check and startup guidance after the Qwen3.6 服务 examples. - Correct the vllm bench serve random input length option and explain the benchmark target, workload parameters, and result output. - Simplify the AISBench table"
+        },
+        {
+          "kind": "pr",
+          "number": 19978,
+          "title": "[Doc][Misc] Backport Qwen3.6 deployment verification and benchmarking to v0.30.0",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19978",
+          "author": "zsponly",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-27T12:06:55Z",
+          "updatedAt": "2026-10-27T14:44:54Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Backport 19960 to releases/v0.30.0 for the Qwen3.6-35B-A3B deployment guide: - Add service startup and /health verification guidance. - Correct the benchmark random input length option and explain workload parameters and result output. - Si",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【杂项】Backport Qwen3.6 deployment verification and benchmarking to v0.30.0",
+          "excerptZh": "Backport 19960 to releases/v0.30.0 for the Qwen3.6-35B-A3B deployment guide: - 新增 service startup and /health verification guidance. - Correct the benchmark random input length option and explain workload parameters and result output. - Si"
         }
       ]
     },
@@ -191,85 +563,258 @@
       "items": [
         {
           "kind": "pr",
-          "number": 19879,
-          "title": "[Doc][v0.30.0] Restructure DeepSeek-V4-Flash deployment documentation",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19879",
+          "number": 19993,
+          "title": "[Doc][v0.30.0] Clarify DeepSeek-V4-Flash API endpoint",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19993",
           "author": "LXX1122",
           "labels": [
             "documentation"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-26T15:44:23Z",
-          "updatedAt": "2026-10-26T17:07:12Z",
+          "createdAt": "2026-10-27T14:20:03Z",
+          "updatedAt": "2026-10-27T14:44:03Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Sync the DeepSeek-V4-Flash deployment-guide changes from 19759 (source commit 2738354da ) to releases/v0.30.0 . Only docs/source/tutorials/models/DeepSeek-V4-Flash.md changes. - Organize ordinary PD and KV cache pooling deployment into hard",
+          "excerpt": "Clarify the request endpoint in Section 6 of the DeepSeek-V4-Flash guide on releases/v0.30.0 : use the API server's IP address and port for ordinary deployments, and the proxy's IP address and port for Prefill/Decode (PD) disaggregated depl",
           "modelIds": [
             "ds-v4-flash"
           ],
-          "action": "updated",
-          "score": 0,
-          "titleZh": "【文档】【v0.30.0】Restructure DeepSeek-V4-Flash deployment documentation",
-          "excerptZh": "Sync the DeepSeek-V4-Flash deployment-guide changes from 19759 (source commit 2738354da ) to releases/v0.30.0 . Only docs/source/tutorials/models/DeepSeek-V4-Flash.md changes. - Organize ordinary PD and KV 缓存 池化 deployment into hard"
-        },
-        {
-          "kind": "pr",
-          "number": 19759,
-          "title": "[Doc][Misc] Organize DeepSeek-V4-Flash PD and KV pooling deployment guides",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19759",
-          "author": "LXX1122",
-          "labels": [
-            "documentation"
-          ],
-          "state": "open",
-          "draft": false,
-          "createdAt": "2026-10-25T14:28:42Z",
-          "updatedAt": "2026-10-26T16:53:58Z",
-          "closedAt": null,
-          "mergedAt": null,
-          "comments": 0,
-          "excerpt": "Reorganize the DeepSeek-V4-Flash deployment guide into hardware-specific tabs. Group the 950DT, A3, and A2 KV Cache Pool examples under Section 5.3, move ultra-long sequence guidance into the A2 series tab, and preserve existing section anc",
-          "modelIds": [
-            "ds-v4-flash"
-          ],
-          "action": "updated",
-          "score": 0,
-          "titleZh": "【文档】【杂项】Organize DeepSeek-V4-Flash PD and KV 池化 deployment guides",
-          "excerptZh": "Reorganize the DeepSeek-V4-Flash deployment guide into hardware-specific tabs. Group the 950DT, A3, and A2 KV 缓存 Pool examples under Section 5.3, move ultra-long 序列 guidance into the A2 series tab, and preserve existing section anc"
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【v0.30.0】Clarify DeepSeek-V4-Flash API endpoint",
+          "excerptZh": "Clarify the request endpoint in Section 6 of the DeepSeek-V4-Flash guide on releases/v0.30.0 : use the API server's IP address and port for ordinary deployments, and the proxy's IP address and port for 预填充/解码 (PD) disaggregated depl"
         }
       ]
     },
     {
-      "id": "ds-v4-pro",
-      "name": "DeepSeek V4 Pro",
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
       "family": "DeepSeek",
       "items": [
         {
           "kind": "pr",
-          "number": 19808,
-          "title": "[Doc][Misc][v0.30.0] Restructure section 5.2 PD separation into tab layout for DeepSeek-V4-Pro",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19808",
-          "author": "lenghuixing0330",
+          "number": 19125,
+          "title": "[BugFix][Platform] Keep the DeepSeek V4 block size the cache is built with",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19125",
+          "author": "Pingzii",
           "labels": [
-            "documentation"
+            "module:tests",
+            "module:core"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-26T06:33:56Z",
-          "updatedAt": "2026-10-26T16:02:21Z",
+          "createdAt": "2026-10-19T02:16:12Z",
+          "updatedAt": "2026-10-27T14:22:52Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Restructure Section 5.2 Multi-Node PD Separation Deployment in the DeepSeek-V4-Pro tutorial to match the tab layout used by Section 5.3. 1. Convert the three numbered subsections (5.2.1 A3 / 5.2.2 A2 / 5.2.3 950DT) into tabs in the same ord",
+          "excerpt": "DeepSeek-V4 on A5 dies at cache-spec construction unless --block-size is passed. Reproduced on A5 (ascend950), DeepSeek-V4-Flash, DP8 + EP, no --block-size : Line references in this description are from vLLM v0.31.0 ( db9527a ) , the versio",
           "modelIds": [
-            "ds-v4-pro"
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【Platform】Keep the DeepSeek V4 block size the 缓存 is built with",
+          "excerptZh": "DeepSeek-V4 on A5 dies at 缓存-spec construction unless --block-size is passed. Reproduced on A5 (ascend950), DeepSeek-V4-Flash, DP8 + EP, no --block-size : Line references in this description are from vLLM v0.31.0 ( db9527a ) , the versio"
+        },
+        {
+          "kind": "pr",
+          "number": 17200,
+          "title": "[BugFix] Fix DeepSeek-V4 dummy load and ACL graph weight update",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17200",
+          "author": "zyang6",
+          "labels": [
+            "module:ops"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-22T05:28:15Z",
+          "updatedAt": "2026-10-27T13:54:37Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Backport two DeepSeek-V4 fixes onto releases/v0.23.0 . Both are already on main ( 16485 , 15666 ) and are still broken on this release branch. 1. --load-format=dummy initializes Hash MoE gate.tid2eid with all zeros. Dummy profile still runs",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】DeepSeek-V4 dummy load and ACL graph 权重 更新",
+          "excerptZh": "Backport two DeepSeek-V4 fixes onto releases/v0.23.0 . Both are already on main ( 16485 , 15666 ) and are still broken on this release branch. 1. --load-format=dummy initializes Hash MoE gate.tid2eid with all zeros. Dummy profile still runs"
+        },
+        {
+          "kind": "pr",
+          "number": 19850,
+          "title": "[BugFix][TurboQuant] Disable default boundary skips for DeepSeek V4",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19850",
+          "author": "Dunnn-Smith",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-26T09:35:14Z",
+          "updatedAt": "2026-10-27T13:23:12Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Fix a mismatch between upstream TurboQuant's default boundary-layer policy and the current Ascend DeepSeek V4 cache implementation. When using --kv-cache-dtype turboquant 4bit nc , upstream EngineArgs.create engine config() calls TurboQuant",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【TurboQuant】禁用 default boundary skips for DeepSeek V4",
+          "excerptZh": "修复 a mismatch between upstream TurboQuant's default boundary-layer policy and the current Ascend DeepSeek V4 缓存 implementation. When using --kv-缓存-dtype turboquant 4bit nc , upstream EngineArgs.create engine 配置() calls TurboQuant"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19991,
+          "title": "[Doc][Recipe] Align Kimi-K3 Ascend variants for mixed serving only",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19991",
+          "author": "MAyang38",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-27T13:55:11Z",
+          "updatedAt": "2026-10-27T14:00:44Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Provide a separate Kimi-K3 Ascend recipe change limited to mixed Prefill/Decode serving. This is an independent alternative to 19703, which retains A5 PD separation; both target vllm-project/vllm-ascend:main . - A3 (Ascend 910C): W4A8 (Asce",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【Recipe】对齐 Kimi-K3 Ascend variants for mixed 服务 only",
+          "excerptZh": "Provide a separate Kimi-K3 Ascend recipe change limited to mixed 预填充/解码 服务. This is an independent alternative to 19703, which retains A5 PD separation; both target vllm-project/vllm-ascend:main . - A3 (Ascend 910C): W4A8 (Asce"
+        },
+        {
+          "kind": "pr",
+          "number": 19126,
+          "title": "[BugFix] Honor normalized YaRN attention factor in MLA",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19126",
+          "author": "zhao-stack",
+          "labels": [
+            "module:tests",
+            "merge-conflicts",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-19T02:27:23Z",
+          "updatedAt": "2026-10-27T13:09:40Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Port the normalized YaRN selection from to the Ascend DeepSeek MLA constructor and its GLM5Next / Kimi K3 counterparts. These constructors still read apply yarn scaling , which may be absent after configuration normalization. With attention",
+          "modelIds": [
+            "glm-5",
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】遵循 normalized YaRN 注意力 factor in MLA",
+          "excerptZh": "Port the normalized YaRN selection from to the Ascend DeepSeek MLA constructor and its GLM5Next / Kimi K3 counterparts. These constructors still read apply yarn scaling , which may be absent after 配置 normalization. With 注意力"
+        },
+        {
+          "kind": "pr",
+          "number": 19703,
+          "title": "[Doc][Recipe] Align Kimi-K3 Ascend variants and PD deployment",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19703",
+          "author": "MAyang38",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-24T08:21:42Z",
+          "updatedAt": "2026-10-27T14:54:45Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Align Kimi-K3 Ascend variants and support both mixed serving and A5 Prefill/Decode separation. - A3 (Ascend 910C) selects W4A8 (Ascend), using ModelScope Eco-Tech/Kimi-K3-w4a8 . - A5 (Ascend 950DT) selects MXFP4(ASCEND), using the contribut",
+          "modelIds": [
+            "kimi-k3"
           ],
           "action": "updated",
           "score": 0,
-          "titleZh": "【文档】【杂项】【v0.30.0】Restructure section 5.2 PD separation into tab layout for DeepSeek-V4-Pro",
-          "excerptZh": "Restructure Section 5.2 Multi-Node PD Separation Deployment in the DeepSeek-V4-Pro tutorial to match the tab layout used by Section 5.3. 1. Convert the three numbered subsections (5.2.1 A3 / 5.2.2 A2 / 5.2.3 950DT) into tabs in the same ord"
+          "titleZh": "【文档】【Recipe】对齐 Kimi-K3 Ascend variants and PD deployment",
+          "excerptZh": "对齐 Kimi-K3 Ascend variants and 支持 both mixed 服务 and A5 预填充/解码 separation. - A3 (Ascend 910C) selects W4A8 (Ascend), using ModelScope Eco-Tech/Kimi-K3-w4a8 . - A5 (Ascend 950DT) selects MXFP4(ASCEND), using the contribut"
+        }
+      ]
+    },
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19126,
+          "title": "[BugFix] Honor normalized YaRN attention factor in MLA",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19126",
+          "author": "zhao-stack",
+          "labels": [
+            "module:tests",
+            "merge-conflicts",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-19T02:27:23Z",
+          "updatedAt": "2026-10-27T13:09:40Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Port the normalized YaRN selection from to the Ascend DeepSeek MLA constructor and its GLM5Next / Kimi K3 counterparts. These constructors still read apply yarn scaling , which may be absent after configuration normalization. With attention",
+          "modelIds": [
+            "glm-5",
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】遵循 normalized YaRN 注意力 factor in MLA",
+          "excerptZh": "Port the normalized YaRN selection from to the Ascend DeepSeek MLA constructor and its GLM5Next / Kimi K3 counterparts. These constructors still read apply yarn scaling , which may be absent after 配置 normalization. With 注意力"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-vl",
+      "name": "Qwen3-VL",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19844,
+          "title": "[Doc] Add Ascend overlay for Qwen3-VL-30B-A3B-Instruct",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19844",
+          "author": "hykun1989",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-26T09:01:17Z",
+          "updatedAt": "2026-10-27T14:54:42Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary Adds the Ascend overlay for Qwen/Qwen3-VL-30B-A3B-Instruct under the new recipes/overlays layout introduced by vllm-project/vllm-ascend 19381 and the renderer cutover in vllm-project/recipes 1160. - Adds variants.ascend bf16 for one",
+          "modelIds": [
+            "qwen3-vl"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】新增 Ascend overlay for Qwen3-VL-30B-A3B-Instruct",
+          "excerptZh": "Summary Adds the Ascend overlay for Qwen/Qwen3-VL-30B-A3B-Instruct under the new recipes/overlays layout introduced by vllm-project/vllm-ascend 19381 and the renderer cutover in vllm-project/recipes 1160. - Adds variants.ascend bf16 for one"
         }
       ]
     }
