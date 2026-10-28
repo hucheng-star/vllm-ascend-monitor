@@ -1,0 +1,66 @@
+{
+  "day": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "kimi-k2",
+      "name": "Kimi K2",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 20154,
+          "title": "[MRV2] Kimi K2.6 accuracy & performance comparison between Model Runner v2 and Model Runner v1",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20154",
+          "author": "wisdom-qq",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-28T16:26:56Z",
+          "updatedAt": "2026-10-28T16:26:56Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Motivation Model Runner v2 is being rolled out as the next-generation worker path in vllm-ascend. Kimi-K2.6-W4A8 already has MRV2 nightly coverage in one topology ( Kimi-K2.6-W4A8-MRV2-PCP-DCP , 18267), but there is no systematic same-input",
+          "modelIds": [
+            "kimi-k2"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【MRV2】Kimi K2.6 精度 & 性能 comparison between Model Runner v2 and Model Runner v1",
+          "excerptZh": "Motivation Model Runner v2 is being rolled out as the next-generation worker path in vllm-ascend. Kimi-K2.6-W4A8 already has MRV2 夜间 coverage in one topology ( Kimi-K2.6-W4A8-MRV2-PCP-DCP , 18267), but there is no systematic same-input"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 20153,
+          "title": "[MRV2] Complete Qwen3.6 adaptation on Model Runner v2 and ensure accuracy/performance parity with MRV1",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20153",
+          "author": "wisdom-qq",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-28T16:26:53Z",
+          "updatedAt": "2026-10-28T16:26:53Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Motivation Model Runner v2 is the next-generation worker path in vllm-ascend ( vllm ascend/worker/v2/ ), and the Qwen3.6 family (dense 27B and MoE 35B-A3B) is currently exercised on MRV1 only. Existing reports show the MRV2 path is not read",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【MRV2】Complete Qwen3.6 adaptation on Model Runner v2 and ensure 精度/性能 parity with MRV1",
+          "excerptZh": "Motivation Model Runner v2 is the next-generation worker path in vllm-ascend ( vllm ascend/worker/v2/ ), and the Qwen3.6 family (dense 27B and MoE 35B-A3B) is currently exercised on MRV1 only. Existing reports show the MRV2 path is not read"
+        }
+      ]
+    }
+  ]
+}
