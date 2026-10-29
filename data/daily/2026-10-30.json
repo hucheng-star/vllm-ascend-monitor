@@ -1,0 +1,164 @@
+{
+  "day": "2026-10-30",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 20286,
+          "title": "[Bug]:  Flashcomm1 or SP doesn't work with \"data_parallel_size=1\" in vllm-ascend v0.27.1rc",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20286",
+          "author": "VictorShen007",
+          "labels": [
+            "bug",
+            "architecture-features",
+            "flashcomm"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-29T16:05:29Z",
+          "updatedAt": "2026-10-29T16:05:59Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "",
+          "modelIds": [],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【缺陷】: Flashcomm1 or SP doesn't work with \"data_parallel_size=1\" in vllm-ascend v0.27.1rc",
+          "excerptZh": ""
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 12295,
+          "title": "[Feature][LoRA] Qwen3.5 hybrid-dense and shared-experts MoE LoRA with isolated ACL compile graphs",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/12295",
+          "author": "Liuchenbing-2026",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "merge-conflicts"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-07-17T15:50:01Z",
+          "updatedAt": "2026-10-29T17:20:14Z",
+          "closedAt": "2026-10-29T17:20:14Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable and stabilize LoRA on the Qwen3.5 family in vllm-ascend across both eager and full-graph modes, and isolate base-model / adapter ACL compile graphs to avoid replay explosions when the adapter set changes. The PR is three stacked comm",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "closed",
+          "score": 4,
+          "titleZh": "【功能】【LoRA】Qwen3.5 hybrid-dense and 共享-experts MoE LoRA with isolated ACL compile graphs",
+          "excerptZh": "启用 and stabilize LoRA on the Qwen3.5 family in vllm-ascend across both eager and full-graph modes, and isolate base-model / adapter ACL compile graphs to 避免 replay explosions when the adapter set changes. The PR is three stacked comm"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20252,
+          "title": "[BugFix][Model] Support breakable PIECEWISE Engram lookup in MRV2",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20252",
+          "author": "cocobronie2333-dot",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-29T11:05:19Z",
+          "updatedAt": "2026-10-29T18:25:31Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Follows up on the TODO from 17794: support DeepSeek V4.1 Engram with breakable PIECEWISE graphs in model runner v2. For PIECEWISE graphs, refresh the fixed Engram lookup buffers before graph execution under the caller's forward context. Thi",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【模型】支持 breakable PIECEWISE Engram lookup in MRV2",
+          "excerptZh": "Follows up on the TODO from 17794: 支持 DeepSeek V4.1 Engram with breakable PIECEWISE graphs in model runner v2. For PIECEWISE graphs, refresh the 修复 Engram lookup buffers before graph execution under the caller's forward context. Thi"
+        },
+        {
+          "kind": "pr",
+          "number": 20266,
+          "title": "[Feature] Support DeepSeek V4.1 sequence-parallel SWA bounded replay",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20266",
+          "author": "cocobronie2333-dot",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-29T12:40:17Z",
+          "updatedAt": "2026-10-29T18:09:40Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable DeepSeek V4.1 SWA bounded decoder replay with sequence parallelism on Model Runner V2. This is a follow-up to merged 20210; its PCP/DP changes are already in main. - Gather SP hidden states before selecting retained rows, pad the com",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】支持 DeepSeek V4.1 序列-parallel SWA bounded replay",
+          "excerptZh": "启用 DeepSeek V4.1 SWA bounded decoder replay with 序列 parallelism on Model Runner V2. This is a follow-up to merged 20210; its PCP/DP changes are already in main. - Gather SP hidden states before selecting retained rows, pad the com"
+        }
+      ]
+    },
+    {
+      "id": "glm-5.2",
+      "name": "GLM-5.2",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19094,
+          "title": "[BugFix] Avoid redundant wk_weights_proj in SFA indexer top-k selection",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19094",
+          "author": "2luckydog",
+          "labels": [
+            "module:tests",
+            "ready-precise",
+            "ready"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-17T16:21:34Z",
+          "updatedAt": "2026-10-29T16:11:55Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "In the DSA/SFA attention decode forward of GLM-5.2, the Indexer submodule performs top-k block selection. Its preceding projection wk weights proj is a fused GEMM ( MergedColumnParallelLinear(hidden size, [head dim, n head]) ) that produces",
+          "modelIds": [
+            "glm-5.2"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】避免 redundant wk_weights_proj in SFA 索引器 top-k selection",
+          "excerptZh": "【head dim, n head】In the DSA/SFA 注意力 解码 forward of GLM-5.2, the 索引器 submodule performs top-k block selection. Its preceding projection wk 权重 proj is a 融合 GEMM ( MergedColumnParallelLinear(hidden size, ) ) that produces"
+        }
+      ]
+    }
+  ]
+}
