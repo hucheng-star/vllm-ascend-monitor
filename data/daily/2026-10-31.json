@@ -1,0 +1,197 @@
+{
+  "day": "2026-10-31",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 20391,
+          "title": "[Bug]: Mooncake Store buffer registration failures do not abort KV cache initialization",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20391",
+          "author": "yisususu",
+          "labels": [
+            "bug"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-30T22:32:22Z",
+          "updatedAt": "2026-10-30T22:32:22Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "",
+          "modelIds": [],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【缺陷】: Mooncake Store buffer registration failures do not abort KV 缓存 initialization",
+          "excerptZh": ""
+        }
+      ]
+    },
+    {
+      "id": "glm-5.2",
+      "name": "GLM-5.2",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19094,
+          "title": "[BugFix] Avoid redundant wk_weights_proj in SFA indexer top-k selection",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19094",
+          "author": "2luckydog",
+          "labels": [
+            "module:tests",
+            "ready-precise",
+            "ready"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-17T16:21:34Z",
+          "updatedAt": "2026-10-30T16:33:18Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "In the DSA/SFA attention decode forward of GLM-5.2, the Indexer submodule performs top-k block selection. Its preceding projection wk weights proj is a fused GEMM ( MergedColumnParallelLinear(hidden size, [head dim, n head]) ) that produces",
+          "modelIds": [
+            "glm-5.2"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】避免 redundant wk_weights_proj in SFA 索引器 top-k selection",
+          "excerptZh": "【head dim, n head】In the DSA/SFA 注意力 解码 forward of GLM-5.2, the 索引器 submodule performs top-k block selection. Its preceding projection wk 权重 proj is a 融合 GEMM ( MergedColumnParallelLinear(hidden size, ) ) that produces"
+        }
+      ]
+    },
+    {
+      "id": "glm-5.1",
+      "name": "GLM-5.1",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20387,
+          "title": "[BugFix][Test] Add GLM-5.1 paired runner checks and repair FP8 KV fallback",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20387",
+          "author": "romavec",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-30T14:06:58Z",
+          "updatedAt": "2026-10-30T16:22:09Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add reproducible GLM-5.1 Model Runner V1/V2 comparisons for the full mixed-MXFP4/MXFP8 checkpoint on A5 TP8/EP8: identical token-ID inputs, greedy/seeded sampling, fixed-history logprobs, token-ID SSE latency, fixed-group controls, real-gen",
+          "modelIds": [
+            "glm-5.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【测试】新增 GLM-5.1 paired runner checks and repair FP8 KV fallback",
+          "excerptZh": "新增 reproducible GLM-5.1 Model Runner V1/V2 comparisons for the full mixed-MXFP4/MXFP8 检查点 on A5 TP8/EP8: identical token-ID inputs, greedy/seeded sampling, 修复-history logprobs, token-ID SSE latency, 修复-group controls, real-gen"
+        },
+        {
+          "kind": "issue",
+          "number": 20388,
+          "title": "[Performance]: GLM-5.1 A5 TP8 paired V1/V2 serving differences in both run orders",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20388",
+          "author": "romavec",
+          "labels": [
+            "performance"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-30T14:10:32Z",
+          "updatedAt": "2026-10-30T16:16:37Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Proposal to improve performance Investigate the measured V2 serving differences before claiming runner parity. Compare same-host fixed token-ID workloads in reversed orders; use the request-phase and iteration-histogram evidence below to ch",
+          "modelIds": [
+            "glm-5.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】: GLM-5.1 A5 TP8 paired V1/V2 服务 differences in both run orders",
+          "excerptZh": "Proposal to 改进 性能 Investigate the measured V2 服务 differences before claiming runner parity. Compare same-host 修复 token-ID workloads in reversed orders; use the request-phase and iteration-histogram evidence below to ch"
+        }
+      ]
+    },
+    {
+      "id": "llama",
+      "name": "Llama",
+      "family": "其他",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19678,
+          "title": "[Test] Add IQuest-Coder-V1-40B-Instruct accuracy config via hf_overrides",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19678",
+          "author": "yanggg1133",
+          "labels": [
+            "documentation",
+            "ci/build",
+            "module:tests",
+            "module:tools",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-23T16:14:37Z",
+          "updatedAt": "2026-10-30T18:11:05Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Closes 10662. Parent task: 9079. What & Why IQuest-Coder-V1-40B-Instruct is a standard LLaMA backbone behind a custom architecture name ( IQuestCoderForCausalLM , verified against config.json + safetensors key layout: 723 keys, all standard",
+          "modelIds": [
+            "llama"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 IQuest-Coder-V1-40B-Instruct 精度 配置 via hf_overrides",
+          "excerptZh": "Closes 10662. Parent task: 9079. What & Why IQuest-Coder-V1-40B-Instruct is a standard LLaMA backbone behind a custom architecture name ( IQuestCoderForCausalLM , verified against 配置.json + safetensors key layout: 723 keys, all standard"
+        }
+      ]
+    },
+    {
+      "id": "qwen2.5",
+      "name": "Qwen2.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19531,
+          "title": "[Test] Add Qwen2.5-1.5B-apeach classification e2e test and tutorial (issue #10680)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19531",
+          "author": "yanggg1133",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-22T15:28:00Z",
+          "updatedAt": "2026-10-30T17:15:12Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "What does this PR do? Adds a functional e2e classification test for jason9693/Qwen2.5-1.5B-apeach (Korean harmful-content classifier, Qwen2ForSequenceClassification ) plus a user-facing tutorial, per 10680. Acceptance-criteria scoping (expl",
+          "modelIds": [
+            "qwen2.5"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 Qwen2.5-1.5B-apeach classification e2e test and tutorial (issue #10680)",
+          "excerptZh": "What does this PR do? Adds a functional e2e classification test for jason9693/Qwen2.5-1.5B-apeach (Korean harmful-content classifier, Qwen2ForSequenceClassification ) plus a user-facing tutorial, per 10680. Acceptance-criteria scoping (expl"
+        }
+      ]
+    }
+  ]
+}
