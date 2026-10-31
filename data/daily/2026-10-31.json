@@ -3,23 +3,288 @@
   "timezone": "Asia/Shanghai",
   "groups": [
     {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 20510,
+          "title": "[Bug]: GLM-5.3-Flash MRV2 PCP query/decode layout mismatches and mixed-batch KV corruption",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20510",
+          "author": "lijiahang226",
+          "labels": [
+            "glm5",
+            "advanced-features",
+            "long-seq",
+            "llm-model"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-31T14:03:04Z",
+          "updatedAt": "2026-10-31T15:34:50Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Description GLM-5.3-Flash MRV2 PCP can fail with mismatched SFA/indexer query rows or produce incorrect answers when prefill and decode requests share a batch. Reproduced with W8A8 weights, INT8 KV cache, TP1/PCP8/DP1/EP8/DCP1, MTP5 and fou",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "opened",
+          "score": 8,
+          "titleZh": "【缺陷】: GLM-5.3-Flash MRV2 PCP query/解码 layout mismatches and mixed-batch KV corruption",
+          "excerptZh": "Description GLM-5.3-Flash MRV2 PCP can fail with mismatched SFA/索引器 query rows or produce incorrect answers when 预填充 and 解码 requests share a batch. Reproduced with W8A8 权重, INT8 KV 缓存, TP1/PCP8/DP1/EP8/DCP1, MTP5 and fou"
+        },
+        {
+          "kind": "issue",
+          "number": 19553,
+          "title": "[Bug]: 客户四机A3 PD分离 VLLM0.30.rc2版本部署GLM5.3+memcache压测服务挂掉",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/19553",
+          "author": "tianyuwo",
+          "labels": [
+            "bug",
+            "glm5",
+            "triaged",
+            "stale",
+            "core-features",
+            "llm-model",
+            "wait-feedback"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-23T03:15:14Z",
+          "updatedAt": "2026-10-31T11:16:57Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 4,
+          "excerpt": "",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "updated",
+          "score": 6,
+          "titleZh": "【缺陷】: 客户四机A3 PD分离 VLLM0.30.rc2版本部署GLM5.3+memcache压测服务挂掉",
+          "excerptZh": ""
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20467,
+          "title": "[Performance][Qwen3.8Next][Attention] Dispatch prefill between FIA+mask and GBSA at 24K logical KV [v0.32.0rc]",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20467",
+          "author": "Lethobenthos20",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-31T08:44:53Z",
+          "updatedAt": "2026-10-31T15:25:27Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "What this PR does This PR ports the Qwen4Exp FIA + selected-token-mask dispatch and the 24K logical-visible-KV dispatch policy from 20304 onto vllm-project/vllm-ascend:releases/v0.32.0rc . The original commit ordering and author attribution",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【性能】【Qwen3.8Next】【注意力】【v0.32.0rc】Dispatch 预填充 between FIA+mask and GBSA at 24K logical KV",
+          "excerptZh": "What this PR does This PR ports the Qwen4Exp FIA + selected-token-mask dispatch and the 24K logical-可见-KV dispatch policy from 20304 onto vllm-project/vllm-ascend:releases/v0.32.0rc . The original commit ordering and author attribution"
+        },
+        {
+          "kind": "pr",
+          "number": 20443,
+          "title": "[Feature][Model][v0.32] Enable Qwen3.8 Flash Next PP and SP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20443",
+          "author": "Lethobenthos20",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-31T07:53:15Z",
+          "updatedAt": "2026-10-31T11:56:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary Port the Qwen3.8 Flash Next pipeline-parallel (PP) and sequence-parallel (SP/FlashComm1) support from 20311 to the releases/v0.32.0rc release branch. The packed QSA/GDN/PLE KV-cache layout remains safe for PP stage-local ownership. ",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【功能】【模型】【v0.32】启用 Qwen3.8 Flash Next PP and SP",
+          "excerptZh": "Summary Port the Qwen3.8 Flash Next pipeline-parallel (PP) and 序列-parallel (SP/FlashComm1) 支持 from 20311 to the releases/v0.32.0rc release branch. The packed QSA/GDN/PLE KV-缓存 layout remains safe for PP stage-local ownership."
+        },
+        {
+          "kind": "pr",
+          "number": 20498,
+          "title": "[Feature][Model] Use native LightningIndexerV2 for QSA",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20498",
+          "author": "liaojm930",
+          "labels": [
+            "documentation",
+            "ci/build",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization",
+            "module:tools"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-31T10:38:09Z",
+          "updatedAt": "2026-10-31T10:41:26Z",
+          "closedAt": "2026-10-31T10:40:36Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add CANN LightningIndexerV2 bindings and integrate the operator into QSA for Qwen3.8-Flash-Next. The previous implementation expands request metadata into per-query lengths and page tables before calling LightningIndexer. The new implementa",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【功能】【模型】Use native LightningIndexerV2 for QSA",
+          "excerptZh": "新增 CANN LightningIndexerV2 bindings and integrate the operator into QSA for Qwen3.8-Flash-Next. The previous implementation expands request 元数据 into per-query lengths and page tables before calling LightningIndexer. The new implementa"
+        },
+        {
+          "kind": "pr",
+          "number": 20502,
+          "title": "[Bugfix][MoE] Backport #20402 A5 MegaMoE draft routing to v0.32.0rc",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20502",
+          "author": "qijiajin",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-31T11:41:52Z",
+          "updatedAt": "2026-10-31T12:08:19Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary Backport the behavior of 20402 onto releases/v0.32.0rc (base ffca1c99b ). - Allow hidden size 2560 for the A5 MegaMoE Qwen3.8 Flash Next configuration. - Keep quantized target MoE layers on MegaMoE. When an unquantized MoE layer is ",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【修复】【MoE】Backport #20402 A5 MegaMoE draft 路由 to v0.32.0rc",
+          "excerptZh": "Summary Backport the behavior of 20402 onto releases/v0.32.0rc (base ffca1c99b ). - Allow hidden size 2560 for the A5 MegaMoE Qwen3.8 Flash Next 配置. - Keep quantized target MoE layers on MegaMoE. When an unquantized MoE layer is"
+        },
+        {
+          "kind": "pr",
+          "number": 20509,
+          "title": "[CI][Model] Add Qwen3.8 Flash Next performance nightly cases for v0.32.0rc",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20509",
+          "author": "zsponly",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-31T13:56:10Z",
+          "updatedAt": "2026-10-31T15:13:05Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add Qwen3.8 Flash Next 128K/1K and 16K/1K performance regression cases for A3 and A5 to releases/v0.32.0rc through the existing YAML-driven Nightly runner. Register both model artifacts for preloading and reuse the existing GSM8K performanc",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【持续集成】【模型】新增 Qwen3.8 Flash Next 性能 夜间用例 for v0.32.0rc",
+          "excerptZh": "新增 Qwen3.8 Flash Next 128K/1K and 16K/1K 性能 回退 cases for A3 and A5 to releases/v0.32.0rc through the existing YAML-driven 夜间 runner. Register both model artifacts for preloading and reuse the existing GSM8K performanc"
+        },
+        {
+          "kind": "pr",
+          "number": 20304,
+          "title": "[Performance][Qwen3.8Next][Attention] Dispatch prefill between FIA+mask and GBSA at 24K logical KV",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20304",
+          "author": "Lethobenthos20",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-30T02:12:50Z",
+          "updatedAt": "2026-10-31T13:16:26Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "What this PR does This PR targets the current vllm-project/vllm-ascend:main directly and contains exactly two commits: the initial Qwen4Exp FIA + selected-token-mask phase dispatch, followed by the 24K logical-visible-KV dispatch policy. Th",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】【Qwen3.8Next】【注意力】Dispatch 预填充 between FIA+mask and GBSA at 24K logical KV",
+          "excerptZh": "What this PR does This PR targets the current vllm-project/vllm-ascend:main directly and contains exactly two commits: the initial Qwen4Exp FIA + selected-token-mask phase dispatch, followed by the 24K logical-可见-KV dispatch policy. Th"
+        },
+        {
+          "kind": "pr",
+          "number": 18983,
+          "title": "[CI][Model] Add Qwen3.8 Flash Next performance nightly cases",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18983",
+          "author": "zsponly",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-16T07:03:54Z",
+          "updatedAt": "2026-10-31T13:56:16Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Merge order: merge 20509 into releases/v0.32.0rc first. This main PR is on hold and remains draft; do not merge it yet. Add Qwen3.8 Flash Next 128K/1K and 16K/1K performance regression cases for A3 and A5 through the existing YAML-driven Ni",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": -1,
+          "titleZh": "【持续集成】【模型】新增 Qwen3.8 Flash Next 性能 夜间用例",
+          "excerptZh": "合并 order: 合并 20509 into releases/v0.32.0rc first. This main PR is on hold and remains draft; do not 合并 it yet. 新增 Qwen3.8 Flash Next 128K/1K and 16K/1K 性能 回退 cases for A3 and A5 through the existing YAML-driven Ni"
+        }
+      ]
+    },
+    {
       "id": "platform",
       "name": "平台与通用",
       "family": "平台与通用",
       "items": [
         {
           "kind": "issue",
-          "number": 20391,
-          "title": "[Bug]: Mooncake Store buffer registration failures do not abort KV cache initialization",
-          "url": "https://github.com/vllm-project/vllm-ascend/issues/20391",
-          "author": "yisususu",
+          "number": 20505,
+          "title": "[Bug]:CPU binding shares one CPU/NUMA/IRQ pool across all internal-DP workers under renumbered device visibility",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20505",
+          "author": "Dwade3",
           "labels": [
-            "bug"
+            "bug",
+            "core-features",
+            "cpu-binding"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-30T22:32:22Z",
-          "updatedAt": "2026-10-30T22:32:22Z",
+          "createdAt": "2026-10-31T13:08:12Z",
+          "updatedAt": "2026-10-31T13:09:15Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
@@ -27,8 +292,102 @@
           "modelIds": [],
           "action": "opened",
           "score": 6,
-          "titleZh": "【缺陷】: Mooncake Store buffer registration failures do not abort KV 缓存 initialization",
+          "titleZh": "【缺陷】:CPU binding shares one CPU/NUMA/IRQ pool across all internal-DP workers under renumbered device visibility",
           "excerptZh": ""
+        },
+        {
+          "kind": "issue",
+          "number": 20486,
+          "title": "[RFC]: Hybrid dense/sparse attention routing for GLM-5.3-Flash",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20486",
+          "author": "lijiahang226",
+          "labels": [
+            "RFC"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-31T09:58:44Z",
+          "updatedAt": "2026-10-31T11:42:58Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Motivation. GLM-5.3-Flash uses KeyPool-based selection and sparse MLA attention. When a query’s complete causal history fits within the selection budget, all valid historical tokens are selected, making indexer scoring unnecessary. This opp",
+          "modelIds": [],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【RFC】: Hybrid dense/稀疏 注意力 路由 for GLM-5.3-Flash",
+          "excerptZh": "Motivation. GLM-5.3-Flash uses KeyPool-based selection and 稀疏 MLA 注意力. When a query’s complete causal history fits within the selection budget, all valid historical tokens are selected, making 索引器 scoring unnecessary. This opp"
+        },
+        {
+          "kind": "pr",
+          "number": 20490,
+          "title": "[BugFix][EPLB][0.32] Fix circular import in spawned workers",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20490",
+          "author": "freyfwt",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-31T10:14:57Z",
+          "updatedAt": "2026-10-31T11:43:07Z",
+          "closedAt": "2026-10-31T11:43:06Z",
+          "mergedAt": "2026-10-31T11:43:06Z",
+          "comments": 0,
+          "excerpt": "Backport 20455 at 1f99fa6d7 to releases/v0.32.0rc . The release branch contains the same EPLB circular dependency that prevents spawned workers from importing EPLB state. Move shared tensor calculations into an EPLB module that imports only",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【EPLB】【0.32】circular import in spawned workers",
+          "excerptZh": "Backport 20455 at 1f99fa6d7 to releases/v0.32.0rc . The release branch contains the same EPLB circular dependency that prevents spawned workers from importing EPLB state. Move 共享 tensor calculations into an EPLB module that imports only"
+        },
+        {
+          "kind": "issue",
+          "number": 20431,
+          "title": "Nightly Daily test failure on 2026-10-31 08:00 - please check",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20431",
+          "author": "czydyy",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-31T06:42:21Z",
+          "updatedAt": "2026-10-31T11:37:58Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 4,
+          "excerpt": "The nightly Daily test for vllm-ascend reported failures at 08:00 on 2026-10-31. Failed on: cpu-0 card-(part 1-1), a2-1 card-(part 3-7), a3-4 card-(part 1-5), MiniMax-M3-BF16-A3 Failed test cases: - test entry lock timeout bypasses cache — ",
+          "modelIds": [],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "夜间 Daily test failure on 2026-10-31 08:00 - please check",
+          "excerptZh": "The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-10-31. Failed on: cpu-0 card-(part 1-1), a2-1 card-(part 3-7), a3-4 card-(part 1-5), MiniMax-M3-BF16-A3 Failed 测试用例: - test entry lock timeout bypasses 缓存 —"
+        },
+        {
+          "kind": "pr",
+          "number": 20455,
+          "title": "[BugFix][EPLB] Fix circular import in spawned workers",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20455",
+          "author": "freyfwt",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-31T08:19:01Z",
+          "updatedAt": "2026-10-31T11:20:37Z",
+          "closedAt": "2026-10-31T11:20:37Z",
+          "mergedAt": "2026-10-31T11:20:37Z",
+          "comments": 0,
+          "excerpt": "Fix the EPLB circular import introduced by 18549 and observed in 20303's spawned HIXL workers. - Move shared tensor calculations into distributed/eplb/tensor ops.py , which imports only PyTorch. EPLB state imports the helpers directly; MoE ",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【EPLB】circular import in spawned workers",
+          "excerptZh": "修复 the EPLB circular import introduced by 18549 and observed in 20303's spawned HIXL workers. - Move 共享 tensor calculations into distributed/eplb/tensor ops.py , which imports only PyTorch. EPLB state imports the helpers directly; MoE"
         }
       ]
     },
@@ -39,88 +398,220 @@
       "items": [
         {
           "kind": "pr",
-          "number": 19094,
-          "title": "[BugFix] Avoid redundant wk_weights_proj in SFA indexer top-k selection",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19094",
-          "author": "2luckydog",
+          "number": 20478,
+          "title": "[Feature] Sparse KV Offload: Shared Indexer Only Optimization",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20478",
+          "author": "eillon",
           "labels": [
+            "documentation",
             "module:tests",
-            "ready-precise",
-            "ready"
+            "module:core"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-17T16:21:34Z",
-          "updatedAt": "2026-10-30T16:33:18Z",
+          "createdAt": "2026-10-31T09:21:37Z",
+          "updatedAt": "2026-10-31T11:52:23Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "In the DSA/SFA attention decode forward of GLM-5.2, the Indexer submodule performs top-k block selection. Its preceding projection wk weights proj is a fused GEMM ( MergedColumnParallelLinear(hidden size, [head dim, n head]) ) that produces",
+          "excerpt": "This PR introduces the offload shared indexer only optimization for layered-indexer models (such as GLM-5.2) in sparse KV offloading. It keeps the KV cache of full (indexer-owner) layers resident in NPU HBM paged caches, while offloading on",
           "modelIds": [
             "glm-5.2"
           ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】避免 redundant wk_weights_proj in SFA 索引器 top-k selection",
-          "excerptZh": "【head dim, n head】In the DSA/SFA 注意力 解码 forward of GLM-5.2, the 索引器 submodule performs top-k block selection. Its preceding projection wk 权重 proj is a 融合 GEMM ( MergedColumnParallelLinear(hidden size, ) ) that produces"
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【功能】稀疏 KV 卸载: 共享 索引器 Only 优化",
+          "excerptZh": "This PR introduces the 卸载 共享 索引器 only 优化 for layered-索引器 models (such as GLM-5.2) in 稀疏 KV offloading. It keeps the KV 缓存 of full (索引器-owner) layers resident in NPU HBM paged caches, while offloading on"
         }
       ]
     },
     {
-      "id": "glm-5.1",
-      "name": "GLM-5.1",
-      "family": "GLM",
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
       "items": [
         {
           "kind": "pr",
-          "number": 20387,
-          "title": "[BugFix][Test] Add GLM-5.1 paired runner checks and repair FP8 KV fallback",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/20387",
-          "author": "romavec",
+          "number": 20496,
+          "title": "[BugFix][Quantization] Exclude DSV4 compressor state from prefix caching",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20496",
+          "author": "LZZhang-HW",
           "labels": [
-            "documentation",
             "module:tests"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-30T14:06:58Z",
-          "updatedAt": "2026-10-30T16:22:09Z",
+          "createdAt": "2026-10-31T10:21:21Z",
+          "updatedAt": "2026-10-31T10:24:09Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Add reproducible GLM-5.1 Model Runner V1/V2 comparisons for the full mixed-MXFP4/MXFP8 checkpoint on A5 TP8/EP8: identical token-ID inputs, greedy/seeded sampling, fixed-history logprobs, token-ID SSE latency, fixed-group controls, real-gen",
+          "excerpt": "Fixes 16270 The DeepSeek V4 compressor state cache inherited prefix cacheable=true . Its very small block size then lowered the global prefix-cache block size, so short prompts could not accumulate enough tokens to register cache entries. T",
           "modelIds": [
-            "glm-5.1"
+            "ds-v4"
           ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】【测试】新增 GLM-5.1 paired runner checks and repair FP8 KV fallback",
-          "excerptZh": "新增 reproducible GLM-5.1 Model Runner V1/V2 comparisons for the full mixed-MXFP4/MXFP8 检查点 on A5 TP8/EP8: identical token-ID inputs, greedy/seeded sampling, 修复-history logprobs, token-ID SSE latency, 修复-group controls, real-gen"
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【修复】【量化】Exclude DSV4 压缩器 state from 前缀缓存",
+          "excerptZh": "Fixes 16270 The DeepSeek V4 压缩器 state 缓存 inherited 前缀 cacheable=true . Its very small block size then lowered the global 前缀-缓存 block size, so short prompts could not accumulate enough tokens to register 缓存 entries. T"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20508,
+          "title": "[BugFix] Build DeepSeek V4.1 MLA metadata from per-layer lengths",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20508",
+          "author": "linfeng-yuan",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-31T13:41:51Z",
+          "updatedAt": "2026-10-31T13:45:47Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4.1 A5 mixed-quant MLA can stall when used with the length-dependent FD planner in cannbot-dsl 0.8.0. The shared attention metadata builder passes an uninitialized length buffer as both original and compressed lengths and always s",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【修复】Build DeepSeek V4.1 MLA 元数据 from per-layer lengths",
+          "excerptZh": "DeepSeek V4.1 A5 mixed-quant MLA can stall when used with the length-dependent FD planner in cannbot-dsl 0.8.0. The 共享 注意力 元数据 builder passes an uninitialized length buffer as both original and compressed lengths and always s"
         },
         {
-          "kind": "issue",
-          "number": 20388,
-          "title": "[Performance]: GLM-5.1 A5 TP8 paired V1/V2 serving differences in both run orders",
-          "url": "https://github.com/vllm-project/vllm-ascend/issues/20388",
-          "author": "romavec",
+          "kind": "pr",
+          "number": 20264,
+          "title": "[BugFix][Model] Restore DeepSeek V4.1 decoder replay with torch.compile",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20264",
+          "author": "Dunnn-Smith",
           "labels": [
-            "performance"
+            "module:tests"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-30T14:10:32Z",
-          "updatedAt": "2026-10-30T16:16:37Z",
+          "createdAt": "2026-10-29T12:20:32Z",
+          "updatedAt": "2026-10-31T12:58:21Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Proposal to improve performance Investigate the measured V2 serving differences before claiming runner parity. Compare same-host fixed token-ID workloads in reversed orders; use the request-phase and iteration-histogram evidence below to ch",
+          "excerpt": "This PR fixes DeepSeek V4.1 decoder bounded replay being bypassed when model compilation is enabled. With FULL DECODE ONLY , decoder layers 21–39 processed all tokens in a prefill chunk instead of the intended final 128 tokens. This prevent",
           "modelIds": [
-            "glm-5.1"
+            "ds-v4.1"
           ],
           "action": "updated",
           "score": 3,
-          "titleZh": "【性能】: GLM-5.1 A5 TP8 paired V1/V2 服务 differences in both run orders",
-          "excerptZh": "Proposal to 改进 性能 Investigate the measured V2 服务 differences before claiming runner parity. Compare same-host 修复 token-ID workloads in reversed orders; use the request-phase and iteration-histogram evidence below to ch"
+          "titleZh": "【修复】【模型】恢复 DeepSeek V4.1 decoder replay with torch.compile",
+          "excerptZh": "This PR fixes DeepSeek V4.1 decoder bounded replay being bypassed when model compilation is 启用. With FULL 解码 ONLY , decoder layers 21–39 processed all tokens in a 预填充 chunk instead of the intended final 128 tokens. This prevent"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20494,
+          "title": "[Feature][MoE] Add CatCCOS MegaMoE backend for DeepSeek-V4-Flash on Ascend A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20494",
+          "author": "WanhaoZhang",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization",
+            "module:tools"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-31T10:21:08Z",
+          "updatedAt": "2026-10-31T10:24:07Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Extend the CatCCOS fused MoE integration to DeepSeek-V4-Flash's MXFP4 expert weights on Ascend A5, preserving the existing v0.23 task as a Draft . This submission records the work and does not assert merge readiness. Depends on Both PRs tar",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【功能】【MoE】CatCCOS MegaMoE backend for DeepSeek-V4-Flash on Ascend A5",
+          "excerptZh": "Extend the CatCCOS 融合 MoE integration to DeepSeek-V4-Flash's MXFP4 expert 权重 on Ascend A5, preserving the existing v0.23 task as a Draft . This submission records the work and does not assert 合并 readiness. Depends on Both PRs tar"
+        }
+      ]
+    },
+    {
+      "id": "qwen3",
+      "name": "Qwen3",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20493,
+          "title": "[Feature][MoE] Add CatCCOS MegaMoE backend for Qwen3 on Ascend A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20493",
+          "author": "WanhaoZhang",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:tools"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-31T10:20:59Z",
+          "updatedAt": "2026-10-31T10:23:34Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add an opt-in CatCCOS fused MoE backend for Qwen3-style unquantized checkpoints on Ascend A5, preserving the existing releases/v0.23.0 integration work as a Draft . This PR records the implementation and its validation boundary; it is not b",
+          "modelIds": [
+            "qwen3"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【功能】【MoE】CatCCOS MegaMoE backend for Qwen3 on Ascend A5",
+          "excerptZh": "新增 an opt-in CatCCOS 融合 MoE backend for Qwen3-style unquantized 检查点 on Ascend A5, preserving the existing releases/v0.23.0 integration work as a Draft . This PR records the implementation and its validation boundary; it is not b"
+        },
+        {
+          "kind": "pr",
+          "number": 20382,
+          "title": "[Feature] Enable device-length FlashAttn for GLM DSpark GQA drafts",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20382",
+          "author": "danziheng1024",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-30T12:36:01Z",
+          "updatedAt": "2026-10-31T13:58:51Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable the existing A5 device-length CANN FlashAttn path for GLM targets ( GlmMoeDsaForCausalLM ) with Qwen3DSparkModel GQA drafts. Previously, the DSpark target allowlist only covered MiniMax-M3, and the native CANN kernel rejected the GLM",
+          "modelIds": [
+            "qwen3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】启用 device-length FlashAttn for GLM DSpark GQA drafts",
+          "excerptZh": "启用 the existing A5 device-length CANN FlashAttn path for GLM targets ( GlmMoeDsaForCausalLM ) with Qwen3DSparkModel GQA drafts. Previously, the DSpark target allowlist only covered MiniMax-M3, and the native CANN 内核 rejected the GLM"
         }
       ]
     },
@@ -130,66 +621,121 @@
       "family": "其他",
       "items": [
         {
-          "kind": "pr",
-          "number": 19678,
-          "title": "[Test] Add IQuest-Coder-V1-40B-Instruct accuracy config via hf_overrides",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19678",
-          "author": "yanggg1133",
+          "kind": "issue",
+          "number": 10674,
+          "title": "[Contribution] 任务 #27：【社区模型】适配Llama-3.2-3B-Instruct",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/10674",
+          "author": "MINGJING-WU",
           "labels": [
-            "documentation",
-            "ci/build",
-            "module:tests",
-            "module:tools",
-            "merge-conflicts"
+            "help wanted"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-23T16:14:37Z",
-          "updatedAt": "2026-10-30T18:11:05Z",
+          "createdAt": "2026-06-18T02:45:24Z",
+          "updatedAt": "2026-10-31T11:43:12Z",
           "closedAt": null,
           "mergedAt": null,
-          "comments": 0,
-          "excerpt": "Closes 10662. Parent task: 9079. What & Why IQuest-Coder-V1-40B-Instruct is a standard LLaMA backbone behind a custom architecture name ( IQuestCoderForCausalLM , verified against config.json + safetensors key layout: 723 keys, all standard",
+          "comments": 5,
+          "excerpt": "任务描述 该任务拆分自 9079，任务 ID： 27。 适配社区模型 Llama-3.2-3B-Instruct，补充对应用例和模型适配使用文档，并最终上库。 验收标准 1. 在 tests/e2e/models/configs 添加完整测试用例。 2. 在 docs/source/tutorials/models 创建模型适配教程文档。 3. 在对应issue下提交 SKILL.md （记录AI辅助开发经验、有效提示词及最佳实践）。 对接人 @jyoung6652 认领状态",
           "modelIds": [
             "llama"
           ],
           "action": "updated",
-          "score": 0,
-          "titleZh": "【测试】新增 IQuest-Coder-V1-40B-Instruct 精度 配置 via hf_overrides",
-          "excerptZh": "Closes 10662. Parent task: 9079. What & Why IQuest-Coder-V1-40B-Instruct is a standard LLaMA backbone behind a custom architecture name ( IQuestCoderForCausalLM , verified against 配置.json + safetensors key layout: 723 keys, all standard"
+          "score": 4,
+          "titleZh": "【Contribution】任务 #27：【社区模型】适配Llama-3.2-3B-Instruct",
+          "excerptZh": "任务描述 该任务拆分自 9079，任务 ID： 27。 适配社区模型 Llama-3.2-3B-Instruct，补充对应用例和模型适配使用文档，并最终上库。 验收标准 1. 在 tests/e2e/models/configs 添加完整测试用例。 2. 在 docs/source/tutorials/models 创建模型适配教程文档。 3. 在对应issue下提交 SKILL.md （记录AI辅助开发经验、有效提示词及最佳实践）。 对接人 @jyoung6652 认领状态"
         }
       ]
     },
     {
-      "id": "qwen2.5",
-      "name": "Qwen2.5",
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
       "family": "Qwen",
       "items": [
         {
           "kind": "pr",
-          "number": 19531,
-          "title": "[Test] Add Qwen2.5-1.5B-apeach classification e2e test and tutorial (issue #10680)",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19531",
-          "author": "yanggg1133",
+          "number": 19698,
+          "title": "[Ops][Feature] Enable EVS video pruning for Qwen3.5 on Ascend NPU",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19698",
+          "author": "Suixing5208",
           "labels": [
             "documentation",
             "module:tests"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-22T15:28:00Z",
-          "updatedAt": "2026-10-30T17:15:12Z",
+          "createdAt": "2026-10-24T07:27:05Z",
+          "updatedAt": "2026-10-31T13:19:25Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "What does this PR do? Adds a functional e2e classification test for jason9693/Qwen2.5-1.5B-apeach (Korean harmful-content classifier, Qwen2ForSequenceClassification ) plus a user-facing tutorial, per 10680. Acceptance-criteria scoping (expl",
+          "excerpt": "Closes 10648 Part of 9079 Summary - Enable the upstream EVS video-pruning path for Qwen3.5 on Ascend NPU. - Propagate the pruning method from get video pruning spec() and enable multimodal pruning in the NPU model runner. - Move CPU-side EV",
           "modelIds": [
-            "qwen2.5"
+            "qwen3.5"
           ],
           "action": "updated",
-          "score": 0,
-          "titleZh": "【测试】新增 Qwen2.5-1.5B-apeach classification e2e test and tutorial (issue #10680)",
-          "excerptZh": "What does this PR do? Adds a functional e2e classification test for jason9693/Qwen2.5-1.5B-apeach (Korean harmful-content classifier, Qwen2ForSequenceClassification ) plus a user-facing tutorial, per 10680. Acceptance-criteria scoping (expl"
+          "score": 3,
+          "titleZh": "【算子】【功能】启用 EVS video pruning for Qwen3.5 on Ascend NPU",
+          "excerptZh": "Closes 10648 Part of 9079 Summary - 启用 the upstream EVS video-pruning path for Qwen3.5 on Ascend NPU. - 传递 the pruning method from get video pruning spec() and 启用 multimodal pruning in the NPU model runner. - Move CPU-side EV"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 14240,
+          "title": "[Feature][Ascend NPU] Add health ping to detect hung EngineCore processes",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/14240",
+          "author": "slamdunk111",
+          "labels": [
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-08-13T15:17:16Z",
+          "updatedAt": "2026-10-31T12:08:27Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "[Feature][Ascend NPU] Add health ping to detect hung EngineCore processes 生产环境（Qwen3.6-35B-A3B，8×910B2 DP 部署）出现过大规模 HTTP 504。NPU 硬件异常（SMMU fault / AIV kernel exception）后 EngineCore 事件循环 hang 死（如共享内存环形缓冲区无限自旋），进程假活：上游 vLLM 的 check health 只检查",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【Ascend NPU】health ping to detect hung EngineCore processes",
+          "excerptZh": "【功能】【Ascend NPU】health ping to detect hung EngineCore processes 生产环境（Qwen3.6-35B-A3B，8×910B2 DP 部署）出现过大规模 HTTP 504。NPU 硬件异常（SMMU fault / AIV 内核 exception）后 EngineCore 事件循环 挂起 死（如共享内存环形缓冲区无限自旋），进程假活：上游 vLLM 的 check health 只检查"
+        },
+        {
+          "kind": "pr",
+          "number": 14235,
+          "title": "[BugFix][Ascend NPU] Fix DP cascade crash and add DP fault tolerance",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/14235",
+          "author": "slamdunk111",
+          "labels": [
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-08-13T13:47:01Z",
+          "updatedAt": "2026-10-31T12:08:25Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "[BugFix][Ascend NPU] Fix DP cascade crash and add DP fault tolerance 在 8×Ascend 910B2（DP=4, TP=2, EP=8, Qwen3.6-35B-A3B-W8A8）生产部署中，单个 EngineCore 进程死亡（如 kill -9 或 NPU 异常）会在数秒内级联杀死全部存活引擎、APIServer 与 Worker，服务整体不可用。本 PR 阻断级联崩溃的 四条独立路径 ，并给存活引擎添",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[BugFix] [Ascend NPU]修复DP级联崩溃并添加DP容错",
+          "excerptZh": "【修复】【Ascend NPU】DP cascade 崩溃 and 新增 DP fault tolerance 在 8×Ascend 910B2（DP=4, TP=2, EP=8, Qwen3.6-35B-A3B-W8A8）生产部署中，单个 EngineCore 进程死亡（如 kill -9 或 NPU 异常）会在数秒内级联杀死全部存活引擎、APIServer 与 Worker，服务整体不可用。本 PR 阻断级联崩溃的 四条独立路径，并给存活引擎添"
         }
       ]
     }
