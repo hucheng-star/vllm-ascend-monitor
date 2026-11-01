@@ -9,181 +9,382 @@
       "items": [
         {
           "kind": "issue",
-          "number": 20526,
-          "title": "[Bug]: Generic MXFP8 loader breaks grouped DeepSeek V4.1 output projection",
-          "url": "https://github.com/vllm-project/vllm-ascend/issues/20526",
-          "author": "Oseltamivir",
+          "number": 20550,
+          "title": "[Bug]: DeepSeek V4.1 Flash produces corrupted output when `--block-size` is omitted",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20550",
+          "author": "AbyssSkb",
           "labels": [
             "llm-model",
             "deepseek"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-31T18:51:10Z",
-          "updatedAt": "2026-10-31T18:51:40Z",
+          "createdAt": "2026-11-01T09:10:24Z",
+          "updatedAt": "2026-11-01T10:10:19Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Generic block-FP8 loading on DeepSeek V4.1 leaves wo a as a 2-D MXFP8 weight and converts it to NZ despite skip weight nz conversion . The output projection calls npu transpose quant batchmatmul with 3-D permutations, causing IndexError: Di",
+          "excerpt": "Environment - Hardware: Atlas 800 A2, 8 NPUs per node. - Model: DeepSeek V4.1 Flash, Ascend quantization. - Deployment: 2 prefill nodes + 2 decode nodes; each node runs TP4 × DP2 with expert parallelism. DSpark speculative decoding uses 5 d",
           "modelIds": [
             "ds-v4.1"
           ],
           "action": "opened",
           "score": 8,
-          "titleZh": "【缺陷】: Generic MXFP8 loader breaks grouped DeepSeek V4.1 output projection",
-          "excerptZh": "Generic block-FP8 加载 on DeepSeek V4.1 leaves wo a as a 2-D MXFP8 权重 and converts it to NZ despite skip 权重 nz conversion . The output projection calls npu transpose quant batchmatmul with 3-D permutations, causing IndexError: Di"
+          "titleZh": "【缺陷】: DeepSeek V4.1 Flash produces corrupted output when `--block-size` is omitted",
+          "excerptZh": "Environment - Hardware: Atlas 800 A2, 8 NPUs per node. - Model: DeepSeek V4.1 Flash, Ascend 量化. - Deployment: 2 预填充 nodes + 2 解码 nodes; each node runs TP4 × DP2 with expert parallelism. DSpark 投机解码 uses 5 d"
         },
         {
-          "kind": "pr",
-          "number": 19859,
-          "title": "[Attention][Feature] YOCO mask/compact prefill truncation for DeepSeek-V4.1",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19859",
-          "author": "krell11",
+          "kind": "issue",
+          "number": 16375,
+          "title": "[RFC]: DeepSeek V4.1 Roadmap",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/16375",
+          "author": "weijinqian0",
           "labels": [
-            "documentation",
-            "module:tests",
-            "module:core"
+            "RFC"
           ],
-          "state": "open",
+          "state": "closed",
           "draft": false,
-          "createdAt": "2026-10-26T10:59:01Z",
-          "updatedAt": "2026-10-31T18:54:17Z",
-          "closedAt": null,
+          "createdAt": "2026-09-11T09:52:03Z",
+          "updatedAt": "2026-11-01T14:29:52Z",
+          "closedAt": "2026-11-01T14:29:51Z",
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "This PR adds YOCO mask/compact prefill truncation scaffolding for DeepSeek-V4.1 (config + CPU keep-tail metadata + CP=1 gather helper + L1 equivalence tests), ported from DeepInfer. Executable mask / compact are rejected until runner + atte",
+          "excerpt": "Motivation. This RFC tracks DeepSeek V4.1 support and performance optimization on Ascend. The target branch is main. All items start unchecked: development implementations inform the tasks below, but do not establish community-mainline avai",
           "modelIds": [
             "ds-v4.1"
           ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【注意力】【功能】YOCO mask/compact 预填充 truncation for DeepSeek-V4.1",
-          "excerptZh": "This PR adds YOCO mask/compact 预填充 truncation scaffolding for DeepSeek-V4.1 (配置 + CPU keep-tail 元数据 + CP=1 gather helper + L1 equivalence tests), ported from DeepInfer. Executable mask / compact are rejected until runner + atte"
+          "action": "closed",
+          "score": 6,
+          "titleZh": "【RFC】: DeepSeek V4.1 Roadmap",
+          "excerptZh": "Motivation. This RFC tracks DeepSeek V4.1 支持 and 性能 优化 on Ascend. The target branch is main. All items start unchecked: development implementations inform the tasks below, but do not establish community-mainline avai"
+        },
+        {
+          "kind": "issue",
+          "number": 20547,
+          "title": "[Feature]: TurboQuant INT4 KV cache for DeepSeek-V4.1 (C1A/C2A layers)",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20547",
+          "author": "zivenyang",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-01T07:24:53Z",
+          "updatedAt": "2026-11-01T07:24:53Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Ask: make --kv-cache-dtype turboquant 4bit nc usable on DeepSeek-V4.1 on A2/A3 — or, if V4.1 is intentionally out of scope, get the v0.30.0 release notes/docs corrected so the claim stops sending users down this path. Why now: the shipped r",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【功能】: TurboQuant INT4 KV 缓存 for DeepSeek-V4.1 (C1A/C2A layers)",
+          "excerptZh": "Ask: make --kv-缓存-dtype turboquant 4bit nc usable on DeepSeek-V4.1 on A2/A3 — or, if V4.1 is intentionally out of scope, get the v0.30.0 release notes/docs corrected so the claim stops sending users down this path. Why now: the shipped r"
+        },
+        {
+          "kind": "issue",
+          "number": 20537,
+          "title": "[Bug][KV Cache] prefix_cache_retention_interval is silently ignored on Ascend hybrid KV cache paths",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20537",
+          "author": "wuming2027",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-01T06:25:32Z",
+          "updatedAt": "2026-11-01T07:20:04Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Environment - Atlas 800 A3, 8× Ascend910, vllm-ascend:v0.30.0rc2-a3 , vLLM 0.30.0rc2 - DeepSeek-V4.1-Flash-1017-w8a8-mtp, DP4/TP4/EP16, --block-size 32 , --enable-prefix-caching Summary prefix cache retention interval is never consumed on t",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【缺陷】【KV 缓存】prefix_cache_retention_interval is silently ignored on Ascend hybrid KV 缓存 paths",
+          "excerptZh": "Environment - Atlas 800 A3, 8× Ascend910, vllm-ascend:v0.30.0rc2-a3 , vLLM 0.30.0rc2 - DeepSeek-V4.1-Flash-1017-w8a8-mtp, DP4/TP4/EP16, --block-size 32 , --启用-前缀-缓存 Summary 前缀缓存 保留 interval is never consumed on t"
         }
       ]
     },
     {
-      "id": "qwen3.5",
-      "name": "Qwen3.5",
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
       "family": "Qwen",
       "items": [
         {
-          "kind": "issue",
-          "number": 20525,
-          "title": "[RFC] Enable EVS video token pruning for Qwen3.5-VL on Ascend NPU",
-          "url": "https://github.com/vllm-project/vllm-ascend/issues/20525",
-          "author": "Suixing5208",
-          "labels": [],
-          "state": "open",
-          "draft": false,
-          "createdAt": "2026-10-31T18:36:12Z",
-          "updatedAt": "2026-10-31T18:42:14Z",
-          "closedAt": null,
-          "mergedAt": null,
-          "comments": 0,
-          "excerpt": "背景 vLLM 主线已经提供 Efficient Video Sampling（EVS）视频视觉 token 剪枝能力。Qwen3.5-VL 视频输入会产生大量视觉 token，长视频场景下会增加 prefill 计算、首 token 延迟和 KV cache 压力。 本 RFC 讨论将 EVS 通过 vllm-ascend 接入 Ascend NPU 的方案、使用接口和验收边界。 关联任务： 10648 关联总任务： 9079 实现 PR： 19698 方案 在 Qwen3",
-          "modelIds": [
-            "qwen3.5"
+          "kind": "pr",
+          "number": 20327,
+          "title": "[MRV2][Performance] Enable Qwen3.8 Flash Next CPU length optimization by default",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20327",
+          "author": "Hyx098130",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "ready-precise"
           ],
-          "action": "opened",
-          "score": 6,
-          "titleZh": "【RFC】启用 EVS video token pruning for Qwen3.5-VL on Ascend NPU",
-          "excerptZh": "背景 vLLM 主线已经提供 Efficient Video Sampling（EVS）视频视觉 token 剪枝能力。Qwen3.5-VL 视频输入会产生大量视觉 token，长视频场景下会增加 预填充 计算、首 token 延迟和 KV 缓存 压力。 本 RFC 讨论将 EVS 通过 vllm-ascend 接入 Ascend NPU 的方案、使用接口和验收边界。 关联任务： 10648 关联总任务： 9079 实现 PR： 19698 方案 在 Qwen3"
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-30T04:49:37Z",
+          "updatedAt": "2026-11-01T10:44:27Z",
+          "closedAt": "2026-11-01T10:44:26Z",
+          "mergedAt": "2026-11-01T10:44:26Z",
+          "comments": 0,
+          "excerpt": "Based on upstream 1deb03579065a0ae6d89cdbe74e073512c9e20fe , with one feature commit to preserve the current CI source/workflow snapshot. Audited Qwen3.8 Flash Next Model Runner V2 consumers automatically skip the redundant exact-count D2H ",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【MRV2】【性能】启用 Qwen3.8 Flash Next CPU length 优化 by default",
+          "excerptZh": "Based on upstream 1deb03579065a0ae6d89cdbe74e073512c9e20fe , with one 特性 commit to preserve the current CI source/workflow snapshot. Audited Qwen3.8 Flash Next Model Runner V2 consumers automatically skip the redundant exact-count D2H"
         },
         {
           "kind": "pr",
-          "number": 19698,
-          "title": "[Ops][Feature] Enable EVS video pruning for Qwen3.5 on Ascend NPU",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/19698",
-          "author": "Suixing5208",
+          "number": 20443,
+          "title": "[Feature][Model][v0.32] Enable Qwen3.8 Flash Next PP and SP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20443",
+          "author": "Lethobenthos20",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-31T07:53:15Z",
+          "updatedAt": "2026-11-01T10:36:29Z",
+          "closedAt": "2026-11-01T10:36:29Z",
+          "mergedAt": "2026-11-01T10:36:29Z",
+          "comments": 0,
+          "excerpt": "Summary Port the Qwen3.8 Flash Next pipeline-parallel (PP) and sequence-parallel (SP/FlashComm1) support from 20311 to the releases/v0.32.0rc release branch. The packed QSA/GDN/PLE KV-cache layout remains safe for PP stage-local ownership. ",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【功能】【模型】【v0.32】启用 Qwen3.8 Flash Next PP and SP",
+          "excerptZh": "Summary Port the Qwen3.8 Flash Next pipeline-parallel (PP) and 序列-parallel (SP/FlashComm1) 支持 from 20311 to the releases/v0.32.0rc release branch. The packed QSA/GDN/PLE KV-缓存 layout remains safe for PP stage-local ownership."
+        },
+        {
+          "kind": "pr",
+          "number": 20467,
+          "title": "[Performance][Qwen3.8Next][Attention] Dispatch prefill between FIA+mask and GBSA at 24K logical KV [v0.32.0rc]",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20467",
+          "author": "Lethobenthos20",
           "labels": [
             "documentation",
-            "module:tests"
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-31T08:44:53Z",
+          "updatedAt": "2026-11-01T09:42:22Z",
+          "closedAt": "2026-11-01T07:09:30Z",
+          "mergedAt": "2026-11-01T07:09:30Z",
+          "comments": 0,
+          "excerpt": "What this PR does This PR ports the Qwen4Exp FIA + selected-token-mask dispatch and the 24K logical-visible-KV dispatch policy from 20304 onto vllm-project/vllm-ascend:releases/v0.32.0rc . The original commit ordering and author attribution",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【性能】【Qwen3.8Next】【注意力】【v0.32.0rc】Dispatch 预填充 between FIA+mask and GBSA at 24K logical KV",
+          "excerptZh": "What this PR does This PR ports the Qwen4Exp FIA + selected-token-mask dispatch and the 24K logical-可见-KV dispatch policy from 20304 onto vllm-project/vllm-ascend:releases/v0.32.0rc . The original commit ordering and author attribution"
+        },
+        {
+          "kind": "pr",
+          "number": 20502,
+          "title": "[Ops][BugFix] Enable A5 MegaMoE for Qwen4Exp with 2560 hidden size and preserve routing for unquantized MTP drafts",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20502",
+          "author": "qijiajin",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-31T11:41:52Z",
+          "updatedAt": "2026-11-01T07:31:32Z",
+          "closedAt": "2026-11-01T07:30:56Z",
+          "mergedAt": "2026-11-01T07:30:56Z",
+          "comments": 0,
+          "excerpt": "Summary Backport the behavior of 20402 onto releases/v0.32.0rc (base ffca1c99b ). - Allow hidden size 2560 for the A5 MegaMoE Qwen3.8 Flash Next configuration. - Keep quantized target MoE layers on MegaMoE. When an unquantized MoE layer is ",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【算子】【修复】启用 A5 MegaMoE for Qwen4Exp with 2560 hidden size and preserve 路由 for unquantized MTP drafts",
+          "excerptZh": "Summary Backport the behavior of 20402 onto releases/v0.32.0rc (base ffca1c99b ). - Allow hidden size 2560 for the A5 MegaMoE Qwen3.8 Flash Next 配置. - Keep quantized target MoE layers on MegaMoE. When an unquantized MoE layer is"
+        },
+        {
+          "kind": "pr",
+          "number": 20304,
+          "title": "[Performance][Qwen3.8Next][Attention] Dispatch prefill between FIA+mask and GBSA at 24K logical KV",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20304",
+          "author": "Lethobenthos20",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-30T02:12:50Z",
+          "updatedAt": "2026-11-01T07:09:28Z",
+          "closedAt": "2026-11-01T07:09:28Z",
+          "mergedAt": "2026-11-01T07:09:28Z",
+          "comments": 0,
+          "excerpt": "What this PR does This PR targets the current vllm-project/vllm-ascend:main directly and contains exactly two commits: the initial Qwen4Exp FIA + selected-token-mask phase dispatch, followed by the 24K logical-visible-KV dispatch policy. Th",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【性能】【Qwen3.8Next】【注意力】Dispatch 预填充 between FIA+mask and GBSA at 24K logical KV",
+          "excerptZh": "What this PR does This PR targets the current vllm-project/vllm-ascend:main directly and contains exactly two commits: the initial Qwen4Exp FIA + selected-token-mask phase dispatch, followed by the 24K logical-可见-KV dispatch policy. Th"
+        },
+        {
+          "kind": "pr",
+          "number": 20361,
+          "title": "[Feature] add gdn adaptive verify for dspark",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20361",
+          "author": "HF-001",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-24T07:27:05Z",
-          "updatedAt": "2026-10-31T18:36:35Z",
+          "createdAt": "2026-10-30T09:39:39Z",
+          "updatedAt": "2026-11-01T14:10:52Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "在 Ascend NPU 上打通 Qwen3.5-VL 的上游 Efficient Video Sampling（EVS）视频视觉 token 剪枝路径。补齐 Qwen3.5 模型缺失的 pruning method 初始化，并且仅在启用视频剪枝时使用完整视频 placeholder 替换，避免 EVS 的 frame-level wrapper 与原始视频 placeholder 嵌套。新增 EVS 特性指导、MkDocs 导航和 Dense Qwen3.5 视频 e2e ",
+          "excerpt": "add gdn (like qwen3.8-27b ) adaptive verify for dspark todo - vLLM main:",
           "modelIds": [
-            "qwen3.5"
+            "qwen3.8"
           ],
           "action": "updated",
           "score": 3,
-          "titleZh": "【算子】【功能】启用 EVS video pruning for Qwen3.5 on Ascend NPU",
-          "excerptZh": "在 Ascend NPU 上打通 Qwen3.5-VL 的上游 Efficient Video Sampling（EVS）视频视觉 token 剪枝路径。补齐 Qwen3.5 模型缺失的 pruning method 初始化，并且仅在启用视频剪枝时使用完整视频 placeholder 替换，避免 EVS 的 frame-level wrapper 与原始视频 placeholder 嵌套。新增 EVS 特性指导、MkDocs 导航和 Dense Qwen3.5 视频 e2e"
+          "titleZh": "【功能】gdn adaptive verify for dspark",
+          "excerptZh": "新增 gdn (like qwen3.8-27b ) adaptive verify for dspark todo - vLLM main:"
         },
         {
+          "kind": "pr",
+          "number": 20311,
+          "title": "[Feature][Model] Enable Qwen3.8 Flash Next PP and SP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20311",
+          "author": "Lethobenthos20",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "merge-conflicts",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-30T02:57:09Z",
+          "updatedAt": "2026-11-01T09:31:50Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary Adapt the existing Qwen3.8/Qwen4-Exp pipeline-parallel (PP) and sequence-parallel (SP/FlashComm1) work from Lethobenthos20/vllm-ascend 4 onto the current vllm-project/vllm-ascend main , then make the packed QSA/GDN/PLE KV-cache layo",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】启用 Qwen3.8 Flash Next PP and SP",
+          "excerptZh": "Summary Adapt the existing Qwen3.8/Qwen4-Exp pipeline-parallel (PP) and 序列-parallel (SP/FlashComm1) work from Lethobenthos20/vllm-ascend 4 onto the current vllm-project/vllm-ascend main , then make the packed QSA/GDN/PLE KV-缓存 layo"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
           "kind": "issue",
-          "number": 13737,
-          "title": "[Test][MRV2] Qwen3.5-27B dense Eagle3 精度和性能对比 v2 vs v1",
-          "url": "https://github.com/vllm-project/vllm-ascend/issues/13737",
-          "author": "chengduxiaowu",
+          "number": 20563,
+          "title": "[Recipes] overlay 无法更新 DeepSeek-V4-Flash 的 A3 配置（add-only 与 modes.variants 限制）",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20563",
+          "author": "xyndameinv",
           "labels": [],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-08-07T02:33:47Z",
-          "updatedAt": "2026-10-31T17:51:45Z",
+          "createdAt": "2026-11-01T15:22:52Z",
+          "updatedAt": "2026-11-01T15:22:52Z",
           "closedAt": null,
           "mergedAt": null,
-          "comments": 4,
-          "excerpt": "背景 vllm-ascend 正在进行 Model Runner V2 (MRV2) 重构。重构后 v2 与 v1 在投机推理（speculative decoding）路径上存在实现差异（v2 采用 speculator 多重继承 + monkey-patch 架构，v1 为 proposer 路径）。需要系统验证 v2 与 v1 的 精度和性能差异 ，确保重构不引入功能回归或性能退化。 任务 对 Qwen3.5-27B dense + Eagle3 组合，在 MRV2 (",
+          "comments": 0,
+          "excerpt": "现象 尝试用 recipes/overlays/deepseek-ai/DeepSeek-V4-Flash.yaml 更新 Ascend 910C（A3）的实测配置（ v0.30.0rc2-a3 ），CI Recipes / Validate 三种写法全部失败： 1. 新增 variant（ ascend w8a8 mtp a3 / ascend w8a8 dspark a3 ）： features.spec decoding has no mode available fo",
           "modelIds": [
-            "qwen3.5"
+            "ds-v4-flash"
           ],
-          "action": "updated",
-          "score": 1,
-          "titleZh": "【测试】【MRV2】Qwen3.5-27B dense Eagle3 精度和性能对比 v2 vs v1",
-          "excerptZh": "背景 vllm-ascend 正在进行 Model Runner V2 (MRV2) 重构。重构后 v2 与 v1 在投机推理（投机解码）路径上存在实现差异（v2 采用 speculator 多重继承 + monkey-patch 架构，v1 为 proposer 路径）。需要系统验证 v2 与 v1 的 精度和性能差异，确保重构不引入功能回归或性能退化。 任务 对 Qwen3.5-27B dense + Eagle3 组合，在 MRV2 ("
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【Recipes】overlay 无法更新 DeepSeek-V4-Flash 的 A3 配置（新增-only 与 modes.variants 限制）",
+          "excerptZh": "现象 尝试用 recipes/overlays/deepseek-ai/DeepSeek-V4-Flash.yaml 更新 Ascend 910C（A3）的实测配置（ v0.30.0rc2-a3 ），CI Recipes / Validate 三种写法全部失败： 1. 新增 variant（ ascend w8a8 mtp a3 / ascend w8a8 dspark a3 ）： features.spec 解码 has no mode available fo"
         },
         {
-          "kind": "issue",
-          "number": 13739,
-          "title": "[Test][MRV2] Qwen3.5-35B-A3B MTP 精度和性能对比 v2 vs v1",
-          "url": "https://github.com/vllm-project/vllm-ascend/issues/13739",
-          "author": "chengduxiaowu",
-          "labels": [],
+          "kind": "pr",
+          "number": 20562,
+          "title": "[Feature] recipes: add single-node A3 variants for DeepSeek-V4-Flash (v0.30.0rc2-a3)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20562",
+          "author": "xyndameinv",
+          "labels": [
+            "recipe"
+          ],
           "state": "open",
-          "draft": false,
-          "createdAt": "2026-08-07T02:33:53Z",
-          "updatedAt": "2026-10-31T17:51:40Z",
+          "draft": true,
+          "createdAt": "2026-11-01T14:05:08Z",
+          "updatedAt": "2026-11-01T15:22:59Z",
           "closedAt": null,
           "mergedAt": null,
-          "comments": 4,
-          "excerpt": "背景 vllm-ascend 正在进行 Model Runner V2 (MRV2) 重构。重构后 v2 与 v1 在投机推理（speculative decoding）路径上存在实现差异（v2 采用 speculator 多重继承 + monkey-patch 架构，v1 为 proposer 路径）。需要系统验证 v2 与 v1 的 精度和性能差异 ，确保重构不引入功能回归或性能退化。 任务 对 Qwen3.5-35B-A3B + MTP 组合，在 MRV2 (v2) 下",
+          "comments": 0,
+          "excerpt": "Summary Adds two single-node A3 variants to the DeepSeek-V4-Flash overlay, measured on quay.io/ascend/vllm-ascend:v0.30.0rc2-a3 on one Atlas 800T A3 node (16 x Ascend 910C, 64 GB HBM/die). These are strictly additive: the existing ^Gscend w",
           "modelIds": [
-            "qwen3.5"
+            "ds-v4-flash"
           ],
-          "action": "updated",
-          "score": 1,
-          "titleZh": "【测试】【MRV2】Qwen3.5-35B-A3B MTP 精度和性能对比 v2 vs v1",
-          "excerptZh": "背景 vllm-ascend 正在进行 Model Runner V2 (MRV2) 重构。重构后 v2 与 v1 在投机推理（投机解码）路径上存在实现差异（v2 采用 speculator 多重继承 + monkey-patch 架构，v1 为 proposer 路径）。需要系统验证 v2 与 v1 的 精度和性能差异，确保重构不引入功能回归或性能退化。 任务 对 Qwen3.5-35B-A3B + MTP 组合，在 MRV2 (v2) 下"
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【功能】recipes: 新增 single-node A3 variants for DeepSeek-V4-Flash (v0.30.0rc2-a3)",
+          "excerptZh": "Summary Adds two single-node A3 variants to the DeepSeek-V4-Flash overlay, measured on quay.io/ascend/vllm-ascend:v0.30.0rc2-a3 on one Atlas 800T A3 node (16 x Ascend 910C, 64 GB HBM/die). These are strictly additive: the existing ^Gscend w"
         },
         {
-          "kind": "issue",
-          "number": 13740,
-          "title": "[Test][MRV2] Qwen3.5-35B-A3B Eagle3 精度和性能对比 v2 vs v1",
-          "url": "https://github.com/vllm-project/vllm-ascend/issues/13740",
-          "author": "chengduxiaowu",
-          "labels": [],
+          "kind": "pr",
+          "number": 20554,
+          "title": "[Doc][Misc] Document --prefix-cache-retention-interval in the DeepSeek-V4 Flash and Pro guides",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20554",
+          "author": "wuming2027",
+          "labels": [
+            "documentation"
+          ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-08-07T02:33:56Z",
-          "updatedAt": "2026-10-31T17:51:36Z",
+          "createdAt": "2026-11-01T10:54:39Z",
+          "updatedAt": "2026-11-01T11:34:23Z",
           "closedAt": null,
           "mergedAt": null,
-          "comments": 4,
-          "excerpt": "背景 vllm-ascend 正在进行 Model Runner V2 (MRV2) 重构。重构后 v2 与 v1 在投机推理（speculative decoding）路径上存在实现差异（v2 采用 speculator 多重继承 + monkey-patch 架构，v1 为 proposer 路径）。需要系统验证 v2 与 v1 的 精度和性能差异 ，确保重构不引入功能回归或性能退化。 任务 对 Qwen3.5-35B-A3B + Eagle3 组合，在 MRV2 (v2",
+          "comments": 0,
+          "excerpt": "Adds a --prefix-cache-retention-interval entry to the parameter lists of DeepSeek-V4-Flash.md and DeepSeek-V4-Pro.md . No launch command changes. Why it is needed: - 20191 then removed the remaining export lines and the parameter entry from",
           "modelIds": [
-            "qwen3.5"
+            "ds-v4-flash"
           ],
-          "action": "updated",
-          "score": 1,
-          "titleZh": "【测试】【MRV2】Qwen3.5-35B-A3B Eagle3 精度和性能对比 v2 vs v1",
-          "excerptZh": "背景 vllm-ascend 正在进行 Model Runner V2 (MRV2) 重构。重构后 v2 与 v1 在投机推理（投机解码）路径上存在实现差异（v2 采用 speculator 多重继承 + monkey-patch 架构，v1 为 proposer 路径）。需要系统验证 v2 与 v1 的 精度和性能差异，确保重构不引入功能回归或性能退化。 任务 对 Qwen3.5-35B-A3B + Eagle3 组合，在 MRV2 (v2"
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【杂项】补充文档 --前缀-缓存-保留-interval in the DeepSeek-V4 Flash and Pro guides",
+          "excerptZh": "Adds a --前缀-缓存-保留-interval entry to the parameter lists of DeepSeek-V4-Flash.md and DeepSeek-V4-Pro.md . No launch command changes. Why it is needed: - 20191 then 移除 the remaining export lines and the parameter entry from"
         }
       ]
     },
@@ -204,134 +405,353 @@
             "long-seq",
             "llm-model"
           ],
-          "state": "open",
+          "state": "closed",
           "draft": false,
           "createdAt": "2026-10-31T14:03:04Z",
-          "updatedAt": "2026-10-31T16:33:03Z",
-          "closedAt": null,
+          "updatedAt": "2026-11-01T09:08:19Z",
+          "closedAt": "2026-11-01T09:08:19Z",
           "mergedAt": null,
           "comments": 0,
           "excerpt": "Description GLM-5.3-Flash MRV2 PCP can fail with mismatched SFA/indexer query rows or produce incorrect answers when prefill and decode requests share a batch. Reproduced with W8A8 weights, INT8 KV cache, TP1/PCP8/DP1/EP8/DCP1, MTP5 and fou",
           "modelIds": [
             "glm-5"
           ],
-          "action": "updated",
-          "score": 5,
+          "action": "closed",
+          "score": 6,
           "titleZh": "【缺陷】: GLM-5.3-Flash MRV2 PCP query/解码 layout mismatches and mixed-batch KV corruption",
           "excerptZh": "Description GLM-5.3-Flash MRV2 PCP can fail with mismatched SFA/索引器 query rows or produce incorrect answers when 预填充 and 解码 requests share a batch. Reproduced with W8A8 权重, INT8 KV 缓存, TP1/PCP8/DP1/EP8/DCP1, MTP5 and fou"
-        },
-        {
-          "kind": "pr",
-          "number": 20522,
-          "title": "[Test] Remove GLM vision NZ projection test",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/20522",
-          "author": "yeyida",
-          "labels": [
-            "module:tests"
-          ],
-          "state": "open",
-          "draft": false,
-          "createdAt": "2026-10-31T16:01:07Z",
-          "updatedAt": "2026-10-31T16:02:20Z",
-          "closedAt": null,
-          "mergedAt": null,
-          "comments": 0,
-          "excerpt": "Remove tests/e2e/nightly/single node/ops/singlecard ops/test glm5next vision nz.py , which was introduced in 19564. The singlecard ops suite is intended to validate custom operators implemented in vllm-ascend, such as those under vllm ascen",
-          "modelIds": [
-            "glm-5"
-          ],
-          "action": "opened",
-          "score": 3,
-          "titleZh": "【测试】移除 GLM vision NZ projection test",
-          "excerptZh": "移除 tests/e2e/夜间/single node/ops/singlecard ops/test glm5next vision nz.py , which was introduced in 19564. The singlecard ops suite is intended to validate custom operators implemented in vllm-ascend, such as those under vllm ascen"
         }
       ]
     },
     {
-      "id": "qwen3.8",
-      "name": "Qwen3.8",
-      "family": "Qwen",
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 6434,
+          "title": "[RFC]: MOE fusion operator optimization",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/6434",
+          "author": "weijinqian0",
+          "labels": [
+            "RFC"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-01-30T09:43:07Z",
+          "updatedAt": "2026-11-01T14:27:36Z",
+          "closedAt": "2026-11-01T14:27:36Z",
+          "mergedAt": null,
+          "comments": 2,
+          "excerpt": "Motivation. The MOE module is becoming increasingly stable. The fusion operators related to MOE can greatly improve the final performance. However, some parts of the fusion operators are still incomplete. For example, the BF16 format is not",
+          "modelIds": [],
+          "action": "closed",
+          "score": 5,
+          "titleZh": "【RFC】: MOE fusion operator 优化",
+          "excerptZh": "Motivation. The MOE module is becoming increasingly stable. The fusion operators related to MOE can greatly 改进 the final 性能. However, some parts of the fusion operators are still incomplete. For example, the BF16 format is not"
+        },
+        {
+          "kind": "pr",
+          "number": 20444,
+          "title": "[releases/v0.32.0rc][MRV2][Performance] Enable Qwen CPU length optimization by default (#20327)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20444",
+          "author": "Hyx098130",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-31T07:53:16Z",
+          "updatedAt": "2026-11-01T13:06:22Z",
+          "closedAt": "2026-11-01T13:06:22Z",
+          "mergedAt": "2026-11-01T13:06:22Z",
+          "comments": 0,
+          "excerpt": "Backport the same five-file Qwen feature delta from 20327 ( ddf8e788caf3a4d719294913cfc3b0842bfe2dc9 ) to releases/v0.32.0rc . Existing differences between the upstream branches are preserved. Based on upstream ccdf1383df3debdd31fff3456b019",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【releases/v0.32.0rc】【MRV2】【性能】启用 Qwen CPU length 优化 by default (#20327)",
+          "excerptZh": "Backport the same five-file Qwen 特性 delta from 20327 ( ddf8e788caf3a4d719294913cfc3b0842bfe2dc9 ) to releases/v0.32.0rc . Existing differences between the upstream branches are preserved. Based on upstream ccdf1383df3debdd31fff3456b019"
+        },
+        {
+          "kind": "pr",
+          "number": 20507,
+          "title": "[Feature][Quantization] Backport ModelSlim W4A8 dynamic Linear support to v0.32.0rc",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20507",
+          "author": "dlsccc",
+          "labels": [
+            "module:tests",
+            "module:quantization",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-31T13:34:28Z",
+          "updatedAt": "2026-11-01T10:47:24Z",
+          "closedAt": "2026-11-01T10:47:24Z",
+          "mergedAt": "2026-11-01T10:47:24Z",
+          "comments": 0,
+          "excerpt": "Backport the ModelSlim W4A8 dynamic Linear support from 20469 to the releases/v0.32.0rc branch. This enables ModelSlim W4A8 DYNAMIC Linear layers with symmetric per-channel INT4 weights and dynamic per-token INT8 activations, including pack",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【功能】【量化】Backport ModelSlim W4A8 dynamic Linear 支持 to v0.32.0rc",
+          "excerptZh": "Backport the ModelSlim W4A8 dynamic Linear 支持 from 20469 to the releases/v0.32.0rc branch. This enables ModelSlim W4A8 DYNAMIC Linear layers with symmetric per-channel INT4 权重 and dynamic per-token INT8 activations, including pack"
+        },
+        {
+          "kind": "pr",
+          "number": 20548,
+          "title": "[Ops][Feature] Add Ascend inference support for Qwen4Exp PLE INT8 quantized tables",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20548",
+          "author": "qijiajin",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-01T07:41:27Z",
+          "updatedAt": "2026-11-01T10:36:08Z",
+          "closedAt": "2026-11-01T10:36:07Z",
+          "mergedAt": "2026-11-01T10:36:07Z",
+          "comments": 0,
+          "excerpt": "Backport 20310 to releases/v0.32.0rc for Qwen4Exp PLE n-gram embedding tables exported as INT8 SYM with FP32 scales per 32 values. The change selects the Ascend INT8 PLE embedding method from ModelSlim quantization markers, loads scale shar",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【算子】【功能】Ascend inference 支持 for Qwen4Exp PLE INT8 quantized tables",
+          "excerptZh": "Backport 20310 to releases/v0.32.0rc for Qwen4Exp PLE n-gram embedding tables exported as INT8 SYM with FP32 scales per 32 values. The change selects the Ascend INT8 PLE embedding method from ModelSlim 量化 markers, loads scale shar"
+        },
+        {
+          "kind": "pr",
+          "number": 20540,
+          "title": "[BugFix][v0.32.0rc] Fix SwigluGroupQuant MXFP tail store masks",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20540",
+          "author": "Karryking3",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-01T06:28:21Z",
+          "updatedAt": "2026-11-01T10:33:59Z",
+          "closedAt": "2026-11-01T10:33:59Z",
+          "mergedAt": "2026-11-01T10:33:59Z",
+          "comments": 0,
+          "excerpt": "Fix the MXFP output-store tail masks in SwigluGroupQuant. Four consecutive packed stores previously used four independent remaining-column counters, so each store treated the same tail as valid and could overwrite adjacent rows or UB buffer",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【v0.32.0rc】SwigluGroupQuant MXFP tail store masks",
+          "excerptZh": "修复 the MXFP output-store tail masks in SwigluGroupQuant. Four consecutive packed stores previously used four independent remaining-column counters, so each store treated the same tail as valid and could overwrite adjacent rows or UB buffer"
+        },
+        {
+          "kind": "pr",
+          "number": 20539,
+          "title": "[BugFix] Fix SwigluGroupQuant MXFP tail store masks",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20539",
+          "author": "Karryking3",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-01T06:28:19Z",
+          "updatedAt": "2026-11-01T10:33:15Z",
+          "closedAt": "2026-11-01T10:33:15Z",
+          "mergedAt": "2026-11-01T10:33:15Z",
+          "comments": 0,
+          "excerpt": "Fix the MXFP output-store tail masks in SwigluGroupQuant. Four consecutive packed stores previously used four independent remaining-column counters, so each store treated the same tail as valid and could overwrite adjacent rows or UB buffer",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】SwigluGroupQuant MXFP tail store masks",
+          "excerptZh": "修复 the MXFP output-store tail masks in SwigluGroupQuant. Four consecutive packed stores previously used four independent remaining-column counters, so each store treated the same tail as valid and could overwrite adjacent rows or UB buffer"
+        },
+        {
+          "kind": "pr",
+          "number": 20469,
+          "title": "[Feature][Quantization] Add ModelSlim W4A8 dynamic Linear support",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20469",
+          "author": "dlsccc",
+          "labels": [
+            "module:tests",
+            "module:quantization",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-31T08:45:56Z",
+          "updatedAt": "2026-11-01T09:17:26Z",
+          "closedAt": "2026-11-01T09:17:26Z",
+          "mergedAt": "2026-11-01T09:17:26Z",
+          "comments": 0,
+          "excerpt": "ModelSlim checkpoints can mark ordinary Linear layers as W4A8 DYNAMIC , but the Ascend backend currently registers this INT format only for fused MoE. This adds Linear support for symmetric per-channel INT4 weights and dynamic per-token INT",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【功能】【量化】ModelSlim W4A8 dynamic Linear 支持",
+          "excerptZh": "ModelSlim 检查点 can mark ordinary Linear layers as W4A8 DYNAMIC , but the Ascend backend currently registers this INT format only for 融合 MoE. This adds Linear 支持 for symmetric per-channel INT4 权重 and dynamic per-token INT"
+        },
+        {
+          "kind": "pr",
+          "number": 20512,
+          "title": "[BugFix] Fix GLM-5.3-Flash PCP query, decode and packed KV layouts",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20512",
+          "author": "lijiahang226",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-31T14:06:03Z",
+          "updatedAt": "2026-11-01T09:08:17Z",
+          "closedAt": "2026-11-01T09:08:17Z",
+          "mergedAt": "2026-11-01T09:08:17Z",
+          "comments": 0,
+          "excerpt": "Keep KPool query/index rows aligned with SFA, reserve both PCP prefill chunks in NoPE metadata, honor KPool's replicated-decode policy, and align packed-KV stores with their deduplicated payload. KPool decode remains replicated; no new PCP ",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】GLM-5.3-Flash PCP query, 解码 and packed KV layouts",
+          "excerptZh": "Keep KPool query/index rows aligned with SFA, reserve both PCP 预填充 chunks in NoPE 元数据, 遵循 KPool's replicated-解码 policy, and 对齐 packed-KV stores with their deduplicated payload. KPool 解码 remains replicated; no new PCP"
+        }
+      ]
+    },
+    {
+      "id": "glm-5.2",
+      "name": "GLM-5.2",
+      "family": "GLM",
       "items": [
         {
           "kind": "pr",
-          "number": 20502,
-          "title": "[Ops][BugFix] Enable A5 MegaMoE for Qwen4Exp with 2560 hidden size and preserve routing for unquantized MTP drafts",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/20502",
-          "author": "qijiajin",
+          "number": 20478,
+          "title": "[Feature] Sparse KV Offload: Shared Indexer Only Optimization",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20478",
+          "author": "eillon",
           "labels": [
+            "documentation",
             "module:tests",
-            "module:ops",
             "module:core"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-31T11:41:52Z",
-          "updatedAt": "2026-10-31T18:12:34Z",
+          "createdAt": "2026-10-31T09:21:37Z",
+          "updatedAt": "2026-11-01T13:22:46Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Summary Backport the behavior of 20402 onto releases/v0.32.0rc (base ffca1c99b ). - Allow hidden size 2560 for the A5 MegaMoE Qwen3.8 Flash Next configuration. - Keep quantized target MoE layers on MegaMoE. When an unquantized MoE layer is ",
+          "excerpt": "This PR introduces the offload shared indexer only optimization for layered-indexer models (such as GLM-5.2) in sparse KV offloading. It keeps the KV cache of full (indexer-owner) layers resident in NPU HBM paged caches, while offloading on",
           "modelIds": [
-            "qwen3.8"
+            "glm-5.2"
           ],
           "action": "updated",
           "score": 3,
-          "titleZh": "【算子】【修复】启用 A5 MegaMoE for Qwen4Exp with 2560 hidden size and preserve 路由 for unquantized MTP drafts",
-          "excerptZh": "Summary Backport the behavior of 20402 onto releases/v0.32.0rc (base ffca1c99b ). - Allow hidden size 2560 for the A5 MegaMoE Qwen3.8 Flash Next 配置. - Keep quantized target MoE layers on MegaMoE. When an unquantized MoE layer is"
-        },
+          "titleZh": "【功能】稀疏 KV 卸载: 共享 索引器 Only 优化",
+          "excerptZh": "This PR introduces the 卸载 共享 索引器 only 优化 for layered-索引器 models (such as GLM-5.2) in 稀疏 KV offloading. It keeps the KV 缓存 of full (索引器-owner) layers resident in NPU HBM paged caches, while offloading on"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 13741,
+          "title": "[Test][MRV2] Qwen3.5-35B-A3B DSpark 精度和性能对比 v2 vs v1",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/13741",
+          "author": "chengduxiaowu",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-08-07T02:33:59Z",
+          "updatedAt": "2026-11-01T12:41:49Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 5,
+          "excerpt": "背景 vllm-ascend 正在进行 Model Runner V2 (MRV2) 重构。重构后 v2 与 v1 在投机推理（speculative decoding）路径上存在实现差异（v2 采用 speculator 多重继承 + monkey-patch 架构，v1 为 proposer 路径）。需要系统验证 v2 与 v1 的 精度和性能差异 ，确保重构不引入功能回归或性能退化。 任务 对 Qwen3.5-35B-A3B + DSpark 组合，在 MRV2 (v2",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 1,
+          "titleZh": "【测试】【MRV2】Qwen3.5-35B-A3B DSpark 精度和性能对比 v2 vs v1",
+          "excerptZh": "背景 vllm-ascend 正在进行 Model Runner V2 (MRV2) 重构。重构后 v2 与 v1 在投机推理（投机解码）路径上存在实现差异（v2 采用 speculator 多重继承 + monkey-patch 架构，v1 为 proposer 路径）。需要系统验证 v2 与 v1 的 精度和性能差异，确保重构不引入功能回归或性能退化。 任务 对 Qwen3.5-35B-A3B + DSpark 组合，在 MRV2 (v2"
+        }
+      ]
+    },
+    {
+      "id": "llama",
+      "name": "Llama",
+      "family": "其他",
+      "items": [
         {
           "kind": "pr",
-          "number": 20467,
-          "title": "[Performance][Qwen3.8Next][Attention] Dispatch prefill between FIA+mask and GBSA at 24K logical KV [v0.32.0rc]",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/20467",
-          "author": "Lethobenthos20",
+          "number": 19678,
+          "title": "[Test] Add IQuest-Coder-V1-40B-Instruct accuracy config via hf_overrides",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19678",
+          "author": "yanggg1133",
           "labels": [
-            "module:tests",
-            "module:ops",
-            "ready-precise"
+            "documentation",
+            "module:tests"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-31T08:44:53Z",
-          "updatedAt": "2026-10-31T17:11:39Z",
+          "createdAt": "2026-10-23T16:14:37Z",
+          "updatedAt": "2026-11-01T07:39:04Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "What this PR does This PR ports the Qwen4Exp FIA + selected-token-mask dispatch and the 24K logical-visible-KV dispatch policy from 20304 onto vllm-project/vllm-ascend:releases/v0.32.0rc . The original commit ordering and author attribution",
+          "excerpt": "Closes 10662. Parent task: 9079. What & Why IQuest-Coder-V1-40B-Instruct is a standard LLaMA backbone behind a custom architecture name ( IQuestCoderForCausalLM , verified against config.json + safetensors key layout: 723 keys, all standard",
           "modelIds": [
-            "qwen3.8"
+            "llama"
           ],
           "action": "updated",
-          "score": 3,
-          "titleZh": "【性能】【Qwen3.8Next】【注意力】【v0.32.0rc】Dispatch 预填充 between FIA+mask and GBSA at 24K logical KV",
-          "excerptZh": "What this PR does This PR ports the Qwen4Exp FIA + selected-token-mask dispatch and the 24K logical-可见-KV dispatch policy from 20304 onto vllm-project/vllm-ascend:releases/v0.32.0rc . The original commit ordering and author attribution"
-        },
+          "score": 0,
+          "titleZh": "【测试】新增 IQuest-Coder-V1-40B-Instruct 精度 配置 via hf_overrides",
+          "excerptZh": "Closes 10662. Parent task: 9079. What & Why IQuest-Coder-V1-40B-Instruct is a standard LLaMA backbone behind a custom architecture name ( IQuestCoderForCausalLM , verified against 配置.json + safetensors key layout: 723 keys, all standard"
+        }
+      ]
+    },
+    {
+      "id": "qwen2.5",
+      "name": "Qwen2.5",
+      "family": "Qwen",
+      "items": [
         {
           "kind": "pr",
-          "number": 20304,
-          "title": "[Performance][Qwen3.8Next][Attention] Dispatch prefill between FIA+mask and GBSA at 24K logical KV",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/20304",
-          "author": "Lethobenthos20",
+          "number": 19531,
+          "title": "[Test] Add Qwen2.5-1.5B-apeach classification e2e test and tutorial (issue #10680)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19531",
+          "author": "yanggg1133",
           "labels": [
-            "module:tests",
-            "module:ops",
-            "ready-precise"
+            "documentation",
+            "module:tests"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-30T02:12:50Z",
-          "updatedAt": "2026-10-31T17:11:11Z",
+          "createdAt": "2026-10-22T15:28:00Z",
+          "updatedAt": "2026-11-01T07:38:56Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "What this PR does This PR targets the current vllm-project/vllm-ascend:main directly and contains exactly two commits: the initial Qwen4Exp FIA + selected-token-mask phase dispatch, followed by the 24K logical-visible-KV dispatch policy. Th",
+          "excerpt": "What does this PR do? Adds a functional e2e classification test for jason9693/Qwen2.5-1.5B-apeach (Korean harmful-content classifier, Qwen2ForSequenceClassification ) plus a user-facing tutorial, per 10680. Acceptance-criteria scoping (expl",
           "modelIds": [
-            "qwen3.8"
+            "qwen2.5"
           ],
           "action": "updated",
-          "score": 3,
-          "titleZh": "【性能】【Qwen3.8Next】【注意力】Dispatch 预填充 between FIA+mask and GBSA at 24K logical KV",
-          "excerptZh": "What this PR does This PR targets the current vllm-project/vllm-ascend:main directly and contains exactly two commits: the initial Qwen4Exp FIA + selected-token-mask phase dispatch, followed by the 24K logical-可见-KV dispatch policy. Th"
+          "score": 0,
+          "titleZh": "【测试】新增 Qwen2.5-1.5B-apeach classification e2e test and tutorial (issue #10680)",
+          "excerptZh": "What does this PR do? Adds a functional e2e classification test for jason9693/Qwen2.5-1.5B-apeach (Korean harmful-content classifier, Qwen2ForSequenceClassification ) plus a user-facing tutorial, per 10680. Acceptance-criteria scoping (expl"
         }
       ]
     }

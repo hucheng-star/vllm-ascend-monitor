@@ -1,0 +1,127 @@
+{
+  "day": "2026-11-02",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 19650,
+          "title": "[Bug]: Some requests hang indefinitely after 5+ hours of 200-concurrency accuracy testing with vllm-ascend v0.30.0rc2 and Qwen3.8-27B",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/19650",
+          "author": "zzycode1005",
+          "labels": [
+            "bug",
+            "triaged"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-23T10:13:53Z",
+          "updatedAt": "2026-11-01T16:34:45Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 2,
+          "excerpt": "",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 6,
+          "titleZh": "【缺陷】: Some requests 挂起 indefinitely after 5+ hours of 200-concurrency 精度 testing with vllm-ascend v0.30.0rc2 and Qwen3.8-27B",
+          "excerptZh": ""
+        },
+        {
+          "kind": "issue",
+          "number": 19995,
+          "title": "[Usage]: 310p双实例运行qwen3.8-27b的问题",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/19995",
+          "author": "feifan426",
+          "labels": [
+            "310p"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-27T14:28:07Z",
+          "updatedAt": "2026-11-01T16:36:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 2,
+          "excerpt": "",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 4,
+          "titleZh": "【Usage】: 310p双实例运行qwen3.8-27b的问题",
+          "excerptZh": ""
+        },
+        {
+          "kind": "pr",
+          "number": 20311,
+          "title": "[Feature][Model] Enable Qwen3.8 Flash Next PP and SP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20311",
+          "author": "Lethobenthos20",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "merge-conflicts",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-30T02:57:09Z",
+          "updatedAt": "2026-11-01T16:43:00Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary Adapt the existing Qwen3.8/Qwen4-Exp pipeline-parallel (PP) and sequence-parallel (SP/FlashComm1) work from Lethobenthos20/vllm-ascend 4 onto the current vllm-project/vllm-ascend main , then make the packed QSA/GDN/PLE KV-cache layo",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】启用 Qwen3.8 Flash Next PP and SP",
+          "excerptZh": "Summary Adapt the existing Qwen3.8/Qwen4-Exp pipeline-parallel (PP) and 序列-parallel (SP/FlashComm1) work from Lethobenthos20/vllm-ascend 4 onto the current vllm-project/vllm-ascend main , then make the packed QSA/GDN/PLE KV-缓存 layo"
+        }
+      ]
+    },
+    {
+      "id": "glm-5.2",
+      "name": "GLM-5.2",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20478,
+          "title": "[Feature] Sparse KV Offload: Shared Indexer Only Optimization",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20478",
+          "author": "eillon",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-31T09:21:37Z",
+          "updatedAt": "2026-11-01T16:15:06Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR introduces the offload shared indexer only optimization for layered-indexer models (such as GLM-5.2) in sparse KV offloading. It keeps the KV cache of full (indexer-owner) layers resident in NPU HBM paged caches, while offloading on",
+          "modelIds": [
+            "glm-5.2"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】稀疏 KV 卸载: 共享 索引器 Only 优化",
+          "excerptZh": "This PR introduces the 卸载 共享 索引器 only 优化 for layered-索引器 models (such as GLM-5.2) in 稀疏 KV offloading. It keeps the KV 缓存 of full (索引器-owner) layers resident in NPU HBM paged caches, while offloading on"
+        }
+      ]
+    }
+  ]
+}
