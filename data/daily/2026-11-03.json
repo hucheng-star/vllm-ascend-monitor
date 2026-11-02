@@ -1,0 +1,336 @@
+{
+  "day": "2026-11-03",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 20526,
+          "title": "[Bug]: Generic MXFP8 loader breaks grouped DeepSeek V4.1 output projection",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20526",
+          "author": "Oseltamivir",
+          "labels": [
+            "triaged",
+            "llm-model",
+            "deepseek",
+            "deepseek-v4"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-31T18:51:10Z",
+          "updatedAt": "2026-11-02T16:27:53Z",
+          "closedAt": "2026-11-02T16:27:52Z",
+          "mergedAt": null,
+          "comments": 2,
+          "excerpt": "Generic block-FP8 loading on DeepSeek V4.1 leaves wo a as a 2-D MXFP8 weight and converts it to NZ despite skip weight nz conversion . The output projection calls npu transpose quant batchmatmul with 3-D permutations, causing IndexError: Di",
+          "modelIds": [
+            "ds-v4.1",
+            "ds-v4"
+          ],
+          "action": "closed",
+          "score": 7,
+          "titleZh": "【缺陷】: Generic MXFP8 loader breaks grouped DeepSeek V4.1 output projection",
+          "excerptZh": "Generic block-FP8 加载 on DeepSeek V4.1 leaves wo a as a 2-D MXFP8 权重 and converts it to NZ despite skip 权重 nz conversion . The output projection calls npu transpose quant batchmatmul with 3-D permutations, causing IndexError: Di"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 20526,
+          "title": "[Bug]: Generic MXFP8 loader breaks grouped DeepSeek V4.1 output projection",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20526",
+          "author": "Oseltamivir",
+          "labels": [
+            "triaged",
+            "llm-model",
+            "deepseek",
+            "deepseek-v4"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-31T18:51:10Z",
+          "updatedAt": "2026-11-02T16:27:53Z",
+          "closedAt": "2026-11-02T16:27:52Z",
+          "mergedAt": null,
+          "comments": 2,
+          "excerpt": "Generic block-FP8 loading on DeepSeek V4.1 leaves wo a as a 2-D MXFP8 weight and converts it to NZ despite skip weight nz conversion . The output projection calls npu transpose quant batchmatmul with 3-D permutations, causing IndexError: Di",
+          "modelIds": [
+            "ds-v4.1",
+            "ds-v4"
+          ],
+          "action": "closed",
+          "score": 7,
+          "titleZh": "【缺陷】: Generic MXFP8 loader breaks grouped DeepSeek V4.1 output projection",
+          "excerptZh": "Generic block-FP8 加载 on DeepSeek V4.1 leaves wo a as a 2-D MXFP8 权重 and converts it to NZ despite skip 权重 nz conversion . The output projection calls npu transpose quant batchmatmul with 3-D permutations, causing IndexError: Di"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-moe",
+      "name": "Qwen3 MoE",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20698,
+          "title": "[Core][Kernel] Add SplitQuant Qwen3 MoE support for v0.11",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20698",
+          "author": "BlancKae",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-02T16:32:28Z",
+          "updatedAt": "2026-11-02T16:59:14Z",
+          "closedAt": "2026-11-02T16:58:58Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR adds SplitQuant support for the following three Qwen model checkpoints on Ascend NPUs and keeps the integration compatible with the vLLM v0.11.0 API family: Model SplitQuant checkpoint vLLM model architecture --- --- --- Qwen3-14B Q",
+          "modelIds": [
+            "qwen3-moe"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【Core】【Kernel】新增 SplitQuant Qwen3 MoE 支持 for v0.11",
+          "excerptZh": "This PR adds SplitQuant 支持 for the following three Qwen model 检查点 on Ascend NPUs and keeps the integration compatible with the vLLM v0.11.0 API family: Model SplitQuant 检查点 vLLM model architecture --- --- --- Qwen3-14B Q"
+        },
+        {
+          "kind": "pr",
+          "number": 20693,
+          "title": "[Core][Kernel] Add SplitQuant Qwen3 MoE support for v0.11",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20693",
+          "author": "BlancKae",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-02T15:39:17Z",
+          "updatedAt": "2026-11-02T16:09:23Z",
+          "closedAt": "2026-11-02T16:02:56Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR adds SplitQuant support for Qwen3 MoE models on Ascend NPUs and keeps the integration compatible with the vLLM v0.11.0 API family. The changes include: - Registering the SplitQuant Qwen3 MoE model implementation with vLLM-Ascend. - ",
+          "modelIds": [
+            "qwen3-moe"
+          ],
+          "action": "closed",
+          "score": 4,
+          "titleZh": "【Core】【Kernel】新增 SplitQuant Qwen3 MoE 支持 for v0.11",
+          "excerptZh": "This PR adds SplitQuant 支持 for Qwen3 MoE models on Ascend NPUs and keeps the integration compatible with the vLLM v0.11.0 API family. The changes include: - Registering the SplitQuant Qwen3 MoE model implementation with vLLM-Ascend. -"
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20560,
+          "title": "[Feature] Add BF16 PLE host offload with DP shared memory  for Qwen4Exp",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20560",
+          "author": "yeatschou0-ui",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-01T13:19:48Z",
+          "updatedAt": "2026-11-02T16:41:36Z",
+          "closedAt": "2026-11-02T16:41:36Z",
+          "mergedAt": "2026-11-02T16:41:36Z",
+          "comments": 0,
+          "excerpt": "Provides Ascend host offload support for Qwen4Exp PLE embedding tables: stores BF16 PLE tables in CANN-registered host memory, with the NPU gathering directly via UVA, saving ~12 GiB of device memory per card. Core design: opt-in / default-",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【功能】BF16 PLE host 卸载 with DP 共享 显存 for Qwen4Exp",
+          "excerptZh": "Provides Ascend host 卸载 支持 for Qwen4Exp PLE embedding tables: stores BF16 PLE tables in CANN-registered host 显存, with the NPU gathering directly via UVA, saving ~12 GiB of device 显存 per card. Core design: opt-in / default-"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20562,
+          "title": "[Feature] recipes: add single-node A3 variants for DeepSeek-V4-Flash (v0.30.0rc2-a3)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20562",
+          "author": "xyndameinv",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-01T14:05:08Z",
+          "updatedAt": "2026-11-02T19:39:37Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary Adds two single-node A3 variants to the DeepSeek-V4-Flash overlay, measured on quay.io/ascend/vllm-ascend:v0.30.0rc2-a3 on one Atlas 800T A3 node (16 x Ascend 910C, 64 GB HBM/die). These are strictly additive: the existing ^Gscend w",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "updated",
+          "score": 2,
+          "titleZh": "【功能】recipes: 新增 single-node A3 variants for DeepSeek-V4-Flash (v0.30.0rc2-a3)",
+          "excerptZh": "Summary Adds two single-node A3 variants to the DeepSeek-V4-Flash overlay, measured on quay.io/ascend/vllm-ascend:v0.30.0rc2-a3 on one Atlas 800T A3 node (16 x Ascend 910C, 64 GB HBM/die). These are strictly additive: the existing ^Gscend w"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19991,
+          "title": "[Doc][Recipe] Align Kimi-K3 Ascend variants for mixed serving only",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19991",
+          "author": "MAyang38",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-27T13:55:11Z",
+          "updatedAt": "2026-11-02T19:39:35Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add Kimi-K3 Ascend 950DT (A5) MXFP4 support and keep the recipe limited to mixed serving. This is the mixed-only alternative to 19703, which retains A5 PD separation. - A3 (Ascend 910C) uses W4A8 (Ascend), ModelScope Eco-Tech/Kimi-K3-w4a8 .",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【Recipe】对齐 Kimi-K3 Ascend variants for mixed 服务 only",
+          "excerptZh": "新增 Kimi-K3 Ascend 950DT (A5) MXFP4 支持 and keep the recipe limited to mixed 服务. This is the mixed-only alternative to 19703, which retains A5 PD separation. - A3 (Ascend 910C) uses W4A8 (Ascend), ModelScope Eco-Tech/Kimi-K3-w4a8 ."
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20096,
+          "title": "[Doc][Misc] Add Qwen3.6-35B-A3B Ascend recipe overlay",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20096",
+          "author": "YusongXiao",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-28T07:25:43Z",
+          "updatedAt": "2026-11-02T19:39:32Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Does this PR introduce any user-facing change? --- Checklist Add a Huawei-scoped recipe overlay for Qwen/Qwen3.6-35B-A3B . - Add A3 W8A8 and 950DT MXFP8/C8 variants. - Provide hardware-specific presets with Python frontend and MTP. - Use th",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【杂项】新增 Qwen3.6-35B-A3B Ascend recipe overlay",
+          "excerptZh": "--- 清单 新增 a Huawei-scoped recipe overlay for Qwen/Qwen3.6-35B-A3B . - 新增 A3 W8A8 and 950DT MXFP8/C8 variants. - Provide hardware-specific presets with Python frontend and MTP. - Use th"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20590,
+          "title": "[Doc] Add Ascend 310P overlays for Qwen3.5-2B/4B/9B",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20590",
+          "author": "binbinshi",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-02T02:53:50Z",
+          "updatedAt": "2026-11-02T19:39:28Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary Additive Huawei-scoped overlays for Qwen3.5 Dense on Ascend 310P (Atlas 300I DUO / 200I Pro), mirroring measured scenarios from vllm-ascend-recipes 131. Depends on taxonomy ids ascend 310p / ascend 310p 2x in vllm-project/recipes 12",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】新增 Ascend 310P overlays for Qwen3.5-2B/4B/9B",
+          "excerptZh": "Summary Additive Huawei-scoped overlays for Qwen3.5 Dense on Ascend 310P (Atlas 300I DUO / 200I Pro), mirroring measured scenarios from vllm-ascend-recipes 131. Depends on taxonomy ids ascend 310p / ascend 310p 2x in vllm-project/recipes 12"
+        }
+      ]
+    },
+    {
+      "id": "glm-5.1",
+      "name": "GLM-5.1",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20034,
+          "title": "[Doc] Add GLM-5.1 Ascend recipe overlay",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20034",
+          "author": "Wyz-134",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-28T02:39:48Z",
+          "updatedAt": "2026-11-02T19:40:05Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Migrate the GLM-5.1 Ascend content from vllm-project/vllm 62890 into recipes/overlays/zai-org/GLM-5.1.yaml , following the source ownership established by recipes 1160 and vllm-ascend 19381. This adds an overlay, not another complete model ",
+          "modelIds": [
+            "glm-5.1"
+          ],
+          "action": "updated",
+          "score": -1,
+          "titleZh": "【文档】新增 GLM-5.1 Ascend recipe overlay",
+          "excerptZh": "迁移 the GLM-5.1 Ascend content from vllm-project/vllm 62890 into recipes/overlays/zai-org/GLM-5.1.yaml , following the source ownership established by recipes 1160 and vllm-ascend 19381. This adds an overlay, not another complete model"
+        }
+      ]
+    }
+  ]
+}

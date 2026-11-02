@@ -3,89 +3,633 @@
   "timezone": "Asia/Shanghai",
   "groups": [
     {
-      "id": "qwen3.8",
-      "name": "Qwen3.8",
+      "id": "qwen3-moe",
+      "name": "Qwen3 MoE",
       "family": "Qwen",
       "items": [
         {
-          "kind": "issue",
-          "number": 19650,
-          "title": "[Bug]: Some requests hang indefinitely after 5+ hours of 200-concurrency accuracy testing with vllm-ascend v0.30.0rc2 and Qwen3.8-27B",
-          "url": "https://github.com/vllm-project/vllm-ascend/issues/19650",
-          "author": "zzycode1005",
+          "kind": "pr",
+          "number": 20693,
+          "title": "[Core][Kernel] Add SplitQuant Qwen3 MoE support for v0.11",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20693",
+          "author": "BlancKae",
           "labels": [
-            "bug",
-            "triaged"
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-23T10:13:53Z",
-          "updatedAt": "2026-11-01T16:34:45Z",
+          "createdAt": "2026-11-02T15:39:17Z",
+          "updatedAt": "2026-11-02T15:51:33Z",
           "closedAt": null,
           "mergedAt": null,
-          "comments": 2,
-          "excerpt": "",
+          "comments": 0,
+          "excerpt": "This PR adds SplitQuant support for Qwen3 MoE models on Ascend NPUs and keeps the integration compatible with the vLLM v0.11.0 API family. The changes include: - Registering the SplitQuant Qwen3 MoE model implementation with vLLM-Ascend. - ",
           "modelIds": [
-            "qwen3.8"
+            "qwen3-moe"
           ],
-          "action": "updated",
+          "action": "opened",
           "score": 6,
-          "titleZh": "【缺陷】: Some requests 挂起 indefinitely after 5+ hours of 200-concurrency 精度 testing with vllm-ascend v0.30.0rc2 and Qwen3.8-27B",
-          "excerptZh": ""
+          "titleZh": "【Core】【Kernel】新增 SplitQuant Qwen3 MoE 支持 for v0.11",
+          "excerptZh": "This PR adds SplitQuant 支持 for Qwen3 MoE models on Ascend NPUs and keeps the integration compatible with the vLLM v0.11.0 API family. The changes include: - Registering the SplitQuant Qwen3 MoE model implementation with vLLM-Ascend. -"
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 20692,
+          "title": "[RFC]: Holemiss — Ascend Implementation of Selective KV and Recurrent-State Recovery",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20692",
+          "author": "valvarl",
+          "labels": [
+            "RFC"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-02T15:28:49Z",
+          "updatedAt": "2026-11-02T15:36:42Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Motivation. Companion discussion: vLLM core RFC 65172 — Holemiss: Selective Recovery of Partially Lost LLM Cache State. This issue focuses on what vLLM-Ascend would own and implement . The recovery transaction, the minimum Scheduler–Worker ",
+          "modelIds": [],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【RFC】: Holemiss — Ascend Implementation of Selective KV and Recurrent-State Recovery",
+          "excerptZh": "Motivation. Companion discussion: vLLM core RFC 65172 — Holemiss: Selective Recovery of Partially Lost LLM 缓存 State. This issue focuses on what vLLM-Ascend would own and implement . The recovery transaction, the minimum 调度器–Worker"
         },
         {
           "kind": "issue",
-          "number": 19995,
-          "title": "[Usage]: 310p双实例运行qwen3.8-27b的问题",
-          "url": "https://github.com/vllm-project/vllm-ascend/issues/19995",
-          "author": "feifan426",
+          "number": 20690,
+          "title": "[Bug]: Padded MTP partial prefill uses the sequence-tail token as its fallback",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20690",
+          "author": "KeyanHu-git",
           "labels": [
-            "310p"
+            "advanced-features",
+            "mtp/speculative-decode"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-27T14:28:07Z",
-          "updatedAt": "2026-11-01T16:36:36Z",
+          "createdAt": "2026-11-02T14:54:00Z",
+          "updatedAt": "2026-11-02T14:54:36Z",
           "closedAt": null,
           "mergedAt": null,
-          "comments": 2,
-          "excerpt": "",
-          "modelIds": [
-            "qwen3.8"
+          "comments": 0,
+          "excerpt": "In the V1 padded speculative-decoding path, a discarded partial-prefill request can still contribute valid rows to the drafter's first pass. Its fallback next token is currently taken from the end of the complete known sequence ( N - 1 ), r",
+          "modelIds": [],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【缺陷】: Padded MTP partial 预填充 uses the 序列-tail token as its fallback",
+          "excerptZh": "In the V1 padded 投机-解码 path, a discarded partial-预填充 request can still contribute valid rows to the drafter's first pass. Its fallback next token is currently taken from the end of the complete known 序列 ( N - 1 ), r"
+        },
+        {
+          "kind": "issue",
+          "number": 20677,
+          "title": "[Bug]: 混合 GDN（mamba align）+ MTP + async 调度下出现静默输出错误：defer_block_free 调度暂停导致 accepted 状态地址丢失",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20677",
+          "author": "sumingZero",
+          "labels": [
+            "bug",
+            "advanced-features",
+            "mtp/speculative-decode"
           ],
-          "action": "updated",
-          "score": 4,
-          "titleZh": "【Usage】: 310p双实例运行qwen3.8-27b的问题",
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-02T12:43:18Z",
+          "updatedAt": "2026-11-02T13:14:30Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "",
+          "modelIds": [],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【缺陷】: 混合 GDN（mamba 对齐）+ MTP + async 调度下出现静默输出错误：defer_block_free 调度暂停导致 accepted 状态地址丢失",
           "excerptZh": ""
         },
         {
           "kind": "pr",
-          "number": 20311,
-          "title": "[Feature][Model] Enable Qwen3.8 Flash Next PP and SP",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/20311",
-          "author": "Lethobenthos20",
+          "number": 20662,
+          "title": "[v0.32.0][Ops][BugFix] Fix QSFA static kernel tiling access on A2/A3 and A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20662",
+          "author": "lllmf",
+          "labels": [
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-02T10:25:01Z",
+          "updatedAt": "2026-11-02T13:47:59Z",
+          "closedAt": "2026-11-02T13:47:59Z",
+          "mergedAt": "2026-11-02T13:47:59Z",
+          "comments": 0,
+          "excerpt": "Backport of 20660 to releases/v0.32.0rc . QSFA's arch22 and arch35 dispatch paths directly dereference the kernel tiling argument as a GM pointer before selecting the optional-RoPE/address-precomputation specialization. With statically comp",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【v0.32.0】【算子】【修复】QSFA static 内核 tiling access on A2/A3 and A5",
+          "excerptZh": "Backport of 20660 to releases/v0.32.0rc . QSFA's arch22 and arch35 dispatch paths directly dereference the 内核 tiling argument as a GM pointer before selecting the optional-RoPE/address-precomputation specialization. With statically comp"
+        },
+        {
+          "kind": "pr",
+          "number": 20660,
+          "title": "[Ops][BugFix] Fix QSFA static kernel tiling access on A2/A3 and A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20660",
+          "author": "lllmf",
+          "labels": [
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-02T10:20:33Z",
+          "updatedAt": "2026-11-02T13:47:34Z",
+          "closedAt": "2026-11-02T13:47:34Z",
+          "mergedAt": "2026-11-02T13:47:34Z",
+          "comments": 0,
+          "excerpt": "QSFA's arch22 and arch35 dispatch paths directly dereference the kernel tiling argument as a GM pointer before selecting the optional-RoPE/address-precomputation specialization. With statically compiled kernels, that argument must be decode",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【算子】【修复】QSFA static 内核 tiling access on A2/A3 and A5",
+          "excerptZh": "QSFA's arch22 and arch35 dispatch paths directly dereference the 内核 tiling argument as a GM pointer before selecting the optional-RoPE/address-precomputation specialization. With statically compiled 内核, that argument must be 解码"
+        },
+        {
+          "kind": "pr",
+          "number": 20625,
+          "title": "[Feature][PD][v0.32.0rc] Support component-aware Mooncake layerwise cache transfer",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20625",
+          "author": "nwpu-zxr",
           "labels": [
             "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-02T07:11:01Z",
+          "updatedAt": "2026-11-02T13:38:02Z",
+          "closedAt": "2026-11-02T13:38:02Z",
+          "mergedAt": "2026-11-02T13:38:02Z",
+          "comments": 0,
+          "excerpt": "Backport of 20152 to releases/v0.32.0rc , including all three commits from the main PR. Mooncake layerwise transfer assumes uniform cache groups and packed block layouts, which cannot represent the hybrid cache components used by GLM-5.3-Fl",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【功能】【PD】【v0.32.0rc】支持 component-aware Mooncake layerwise 缓存 transfer",
+          "excerptZh": "Backport of 20152 to releases/v0.32.0rc , including all three commits from the main PR. Mooncake layerwise transfer assumes uniform 缓存 groups and packed block layouts, which cannot represent the hybrid 缓存 components used by GLM-5.3-Fl"
+        },
+        {
+          "kind": "pr",
+          "number": 20207,
+          "title": "[BugFix] Record prefix cache stats in BalanceScheduler",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20207",
+          "author": "wuming2027",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-29T06:20:01Z",
+          "updatedAt": "2026-11-02T13:25:56Z",
+          "closedAt": "2026-11-02T13:25:55Z",
+          "mergedAt": "2026-11-02T13:25:55Z",
+          "comments": 0,
+          "excerpt": "Fixes 20211 BalanceScheduler forks Scheduler.schedule() , but it only records local prefix-cache statistics on the mamba + connector fast path. For full-attention models (Qwen3, DeepSeek, GLM, …) the branch never runs, so vllm:prefix cache ",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】Record 前缀缓存 stats in BalanceScheduler",
+          "excerptZh": "Fixes 20211 BalanceScheduler forks 调度器.schedule() , but it only records local 前缀-缓存 statistics on the mamba + connector fast path. For full-注意力 models (Qwen3, DeepSeek, GLM, …) the branch never runs, so vllm:前缀缓存"
+        },
+        {
+          "kind": "pr",
+          "number": 20544,
+          "title": "[Performance][KV Pool] Make scheduler and lease metadata scans linear",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20544",
+          "author": "Esir98",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-01T06:31:02Z",
+          "updatedAt": "2026-11-02T12:55:21Z",
+          "closedAt": "2026-11-02T12:55:21Z",
+          "mergedAt": "2026-11-02T12:55:21Z",
+          "comments": 0,
+          "excerpt": "AscendStore repeatedly scans Python lists while preparing scheduler metadata and layerwise loads. With many active requests or a long restored prefix, this adds quadratic CPU preparation work. - Filter unfinished requests in expected O(U + ",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【性能】【KV Pool】Make 调度器 and lease 元数据 scans linear",
+          "excerptZh": "AscendStore repeatedly scans Python lists while preparing 调度器 元数据 and layerwise loads. With many active requests or a long 恢复 前缀, this adds quadratic CPU preparation work. - Filter unfinished requests in expected O(U +"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20621,
+          "title": "[Feature][Model] Enable dense sequence parallelism for all dense decoder families",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20621",
+          "author": "chenxi-hh",
+          "labels": [
+            "documentation",
+            "module:tests",
             "module:ops",
-            "module:core",
-            "merge-conflicts",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-02T06:36:08Z",
+          "updatedAt": "2026-11-02T14:48:24Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "The FlashComm switch previously enabled dense sequence parallelism only for the Qwen3.5 family, through a model-type whitelist and a per-family decoder-layer patch. This moves the layout to the generic layer primitives every dense family sh",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【功能】【模型】启用 dense 序列 parallelism for all dense decoder families",
+          "excerptZh": "The FlashComm 切换 previously 启用 dense 序列 parallelism only for the Qwen3.5 family, through a model-type whitelist and a per-family decoder-layer patch. This moves the layout to the generic layer primitives every dense family sh"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20667,
+          "title": "[BugFix][Platform] Accept int8/mxfp8 kv-cache-dtype on the KV_CACHE_DTYPES mirror list",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20667",
+          "author": "chenxi-hh",
+          "labels": [
+            "module:tests",
             "ready-precise"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-10-30T02:57:09Z",
-          "updatedAt": "2026-11-01T16:43:00Z",
+          "createdAt": "2026-11-02T11:37:10Z",
+          "updatedAt": "2026-11-02T14:36:02Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Summary Adapt the existing Qwen3.8/Qwen4-Exp pipeline-parallel (PP) and sequence-parallel (SP/FlashComm1) work from Lethobenthos20/vllm-ascend 4 onto the current vllm-project/vllm-ascend main , then make the packed QSA/GDN/PLE KV-cache layo",
+          "excerpt": "vllm serve ... --kv-cache-dtype mxfp8 (C8-MXFP KV cache, A5 QFA path) 鈥?and --kv-cache-dtype int8 (DeepSeek V4 MLA) on current vLLM main 鈥?aborted at startup with: Root cause: current vLLM main gates CacheConfig.cache dtype on the mutable v",
           "modelIds": [
-            "qwen3.8"
+            "ds-v4"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【修复】【Platform】Accept int8/mxfp8 kv-缓存-dtype on the KV_CACHE_DTYPES mirror list",
+          "excerptZh": "vllm serve ... --kv-缓存-dtype mxfp8 (C8-MXFP KV 缓存, A5 QFA path) 鈥?and --kv-缓存-dtype int8 (DeepSeek V4 MLA) on current vLLM main 鈥?aborted at startup with: Root cause: current vLLM main gates CacheConfig.缓存 dtype on the mutable v"
+        },
+        {
+          "kind": "pr",
+          "number": 19926,
+          "title": " [Performance][DSv4.1][no piecewise] Trim the last KV-source layer in decoder replay",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19926",
+          "author": "wxsIcey",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-27T06:52:48Z",
+          "updatedAt": "2026-11-02T12:09:38Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Follow In decoder replay steps, the last KV-source layer (layer 20 on DSV4.1-Flash) still ran on every row, though for the trimmed rows only its KV (SWA, compressed, index K) is read. Its indexer scoring and top-k, wo, sparse MLA, and MoE f",
+          "modelIds": [
+            "ds-v4"
           ],
           "action": "updated",
           "score": 3,
-          "titleZh": "【功能】【模型】启用 Qwen3.8 Flash Next PP and SP",
-          "excerptZh": "Summary Adapt the existing Qwen3.8/Qwen4-Exp pipeline-parallel (PP) and 序列-parallel (SP/FlashComm1) work from Lethobenthos20/vllm-ascend 4 onto the current vllm-project/vllm-ascend main , then make the packed QSA/GDN/PLE KV-缓存 layo"
+          "titleZh": "【性能】【DSv4.1】【no piecewise】Trim the last KV-source layer in decoder replay",
+          "excerptZh": "Follow In decoder replay steps, the last KV-source layer (layer 20 on DSV4.1-Flash) still ran on every row, though for the trimmed rows only its KV (SWA, compressed, index K) is read. Its 索引器 scoring and top-k, wo, 稀疏 MLA, and MoE f"
+        }
+      ]
+    },
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 19349,
+          "title": "[Bug]: GLM5.3 FLASH 采集profilling时报错",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/19349",
+          "author": "ZCG12345",
+          "labels": [
+            "bug",
+            "glm5",
+            "stale",
+            "llm-model",
+            "wait-feedback"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-21T07:03:20Z",
+          "updatedAt": "2026-11-02T13:55:31Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 2,
+          "excerpt": "",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "updated",
+          "score": 6,
+          "titleZh": "【缺陷】: GLM5.3 FLASH 采集profilling时报错",
+          "excerptZh": ""
+        },
+        {
+          "kind": "issue",
+          "number": 19386,
+          "title": "[Bug]:基于A3单机+vllm 0.30.rc2镜像部署glm5.3-flash模型，在删除mtp参数后进行8并发性能测试，vllm服务崩溃",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/19386",
+          "author": "lxr88",
+          "labels": [
+            "bug",
+            "glm5",
+            "stale",
+            "advanced-features",
+            "mtp/speculative-decode",
+            "llm-model",
+            "wait-feedback"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-21T11:42:02Z",
+          "updatedAt": "2026-11-02T13:55:29Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 3,
+          "excerpt": "",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "updated",
+          "score": 6,
+          "titleZh": "[Bug]:基于A3单机+vllm 0.30.rc2镜像部署glm5.3-flash模型，在删除mtp参数后进行8并发性能测试，vllm服务崩溃",
+          "excerptZh": ""
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20672,
+          "title": "[Performance] Defer DeepSeek V4.1 indexer weights synchronization",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20672",
+          "author": "zzy-6666",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-02T12:12:03Z",
+          "updatedAt": "2026-11-02T12:13:21Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4.1 projects indexer weights on the DSV4 auxiliary NPU stream. The main stream previously waited for weights done immediately after Query RoPE, although the projected weights are not consumed until select sparse indices() calls in",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【性能】Defer DeepSeek V4.1 索引器 权重 synchronization",
+          "excerptZh": "DeepSeek V4.1 projects 索引器 权重 on the DSV4 auxiliary NPU stream. The main stream previously waited for 权重 done immediately after Query RoPE, although the projected 权重 are not consumed until select 稀疏 indices() calls in"
+        },
+        {
+          "kind": "pr",
+          "number": 20670,
+          "title": "[Attention] Enable opt-in fused C2 metadata preparation for DeepSeek V4.1 on A2",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20670",
+          "author": "lcg1215",
+          "labels": [
+            "module:core"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-02T11:53:00Z",
+          "updatedAt": "2026-11-02T11:55:40Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4.1 already provides a fused Triton kernel for C2 ring metadata preparation. However, the metadata builder currently selects it only for the A5 packed-cache path. A2 continues to prepare ring controls, completion masks, source pos",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【注意力】启用 opt-in 融合 C2 元数据 preparation for DeepSeek V4.1 on A2",
+          "excerptZh": "DeepSeek V4.1 already provides a 融合 Triton 内核 for C2 ring 元数据 preparation. However, the 元数据 builder currently selects it only for the A5 packed-缓存 path. A2 continues to prepare ring controls, completion masks, source pos"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k2",
+      "name": "Kimi K2",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 20154,
+          "title": "[MRV2] Kimi K2.6 accuracy & performance comparison between Model Runner v2 and Model Runner v1",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20154",
+          "author": "qq3499",
+          "labels": [],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-10-28T16:26:56Z",
+          "updatedAt": "2026-11-02T15:06:26Z",
+          "closedAt": "2026-11-02T15:06:26Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Motivation Model Runner v2 is being rolled out as the next-generation worker path in vllm-ascend. Kimi-K2.6-W4A8 already has MRV2 nightly coverage in one topology ( Kimi-K2.6-W4A8-MRV2-PCP-DCP , 18267), but there is no systematic same-input",
+          "modelIds": [
+            "kimi-k2"
+          ],
+          "action": "closed",
+          "score": 4,
+          "titleZh": "【MRV2】Kimi K2.6 精度 & 性能 comparison between Model Runner v2 and Model Runner v1",
+          "excerptZh": "Motivation Model Runner v2 is being rolled out as the next-generation worker path in vllm-ascend. Kimi-K2.6-W4A8 already has MRV2 夜间 coverage in one topology ( Kimi-K2.6-W4A8-MRV2-PCP-DCP , 18267), but there is no systematic same-input"
+        }
+      ]
+    },
+    {
+      "id": "ds-v3.2",
+      "name": "DeepSeek V3.2",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20675,
+          "title": "[Test][MRV2] Add DeepSeek V3.2 MRV1/MRV2 parity regression harness",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20675",
+          "author": "wisdom1710",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-02T12:34:52Z",
+          "updatedAt": "2026-11-02T13:49:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Part of 20674 and 20673. Adds a resource-heavy, manual nightly regression for DeepSeek V3.2 W8A8 on MRV1 and MRV2. This is a test-only change; no production runner behavior or environment variable is changed, and no v0.30.0-era patch is for",
+          "modelIds": [
+            "ds-v3.2"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【测试】【MRV2】新增 DeepSeek V3.2 MRV1/MRV2 parity 回退 harness",
+          "excerptZh": "Part of 20674 and 20673. Adds a resource-heavy, manual 夜间 回退 for DeepSeek V3.2 W8A8 on MRV1 and MRV2. This is a test-only change; no production runner behavior or environment variable is changed, and no v0.30.0-era patch is for"
+        },
+        {
+          "kind": "issue",
+          "number": 20674,
+          "title": "[Test][MRV2] DeepSeek V3.2 accuracy nondeterminism and batch=4 performance regression",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20674",
+          "author": "wisdom1710",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-02T12:33:12Z",
+          "updatedAt": "2026-11-02T12:35:45Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Problem DeepSeek-V3.2-W8A8 still has two independent MRV1/MRV2 acceptance issues on a single exclusive Atlas 800T A3 (16 NPUs): 1. The strict logprob gate is not stable for all prompts. With the candidate source mount verified, short-Englis",
+          "modelIds": [
+            "ds-v3.2"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【测试】【MRV2】DeepSeek V3.2 精度 nondeterminism and batch=4 性能 回退",
+          "excerptZh": "Problem DeepSeek-V3.2-W8A8 still has two independent MRV1/MRV2 acceptance issues on a single exclusive Atlas 800T A3 (16 NPUs): 1. The 严格 logprob gate is not stable for all prompts. With the candidate source mount verified, short-Englis"
+        },
+        {
+          "kind": "issue",
+          "number": 20673,
+          "title": "[Test][MRV2] DeepSeek V3.2 accuracy and performance parity with MRV1",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20673",
+          "author": "wisdom1710",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-02T12:33:08Z",
+          "updatedAt": "2026-11-02T12:35:40Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "背景 需要系统验证 DeepSeek V3.2 在 Model Runner V2（MRV2）上的精度与性能，并以 Model Runner V1（MRV1）为基准，确保重构不引入功能或性能回归。 本 issue 由 @wisdom1710 认领，用于跟踪测试配置、真机数据、回归用例及后续问题修复。 验收范围 1. 可复现配置 - 在 tests/e2e 或 nightly 增加 DeepSeek V3.2 的可复现配置。 - 记录模型 revision、硬件、CANN / ",
+          "modelIds": [
+            "ds-v3.2"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【测试】【MRV2】DeepSeek V3.2 精度 and 性能 parity with MRV1",
+          "excerptZh": "背景 需要系统验证 DeepSeek V3.2 在 Model Runner V2（MRV2）上的精度与性能，并以 Model Runner V1（MRV1）为基准，确保重构不引入功能或性能回归。 本 issue 由 @wisdom1710 认领，用于跟踪测试配置、真机数据、回归用例及后续问题修复。 验收范围 1. 可复现配置 - 在 tests/e2e 或 nightly 增加 DeepSeek V3.2 的可复现配置。 - 记录模型 revision、硬件、CANN /"
+        },
+        {
+          "kind": "issue",
+          "number": 20622,
+          "title": "[Test][MRV2] DeepSeek V3.2 accuracy nondeterminism and batch=4 performance regression",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20622",
+          "author": "wisdom1710",
+          "labels": [],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-02T06:47:49Z",
+          "updatedAt": "2026-11-02T12:24:28Z",
+          "closedAt": "2026-11-02T12:24:28Z",
+          "mergedAt": null,
+          "comments": 1,
+          "excerpt": "Problem DeepSeek-V3.2-W8A8 still has two independent MRV1/MRV2 acceptance issues on a single exclusive Atlas 800T A3 (16 NPUs): 1. The strict logprob gate is not stable for all prompts. With the candidate source mount verified, short-Englis",
+          "modelIds": [
+            "ds-v3.2"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【测试】【MRV2】DeepSeek V3.2 精度 nondeterminism and batch=4 性能 回退",
+          "excerptZh": "Problem DeepSeek-V3.2-W8A8 still has two independent MRV1/MRV2 acceptance issues on a single exclusive Atlas 800T A3 (16 NPUs): 1. The 严格 logprob gate is not stable for all prompts. With the candidate source mount verified, short-Englis"
+        },
+        {
+          "kind": "issue",
+          "number": 20666,
+          "title": "[Test][MRV2] DeepSeek V3.2 accuracy and performance parity with MRV1",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20666",
+          "author": "wisdom1710",
+          "labels": [],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-02T11:29:42Z",
+          "updatedAt": "2026-11-02T12:24:23Z",
+          "closedAt": "2026-11-02T12:24:23Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "背景 需要系统验证 DeepSeek V3.2 在 Model Runner V2（MRV2）上的精度与性能，并以 Model Runner V1（MRV1）为基准，确保重构不引入功能或性能回归。 本 issue 由 @wisdom1710 认领，用于跟踪测试配置、真机数据、回归用例及后续问题修复。 验收范围 1. 可复现配置 - 在 tests/e2e 或 nightly 增加 DeepSeek V3.2 的可复现配置。 - 记录模型 revision、硬件、CANN / ",
+          "modelIds": [
+            "ds-v3.2"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【测试】【MRV2】DeepSeek V3.2 精度 and 性能 parity with MRV1",
+          "excerptZh": "背景 需要系统验证 DeepSeek V3.2 在 Model Runner V2（MRV2）上的精度与性能，并以 Model Runner V1（MRV1）为基准，确保重构不引入功能或性能回归。 本 issue 由 @wisdom1710 认领，用于跟踪测试配置、真机数据、回归用例及后续问题修复。 验收范围 1. 可复现配置 - 在 tests/e2e 或 nightly 增加 DeepSeek V3.2 的可复现配置。 - 记录模型 revision、硬件、CANN /"
+        },
+        {
+          "kind": "pr",
+          "number": 20630,
+          "title": "[Test][MRV2] Add DeepSeek V3.2 MRV1/MRV2 parity regression harness",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20630",
+          "author": "wisdom1710",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "closed",
+          "draft": true,
+          "createdAt": "2026-11-02T07:46:23Z",
+          "updatedAt": "2026-11-02T12:23:49Z",
+          "closedAt": "2026-11-02T12:23:49Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Part of 20622 and 20666. Adds a resource-heavy, manual nightly regression for DeepSeek V3.2 W8A8 on MRV1 and MRV2. This is a test-only change; no production runner behavior or environment variable is changed, and no v0.30.0-era patch is for",
+          "modelIds": [
+            "ds-v3.2"
+          ],
+          "action": "opened",
+          "score": 2,
+          "titleZh": "【测试】【MRV2】新增 DeepSeek V3.2 MRV1/MRV2 parity 回退 harness",
+          "excerptZh": "Part of 20622 and 20666. Adds a resource-heavy, manual 夜间 回退 for DeepSeek V3.2 W8A8 on MRV1 and MRV2. This is a test-only change; no production runner behavior or environment variable is changed, and no v0.30.0-era patch is for"
         }
       ]
     },
@@ -108,7 +652,7 @@
           "state": "open",
           "draft": false,
           "createdAt": "2026-10-31T09:21:37Z",
-          "updatedAt": "2026-11-01T16:15:06Z",
+          "updatedAt": "2026-11-02T12:09:30Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
@@ -120,6 +664,197 @@
           "score": 3,
           "titleZh": "【功能】稀疏 KV 卸载: 共享 索引器 Only 优化",
           "excerptZh": "This PR introduces the 卸载 共享 索引器 only 优化 for layered-索引器 models (such as GLM-5.2) in 稀疏 KV offloading. It keeps the KV 缓存 of full (索引器-owner) layers resident in NPU HBM paged caches, while offloading on"
+        },
+        {
+          "kind": "pr",
+          "number": 15081,
+          "title": "[CI] add new nightly case",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/15081",
+          "author": "guxin108",
+          "labels": [
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-08-27T06:58:11Z",
+          "updatedAt": "2026-11-02T13:13:53Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This pull request adds E2E test configuration files for multi-node deployments of GLM-5.1 and GLM-5.2 models under both external and internal data-parallel (DP) setups. These configurations cover various sequence lengths and quantization fo",
+          "modelIds": [
+            "glm-5.2",
+            "glm-5.1"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】新增 new 夜间用例",
+          "excerptZh": "This pull request adds E2E test 配置 files for multi-node deployments of GLM-5.1 and GLM-5.2 models under both external and internal data-parallel (DP) setups. These configurations cover various 序列 lengths and 量化 fo"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20633,
+          "title": "[CI] add test cases for Qwen3.6-35B-w4a8",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20633",
+          "author": "weixinAc",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-02T07:56:16Z",
+          "updatedAt": "2026-11-02T12:01:13Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "add test cases for Qwen3.6-35B-w4a8 Does this PR introduce any user-facing change? No by running test cases --- Checklist Testing - [ ] Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty ",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【持续集成】新增 测试用例 for Qwen3.6-35B-w4a8",
+          "excerptZh": "【】新增 测试用例 for Qwen3.6-35B-w4a8 No by running 测试用例 --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-pro",
+      "name": "DeepSeek V4 Pro",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 17765,
+          "title": "[CI][MRV2] Add DeepSeek V4 Pro MRV2 nightly cases",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17765",
+          "author": "zhangwenTao140",
+          "labels": [
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-09-29T12:27:05Z",
+          "updatedAt": "2026-11-02T13:25:15Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This pull request introduces a new nightly end-to-end test configuration file for DeepSeek-V4-Pro ( DeepSeek-V4-Pro-w4a8-dspark-PD-MRV2.yaml and DeepSeek-V4-Pro-w4a8-1M-PD-MRV2.yaml ) utilizing a 4-node disaggregated prefill setup with pref",
+          "modelIds": [
+            "ds-v4-pro"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】【MRV2】新增 DeepSeek V4 Pro MRV2 夜间用例",
+          "excerptZh": "此拉取请求为DeepSeek-V4-Pro引入了一个新的夜间端到端测试配置文件（ DeepSeek-V4-Pro-w4a8-dspark-PD-MRV2.yaml和DeepSeek-V4-Pro-w4a8-1M-PD-MRV2.yaml ） ，使用4节点分解的预填充设置"
+        }
+      ]
+    },
+    {
+      "id": "glm-5.1",
+      "name": "GLM-5.1",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 15081,
+          "title": "[CI] add new nightly case",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/15081",
+          "author": "guxin108",
+          "labels": [
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-08-27T06:58:11Z",
+          "updatedAt": "2026-11-02T13:13:53Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This pull request adds E2E test configuration files for multi-node deployments of GLM-5.1 and GLM-5.2 models under both external and internal data-parallel (DP) setups. These configurations cover various sequence lengths and quantization fo",
+          "modelIds": [
+            "glm-5.2",
+            "glm-5.1"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】新增 new 夜间用例",
+          "excerptZh": "This pull request adds E2E test 配置 files for multi-node deployments of GLM-5.1 and GLM-5.2 models under both external and internal data-parallel (DP) setups. These configurations cover various 序列 lengths and 量化 fo"
+        }
+      ]
+    },
+    {
+      "id": "step3",
+      "name": "Step3",
+      "family": "Step",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20102,
+          "title": "[CI][nightly] Add Step-3.7-Flash_w8a8_mxfp8 nightly tests",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20102",
+          "author": "chenzhh69",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-28T07:55:47Z",
+          "updatedAt": "2026-11-02T12:15:42Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add nightly tests for the step3.7 model, including performance and accuracy. Does this PR introduce any user-facing change? No. Nighly and CI test passed. --- Checklist Testing - [x] Meaningful & reliable tests : New tests assert real behav",
+          "modelIds": [
+            "step3"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】【nightly】新增 Step-3.7-Flash_w8a8_mxfp8 夜间 tests",
+          "excerptZh": "【x】新增 夜间 tests for the step3.7 model, including 性能 and 精度. No. Nighly and CI test passed. --- 清单 Testing - Meaningful & reliable tests : New tests assert real behav"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20509,
+          "title": "[CI][Model] Add Qwen3.8 Flash Next performance nightly cases for v0.32.0rc",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20509",
+          "author": "zsponly",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-31T13:56:10Z",
+          "updatedAt": "2026-11-02T11:58:04Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add Qwen3.8 Flash Next 128K/1K and 16K/1K performance regression cases for A3 and A5 to releases/v0.32.0rc through the existing YAML-driven Nightly runner. Register both model artifacts for preloading and reuse the existing GSM8K performanc",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】【模型】新增 Qwen3.8 Flash Next 性能 夜间用例 for v0.32.0rc",
+          "excerptZh": "新增 Qwen3.8 Flash Next 128K/1K and 16K/1K 性能 回退 cases for A3 and A5 to releases/v0.32.0rc through the existing YAML-driven 夜间 runner. Register both model artifacts for preloading and reuse the existing GSM8K performanc"
         }
       ]
     }
