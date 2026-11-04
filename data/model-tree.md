@@ -1,6 +1,6 @@
 # vLLM-Ascend 模型版本树
 
-更新时间：2026-11-03T23:00:06.348Z
+更新时间：2026-11-04T23:00:06.409Z
 
 版本按日期由近到远排列。同一条说明若点名多个模型，会同时出现在这些模型下。
 
@@ -3585,8 +3585,8 @@
 
 ##### 升级通知
 
-- TorchNPU 已升级至 2.7.1.post1。请注意，该软件包已推送至 pypi 镜像 。因此难以将其添加到自动依赖中，请自行安装。
-- CANN 已升级至 8.3.rc2。
+- TorchNPU is upgraded to 2.7.1.post1. Please note that the package is pushed to pypi mirror . So it's hard to add it to auto dependence. Please install it by yourself.
+- CANN is upgraded to 8.3.rc2.
 
 ##### 已知问题
 
@@ -3674,9 +3674,9 @@
 
 ##### 亮点
 
-- TorchNPU 已升级至 2.7.1.post1。请注意，该软件包已推送至 pypi 镜像 。因此难以将其添加到自动依赖中，请自行安装。
-- 已禁用 NZ 权重加载器以加速稠密模型。请注意，这是一个临时解决方案。如果您发现性能变差，请告知我们，我们将持续改进。 [#4495](https://github.com/vllm-project/vllm-ascend/issues/4495)
-- mooncake 现已安装到官方 Docker 镜像中，您现在可以直接在容器中使用它。 [#4506](https://github.com/vllm-project/vllm-ascend/issues/4506)
+- TorchNPU is upgraded to 2.7.1.post1. Please note that the package is pushed to pypi mirror . So it's hard to add it to auto dependence. Please install it by yourself.
+- Disable NZ weight loader to speed up dense model. Please note that this is a temporary solution. If you find the performance becomes bad, please let us know. We'll keep improving it. [#4495](https://github.com/vllm-project/vllm-ascend/issues/4495)
+- mooncake is installed in official docker image now. You can use it directly in container now. [#4506](https://github.com/vllm-project/vllm-ascend/issues/4506)
 
 ##### 其他
 
