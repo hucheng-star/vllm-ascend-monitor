@@ -1,6 +1,6 @@
 # vLLM-Ascend 模型版本树
 
-更新时间：2026-11-04T23:00:06.409Z
+更新时间：2026-11-05T23:00:04.474Z
 
 版本按日期由近到远排列。同一条说明若点名多个模型，会同时出现在这些模型下。
 
@@ -10,6 +10,15 @@
 ## DeepSeek
 
 ### DeepSeek V4 Flash
+
+#### v0.30.0 · 2026.10.29（中文）
+
+This is the stable release of vLLM Ascend v0.30.0, built on the v0.29 release line and aligned with upstream vLLM v0.30.0 via the main2main pipeline. Building on v0.30.0rc1, this release integrates FlashMLA decode with DCP and DSpark, extends KV Pool layerwise pooling and PCP speculative decoding, hardens EPLB for the new quantization formats, and fixes the stability issues across attention, MoE, KV transfer, and Model Runner V2 execution reported during the RC cycle. It still focuses on the flagship models: DeepSeek V4.1 , GLM-5.3 , GLM-5.3-Flash , Qwen3.8-27B , DeepSeek V4-Flash/Pro , Kimi K3 . Model or hardware combinations outside the scope declared in v0.30.0 are not part of the release claims. Please follow the official documentation to get started.
+
+##### 亮点
+
+- DeepSeek V4.1 : Added DeepSeek V4.1 support on Model Runner V2, enabled torch.compile, and sped up startup via in-place rotary embedding, reused filtered RoPE lookups, and removed redundant DSV4.1 indexer/SP copies; added the TurboQuant 4-bit latent KV cache for DSA sparse models (DeepSeek V4 Flash; A2/A3 only), including packed KV cache in the V1 runner; fixed ModelSlim-quantized DSV4 weight layout and added AscendStore preparation for V4.1, and packaged attention operators (QLI/QSLI/MQSMLA) with DSL. [#17927](https://github.com/vllm-project/vllm-ascend/issues/17927) [#16899](https://github.com/vllm-project/vllm-ascend/issues/16899) [#17726](https://github.com/vllm-project/vllm-ascend/issues/17726) [#17676](https://github.com/vllm-project/vllm-ascend/issues/17676) [#18026](https://github.com/vllm-project/vllm-ascend/issues/18026) [#18081](https://github.com/vllm-project/vllm-ascend/issues/18081) [#16548](https://github.com/vllm-project/vllm-ascend/issues/16548) [#16978](https://github.com/vllm-project/vllm-ascend/issues/16978) [#17067](https://github.com/vllm-project/vllm-ascend/issues/17067) [#17165](https://github.com/vllm-project/vllm-ascend/issues/17165) [#17483](https://github.com/vllm-project/vllm-ascend/issues/17483) [#16973](https://github.com/vllm-project/vllm-ascend/issues/16973) †
+- GLM-5.2 / DeepSeek V4 Flash 0731 / DeepSeek V4 Pro 0813 accuracy and performance : Resolved GLM-5.2 DSpark acceptance regressions and DeepSeek V4 Flash-0731 / Pro-0813 accuracy issues (reasoning-effort alignment, routed SwiGLU limit, and frontend behavior), and reused DSV4 compressor metadata across layers for better performance. [#12262](https://github.com/vllm-project/vllm-ascend/issues/12262) [#13531](https://github.com/vllm-project/vllm-ascend/issues/13531) [#13993](https://github.com/vllm-project/vllm-ascend/issues/13993) [#14074](https://github.com/vllm-project/vllm-ascend/issues/14074) [#14397](https://github.com/vllm-project/vllm-ascend/issues/14397) [#14624](https://github.com/vllm-project/vllm-ascend/issues/14624) [#14994](https://github.com/vllm-project/vllm-ascend/issues/14994) †
 
 #### v0.30.0rc1 · 2026.10.11（中文）
 
@@ -55,6 +64,12 @@
 
 ### DeepSeek V4 Pro
 
+#### v0.30.0 · 2026.10.29（中文）
+
+##### 亮点
+
+- GLM-5.2 / DeepSeek V4 Flash 0731 / DeepSeek V4 Pro 0813 accuracy and performance : Resolved GLM-5.2 DSpark acceptance regressions and DeepSeek V4 Flash-0731 / Pro-0813 accuracy issues (reasoning-effort alignment, routed SwiGLU limit, and frontend behavior), and reused DSV4 compressor metadata across layers for better performance. [#12262](https://github.com/vllm-project/vllm-ascend/issues/12262) [#13531](https://github.com/vllm-project/vllm-ascend/issues/13531) [#13993](https://github.com/vllm-project/vllm-ascend/issues/13993) [#14074](https://github.com/vllm-project/vllm-ascend/issues/14074) [#14397](https://github.com/vllm-project/vllm-ascend/issues/14397) [#14624](https://github.com/vllm-project/vllm-ascend/issues/14624) [#14994](https://github.com/vllm-project/vllm-ascend/issues/14994) †
+
 #### v0.26.0rc1 · 2026.09.03（中文）
 
 这是vLLM Ascend v0.26.0的首个候选版本，与上游vLLM v0.26.0保持一致。此版本为模型受限版本，完全验证的模型包括Kimi K3、GLM‑5.2、DeepSeek V4 Flash 0731和DeepSeek V4 Pro 0813。其他模型的可用性不保证。完整测试报告请参见： v0.26.0rc1测试结论 。请按照 官方文档 开始使用。
@@ -76,6 +91,23 @@
 - A3和Ascend 950产品上的DeepSeek V4 Pro在P/D分离和共置部署中均可能显示持续增加的内存使用，最终导致OOM或服务不稳定。 [#12345](https://github.com/vllm-project/vllm-ascend/issues/12345)
 
 ### DeepSeek V4.1
+
+#### v0.30.0 · 2026.10.29（中文）
+
+This is the stable release of vLLM Ascend v0.30.0, built on the v0.29 release line and aligned with upstream vLLM v0.30.0 via the main2main pipeline. Building on v0.30.0rc1, this release integrates FlashMLA decode with DCP and DSpark, extends KV Pool layerwise pooling and PCP speculative decoding, hardens EPLB for the new quantization formats, and fixes the stability issues across attention, MoE, KV transfer, and Model Runner V2 execution reported during the RC cycle. It still focuses on the flagship models: DeepSeek V4.1 , GLM-5.3 , GLM-5.3-Flash , Qwen3.8-27B , DeepSeek V4-Flash/Pro , Kimi K3 . Model or hardware combinations outside the scope declared in v0.30.0 are not part of the release claims. Please follow the official documentation to get started.
+
+##### 亮点
+
+- DeepSeek V4.1 : Added DeepSeek V4.1 support on Model Runner V2, enabled torch.compile, and sped up startup via in-place rotary embedding, reused filtered RoPE lookups, and removed redundant DSV4.1 indexer/SP copies; added the TurboQuant 4-bit latent KV cache for DSA sparse models (DeepSeek V4 Flash; A2/A3 only), including packed KV cache in the V1 runner; fixed ModelSlim-quantized DSV4 weight layout and added AscendStore preparation for V4.1, and packaged attention operators (QLI/QSLI/MQSMLA) with DSL. [#17927](https://github.com/vllm-project/vllm-ascend/issues/17927) [#16899](https://github.com/vllm-project/vllm-ascend/issues/16899) [#17726](https://github.com/vllm-project/vllm-ascend/issues/17726) [#17676](https://github.com/vllm-project/vllm-ascend/issues/17676) [#18026](https://github.com/vllm-project/vllm-ascend/issues/18026) [#18081](https://github.com/vllm-project/vllm-ascend/issues/18081) [#16548](https://github.com/vllm-project/vllm-ascend/issues/16548) [#16978](https://github.com/vllm-project/vllm-ascend/issues/16978) [#17067](https://github.com/vllm-project/vllm-ascend/issues/17067) [#17165](https://github.com/vllm-project/vllm-ascend/issues/17165) [#17483](https://github.com/vllm-project/vllm-ascend/issues/17483) [#16973](https://github.com/vllm-project/vllm-ascend/issues/16973) †
+
+##### 文档
+
+- Updated model deployment guides: GLM-5.3 and GLM-5.3-Flash deployment/evaluation and A2 PD configuration, DeepSeek-V4.1-Flash A2 PD and KV Cache Pool, DeepSeek V4 TurboQuant serving options and KV cache options, MiniMax-M3 deployment, tuning, and 1M PD deployment, Kimi-K3 guide migration, Gemma4 quantized deployment, and SigLIP2 tutorial paths. [#18275](https://github.com/vllm-project/vllm-ascend/issues/18275) [#18358](https://github.com/vllm-project/vllm-ascend/issues/18358) [#18829](https://github.com/vllm-project/vllm-ascend/issues/18829) [#18880](https://github.com/vllm-project/vllm-ascend/issues/18880) [#18588](https://github.com/vllm-project/vllm-ascend/issues/18588) [#18530](https://github.com/vllm-project/vllm-ascend/issues/18530) [#18430](https://github.com/vllm-project/vllm-ascend/issues/18430) [#18661](https://github.com/vllm-project/vllm-ascend/issues/18661) [#18574](https://github.com/vllm-project/vllm-ascend/issues/18574) [#18581](https://github.com/vllm-project/vllm-ascend/issues/18581) [#18453](https://github.com/vllm-project/vllm-ascend/issues/18453) [#19121](https://github.com/vllm-project/vllm-ascend/issues/19121) [#18463](https://github.com/vllm-project/vllm-ascend/issues/18463) [#18835](https://github.com/vllm-project/vllm-ascend/issues/18835) [#18690](https://github.com/vllm-project/vllm-ascend/issues/18690) [#18480](https://github.com/vllm-project/vllm-ascend/issues/18480)
+- Documented platform features: PCP execution and DCP integration, KVPP supported combinations, the Fine-grained TP guide, MooncakeConnectorV2 features and deployment, Mooncake timeout tuning, Atlas 850/850E/950 SuperPod PD configuration, Qwen3.5 batch invariance, TurboQuant context-parallelism limitation, hardware and redundant expert constraints, sparse KV offload, and DeepSeek V4.1 Memcache pooling. [#18856](https://github.com/vllm-project/vllm-ascend/issues/18856) [#18737](https://github.com/vllm-project/vllm-ascend/issues/18737) [#18702](https://github.com/vllm-project/vllm-ascend/issues/18702) [#18778](https://github.com/vllm-project/vllm-ascend/issues/18778) [#18409](https://github.com/vllm-project/vllm-ascend/issues/18409) [#18562](https://github.com/vllm-project/vllm-ascend/issues/18562) [#18455](https://github.com/vllm-project/vllm-ascend/issues/18455) [#18177](https://github.com/vllm-project/vllm-ascend/issues/18177) [#18570](https://github.com/vllm-project/vllm-ascend/issues/18570) [#18937](https://github.com/vllm-project/vllm-ascend/issues/18937) [#18888](https://github.com/vllm-project/vllm-ascend/issues/18888) [#19014](https://github.com/vllm-project/vllm-ascend/issues/19014) [#18342](https://github.com/vllm-project/vllm-ascend/issues/18342)
+
+##### 稳定性与错误修复
+
+- Fixed PCP and parallel execution: cleared DeepSeek V4.1 query metadata on empty ranks, clamped invalid slots before cache address computation, supported multimodal inputs for DeepSeek V4.1 in PCP, fixed CPP profiling dummy prefill routing with PCP, and fixed GLM-5.3-Flash OProj TP with ragged DP decoding. [#18877](https://github.com/vllm-project/vllm-ascend/issues/18877) [#18398](https://github.com/vllm-project/vllm-ascend/issues/18398) [#18282](https://github.com/vllm-project/vllm-ascend/issues/18282) [#18669](https://github.com/vllm-project/vllm-ascend/issues/18669) [#18889](https://github.com/vllm-project/vllm-ascend/issues/18889)
 
 #### v0.30.0rc1 · 2026.10.11（中文）
 
@@ -99,6 +131,31 @@
 - 新增 DeepSeek V4.1 Flash A3 PD 部署指南，并记录了 DSV4-Flash/Pro 和 GLM-5.2 的 W4A4C8 量化方案。 [#17099](https://github.com/vllm-project/vllm-ascend/issues/17099) [#17226](https://github.com/vllm-project/vllm-ascend/issues/17226)
 
 ### DeepSeek V4
+
+#### v0.30.0 · 2026.10.29（中文）
+
+##### 亮点
+
+- DeepSeek V4.1 : Added DeepSeek V4.1 support on Model Runner V2, enabled torch.compile, and sped up startup via in-place rotary embedding, reused filtered RoPE lookups, and removed redundant DSV4.1 indexer/SP copies; added the TurboQuant 4-bit latent KV cache for DSA sparse models (DeepSeek V4 Flash; A2/A3 only), including packed KV cache in the V1 runner; fixed ModelSlim-quantized DSV4 weight layout and added AscendStore preparation for V4.1, and packaged attention operators (QLI/QSLI/MQSMLA) with DSL. [#17927](https://github.com/vllm-project/vllm-ascend/issues/17927) [#16899](https://github.com/vllm-project/vllm-ascend/issues/16899) [#17726](https://github.com/vllm-project/vllm-ascend/issues/17726) [#17676](https://github.com/vllm-project/vllm-ascend/issues/17676) [#18026](https://github.com/vllm-project/vllm-ascend/issues/18026) [#18081](https://github.com/vllm-project/vllm-ascend/issues/18081) [#16548](https://github.com/vllm-project/vllm-ascend/issues/16548) [#16978](https://github.com/vllm-project/vllm-ascend/issues/16978) [#17067](https://github.com/vllm-project/vllm-ascend/issues/17067) [#17165](https://github.com/vllm-project/vllm-ascend/issues/17165) [#17483](https://github.com/vllm-project/vllm-ascend/issues/17483) [#16973](https://github.com/vllm-project/vllm-ascend/issues/16973) †
+- GLM-5.2 / DeepSeek V4 Flash 0731 / DeepSeek V4 Pro 0813 accuracy and performance : Resolved GLM-5.2 DSpark acceptance regressions and DeepSeek V4 Flash-0731 / Pro-0813 accuracy issues (reasoning-effort alignment, routed SwiGLU limit, and frontend behavior), and reused DSV4 compressor metadata across layers for better performance. [#12262](https://github.com/vllm-project/vllm-ascend/issues/12262) [#13531](https://github.com/vllm-project/vllm-ascend/issues/13531) [#13993](https://github.com/vllm-project/vllm-ascend/issues/13993) [#14074](https://github.com/vllm-project/vllm-ascend/issues/14074) [#14397](https://github.com/vllm-project/vllm-ascend/issues/14397) [#14624](https://github.com/vllm-project/vllm-ascend/issues/14624) [#14994](https://github.com/vllm-project/vllm-ascend/issues/14994) †
+- MoE : Backported Kimi K3 MegaMoE routed dimensions, integrated the mixedquantsparseflashmla operator for the DeepSeek-V4 FP8 KV path, fused shared W8A8 MXFP activation quantization, and used BF16 router GEMM with FP32 accumulation. [#18976](https://github.com/vllm-project/vllm-ascend/issues/18976) [#18808](https://github.com/vllm-project/vllm-ascend/issues/18808) [#18678](https://github.com/vllm-project/vllm-ascend/issues/18678) [#18820](https://github.com/vllm-project/vllm-ascend/issues/18820)
+
+##### 功能特性
+
+- Enabled no-RoPE MLAPO for token-fused FlashMLA and integrated the mixedquantsparseflashmla operator for the DeepSeek-V4 FP8 KV path. [#19155](https://github.com/vllm-project/vllm-ascend/issues/19155) [#18808](https://github.com/vllm-project/vllm-ascend/issues/18808)
+
+##### 硬件与算子支持
+
+- Supported C8 MXFP8 KV cache in the V2 worker and the mixedquantsparseflashmla operator for the DeepSeek-V4 FP8 KV path. [#18707](https://github.com/vllm-project/vllm-ascend/issues/18707) [#18808](https://github.com/vllm-project/vllm-ascend/issues/18808)
+
+##### 文档
+
+- Updated model deployment guides: GLM-5.3 and GLM-5.3-Flash deployment/evaluation and A2 PD configuration, DeepSeek-V4.1-Flash A2 PD and KV Cache Pool, DeepSeek V4 TurboQuant serving options and KV cache options, MiniMax-M3 deployment, tuning, and 1M PD deployment, Kimi-K3 guide migration, Gemma4 quantized deployment, and SigLIP2 tutorial paths. [#18275](https://github.com/vllm-project/vllm-ascend/issues/18275) [#18358](https://github.com/vllm-project/vllm-ascend/issues/18358) [#18829](https://github.com/vllm-project/vllm-ascend/issues/18829) [#18880](https://github.com/vllm-project/vllm-ascend/issues/18880) [#18588](https://github.com/vllm-project/vllm-ascend/issues/18588) [#18530](https://github.com/vllm-project/vllm-ascend/issues/18530) [#18430](https://github.com/vllm-project/vllm-ascend/issues/18430) [#18661](https://github.com/vllm-project/vllm-ascend/issues/18661) [#18574](https://github.com/vllm-project/vllm-ascend/issues/18574) [#18581](https://github.com/vllm-project/vllm-ascend/issues/18581) [#18453](https://github.com/vllm-project/vllm-ascend/issues/18453) [#19121](https://github.com/vllm-project/vllm-ascend/issues/19121) [#18463](https://github.com/vllm-project/vllm-ascend/issues/18463) [#18835](https://github.com/vllm-project/vllm-ascend/issues/18835) [#18690](https://github.com/vllm-project/vllm-ascend/issues/18690) [#18480](https://github.com/vllm-project/vllm-ascend/issues/18480)
+
+##### 稳定性与错误修复
+
+- Fixed MoE and quantization: fixed CANN MegaMoE weight preparation for DeepSeek V4 W4A8 MXFP, preserved the quantized shared expert output gate, restored non-EPLB W8A8 MXFP8 NZ tensors, removed the W8A8 MXFP8 local expert count assertion, and preserved MiniMax-M3 prequantized shared Down input. [#19199](https://github.com/vllm-project/vllm-ascend/issues/19199) [#18895](https://github.com/vllm-project/vllm-ascend/issues/18895) [#18788](https://github.com/vllm-project/vllm-ascend/issues/18788) [#18718](https://github.com/vllm-project/vllm-ascend/issues/18718) [#18397](https://github.com/vllm-project/vllm-ascend/issues/18397)
+- Hardened infrastructure: fixed the shared memory broadcast buffer race with failure diagnostics, fixed custom AICPU aggregation, serialized csrc publication directory creation, fixed the 310P Qwen3.5-2B-w8a8 performance issue, and validated DeepSeek V4 tensor parallel limits. [#18134](https://github.com/vllm-project/vllm-ascend/issues/18134) [#18393](https://github.com/vllm-project/vllm-ascend/issues/18393) [#18924](https://github.com/vllm-project/vllm-ascend/issues/18924) [#18400](https://github.com/vllm-project/vllm-ascend/issues/18400) [#19203](https://github.com/vllm-project/vllm-ascend/issues/19203)
 
 #### v0.30.0rc1 · 2026.10.11（中文）
 
@@ -579,6 +636,14 @@
 
 ### Qwen3.8
 
+#### v0.30.0 · 2026.10.29（中文）
+
+This is the stable release of vLLM Ascend v0.30.0, built on the v0.29 release line and aligned with upstream vLLM v0.30.0 via the main2main pipeline. Building on v0.30.0rc1, this release integrates FlashMLA decode with DCP and DSpark, extends KV Pool layerwise pooling and PCP speculative decoding, hardens EPLB for the new quantization formats, and fixes the stability issues across attention, MoE, KV transfer, and Model Runner V2 execution reported during the RC cycle. It still focuses on the flagship models: DeepSeek V4.1 , GLM-5.3 , GLM-5.3-Flash , Qwen3.8-27B , DeepSeek V4-Flash/Pro , Kimi K3 . Model or hardware combinations outside the scope declared in v0.30.0 are not part of the release claims. Please follow the official documentation to get started.
+
+##### 亮点
+
+- Qwen3.8-27B : Supported non-contiguous KV cache in hybrid linear-attention models, respected per-layer KV cache dtype and kept KV cache contiguous for paged attention, restored C8 V scales on hybrid cache page reassignment, restored Mamba block tables before deferred PP postprocessing, added the FLA NPU backend for GDN prefill, and fixed 310P performance and kernel compatibility for quantized deployment. [#14340](https://github.com/vllm-project/vllm-ascend/issues/14340) [#17924](https://github.com/vllm-project/vllm-ascend/issues/17924) [#18003](https://github.com/vllm-project/vllm-ascend/issues/18003) [#17956](https://github.com/vllm-project/vllm-ascend/issues/17956) [#17954](https://github.com/vllm-project/vllm-ascend/issues/17954) [#17565](https://github.com/vllm-project/vllm-ascend/issues/17565) [#17534](https://github.com/vllm-project/vllm-ascend/issues/17534) [#16420](https://github.com/vllm-project/vllm-ascend/issues/16420) [#17964](https://github.com/vllm-project/vllm-ascend/issues/17964) [#17278](https://github.com/vllm-project/vllm-ascend/issues/17278) †
+
 #### v0.30.0rc1 · 2026.10.11（中文）
 
 这是 vLLM Ascend v0.30.0rc1，一个以模型为核心的版本，基于 v0.29 发布线构建，并通过 main2main 流水线与上游 vLLM v0.30.0 对齐。本版本聚焦四个旗舰模型： DeepSeek V4.1 、 GLM-5.3 、 GLM-5.3-Flash 和 Qwen3.8-27B ，并加固了它们所依赖的共享执行栈（Model Runner V2、PCP/DCP 并行、KV Cache Pool 以及投机解码）。下文声明范围之外的模型或硬件组合不属于本版本的发布声明范围。请参阅 官方文档 开始使用。
@@ -588,6 +653,12 @@
 - Qwen3.8-27B ：支持混合线性注意力模型中的非连续 KV cache，遵循逐层 KV cache dtype 并保持 KV cache 连续以用于 paged attention，在混合 cache page 重新分配时恢复 C8 V scales，在延迟 PP 后处理前恢复 Mamba block tables，为 GDN prefill 新增 FLA NPU 后端，并修复了 310P 在量化部署下的性能和 kernel 兼容性问题。 [#14340](https://github.com/vllm-project/vllm-ascend/issues/14340) [#17924](https://github.com/vllm-project/vllm-ascend/issues/17924) [#18003](https://github.com/vllm-project/vllm-ascend/issues/18003) [#17956](https://github.com/vllm-project/vllm-ascend/issues/17956) [#17954](https://github.com/vllm-project/vllm-ascend/issues/17954) [#17565](https://github.com/vllm-project/vllm-ascend/issues/17565) [#17534](https://github.com/vllm-project/vllm-ascend/issues/17534) [#16420](https://github.com/vllm-project/vllm-ascend/issues/16420) [#17964](https://github.com/vllm-project/vllm-ascend/issues/17964) [#17278](https://github.com/vllm-project/vllm-ascend/issues/17278)
 
 ### Qwen3.6
+
+#### v0.30.0 · 2026.10.29（中文）
+
+##### 已知问题
+
+- Some w4 quantifications weights(published by Eco-Tech, like GLM-5.3-w4a4c8-mxfp4 , Qwen3.6-35B-A3B-w4a8-mxfp ) are slightly lower than the accuracy reported in the paper on certain datasets. If these weights are to be used, please conduct accuracy verification and ensure that the accuracy is acceptable.
 
 #### v0.26.0rc1 · 2026.09.03（中文）
 
@@ -632,6 +703,21 @@
 - Qwen3.6-35B-A3B 在启用 MTP/推测解码时可能关闭，在 shape/dtype 处理期间报告 numAcceptedTokens[0]=4 exceeds varlen segment length=3 。 [#9956](https://github.com/vllm-project/vllm-ascend/issues/9956)
 
 ### Qwen3.5
+
+#### v0.30.0 · 2026.10.29（中文）
+
+##### 性能
+
+- Reduced QKV layout copies for FLA attention, and offloaded Qwen3.5-VL image preprocessing to the NPU. [#18727](https://github.com/vllm-project/vllm-ascend/issues/18727) [#18443](https://github.com/vllm-project/vllm-ascend/issues/18443)
+
+##### 文档
+
+- Documented platform features: PCP execution and DCP integration, KVPP supported combinations, the Fine-grained TP guide, MooncakeConnectorV2 features and deployment, Mooncake timeout tuning, Atlas 850/850E/950 SuperPod PD configuration, Qwen3.5 batch invariance, TurboQuant context-parallelism limitation, hardware and redundant expert constraints, sparse KV offload, and DeepSeek V4.1 Memcache pooling. [#18856](https://github.com/vllm-project/vllm-ascend/issues/18856) [#18737](https://github.com/vllm-project/vllm-ascend/issues/18737) [#18702](https://github.com/vllm-project/vllm-ascend/issues/18702) [#18778](https://github.com/vllm-project/vllm-ascend/issues/18778) [#18409](https://github.com/vllm-project/vllm-ascend/issues/18409) [#18562](https://github.com/vllm-project/vllm-ascend/issues/18562) [#18455](https://github.com/vllm-project/vllm-ascend/issues/18455) [#18177](https://github.com/vllm-project/vllm-ascend/issues/18177) [#18570](https://github.com/vllm-project/vllm-ascend/issues/18570) [#18937](https://github.com/vllm-project/vllm-ascend/issues/18937) [#18888](https://github.com/vllm-project/vllm-ascend/issues/18888) [#19014](https://github.com/vllm-project/vllm-ascend/issues/19014) [#18342](https://github.com/vllm-project/vllm-ascend/issues/18342)
+
+##### 稳定性与错误修复
+
+- Fixed attention and MLA: sized oproj static exchange buffers from decode capacity, fixed MLA PROLOGV3 tile sizes for non-128 KV pages, bounded MLA prefill npuattentionupdate inputs with 16-way staged merging, fixed MXFP8 KV-scale corruption during PD transfers, fixed DCP FIA workspace ownership, backported FIA v2 for DCP MLA decode, synced the mlapreprocess tile traversal with tiling swizzle, avoided the KvQuantSFA operator for models that do not require LSE, and supported dense sequence parallelism for the Qwen3.5 family. [#19263](https://github.com/vllm-project/vllm-ascend/issues/19263) [#19214](https://github.com/vllm-project/vllm-ascend/issues/19214) [#19013](https://github.com/vllm-project/vllm-ascend/issues/19013) [#19017](https://github.com/vllm-project/vllm-ascend/issues/19017) [#18768](https://github.com/vllm-project/vllm-ascend/issues/18768) [#18752](https://github.com/vllm-project/vllm-ascend/issues/18752) [#18687](https://github.com/vllm-project/vllm-ascend/issues/18687) [#18550](https://github.com/vllm-project/vllm-ascend/issues/18550) [#19001](https://github.com/vllm-project/vllm-ascend/issues/19001)
+- Hardened infrastructure: fixed the shared memory broadcast buffer race with failure diagnostics, fixed custom AICPU aggregation, serialized csrc publication directory creation, fixed the 310P Qwen3.5-2B-w8a8 performance issue, and validated DeepSeek V4 tensor parallel limits. [#18134](https://github.com/vllm-project/vllm-ascend/issues/18134) [#18393](https://github.com/vllm-project/vllm-ascend/issues/18393) [#18924](https://github.com/vllm-project/vllm-ascend/issues/18924) [#18400](https://github.com/vllm-project/vllm-ascend/issues/18400) [#19203](https://github.com/vllm-project/vllm-ascend/issues/19203)
 
 #### v0.30.0rc1 · 2026.10.11（中文）
 
@@ -1382,6 +1468,13 @@
 
 ### GLM-5.2
 
+#### v0.30.0 · 2026.10.29（中文）
+
+##### 亮点
+
+- GLM-5.3 : Enabled sparse SFA C8 (INT8 packed KV cache) for GLM-5.3-Flash and indexer MXFP4 for GLM-5.2, added the TurboQuant 4-bit latent KV cache for GLM-5.&[#8534](https://github.com/vllm-project/vllm-ascend/issues/8534);.3 SFA (A2/A3 only), fixed GLM MRV2 issues and GLM-5.2 DSpark sequence lengths/per-request FIA bounds, fixed GLM-5.3-Flash small slot page inflation, and backported always-on reasoning for GLM-5.3. [#17115](https://github.com/vllm-project/vllm-ascend/issues/17115) [#17949](https://github.com/vllm-project/vllm-ascend/issues/17949) [#18060](https://github.com/vllm-project/vllm-ascend/issues/18060) [#17613](https://github.com/vllm-project/vllm-ascend/issues/17613) [#17571](https://github.com/vllm-project/vllm-ascend/issues/17571) [#17545](https://github.com/vllm-project/vllm-ascend/issues/17545) [#17876](https://github.com/vllm-project/vllm-ascend/issues/17876) †
+- GLM-5.2 / DeepSeek V4 Flash 0731 / DeepSeek V4 Pro 0813 accuracy and performance : Resolved GLM-5.2 DSpark acceptance regressions and DeepSeek V4 Flash-0731 / Pro-0813 accuracy issues (reasoning-effort alignment, routed SwiGLU limit, and frontend behavior), and reused DSV4 compressor metadata across layers for better performance. [#12262](https://github.com/vllm-project/vllm-ascend/issues/12262) [#13531](https://github.com/vllm-project/vllm-ascend/issues/13531) [#13993](https://github.com/vllm-project/vllm-ascend/issues/13993) [#14074](https://github.com/vllm-project/vllm-ascend/issues/14074) [#14397](https://github.com/vllm-project/vllm-ascend/issues/14397) [#14624](https://github.com/vllm-project/vllm-ascend/issues/14624) [#14994](https://github.com/vllm-project/vllm-ascend/issues/14994) †
+
 #### v0.30.0rc1 · 2026.10.11（中文）
 
 ##### 亮点
@@ -1448,6 +1541,12 @@
 - 添加了 Kimi 2.6 和 GLM5.2 的文档。 [#9969](https://github.com/vllm-project/vllm-ascend/issues/9969) [#10544](https://github.com/vllm-project/vllm-ascend/issues/10544)
 
 ### GLM-5.1
+
+#### v0.30.0 · 2026.10.29（中文）
+
+##### 文档
+
+- Clarified GLM-5 discontinuation and GLM-5.1 deployment examples, corrected the Ascend HDK and image versions, removed the jemalloc usage guidance, and updated documentation versions and translations. [#18553](https://github.com/vllm-project/vllm-ascend/issues/18553) [#18467](https://github.com/vllm-project/vllm-ascend/issues/18467) [#18380](https://github.com/vllm-project/vllm-ascend/issues/18380) [#18414](https://github.com/vllm-project/vllm-ascend/issues/18414) [#18681](https://github.com/vllm-project/vllm-ascend/issues/18681) [#18925](https://github.com/vllm-project/vllm-ascend/issues/18925) [#18563](https://github.com/vllm-project/vllm-ascend/issues/18563) [#18482](https://github.com/vllm-project/vllm-ascend/issues/18482) [#19018](https://github.com/vllm-project/vllm-ascend/issues/19018)
 
 #### v0.26.0rc1 · 2026.09.03（中文）
 
@@ -1518,6 +1617,16 @@
 - 在单节点（非PD分离）场景下运行GLM-5/GLM-5.1模型时，可能出现错误结果或运行时错误。详情及解决方法请参见 [#8843](https://github.com/vllm-project/vllm-ascend/issues/8843) 。
 
 ### GLM-5
+
+#### v0.30.0 · 2026.10.29（中文）
+
+##### 亮点
+
+- GLM-5.3 : Enabled sparse SFA C8 (INT8 packed KV cache) for GLM-5.3-Flash and indexer MXFP4 for GLM-5.2, added the TurboQuant 4-bit latent KV cache for GLM-5.&[#8534](https://github.com/vllm-project/vllm-ascend/issues/8534);.3 SFA (A2/A3 only), fixed GLM MRV2 issues and GLM-5.2 DSpark sequence lengths/per-request FIA bounds, fixed GLM-5.3-Flash small slot page inflation, and backported always-on reasoning for GLM-5.3. [#17115](https://github.com/vllm-project/vllm-ascend/issues/17115) [#17949](https://github.com/vllm-project/vllm-ascend/issues/17949) [#18060](https://github.com/vllm-project/vllm-ascend/issues/18060) [#17613](https://github.com/vllm-project/vllm-ascend/issues/17613) [#17571](https://github.com/vllm-project/vllm-ascend/issues/17571) [#17545](https://github.com/vllm-project/vllm-ascend/issues/17545) [#17876](https://github.com/vllm-project/vllm-ascend/issues/17876) †
+
+##### 文档
+
+- Clarified GLM-5 discontinuation and GLM-5.1 deployment examples, corrected the Ascend HDK and image versions, removed the jemalloc usage guidance, and updated documentation versions and translations. [#18553](https://github.com/vllm-project/vllm-ascend/issues/18553) [#18467](https://github.com/vllm-project/vllm-ascend/issues/18467) [#18380](https://github.com/vllm-project/vllm-ascend/issues/18380) [#18414](https://github.com/vllm-project/vllm-ascend/issues/18414) [#18681](https://github.com/vllm-project/vllm-ascend/issues/18681) [#18925](https://github.com/vllm-project/vllm-ascend/issues/18925) [#18563](https://github.com/vllm-project/vllm-ascend/issues/18563) [#18482](https://github.com/vllm-project/vllm-ascend/issues/18482) [#19018](https://github.com/vllm-project/vllm-ascend/issues/19018)
 
 #### v0.23.0.post1 · 2026.09.21（中文）
 
@@ -1736,6 +1845,29 @@
 ## Kimi
 
 ### Kimi K3
+
+#### v0.30.0 · 2026.10.29（中文）
+
+This is the stable release of vLLM Ascend v0.30.0, built on the v0.29 release line and aligned with upstream vLLM v0.30.0 via the main2main pipeline. Building on v0.30.0rc1, this release integrates FlashMLA decode with DCP and DSpark, extends KV Pool layerwise pooling and PCP speculative decoding, hardens EPLB for the new quantization formats, and fixes the stability issues across attention, MoE, KV transfer, and Model Runner V2 execution reported during the RC cycle. It still focuses on the flagship models: DeepSeek V4.1 , GLM-5.3 , GLM-5.3-Flash , Qwen3.8-27B , DeepSeek V4-Flash/Pro , Kimi K3 . Model or hardware combinations outside the scope declared in v0.30.0 are not part of the release claims. Please follow the official documentation to get started.
+
+##### 亮点
+
+- Kimi K3 on Ascend : Added end-to-end Kimi K3 support, including MLA DSpark speculative decoding, no-RoPE MLAPO on Ascend 950, fused QKV projections, fused norm gate and attention residual, EPLB, MegaMoE, and projector rotation. [#12950](https://github.com/vllm-project/vllm-ascend/issues/12950) [#13277](https://github.com/vllm-project/vllm-ascend/issues/13277) [#13507](https://github.com/vllm-project/vllm-ascend/issues/13507) [#13989](https://github.com/vllm-project/vllm-ascend/issues/13989) [#13509](https://github.com/vllm-project/vllm-ascend/issues/13509) [#14231](https://github.com/vllm-project/vllm-ascend/issues/14231) †
+- MoE : Backported Kimi K3 MegaMoE routed dimensions, integrated the mixedquantsparseflashmla operator for the DeepSeek-V4 FP8 KV path, fused shared W8A8 MXFP activation quantization, and used BF16 router GEMM with FP32 accumulation. [#18976](https://github.com/vllm-project/vllm-ascend/issues/18976) [#18808](https://github.com/vllm-project/vllm-ascend/issues/18808) [#18678](https://github.com/vllm-project/vllm-ascend/issues/18678) [#18820](https://github.com/vllm-project/vllm-ascend/issues/18820)
+- EPLB : Supported Kimi K3 and its MTP draft model and w8a8mxfp8 on A5, and hardened staging-buffer fencing, HIXL registration ranges, and expert weight updates. [#18261](https://github.com/vllm-project/vllm-ascend/issues/18261) [#18436](https://github.com/vllm-project/vllm-ascend/issues/18436) [#19098](https://github.com/vllm-project/vllm-ascend/issues/19098) [#18415](https://github.com/vllm-project/vllm-ascend/issues/18415) [#18458](https://github.com/vllm-project/vllm-ascend/issues/18458) [#18564](https://github.com/vllm-project/vllm-ascend/issues/18564)
+
+##### 功能特性
+
+- Backported Kimi K3 MegaMoE routed dimensions and CANN pooled indexing for GLM-5.3-Flash. [#18976](https://github.com/vllm-project/vllm-ascend/issues/18976) [#18289](https://github.com/vllm-project/vllm-ascend/issues/18289)
+- Supported EPLB for Kimi K3 and its MTP draft model, and w8a8mxfp8 EPLB on A5. [#18261](https://github.com/vllm-project/vllm-ascend/issues/18261) [#18436](https://github.com/vllm-project/vllm-ascend/issues/18436)
+
+##### 文档
+
+- Updated model deployment guides: GLM-5.3 and GLM-5.3-Flash deployment/evaluation and A2 PD configuration, DeepSeek-V4.1-Flash A2 PD and KV Cache Pool, DeepSeek V4 TurboQuant serving options and KV cache options, MiniMax-M3 deployment, tuning, and 1M PD deployment, Kimi-K3 guide migration, Gemma4 quantized deployment, and SigLIP2 tutorial paths. [#18275](https://github.com/vllm-project/vllm-ascend/issues/18275) [#18358](https://github.com/vllm-project/vllm-ascend/issues/18358) [#18829](https://github.com/vllm-project/vllm-ascend/issues/18829) [#18880](https://github.com/vllm-project/vllm-ascend/issues/18880) [#18588](https://github.com/vllm-project/vllm-ascend/issues/18588) [#18530](https://github.com/vllm-project/vllm-ascend/issues/18530) [#18430](https://github.com/vllm-project/vllm-ascend/issues/18430) [#18661](https://github.com/vllm-project/vllm-ascend/issues/18661) [#18574](https://github.com/vllm-project/vllm-ascend/issues/18574) [#18581](https://github.com/vllm-project/vllm-ascend/issues/18581) [#18453](https://github.com/vllm-project/vllm-ascend/issues/18453) [#19121](https://github.com/vllm-project/vllm-ascend/issues/19121) [#18463](https://github.com/vllm-project/vllm-ascend/issues/18463) [#18835](https://github.com/vllm-project/vllm-ascend/issues/18835) [#18690](https://github.com/vllm-project/vllm-ascend/issues/18690) [#18480](https://github.com/vllm-project/vllm-ascend/issues/18480)
+
+##### 稳定性与错误修复
+
+- Fixed speculative decoding and models: restored independent RNG for residual resampling, fixed PP MTP token validation API compatibility, resynced DP to avoid unreasonable padding in adaptive verification, backported Kimi A5 draft KV cache and FP8 MLA output fixes, used grouped matmul for eager MXFP8 projections in Kimi, preserved the Kimi K3 draft checkpoint LM head, skipped the Eagle3 PP aux patch for MiniMax-M3, patched the MiniMax-M3 fused all-reduce norm on vLLM's real module, kept MiniMax-M3 sparse attention outside piecewise graphs, aligned GLM-5.3-Flash video placeholder timestamps with pixel-path frame sampling, matched KDA fallback compiled launches to Triton signatures, and guarded DeepSeek buffer mutation. [#18658](https://github.com/vllm-project/vllm-ascend/issues/18658) [#18629](https://github.com/vllm-project/vllm-ascend/issues/18629) [#18250](https://github.com/vllm-project/vllm-ascend/issues/18250) [#18897](https://github.com/vllm-project/vllm-ascend/issues/18897) [#18756](https://github.com/vllm-project/vllm-ascend/issues/18756) [#19066](https://github.com/vllm-project/vllm-ascend/issues/19066) [#18370](https://github.com/vllm-project/vllm-ascend/issues/18370) [#18548](https://github.com/vllm-project/vllm-ascend/issues/18548) [#18979](https://github.com/vllm-project/vllm-ascend/issues/18979) [#18866](https://github.com/vllm-project/vllm-ascend/issues/18866) [#18840](https://github.com/vllm-project/vllm-ascend/issues/18840) [#18429](https://github.com/vllm-project/vllm-ascend/issues/18429)
 
 #### v0.26.0rc1 · 2026.09.03（中文）
 
@@ -1961,6 +2093,12 @@
 
 ### Gemma4
 
+#### v0.30.0 · 2026.10.29（中文）
+
+##### 文档
+
+- Updated model deployment guides: GLM-5.3 and GLM-5.3-Flash deployment/evaluation and A2 PD configuration, DeepSeek-V4.1-Flash A2 PD and KV Cache Pool, DeepSeek V4 TurboQuant serving options and KV cache options, MiniMax-M3 deployment, tuning, and 1M PD deployment, Kimi-K3 guide migration, Gemma4 quantized deployment, and SigLIP2 tutorial paths. [#18275](https://github.com/vllm-project/vllm-ascend/issues/18275) [#18358](https://github.com/vllm-project/vllm-ascend/issues/18358) [#18829](https://github.com/vllm-project/vllm-ascend/issues/18829) [#18880](https://github.com/vllm-project/vllm-ascend/issues/18880) [#18588](https://github.com/vllm-project/vllm-ascend/issues/18588) [#18530](https://github.com/vllm-project/vllm-ascend/issues/18530) [#18430](https://github.com/vllm-project/vllm-ascend/issues/18430) [#18661](https://github.com/vllm-project/vllm-ascend/issues/18661) [#18574](https://github.com/vllm-project/vllm-ascend/issues/18574) [#18581](https://github.com/vllm-project/vllm-ascend/issues/18581) [#18453](https://github.com/vllm-project/vllm-ascend/issues/18453) [#19121](https://github.com/vllm-project/vllm-ascend/issues/19121) [#18463](https://github.com/vllm-project/vllm-ascend/issues/18463) [#18835](https://github.com/vllm-project/vllm-ascend/issues/18835) [#18690](https://github.com/vllm-project/vllm-ascend/issues/18690) [#18480](https://github.com/vllm-project/vllm-ascend/issues/18480)
+
 #### v0.30.0rc1 · 2026.10.11（中文）
 
 ##### 功能特性
@@ -2084,6 +2222,75 @@
 ## 平台与通用
 
 ### 平台与通用
+
+#### v0.30.0 · 2026.10.29（中文）
+
+##### 亮点
+
+- GLM-5.3-Flash : Added KV Pool support for non-layerwise pooling and Mamba in Mooncake layerwise, added layerwise memcache DRAM/SSD pooling, optimized Triton KPool and gated norm, supported GQA decode context parallelism and SFA-only DSA CP, and provided P/D and KV cache pool deployment guides. [#16945](https://github.com/vllm-project/vllm-ascend/issues/16945) [#17287](https://github.com/vllm-project/vllm-ascend/issues/17287) [#17698](https://github.com/vllm-project/vllm-ascend/issues/17698) [#17542](https://github.com/vllm-project/vllm-ascend/issues/17542) [#16478](https://github.com/vllm-project/vllm-ascend/issues/16478) [#17990](https://github.com/vllm-project/vllm-ascend/issues/17990) [#17987](https://github.com/vllm-project/vllm-ascend/issues/17987) [#17773](https://github.com/vllm-project/vllm-ascend/issues/17773) [#17946](https://github.com/vllm-project/vllm-ascend/issues/17946) †
+- Deprecation cleanup : Removed layer sharding, FlashComm2, multistream overlap gate, dynamic-batch SLO, weight prefetch, matmul all-reduce fusions, and kv offload in KV Pool to streamline the codebase. [#11953](https://github.com/vllm-project/vllm-ascend/issues/11953) [#12117](https://github.com/vllm-project/vllm-ascend/issues/12117) [#11956](https://github.com/vllm-project/vllm-ascend/issues/11956) [#11933](https://github.com/vllm-project/vllm-ascend/issues/11933) [#11949](https://github.com/vllm-project/vllm-ascend/issues/11949) [#12119](https://github.com/vllm-project/vllm-ascend/issues/12119) [#11904](https://github.com/vllm-project/vllm-ascend/issues/11904) †
+- FlashMLA decode : Integrated FlashMLA decode with DCP and DSpark, routed strided MLA cache writes through PROLOGV3, used native GatherPa for strided MLA cache reads, enabled no-RoPE MLAPO for token-fused FlashMLA, and skipped FlashMLA CPU length synchronization under DCP. [#18758](https://github.com/vllm-project/vllm-ascend/issues/18758) [#18682](https://github.com/vllm-project/vllm-ascend/issues/18682) [#19151](https://github.com/vllm-project/vllm-ascend/issues/19151) [#19155](https://github.com/vllm-project/vllm-ascend/issues/19155) [#19115](https://github.com/vllm-project/vllm-ascend/issues/19115) [#19038](https://github.com/vllm-project/vllm-ascend/issues/19038)
+- KV Pool : Added global layer-window prefetch for layerwise loads, GLM-5.3-Flash Mooncake layerwise support, and Triton KeyPool cache adapters; supported packed SFA C8 layerwise transfer, and reduced lookup/reachable-mask and page-table overhead. [#18975](https://github.com/vllm-project/vllm-ascend/issues/18975) [#18749](https://github.com/vllm-project/vllm-ascend/issues/18749) [#18296](https://github.com/vllm-project/vllm-ascend/issues/18296) [#18716](https://github.com/vllm-project/vllm-ascend/issues/18716) [#18837](https://github.com/vllm-project/vllm-ascend/issues/18837) [#18576](https://github.com/vllm-project/vllm-ascend/issues/18576) [#18245](https://github.com/vllm-project/vllm-ascend/issues/18245)
+- PCP & speculative decoding : Supported PCP with PIECEWISE and FULLANDPIECEWISE graphs, fixed-K speculative decode request sharding in PCP, and speculative decoding in KVPP. [#18365](https://github.com/vllm-project/vllm-ascend/issues/18365) [#18312](https://github.com/vllm-project/vllm-ascend/issues/18312) [#18334](https://github.com/vllm-project/vllm-ascend/issues/18334)
+
+##### 功能特性
+
+- Integrated FlashMLA decode with DCP and DSpark, and routed strided MLA cache writes through PROLOGV3. [#18758](https://github.com/vllm-project/vllm-ascend/issues/18758) [#18682](https://github.com/vllm-project/vllm-ascend/issues/18682)
+- Supported C8 MXFP8 KV cache in the V2 worker, and supported A5 SFA C8 decode context parallelism. [#18707](https://github.com/vllm-project/vllm-ascend/issues/18707) [#18321](https://github.com/vllm-project/vllm-ascend/issues/18321)
+- Added KV Pool global layer-window prefetch for layerwise loads and Triton KeyPool cache adapters. [#18975](https://github.com/vllm-project/vllm-ascend/issues/18975) [#18296](https://github.com/vllm-project/vllm-ascend/issues/18296)
+- Backported GLM-5.3-Flash Mooncake layerwise support and packed SFA C8 layerwise transfer. [#18749](https://github.com/vllm-project/vllm-ascend/issues/18749) [#18716](https://github.com/vllm-project/vllm-ascend/issues/18716)
+- Supported PCP with PIECEWISE and FULLANDPIECEWISE graphs and fixed-K speculative decode request sharding in PCP. [#18365](https://github.com/vllm-project/vllm-ascend/issues/18365) [#18312](https://github.com/vllm-project/vllm-ascend/issues/18312)
+- Supported speculative decoding and MultiConnector in KVPP. [#18334](https://github.com/vllm-project/vllm-ascend/issues/18334) [#18633](https://github.com/vllm-project/vllm-ascend/issues/18633)
+- Added direct msprobe dump support to Model Runner V2, and a greater-than-or-equal-to (ge) accuracy verification mode for benchmarking. [#18557](https://github.com/vllm-project/vllm-ascend/issues/18557) [#18412](https://github.com/vllm-project/vllm-ascend/issues/18412)
+
+##### 硬件与算子支持
+
+- Backported CANN pooled indexing for GLM-5.3-Flash. [#18289](https://github.com/vllm-project/vllm-ascend/issues/18289)
+- Included SparseFlashAttention in A5 custom kernel builds and packaged shared headers for standalone kernel compilation. [#18310](https://github.com/vllm-project/vllm-ascend/issues/18310) [#18693](https://github.com/vllm-project/vllm-ascend/issues/18693)
+- Used memory copy for expert weight updates on Ascend 950 in EPLB. [#19043](https://github.com/vllm-project/vllm-ascend/issues/19043)
+
+##### 性能
+
+- Used native GatherPa for strided MLA cache reads, and skipped FlashMLA CPU length synchronization with DCP and in audited speculative decoding. [#19151](https://github.com/vllm-project/vllm-ascend/issues/19151) [#19115](https://github.com/vllm-project/vllm-ascend/issues/19115) [#19038](https://github.com/vllm-project/vllm-ascend/issues/19038)
+- Preserved the GLM V1 SP token layout through PP and DSA-CP. [#18929](https://github.com/vllm-project/vllm-ascend/issues/18929) [#18671](https://github.com/vllm-project/vllm-ascend/issues/18671)
+- Reduced KV Pool lookup and reachable-mask overhead, cached layer-invariant masked block runs across layers, and skipped invisible KPool page-table loads. [#18837](https://github.com/vllm-project/vllm-ascend/issues/18837) [#18245](https://github.com/vllm-project/vllm-ascend/issues/18245) [#18576](https://github.com/vllm-project/vllm-ascend/issues/18576)
+- Used BF16 router GEMM with FP32 accumulation and fused shared W8A8 MXFP activation quantization in MoE. [#18820](https://github.com/vllm-project/vllm-ascend/issues/18820) [#18678](https://github.com/vllm-project/vllm-ascend/issues/18678)
+- Enabled fused MiniMax sparse prepare through 256K tokens and fused MiniMax-M3 A3 index TopK helpers. [#18660](https://github.com/vllm-project/vllm-ascend/issues/18660) [#18323](https://github.com/vllm-project/vllm-ascend/issues/18323)
+- Used activation exchange for PCP decode O projection in DSA, and optimized the hcpre kernels. [#18537](https://github.com/vllm-project/vllm-ascend/issues/18537) [#18347](https://github.com/vllm-project/vllm-ascend/issues/18347)
+
+##### 依赖项
+
+- Upstream vLLM : v0.30.0.
+- CANN : 9.2.1.
+- PyTorch / torchnpu : 2.10.0 / 2.10.0.post7.
+- Triton Ascend : 3.6.0.post2 for A2, A3, and Ascend 950; Triton Ascend is not supported on Atlas 300I DUO.
+- mooncake-transfer-engine-npu : 0.3.14-rc1.
+- flash-linear-attention-npu : v26.9.1-release.
+- memfabric-hybrid / memcache-hybrid : 1.3.0 / 1.3.0.
+- ray : >= 2.47.1, <= 2.48.0.
+- Python : 3.12 (release image base).
+
+##### 弃用与配置变更
+
+- MRV1 will follow the upstream and be removed in the next version. Meanwhile, some external interfaces that are only compatible with MRV1 will also be deprecated. For specific details, please refer to Additional Configuration Doc .
+- Reverted the A3 GMM dequant SiTU quant fusion. [#18927](https://github.com/vllm-project/vllm-ascend/issues/18927)
+- Removed the StoreKVBlock optimization and the c8enablereshapeoptim switch, and removed redundant sparse KV offload configs. [#18301](https://github.com/vllm-project/vllm-ascend/issues/18301) [#18271](https://github.com/vllm-project/vllm-ascend/issues/18271)
+- Disabled torch.compile for eager draft models in speculative decoding. [#18487](https://github.com/vllm-project/vllm-ascend/issues/18487)
+- Due to the gradual decline in usage of some old models, and considering maintenance costs, we will gradually sunset these old models. For specific information, please refer to the Support Models Doc .
+
+##### 稳定性与错误修复
+
+- Fixed MRV2 and compilation: initialized the static kernel runtime from the compiler config before loading cached graphs, skipped incompatible kernels for static kernels, inferred local workers for external DP static kernels, preserved graph eligibility on P/D decode nodes, and shrank the 310P rejection sampler host buffer. [#19246](https://github.com/vllm-project/vllm-ascend/issues/19246) [#19178](https://github.com/vllm-project/vllm-ascend/issues/19178) [#18885](https://github.com/vllm-project/vllm-ascend/issues/18885) [#18725](https://github.com/vllm-project/vllm-ascend/issues/18725) [#18309](https://github.com/vllm-project/vllm-ascend/issues/18309) [#18995](https://github.com/vllm-project/vllm-ascend/issues/18995)
+- Fixed EPLB: fenced staging-buffer reuse before HIXL READs, fixed HIXL registration ranges and resource cleanup, backported NZ Gloo receive staging, used W8A8 MXFP per-expert list weights, fixed W4A8 MXFP EPLB runtime, fixed dynamic EPLB startup in headless workers, and synchronized the NPU in sleep and wakeup. [#19098](https://github.com/vllm-project/vllm-ascend/issues/19098) [#18415](https://github.com/vllm-project/vllm-ascend/issues/18415) [#18458](https://github.com/vllm-project/vllm-ascend/issues/18458) [#18686](https://github.com/vllm-project/vllm-ascend/issues/18686) [#18444](https://github.com/vllm-project/vllm-ascend/issues/18444) [#18564](https://github.com/vllm-project/vllm-ascend/issues/18564) [#18338](https://github.com/vllm-project/vllm-ascend/issues/18338)
+- Fixed KV Pool and KV transfer: preserved physical blocks in bulk and layerwise cache transfers, isolated Memcache transfer failures and recovered ordinary layerwise transfer failures, backported synchronous Mamba state-copy ordering, ensured full range load when prefill layerwise offload is enabled, dropped the save-side GVA cache on idempotent batchalloc , handled MemCache allocation sentinel values, requested huge pages before Engram host registration, required full page coverage for Mooncake merging, fixed Mooncake V2 scheduler resource cleanup, kept AscendStore receive registration until completion, and supported mixed C8 and BF16 layers for layerwise reuse in prefill offload. [#19069](https://github.com/vllm-project/vllm-ascend/issues/19069) [#19090](https://github.com/vllm-project/vllm-ascend/issues/19090) [#18813](https://github.com/vllm-project/vllm-ascend/issues/18813) [#19060](https://github.com/vllm-project/vllm-ascend/issues/19060) [#18905](https://github.com/vllm-project/vllm-ascend/issues/18905) [#18379](https://github.com/vllm-project/vllm-ascend/issues/18379) [#18544](https://github.com/vllm-project/vllm-ascend/issues/18544) [#18637](https://github.com/vllm-project/vllm-ascend/issues/18637) [#18748](https://github.com/vllm-project/vllm-ascend/issues/18748) [#18957](https://github.com/vllm-project/vllm-ascend/issues/18957) [#18424](https://github.com/vllm-project/vllm-ascend/issues/18424) [#18298](https://github.com/vllm-project/vllm-ascend/issues/18298)
+
+##### 已知问题
+
+- We still use MRV1 by default in this version, and some models need to be switched to MRV2 for support. For specific information, please refer to the model tutorial . The main branch has been switched to use MRV2 by default.
+- Gemma-4-E4B-it model fail because of attention op issue. [#19559](https://github.com/vllm-project/vllm-ascend/issues/19559)
+- KV pooling with mooncake backend doesn't support SSD offload case on RoCE networking, because kvcache-al/Mooncake[#4756](https://github.com/vllm-project/vllm-ascend/issues/4756) was not merged into current Mooncake version. [#19707](https://github.com/vllm-project/vllm-ascend/issues/19707)
+- When layerwise KV pooling with mooncake backend and SSD offload + pipeline parallel, we can't hit kvcache on SSD because of kvcache-al/Mooncake[#3658](https://github.com/vllm-project/vllm-ascend/issues/3658) , and the bugfix pr kvcache-al/Mooncake[#3916](https://github.com/vllm-project/vllm-ascend/issues/3916) was not merged into current Mooncake version. [#20151](https://github.com/vllm-project/vllm-ascend/issues/20151)
+- When enabling structured output, GLM5.3 model's output can't be aligned with vLLM v0.30.0, because vllm-project/vllm[#56994](https://github.com/vllm-project/vllm-ascend/issues/56994) was not merged into vLLM v0.30.0, and it will be aligned with vLLM in the next version. [#20173](https://github.com/vllm-project/vllm-ascend/issues/20173)
 
 #### v0.30.0rc1 · 2026.10.11（中文）
 
@@ -4121,12 +4328,6 @@
 
 - 在某些情况下，当启用 aclgraph 时，vLLM 进程可能会因 GatherV3 错误而崩溃。我们正在处理此问题，并将在下一个版本中修复。 [#1038](https://github.com/vllm-project/vllm-ascend/issues/1038)
 - 前缀缓存功能在启用 Ascend Scheduler 但未启用分块预填充时无法正常工作。此问题将在下一个版本中修复。 [#1350](https://github.com/vllm-project/vllm-ascend/issues/1350)
-
-#### v0.9.0rc2 · 2025.06.10（英文原文）
-
-##### 亮点
-
-- Fix the import error when vllm-ascend is installed without editable way. [#1152](https://github.com/vllm-project/vllm-ascend/issues/1152)
 
 #### v0.9.0rc1 · 2025.06.09（中文）
 

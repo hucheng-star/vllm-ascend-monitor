@@ -1,0 +1,71 @@
+{
+  "day": "2026-11-06",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21117,
+          "title": "[Test] Add native YAML accuracy case for pruned Kimi-K3 on A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21117",
+          "author": "CuiZ2007",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-05T15:23:06Z",
+          "updatedAt": "2026-11-05T17:02:18Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add a native YAML-driven accuracy case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on a single A5 node with eight NPUs, using the shared single-node pytest entry and stock AISBench configuration. - Configure TP8 + expert paral",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 native YAML 精度 case for pruned Kimi-K3 on A5",
+          "excerptZh": "新增 a native YAML-driven 精度 case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on a single A5 node with eight NPUs, using the 共享 single-node pytest entry and stock AISBench 配置. - Configure TP8 + expert paral"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20801,
+          "title": "[Doc] Add 950DT DeepSeek-V4.1-Flash deployment examples for v0.32.0rc",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20801",
+          "author": "rikakuhi",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-03T12:21:07Z",
+          "updatedAt": "2026-11-05T16:17:10Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add DeepSeek-V4.1-Flash deployment instructions for 950DT products alongside the A2/A3 guide, targeting vLLM Ascend v0.32.0rc with vLLM v0.32.0 . Integrate the merged A3 update in 20764 while preserving its serving commands, accuracy table,",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】新增 950DT DeepSeek-V4.1-Flash deployment examples for v0.32.0rc",
+          "excerptZh": "新增 DeepSeek-V4.1-Flash deployment instructions for 950DT products alongside the A2/A3 guide, targeting vLLM Ascend v0.32.0rc with vLLM v0.32.0 . Integrate the merged A3 更新 in 20764 while preserving its 服务 commands, 精度 table,"
+        }
+      ]
+    }
+  ]
+}
