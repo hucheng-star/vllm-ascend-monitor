@@ -1,5 +1,294 @@
 {
   "day": "2026-11-07",
   "timezone": "Asia/Shanghai",
-  "groups": []
+  "groups": [
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21259,
+          "title": "[Performance][Model] Capture DeepSeek V4 decode metadata in full graphs",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21259",
+          "author": "zzt93",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-07T14:40:11Z",
+          "updatedAt": "2026-11-07T14:50:40Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Capture DeepSeek V4 target-model SAS/QLI metadata producers in FULL decode graphs, avoiding repeated host executor construction and CPU scalar preparation. Persistent inputs are refreshed before replay; producer outputs retain stable storag",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【性能】【模型】Capture DeepSeek V4 解码 元数据 in full graphs",
+          "excerptZh": "Capture DeepSeek V4 target-model SAS/QLI 元数据 producers in FULL 解码 graphs, avoiding repeated host executor construction and CPU scalar preparation. Persistent inputs are refreshed before replay; producer outputs retain stable storag"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21250,
+          "title": "[BugFix][KVOffload] Bound DeepSeek V4.1 replay CPU cache allocations",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21250",
+          "author": "ckeyever",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-07T08:37:55Z",
+          "updatedAt": "2026-11-07T09:21:40Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4.1 allocates independent physical cache slots, while upstream native offloading interprets the first KV-cache descriptor's size as the reservation for the entire pool. With SWA bounded replay enabled, this can size CPU mirrors fr",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【修复】【KVOffload】Bound DeepSeek V4.1 replay CPU 缓存 allocations",
+          "excerptZh": "DeepSeek V4.1 allocates independent physical 缓存 slots, while upstream native offloading interprets the first KV-缓存 descriptor's size as the reservation for the entire pool. With SWA bounded replay 启用, this can size CPU mirrors fr"
+        },
+        {
+          "kind": "pr",
+          "number": 21243,
+          "title": "[BugFix] Raise clear error for unsupported DeepSeek V4.1 block size",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21243",
+          "author": "liuxi620",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-07T03:02:49Z",
+          "updatedAt": "2026-11-07T08:10:05Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "AscendDeepseekV41SWACache builds the V4.1 SWA cache spec with: DSV4 BLOCK SIZES only contains the 32/64/128 entries. An unsupported cache config.block size therefore fails with a bare KeyError during model construction, after config validat",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【修复】Raise clear error for unsupported DeepSeek V4.1 block size",
+          "excerptZh": "AscendDeepseekV41SWACache builds the V4.1 SWA 缓存 spec with: DSV4 BLOCK SIZES only contains the 32/64/128 entries. An unsupported 缓存 配置.block size therefore fails with a bare KeyError during model construction, after 配置 validat"
+        },
+        {
+          "kind": "pr",
+          "number": 21242,
+          "title": " [Cherry-pick][releases/v0.32.0rc][Doc] Update DeepSeek-V4.1-Flash A2 deployment guide to W4A8 (from #21241)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21242",
+          "author": "hansonchenmin",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-07T02:59:20Z",
+          "updatedAt": "2026-11-07T03:00:43Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Cherry-pick of 21241 to the releases/v0.32.0rc branch. Update the A2 part of the DeepSeek-V4.1-Flash tutorial from the W8A8 deployment to W4A8 with model runner V2, matching the configuration that has been validated on two Atlas 800 A2 serv",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【Cherry-pick】【releases/v0.32.0rc】【文档】更新 DeepSeek-V4.1-Flash A2 deployment guide to W4A8 (from #21241)",
+          "excerptZh": "Cherry-pick of 21241 to the releases/v0.32.0rc branch. 更新 the A2 part of the DeepSeek-V4.1-Flash tutorial from the W8A8 deployment to W4A8 with model runner V2, matching the 配置 that has been validated on two Atlas 800 A2 serv"
+        },
+        {
+          "kind": "pr",
+          "number": 21088,
+          "title": "[BugFix] Settle DeepSeek V4.1 KV cache block size",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21088",
+          "author": "liuxi620",
+          "labels": [
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-05T10:53:30Z",
+          "updatedAt": "2026-11-07T03:13:18Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4.1 uses the same 32/64/128 KV-cache block-size table as DeepSeek V4, but refresh block size() only recognizes model type == \"deepseek v4\" . V4.1 therefore falls through to the generic block-size policy, whose behavior depends on ",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】Settle DeepSeek V4.1 KV 缓存 block size",
+          "excerptZh": "DeepSeek V4.1 uses the same 32/64/128 KV-缓存 block-size table as DeepSeek V4, but refresh block size() only recognizes model type == \"deepseek v4\" . V4.1 therefore falls through to the generic block-size policy, whose behavior depends on"
+        },
+        {
+          "kind": "pr",
+          "number": 21241,
+          "title": "[Doc] Update DeepSeek-V4.1-Flash A2 deployment guide to W4A8",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21241",
+          "author": "hansonchenmin",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-07T02:50:54Z",
+          "updatedAt": "2026-11-07T02:52:04Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Update the A2 part of the DeepSeek-V4.1-Flash tutorial to the W4A8 checkpoint and model runner V2, based on the configuration validated on two Atlas 800 A2 servers (8 x 64 GB per node). - Rewrite the A2 PD section for the two-node W4A8 layo",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】更新 DeepSeek-V4.1-Flash A2 deployment guide to W4A8",
+          "excerptZh": "更新 the A2 part of the DeepSeek-V4.1-Flash tutorial to the W4A8 检查点 and model runner V2, based on the 配置 validated on two Atlas 800 A2 servers (8 x 64 GB per node). - Rewrite the A2 PD section for the two-node W4A8 layo"
+        }
+      ]
+    },
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 11066,
+          "title": "[Feature][SpecDecode] Support GLM-5.3-Flash DSpark target states and draft caches",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/11066",
+          "author": "Liuchenbing-2026",
+          "labels": [
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-06-27T16:21:05Z",
+          "updatedAt": "2026-11-07T09:22:56Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable the existing GLM-5.3-Flash (GLM5Next) model to expose auxiliary hidden states through the Eagle3 interface for DSpark speculative decoding. Complete the hyper-connection state before exporting auxiliary states, and gather sequence-pa",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【SpecDecode】支持 GLM-5.3-Flash DSpark target states and draft caches",
+          "excerptZh": "启用 the existing GLM-5.3-Flash (GLM5Next) model to expose auxiliary hidden states through the Eagle3 interface for DSpark 投机解码. Complete the hyper-connection state before exporting auxiliary states, and gather 序列-pa"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20562,
+          "title": "[Feature] recipes: update DeepSeek-V4-Flash A3 to v0.30.0rc2-a3 measured config",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20562",
+          "author": "xyndameinv",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-01T14:05:08Z",
+          "updatedAt": "2026-11-07T08:51:32Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "What this PR does Refresh the DeepSeek-V4-Flash overlay so the Ascend 910C (Atlas 800T A3) single-node entry matches the configuration measured on vllm-ascend v0.30.0rc2-a3 (vLLM 0.30.0): - variants.ascend w8a8 : DP4+TP4 with expert paralle",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】recipes: 更新 DeepSeek-V4-Flash A3 to v0.30.0rc2-a3 measured 配置",
+          "excerptZh": "What this PR does Refresh the DeepSeek-V4-Flash overlay so the Ascend 910C (Atlas 800T A3) single-node entry matches the 配置 measured on vllm-ascend v0.30.0rc2-a3 (vLLM 0.30.0): - variants.ascend w8a8 : DP4+TP4 with expert paralle"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20965,
+          "title": "[Doc][releases/v0.32.0rc] Backport Qwen3.8-Flash-Next deployment guide",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20965",
+          "author": "dypforever",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-04T13:59:23Z",
+          "updatedAt": "2026-11-07T01:28:34Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Expand the Qwen3.8-Flash-Next tutorial with Docker, colocated serving, basic PD, functional verification, evaluation, and tuning guidance for A2 series, A3 series, and 950DT products. Keep hardware tabs in that order, use W4A8/W4A8-MXFP Mod",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【releases/v0.32.0rc】Backport Qwen3.8-Flash-Next deployment guide",
+          "excerptZh": "Expand the Qwen3.8-Flash-Next tutorial with Docker, colocated 服务, basic PD, functional verification, evaluation, and tuning guidance for A2 series, A3 series, and 950DT products. Keep hardware tabs in that order, use W4A8/W4A8-MXFP Mod"
+        },
+        {
+          "kind": "pr",
+          "number": 20750,
+          "title": "[Doc] Expand Qwen3.8-Flash-Next deployment guide for A2, A3 and 950DT products",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20750",
+          "author": "dypforever",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-03T07:13:16Z",
+          "updatedAt": "2026-11-07T01:28:30Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Expand the Qwen3.8-Flash-Next tutorial with Docker, colocated serving, basic PD, functional verification, evaluation, and tuning guidance for A2 series, A3 series, and 950DT products. Keep hardware tabs in that order, use W4A8/W4A8-MXFP Mod",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】Expand Qwen3.8-Flash-Next deployment guide for A2, A3 and 950DT products",
+          "excerptZh": "Expand the Qwen3.8-Flash-Next tutorial with Docker, colocated 服务, basic PD, functional verification, evaluation, and tuning guidance for A2 series, A3 series, and 950DT products. Keep hardware tabs in that order, use W4A8/W4A8-MXFP Mod"
+        }
+      ]
+    }
+  ]
 }
