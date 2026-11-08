@@ -1,5 +1,301 @@
 {
   "day": "2026-11-08",
   "timezone": "Asia/Shanghai",
-  "groups": []
+  "groups": [
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21272,
+          "title": "[Feature] Fuse sequence collective into dense SP GEMMs for Qwen3.5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21272",
+          "author": "yeatschou0-ui",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-08T09:26:25Z",
+          "updatedAt": "2026-11-08T09:28:37Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Dense sequence parallelism (FlashComm switch, Qwen3.5 dense family) now fuses the sequence all-gather into the column GEMMs ( torch npu.npu all gather base mm ) and the reduce-scatter into the row GEMMs ( torch npu.npu mm reduce scatter bas",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【功能】融合 序列 collective into dense SP GEMMs for Qwen3.5",
+          "excerptZh": "Dense 序列 parallelism (FlashComm 切换, Qwen3.5 dense family) now fuses the 序列 all-gather into the column GEMMs ( torch npu.npu all gather base mm ) and the 减少-scatter into the row GEMMs ( torch npu.npu mm 减少 scatter bas"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21271,
+          "title": "[Performance][Model] Skip DeepSeek V4.1 short-context indexer scoring",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21271",
+          "author": "zzy-6666",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-08T09:26:04Z",
+          "updatedAt": "2026-11-08T09:28:18Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Port the short-context Indexer shortcut from vLLM 49486 to DeepSeek V4.1 on Ascend. When the maximum visible compressed K length fits within index topk , every valid compressed position must be selected. For index source layers that neither",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【性能】【模型】Skip DeepSeek V4.1 short-context 索引器 scoring",
+          "excerptZh": "Port the short-context 索引器 shortcut from vLLM 49486 to DeepSeek V4.1 on Ascend. When the maximum 可见 compressed K length fits within index topk , every valid compressed position must be selected. For index source layers that neither"
+        },
+        {
+          "kind": "pr",
+          "number": 21269,
+          "title": "[Performance][Engram] Add opt-in sorted Host-UVA lookups",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21269",
+          "author": "zzy-6666",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-08T08:32:14Z",
+          "updatedAt": "2026-11-08T08:38:29Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Ports the sorted host-lookup strategy from vLLM 59327 to the Ascend DeepSeek-V4.1 Engram Host-UVA path. Large Host-UVA lookups can be enabled to: - select only the hash heads owned by the local TP/EDP shard; - convert global IDs to table-lo",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【性能】【Engram】新增 opt-in sorted Host-UVA lookups",
+          "excerptZh": "Ports the sorted host-lookup strategy from vLLM 59327 to the Ascend DeepSeek-V4.1 Engram Host-UVA path. Large Host-UVA lookups can be 启用 to: - select only the hash heads owned by the local TP/EDP shard; - convert global IDs to table-lo"
+        },
+        {
+          "kind": "pr",
+          "number": 21243,
+          "title": "[BugFix] Raise clear error for unsupported DeepSeek V4.1 block size",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21243",
+          "author": "liuxi620",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-07T03:02:49Z",
+          "updatedAt": "2026-11-08T14:40:26Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "AscendDeepseekV41SWACache builds the V4.1 SWA cache spec with: DSV4 BLOCK SIZES only contains the 32/64/128 entries. An unsupported cache config.block size therefore fails with a bare KeyError during model construction, after config validat",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】Raise clear error for unsupported DeepSeek V4.1 block size",
+          "excerptZh": "AscendDeepseekV41SWACache builds the V4.1 SWA 缓存 spec with: DSV4 BLOCK SIZES only contains the 32/64/128 entries. An unsupported 缓存 配置.block size therefore fails with a bare KeyError during model construction, after 配置 validat"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21168,
+          "title": "[BugFix][DSpark][EPLB] Fix DeepSeek V4 expert weight mapping with redundant experts",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21168",
+          "author": "JudgingH",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-06T06:37:35Z",
+          "updatedAt": "2026-11-08T15:42:12Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4 DSpark creates MoE layers with the configured redundant experts, but its checkpoint loader builds the expert mapping with num redundant experts=0 . Under MRv2, this can load incorrect logical experts into physical slots and leav",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【DSpark】【EPLB】DeepSeek V4 expert 权重 mapping with redundant experts",
+          "excerptZh": "DeepSeek V4 DSpark creates MoE layers with the configured redundant experts, but its 检查点 loader builds the expert mapping with num redundant experts=0 . Under MRv2, this can load incorrect logical experts into physical slots and leav"
+        },
+        {
+          "kind": "pr",
+          "number": 20538,
+          "title": "[BugFix][KVPool] Request lazy store init for sparse-indexer models",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20538",
+          "author": "Dwade3",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-01T06:28:01Z",
+          "updatedAt": "2026-11-08T08:15:26Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "KVPoolWorker requests lazy init from the storage backend only for compressed models (use compress, DSV4 compress ratios) — the deferral introduced for that family in 9771. Sparse-indexer models (use sparse, e.g. GLM-5.x SFA) route their ind",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【KVPool】Request lazy store init for 稀疏-索引器 models",
+          "excerptZh": "KVPoolWorker requests lazy init from the storage backend only for compressed models (use compress, DSV4 compress ratios) — the deferral introduced for that family in 9771. 稀疏-索引器 models (use 稀疏, e.g. GLM-5.x SFA) route their ind"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k2",
+      "name": "Kimi K2",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21280,
+          "title": "[Docs] Add Kimi-K2.6 Ascend W4A8 deployment recipe",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21280",
+          "author": "CuiZ2007",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-08T14:36:59Z",
+          "updatedAt": "2026-11-08T14:42:01Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Replaces 20795 to use the dedicated Task1 1 doc Kimi-K2.6 recipe update branch. The recipe file is unchanged; the branch includes current main. The predecessor will be closed to avoid duplicate review. Migrate and update the Kimi-K2.6 Ascen",
+          "modelIds": [
+            "kimi-k2"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】新增 Kimi-K2.6 Ascend W4A8 deployment recipe",
+          "excerptZh": "Replaces 20795 to use the dedicated Task1 1 doc Kimi-K2.6 recipe 更新 branch. The recipe file is unchanged; the branch includes current main. The predecessor will be closed to 避免 duplicate review. 迁移 and 更新 the Kimi-K2.6 Ascen"
+        },
+        {
+          "kind": "pr",
+          "number": 20795,
+          "title": "[Docs] Add Kimi-K2.6 Ascend W4A8 deployment recipe",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20795",
+          "author": "CuiZ2007",
+          "labels": [
+            "recipe"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-03T11:51:00Z",
+          "updatedAt": "2026-11-08T14:40:24Z",
+          "closedAt": "2026-11-08T14:37:14Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Superseded by 21280, submitted from Task1 1 doc Kimi-K2.6 recipe update with the same recipe contents and current main integrated. Migrate and update the Kimi-K2.6 Ascend recipe in recipes/overlays/moonshotai/Kimi-K2.6.yaml , following the ",
+          "modelIds": [
+            "kimi-k2"
+          ],
+          "action": "closed",
+          "score": 1,
+          "titleZh": "【文档】新增 Kimi-K2.6 Ascend W4A8 deployment recipe",
+          "excerptZh": "Superseded by 21280, submitted from Task1 1 doc Kimi-K2.6 recipe 更新 with the same recipe contents and current main integrated. 迁移 and 更新 the Kimi-K2.6 Ascend recipe in recipes/overlays/moonshotai/Kimi-K2.6.yaml , following the"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21117,
+          "title": "[Test] Add native YAML accuracy case for pruned Kimi-K3 on A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21117",
+          "author": "CuiZ2007",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-05T15:23:06Z",
+          "updatedAt": "2026-11-08T09:32:01Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add a native YAML-driven accuracy case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on a single A5 node with eight NPUs, using the shared single-node pytest entry and stock AISBench configuration. - Configure TP8 + expert paral",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 native YAML 精度 case for pruned Kimi-K3 on A5",
+          "excerptZh": "新增 a native YAML-driven 精度 case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on a single A5 node with eight NPUs, using the 共享 single-node pytest entry and stock AISBench 配置. - Configure TP8 + expert paral"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21230,
+          "title": "[CI] Use W4A8 checkpoint for Qwen3.8 Flash-Next A5 nightly",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21230",
+          "author": "Dean11879",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-06T13:44:40Z",
+          "updatedAt": "2026-11-08T06:32:27Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Use Eco-Tech/Qwen3.8-Flash-Next-w4a8-mxfp for the Qwen3.8 Flash-Next A5 nightly on releases/v0.32.0rc , keeping the existing Eco-Tech/ ModelScope namespace. - Update the model identifier and matching served model name. - Rename only this A5",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【持续集成】Use W4A8 检查点 for Qwen3.8 Flash-Next A5 夜间",
+          "excerptZh": "Use Eco-Tech/Qwen3.8-Flash-Next-w4a8-mxfp for the Qwen3.8 Flash-Next A5 夜间 on releases/v0.32.0rc , keeping the existing Eco-Tech/ ModelScope namespace. - 更新 the model identifier and matching served model name. - 重命名 only this A5"
+        }
+      ]
+    }
+  ]
 }

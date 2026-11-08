@@ -1,0 +1,129 @@
+{
+  "day": "2026-11-09",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "kimi-k2",
+      "name": "Kimi K2",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20648,
+          "title": "[releases/v0.23.0][Doc][Misc] Backport Kimi-K2.6 deployment and accuracy updates",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20648",
+          "author": "CuiZ2007",
+          "labels": [
+            "documentation"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-02T08:56:33Z",
+          "updatedAt": "2026-11-08T19:15:37Z",
+          "closedAt": "2026-11-02T09:17:48Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Backport 20464 to releases/v0.23.0 (the main PR is currently open). Cherry-picked commits: 6e75827c5 , 13a5d9361 , b7f7e9c1a , and 387f47373 with source references retained. The cherry-pick required conflict resolution for the older Sphinx ",
+          "modelIds": [
+            "kimi-k2"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【releases/v0.23.0】【文档】【杂项】Backport Kimi-K2.6 deployment and 精度 更新",
+          "excerptZh": "Backport 20464 to releases/v0.23.0 (the main PR is currently open). Cherry-picked commits: 6e75827c5 , 13a5d9361 , b7f7e9c1a , and 387f47373 with source references retained. The cherry-pick 必填 conflict resolution for the older Sphinx"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21284,
+          "title": "[Test] Add native YAML accuracy case for pruned Kimi-K3 on A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21284",
+          "author": "CuiZ2007",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-08T18:26:08Z",
+          "updatedAt": "2026-11-08T18:27:25Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Replaces 21117 to use the dedicated Task2 2 tcase main Kimi-K3 Experts256 A5 TCase branch with current main integrated. The test YAML and bilingual guides are unchanged; current main's other nightly entries are preserved. Previous discussio",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【测试】新增 native YAML 精度 case for pruned Kimi-K3 on A5",
+          "excerptZh": "Replaces 21117 to use the dedicated Task2 2 tcase main Kimi-K3 Experts256 A5 TCase branch with current main integrated. The test YAML and bilingual guides are unchanged; current main's other 夜间 entries are preserved. Previous discussio"
+        },
+        {
+          "kind": "pr",
+          "number": 21117,
+          "title": "[Test] Add native YAML accuracy case for pruned Kimi-K3 on A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21117",
+          "author": "CuiZ2007",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-05T15:23:06Z",
+          "updatedAt": "2026-11-08T18:28:14Z",
+          "closedAt": "2026-11-08T18:26:21Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Superseded by 21284, submitted from Task2 2 tcase main Kimi-K3 Experts256 A5 TCase with current main integrated. Historical discussion and nightly records are retained here. Add a native YAML-driven accuracy case for Kimi-K3 W4A8 MXFP/QuaRo",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "closed",
+          "score": 1,
+          "titleZh": "【测试】新增 native YAML 精度 case for pruned Kimi-K3 on A5",
+          "excerptZh": "Superseded by 21284, submitted from Task2 2 tcase main Kimi-K3 Experts256 A5 TCase with current main integrated. Historical discussion and 夜间 records are retained here. 新增 a native YAML-driven 精度 case for Kimi-K3 W4A8 MXFP/QuaRo"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21168,
+          "title": "[BugFix][DSpark][EPLB] Fix DeepSeek V4 expert weight mapping with redundant experts",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21168",
+          "author": "JudgingH",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-06T06:37:35Z",
+          "updatedAt": "2026-11-08T16:28:01Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4 DSpark creates MoE layers with the configured redundant experts, but its checkpoint loader builds the expert mapping with num redundant experts=0 . Under MRv2, this can load incorrect logical experts into physical slots and leav",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【DSpark】【EPLB】DeepSeek V4 expert 权重 mapping with redundant experts",
+          "excerptZh": "DeepSeek V4 DSpark creates MoE layers with the configured redundant experts, but its 检查点 loader builds the expert mapping with num redundant experts=0 . Under MRv2, this can load incorrect logical experts into physical slots and leav"
+        }
+      ]
+    }
+  ]
+}
