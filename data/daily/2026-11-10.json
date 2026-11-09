@@ -1,0 +1,130 @@
+{
+  "day": "2026-11-10",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "step3",
+      "name": "Step3",
+      "family": "Step",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21386,
+          "title": "[BugFix] Align Step3.5 attention initialization with vLLM 0.33",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21386",
+          "author": "zhao-stack",
+          "labels": [
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-09T17:20:18Z",
+          "updatedAt": "2026-11-09T17:25:22Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Fix Step3.5/Step3.7 model initialization after the vLLM 0.33 upgrade. The Ascend decoder patch still passes removed arguments such as rope theta to Step3p5Attention , which now takes per-layer rope parameters and use rope . - Reuse upstream",
+          "modelIds": [
+            "step3"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【修复】对齐 Step3.5 注意力 initialization with vLLM 0.33",
+          "excerptZh": "修复 Step3.5/Step3.7 model initialization after the vLLM 0.33 upgrade. The Ascend decoder patch still passes 移除 arguments such as rope theta to Step3p5Attention , which now takes per-layer rope parameters and use rope . - Reuse upstream"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21384,
+          "title": "[Refactor][Model] Reuse upstream DeepSeek V4 image preprocessing",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21384",
+          "author": "realliujiaxu",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-09T16:01:05Z",
+          "updatedAt": "2026-11-09T16:02:56Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Reuse vllm.models.deepseek v4.common.mm preprocess directly from the Ascend vision wrapper and remove the local preprocessing module. The shared implementation is available in both vLLM v0.33.0 and the verified upstream main pin. The local ",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【重构】【模型】Reuse upstream DeepSeek V4 image preprocessing",
+          "excerptZh": "Reuse vllm.models.deepseek v4.common.mm preprocess directly from the Ascend vision wrapper and 移除 the local preprocessing module. The 共享 implementation is available in both vLLM v0.33.0 and the verified upstream main pin. The local"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 21366,
+          "title": "GDN (Qwen3.5/linear-attention) decode kernels dominate step time at small batch on Ascend 950DT: RecurrentGatedDeltaRule ~180us/layer plus multi-ms stable argsort/cumsum in gdn_attn_builder",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/21366",
+          "author": "dahai80",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-09T11:56:31Z",
+          "updatedAt": "2026-11-09T21:37:27Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 1,
+          "excerpt": "Environment - vLLM-Ascend: v0.30.0-a5 image (CANN 9.2.1, torch npu 2.10.0.post7) - Hardware: Ascend 950DT (8x96GB HBM) - Model: Qwen3.8-27B w8a8c8-mxfp8 (hybrid: 48x GDN/linear-attention layers + 16x full attention), MTP spec decode k=3, DP",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "GDN (Qwen3.5/linear-注意力) 解码 内核 dominate step time at small batch on Ascend 950DT: RecurrentGatedDeltaRule ~180us/layer plus multi-ms stable argsort/cumsum in gdn_attn_builder",
+          "excerptZh": "Environment - vLLM-Ascend: v0.30.0-a5 image (CANN 9.2.1, torch npu 2.10.0.post7) - Hardware: Ascend 950DT (8x96GB HBM) - Model: Qwen3.8-27B w8a8c8-mxfp8 (hybrid: 48x GDN/linear-注意力 layers + 16x full 注意力), MTP spec 解码 k=3, DP"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21385,
+          "title": "[Test] Add Kimi-K3 W4A8 EP256 accuracy test on A5 for v0.30.0",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21385",
+          "author": "CuiZ2007",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-09T16:24:16Z",
+          "updatedAt": "2026-11-09T16:33:37Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add a native YAML-driven accuracy case for Kimi-K3 W4A8 MXFP/QuaRot, pre-pruned to 256 routed experts, on one A5 node with eight NPUs. This provides release-branch coverage using the existing single-node harness and AISBench integration. - ",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【测试】新增 Kimi-K3 W4A8 EP256 精度 test on A5 for v0.30.0",
+          "excerptZh": "新增 a native YAML-driven 精度 case for Kimi-K3 W4A8 MXFP/QuaRot, pre-pruned to 256 routed experts, on one A5 node with eight NPUs. This provides release-branch coverage using the existing single-node harness and AISBench integration. -"
+        }
+      ]
+    }
+  ]
+}
