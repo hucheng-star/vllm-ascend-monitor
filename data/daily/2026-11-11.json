@@ -1,0 +1,188 @@
+{
+  "day": "2026-11-11",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 21103,
+          "title": "[Bug]: vllm-ascend:0.30.0rc2镜像PD分离部署GLM-5.3-Flash-w8a8运行出错：/v1/completions + prompt_logprobs 导致数据错乱与引擎崩溃（OverflowError）",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/21103",
+          "author": "rsy-hub4121",
+          "labels": [
+            "bug",
+            "glm5",
+            "llm-model"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-05T12:59:21Z",
+          "updatedAt": "2026-11-10T22:17:49Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 2,
+          "excerpt": "",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "updated",
+          "score": 6,
+          "titleZh": "【缺陷】: vllm-ascend:0.30.0rc2镜像PD分离部署GLM-5.3-Flash-w8a8运行出错：/v1/completions + prompt_logprobs 导致数据错乱与引擎崩溃（OverflowError）",
+          "excerptZh": ""
+        },
+        {
+          "kind": "pr",
+          "number": 21439,
+          "title": "[Feature][SpecDecode] Support GLM-5.3-Flash DFlash2 on Ascend",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21439",
+          "author": "yeyida",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-10T08:22:50Z",
+          "updatedAt": "2026-11-10T16:41:47Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "GLM-5.3-Flash ( Glm5NextForConditionalGeneration ) could not start speculative decoding with a DFlash2 draft. The v2 model runner enables use aux hidden state outputs for method=\"dflash\" and requires the target to implement the shared Eagle",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【SpecDecode】支持 GLM-5.3-Flash DFlash2 on Ascend",
+          "excerptZh": "GLM-5.3-Flash ( Glm5NextForConditionalGeneration ) could not start 投机解码 with a DFlash2 draft. The v2 model runner enables use aux hidden state outputs for method=\"dflash\" and requires the target to implement the 共享 Eagle"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21385,
+          "title": "[Test] Add Kimi-K3 W4A8 EP256 accuracy test on A5 for v0.30.0",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21385",
+          "author": "CuiZ2007",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-09T16:24:16Z",
+          "updatedAt": "2026-11-10T20:17:10Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add a native YAML-driven accuracy case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on one A5 node with eight NPUs. - Register Kimi-K3-W4A8-E256-A5-GSM8K-First100 in the A5 nightly matrix. - Evaluate the first 100 GSM8K questio",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 Kimi-K3 W4A8 EP256 精度 test on A5 for v0.30.0",
+          "excerptZh": "新增 a native YAML-driven 精度 case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on one A5 node with eight NPUs. - Register Kimi-K3-W4A8-E256-A5-GSM8K-First100 in the A5 夜间 matrix. - Evaluate the first 100 GSM8K questio"
+        },
+        {
+          "kind": "pr",
+          "number": 21284,
+          "title": "[Test] Add native YAML accuracy case for pruned Kimi-K3 on A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21284",
+          "author": "CuiZ2007",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-08T18:26:08Z",
+          "updatedAt": "2026-11-10T20:17:02Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add a native YAML-driven accuracy case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on one A5 node with eight NPUs. - Register Kimi-K3-W4A8-E256-A5-GSM8K-First100 in the A5 nightly matrix. - Evaluate the first 100 GSM8K questio",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 native YAML 精度 case for pruned Kimi-K3 on A5",
+          "excerptZh": "新增 a native YAML-driven 精度 case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on one A5 node with eight NPUs. - Register Kimi-K3-W4A8-E256-A5-GSM8K-First100 in the A5 夜间 matrix. - Evaluate the first 100 GSM8K questio"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k2",
+      "name": "Kimi K2",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21280,
+          "title": "[Docs] Add Kimi-K2.6 Ascend W4A8 deployment recipe",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21280",
+          "author": "CuiZ2007",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-08T14:36:59Z",
+          "updatedAt": "2026-11-10T20:08:37Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Replaces 20795 to use the dedicated Task1 1 doc Kimi-K2.6 recipe update branch. The recipe file is unchanged; the branch includes current main. The predecessor will be closed to avoid duplicate review. Migrate and update the Kimi-K2.6 Ascen",
+          "modelIds": [
+            "kimi-k2"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】新增 Kimi-K2.6 Ascend W4A8 deployment recipe",
+          "excerptZh": "Replaces 20795 to use the dedicated Task1 1 doc Kimi-K2.6 recipe 更新 branch. The recipe file is unchanged; the branch includes current main. The predecessor will be closed to 避免 duplicate review. 迁移 and 更新 the Kimi-K2.6 Ascen"
+        }
+      ]
+    },
+    {
+      "id": "qwen2.5",
+      "name": "Qwen2.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19531,
+          "title": "[Test] Add Qwen2.5-1.5B-apeach classification e2e test and tutorial (issue #10680)",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19531",
+          "author": "yanggg1133",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-22T15:28:00Z",
+          "updatedAt": "2026-11-10T17:49:48Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "What does this PR do? Adds a functional e2e classification test for jason9693/Qwen2.5-1.5B-apeach (Korean harmful-content classifier, Qwen2ForSequenceClassification ) plus a user-facing tutorial, per 10680. Acceptance-criteria scoping (expl",
+          "modelIds": [
+            "qwen2.5"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 Qwen2.5-1.5B-apeach classification e2e test and tutorial (issue #10680)",
+          "excerptZh": "What does this PR do? Adds a functional e2e classification test for jason9693/Qwen2.5-1.5B-apeach (Korean harmful-content classifier, Qwen2ForSequenceClassification ) plus a user-facing tutorial, per 10680. Acceptance-criteria scoping (expl"
+        }
+      ]
+    }
+  ]
+}

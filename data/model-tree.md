@@ -1,6 +1,6 @@
 # vLLM-Ascend 模型版本树
 
-更新时间：2026-11-09T23:00:05.110Z
+更新时间：2026-11-10T23:00:06.450Z
 
 版本按日期由近到远排列。同一条说明若点名多个模型，会同时出现在这些模型下。
 
@@ -2292,6 +2292,12 @@
 - 在使用 mooncake 后端的分层 KV pooling 并配合 SSD offload + 流水线并行时，由于 kvcache-al/Mooncake[#3658](https://github.com/vllm-project/vllm-ascend/issues/3658) ，我们无法命中 SSD 上的 kvcache，且修复该问题的 PR kvcache-al/Mooncake[#3916](https://github.com/vllm-project/vllm-ascend/issues/3916) 未合入当前 Mooncake 版本。 [#20151](https://github.com/vllm-project/vllm-ascend/issues/20151)
 - 启用结构化输出时，GLM5.3 模型的输出无法与 vLLM v0.30.0 对齐，因为 vllm-project/vllm[#56994](https://github.com/vllm-project/vllm-ascend/issues/56994) 未合入 vLLM v0.30.0，将在下个版本中与 vLLM 对齐。 [#20173](https://github.com/vllm-project/vllm-ascend/issues/20173)
 
+#### v0.30.0rc2 · 2026.10.13（英文原文）
+
+##### 亮点
+
+- Upgrade CANN to 9.2.020260930220649 in Dockerfile to make sure the official Docker image build as expected.
+
 #### v0.30.0rc1 · 2026.10.11（中文）
 
 ##### 亮点
@@ -4328,6 +4334,12 @@
 
 - 在某些情况下，当启用 aclgraph 时，vLLM 进程可能会因 GatherV3 错误而崩溃。我们正在处理此问题，并将在下一个版本中修复。 [#1038](https://github.com/vllm-project/vllm-ascend/issues/1038)
 - 前缀缓存功能在启用 Ascend Scheduler 但未启用分块预填充时无法正常工作。此问题将在下一个版本中修复。 [#1350](https://github.com/vllm-project/vllm-ascend/issues/1350)
+
+#### v0.9.0rc2 · 2025.06.10（英文原文）
+
+##### 亮点
+
+- Fix the import error when vllm-ascend is installed without editable way. [#1152](https://github.com/vllm-project/vllm-ascend/issues/1152)
 
 #### v0.9.0rc1 · 2025.06.09（中文）
 
