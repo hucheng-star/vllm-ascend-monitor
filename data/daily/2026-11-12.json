@@ -1,0 +1,279 @@
+{
+  "day": "2026-11-12",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 21632,
+          "title": "[RFC]: Request-sharded DFlash2 candidate generation under PCP on MRV2",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/21632",
+          "author": "danziheng1024",
+          "labels": [
+            "RFC"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-11T17:32:09Z",
+          "updatedAt": "2026-11-11T17:32:09Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Motivation. DFlash2 currently repeats candidate generation across PCP ranks when used with the replicated draft path on Model Runner V2. This RFC proposes request-level sharding of that work, primarily to improve multi-request throughput. R",
+          "modelIds": [],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【RFC】: Request-sharded DFlash2 candidate generation under PCP on MRV2",
+          "excerptZh": "Motivation. DFlash2 currently repeats candidate generation across PCP ranks when used with the replicated draft path on Model Runner V2. This RFC proposes request-level sharding of that work, primarily to 改进 multi-request 吞吐. R"
+        }
+      ]
+    },
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 11066,
+          "title": "[Feature][SpecDecode] Support GLM-5.3-Flash DSpark target states and draft caches",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/11066",
+          "author": "Liuchenbing-2026",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-06-27T16:21:05Z",
+          "updatedAt": "2026-11-11T17:48:04Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR adds the target-model integration required for GLM-5.3-Flash (GLM5Next) to use DSpark speculative decoding on Ascend. It covers auxiliary hidden-state export, draft KV-cache allocation, and target embedding lookup. GLM5Next uses hyp",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【SpecDecode】支持 GLM-5.3-Flash DSpark target states and draft caches",
+          "excerptZh": "This PR adds the target-model integration 必填 for GLM-5.3-Flash (GLM5Next) to use DSpark 投机解码 on Ascend. It covers auxiliary hidden-state export, draft KV-缓存 allocation, and target embedding lookup. GLM5Next uses hyp"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 21608,
+          "title": "[Bug][EPLB] DeepSeek V4.1 DSpark misses draft MoE registration and redundant expert mapping",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/21608",
+          "author": "zyz111222",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-11T12:19:01Z",
+          "updatedAt": "2026-11-11T17:03:54Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 1,
+          "excerpt": "Description DeepSeek V4.1 DSpark does not register its draft MoE layers for EPLB, and its checkpoint loader builds the expert mapping with zero redundant experts even when the physical layout has replicas. In vllm ascend/models/deepseek v41",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【缺陷】【EPLB】DeepSeek V4.1 DSpark misses draft MoE registration and redundant expert mapping",
+          "excerptZh": "Description DeepSeek V4.1 DSpark does not register its draft MoE layers for EPLB, and its 检查点 loader builds the expert mapping with zero redundant experts even when the physical layout has replicas. In vllm ascend/models/deepseek v41"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 14235,
+          "title": "[BugFix][Ascend NPU] Fix DP cascade crash and add DP fault tolerance",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/14235",
+          "author": "slamdunk111",
+          "labels": [
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-08-13T13:47:01Z",
+          "updatedAt": "2026-11-11T16:59:13Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "[BugFix][Ascend NPU] Fix DP cascade crash and add DP fault tolerance 在 8×Ascend 910B2（DP=4, TP=2, EP=8, Qwen3.6-35B-A3B-W8A8）生产部署中，单个 EngineCore 进程死亡（如 kill -9 或 NPU 异常）会在数秒内级联杀死全部存活引擎、APIServer 与 Worker，服务整体不可用。本 PR 阻断级联崩溃的 四条独立路径 ，并给存活引擎添",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[BugFix] [Ascend NPU]修复DP级联崩溃并添加DP容错",
+          "excerptZh": "【修复】【Ascend NPU】DP cascade 崩溃 and 新增 DP fault tolerance 在 8×Ascend 910B2（DP=4, TP=2, EP=8, Qwen3.6-35B-A3B-W8A8）生产部署中，单个 EngineCore 进程死亡（如 kill -9 或 NPU 异常）会在数秒内级联杀死全部存活引擎、APIServer 与 Worker，服务整体不可用。本 PR 阻断级联崩溃的 四条独立路径，并给存活引擎添"
+        },
+        {
+          "kind": "pr",
+          "number": 14240,
+          "title": "[Feature][Ascend NPU] Add health ping to detect hung EngineCore processes",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/14240",
+          "author": "slamdunk111",
+          "labels": [
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-08-13T15:17:16Z",
+          "updatedAt": "2026-11-11T16:58:08Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "[Feature][Ascend NPU] Add health ping to detect hung EngineCore processes 生产环境（Qwen3.6-35B-A3B，8×910B2 DP 部署）出现过大规模 HTTP 504。NPU 硬件异常（SMMU fault / AIV kernel exception）后 EngineCore 事件循环 hang 死（如共享内存环形缓冲区无限自旋），进程假活：上游 vLLM 的 check health 只检查",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【Ascend NPU】health ping to detect hung EngineCore processes",
+          "excerptZh": "【功能】【Ascend NPU】health ping to detect hung EngineCore processes 生产环境（Qwen3.6-35B-A3B，8×910B2 DP 部署）出现过大规模 HTTP 504。NPU 硬件异常（SMMU fault / AIV 内核 exception）后 EngineCore 事件循环 挂起 死（如共享内存环形缓冲区无限自旋），进程假活：上游 vLLM 的 check health 只检查"
+        }
+      ]
+    },
+    {
+      "id": "ds-v3.2",
+      "name": "DeepSeek V3.2",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 20674,
+          "title": "[Test][MRV2] DeepSeek V3.2 accuracy nondeterminism and batch=4 performance regression",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20674",
+          "author": "wisdom1710",
+          "labels": [
+            "triaged"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-02T12:33:12Z",
+          "updatedAt": "2026-11-11T18:31:54Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 2,
+          "excerpt": "Problem DeepSeek-V3.2-W8A8 still has two independent MRV1/MRV2 acceptance issues on a single exclusive Atlas 800T A3 (16 NPUs): 1. The strict logprob gate is not stable for all prompts. With the candidate source mount verified, short-Englis",
+          "modelIds": [
+            "ds-v3.2"
+          ],
+          "action": "updated",
+          "score": 1,
+          "titleZh": "【测试】【MRV2】DeepSeek V3.2 精度 nondeterminism and batch=4 性能 回退",
+          "excerptZh": "Problem DeepSeek-V3.2-W8A8 still has two independent MRV1/MRV2 acceptance issues on a single exclusive Atlas 800T A3 (16 NPUs): 1. The 严格 logprob gate is not stable for all prompts. With the candidate source mount verified, short-Englis"
+        },
+        {
+          "kind": "pr",
+          "number": 20675,
+          "title": "[Test][MRV2] Add DeepSeek V3.2 MRV1/MRV2 parity regression harness",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20675",
+          "author": "wisdom1710",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-02T12:34:52Z",
+          "updatedAt": "2026-11-11T18:13:27Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Part of 20674 and 20673. Adds a resource-heavy, manual nightly regression for DeepSeek V3.2 W8A8 on MRV1 and MRV2. This is a test-only change; no production runner behavior or environment variable is changed, and no v0.30.0-era patch is for",
+          "modelIds": [
+            "ds-v3.2"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】【MRV2】新增 DeepSeek V3.2 MRV1/MRV2 parity 回退 harness",
+          "excerptZh": "Part of 20674 and 20673. Adds a resource-heavy, manual 夜间 回退 for DeepSeek V3.2 W8A8 on MRV1 and MRV2. This is a test-only change; no production runner behavior or environment variable is changed, and no v0.30.0-era patch is for"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-vl",
+      "name": "Qwen3-VL",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21553,
+          "title": "[Doc][Recipe] Add Ascend overlay for Qwen3-VL-235B-A22B-Instruct",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21553",
+          "author": "wisdom1710",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-11T06:59:16Z",
+          "updatedAt": "2026-11-11T16:27:33Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds recipes/overlays/Qwen/Qwen3-VL-235B-A22B-Instruct.yaml for Qwen/Qwen3-VL-235B-A22B-Instruct . - ascend w8a8 quarot a3 : ModelSlim W8A8-QuaRot checkpoint for one Atlas 800 A3 node, variant tp: 4 with --enable-expert-parallel - ascend w8",
+          "modelIds": [
+            "qwen3-vl"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【Recipe】新增 Ascend overlay for Qwen3-VL-235B-A22B-Instruct",
+          "excerptZh": "Adds recipes/overlays/Qwen/Qwen3-VL-235B-A22B-Instruct.yaml for Qwen/Qwen3-VL-235B-A22B-Instruct . - ascend w8a8 quarot a3 : ModelSlim W8A8-QuaRot 检查点 for one Atlas 800 A3 node, variant tp: 4 with --启用-expert-parallel - ascend w8"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-next",
+      "name": "Qwen3-Next",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21552,
+          "title": "[Doc][Recipe] Add Ascend overlay for Qwen3-Next-80B-A3B-Instruct",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21552",
+          "author": "wisdom1710",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-11T06:59:14Z",
+          "updatedAt": "2026-11-11T16:27:26Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds recipes/overlays/Qwen/Qwen3-Next-80B-A3B-Instruct.yaml for Qwen/Qwen3-Next-80B-A3B-Instruct . - ascend bf16 a3 : the BF16 checkpoint with TP=4, --max-model-len 32768 , --gpu-memory-utilization 0.8 and FULL DECODE ONLY ACLGraph — the si",
+          "modelIds": [
+            "qwen3-next"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【Recipe】新增 Ascend overlay for Qwen3-Next-80B-A3B-Instruct",
+          "excerptZh": "Adds recipes/overlays/Qwen/Qwen3-Next-80B-A3B-Instruct.yaml for Qwen/Qwen3-Next-80B-A3B-Instruct . - ascend bf16 a3 : the BF16 检查点 with TP=4, --max-model-len 32768 , --gpu-显存-utilization 0.8 and FULL 解码 ONLY ACLGraph — the si"
+        }
+      ]
+    }
+  ]
+}
