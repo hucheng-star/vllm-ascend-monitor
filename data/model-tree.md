@@ -1,6 +1,6 @@
 # vLLM-Ascend 模型版本树
 
-更新时间：2026-11-11T23:00:15.110Z
+更新时间：2026-11-12T23:00:08.840Z
 
 版本按日期由近到远排列。同一条说明若点名多个模型，会同时出现在这些模型下。
 
@@ -3917,9 +3917,9 @@
 
 ##### 已知问题
 
-- Ray + EP doesn't work, if you run vLLM Ascend with ray, please disable expert parallelism.
-- responseformat parameter is not supported yet. We'll support it soon. [#4175](https://github.com/vllm-project/vllm-ascend/issues/4175)
-- cpu bind feature doesn't work for multi instance case(Such as multi DP on one node). We'll fix it in the next release.
+- Ray + EP 不可用，如果使用 ray 运行 vLLM Ascend，请禁用专家并行。
+- 暂不支持 responseformat 参数，我们将在近期支持。 [#4175](https://github.com/vllm-project/vllm-ascend/issues/4175)
+- cpu bind 特性在多实例场景下（例如单节点多 DP）不可用，我们将在下个版本修复。
 
 #### v0.11.0rc1 · 2025.11.10（中文）
 

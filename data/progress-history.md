@@ -1,376 +1,598 @@
 # vLLM-Ascend 各模型历史进展
 
-更新时间：2026-11-11T23:00:15.110Z
+更新时间：2026-11-12T23:00:08.840Z
 
-收录 2026-10-13 以来仍被提到的模型相关 PR 与 Issue，按事件日期由近到远。中文在前，原文在后。
+收录 2026-10-14 以来仍被提到的模型相关 PR 与 Issue，按事件日期由近到远。中文在前，原文在后。
 
 ## DeepSeek
 
-### DeepSeek V4 Flash
+### DeepSeek V3.2
+
+#### 2026-11-13
+
+- [Issue #21760](https://github.com/vllm-project/vllm-ascend/issues/21760) 进行中
+  - 中文：【缺陷】【MRV2】Burst arrivals during a 预填充 step cause a TTFT tail on DP2/TP8/EP (bs4/2048)
+  - 原文：[Bug][MRV2] Burst arrivals during a prefill step cause a TTFT tail on DP2/TP8/EP (bs4/2048)
+  - 说明：On a single exclusive Atlas 800T A3 (16 NPU), DeepSeek V3.2 W8A8 with DP2 + TP8 + EP (MoE SP), MTP3, FULL 解码 ONLY , burst requests at batch=4 / seq=2048 show a reproducible TTFT tail on MRV2 relative to MRV1 under the same v0.30.0 image
+
+#### 2026-11-04
+
+- [PR #19715](https://github.com/vllm-project/vllm-ascend/pull/19715) 已关闭
+  - 中文：【测试】【MRV2】新增 DeepSeek V3.2 MRV1/MRV2 parity harness
+  - 原文：[Test][MRV2] Add DeepSeek V3.2 MRV1/MRV2 parity harness
+  - 说明：Part of 20666. Adds a reproducible 夜间 entry point for comparing DeepSeek V3.2 W8A8 on MRV1 and MRV2 with the official single-node A3 topology (DP2 + TP8 + EP + MTP + FULL 解码 ONLY ). The new harness: - records the model revision, so
+
+#### 2026-11-02
+
+- [PR #20675](https://github.com/vllm-project/vllm-ascend/pull/20675) 进行中
+  - 中文：【测试】【MRV2】新增 DeepSeek V3.2 MRV1/MRV2 parity 回退 harness
+  - 原文：[Test][MRV2] Add DeepSeek V3.2 MRV1/MRV2 parity regression harness
+  - 说明：Part of 20674 and 20673. Adds a resource-heavy, manual 夜间 回退 for DeepSeek V3.2 W8A8 on MRV1 and MRV2. This is a test-only change; no production runner behavior or environment variable is changed, and no v0.30.0-era patch is for
+- [Issue #20674](https://github.com/vllm-project/vllm-ascend/issues/20674) 进行中
+  - 中文：【测试】【MRV2】DeepSeek V3.2 精度 nondeterminism and batch=4 性能 回退
+  - 原文：[Test][MRV2] DeepSeek V3.2 accuracy nondeterminism and batch=4 performance regression
+  - 说明：Problem DeepSeek-V3.2-W8A8 still has two independent MRV1/MRV2 acceptance issues on a single exclusive Atlas 800T A3 (16 NPUs): 1. The 严格 logprob gate is not stable for all prompts. With the candidate source mount verified, short-Englis
+- [Issue #20673](https://github.com/vllm-project/vllm-ascend/issues/20673) 进行中
+  - 中文：【测试】【MRV2】DeepSeek V3.2 精度 and 性能 parity with MRV1
+  - 原文：[Test][MRV2] DeepSeek V3.2 accuracy and performance parity with MRV1
+  - 说明：背景 需要系统验证 DeepSeek V3.2 在 Model Runner V2（MRV2）上的精度与性能，并以 Model Runner V1（MRV1）为基准，确保重构不引入功能或性能回归。 本 issue 由 @wisdom1710 认领，用于跟踪测试配置、真机数据、回归用例及后续问题修复。 验收范围 1. 可复现配置 - 在 tests/e2e 或 nightly 增加 DeepSeek V3.2 的可复现配置。 - 记录模型 revision、硬件、CANN /
+- [Issue #20622](https://github.com/vllm-project/vllm-ascend/issues/20622) 已关闭
+  - 中文：【测试】【MRV2】DeepSeek V3.2 精度 nondeterminism and batch=4 性能 回退
+  - 原文：[Test][MRV2] DeepSeek V3.2 accuracy nondeterminism and batch=4 performance regression
+  - 说明：Problem DeepSeek-V3.2-W8A8 still has two independent MRV1/MRV2 acceptance issues on a single exclusive Atlas 800T A3 (16 NPUs): 1. The 严格 logprob gate is not stable for all prompts. With the candidate source mount verified, short-Englis
+- [Issue #20666](https://github.com/vllm-project/vllm-ascend/issues/20666) 已关闭
+  - 中文：【测试】【MRV2】DeepSeek V3.2 精度 and 性能 parity with MRV1
+  - 原文：[Test][MRV2] DeepSeek V3.2 accuracy and performance parity with MRV1
+  - 说明：背景 需要系统验证 DeepSeek V3.2 在 Model Runner V2（MRV2）上的精度与性能，并以 Model Runner V1（MRV1）为基准，确保重构不引入功能或性能回归。 本 issue 由 @wisdom1710 认领，用于跟踪测试配置、真机数据、回归用例及后续问题修复。 验收范围 1. 可复现配置 - 在 tests/e2e 或 nightly 增加 DeepSeek V3.2 的可复现配置。 - 记录模型 revision、硬件、CANN /
+- [PR #20630](https://github.com/vllm-project/vllm-ascend/pull/20630) 已关闭
+  - 中文：【测试】【MRV2】新增 DeepSeek V3.2 MRV1/MRV2 parity 回退 harness
+  - 原文：[Test][MRV2] Add DeepSeek V3.2 MRV1/MRV2 parity regression harness
+  - 说明：Part of 20622 and 20666. Adds a resource-heavy, manual 夜间 回退 for DeepSeek V3.2 W8A8 on MRV1 and MRV2. This is a test-only change; no production runner behavior or environment variable is changed, and no v0.30.0-era patch is for
+- [Issue #19713](https://github.com/vllm-project/vllm-ascend/issues/19713) 已关闭
+  - 中文：【测试】【MRV2】DeepSeek V3.2 精度 and 性能 parity with MRV1
+  - 原文：[Test][MRV2] DeepSeek V3.2 accuracy and performance parity with MRV1
+  - 说明：背景 需要系统验证 DeepSeek V3.2 在 Model Runner V2（MRV2）上的精度与性能，并以 Model Runner V1（MRV1）为基准，确保重构不引入功能或性能回归。 本 issue 由 @wisdom1710 认领，用于跟踪测试配置、真机数据、回归用例及后续问题修复。 验收范围 1. 可复现配置 - 在 tests/e2e 或 nightly 增加 DeepSeek V3.2 的可复现配置。 - 记录模型 revision、硬件、CANN /
+
+### DeepSeek V4
+
+#### 2026-11-12
+
+- [PR #21728](https://github.com/vllm-project/vllm-ascend/pull/21728) 草稿
+  - 中文：【性能】Use plain NZ matmul for DSA o_proj wo_a with a single local group
+  - 原文：[Performance] Use plain NZ matmul for DSA o_proj wo_a with a single local group
+  - 说明：【n local groups, hidden size, o lora rank】DeepSeek-V4(-V4.1) DSA o\ proj low-rank projection wo a is always dispatched to npu transpose batchmatmul on a 3D 权重 of shape . When all o\ groups land on the current TP rank ( n local groups =
+- [PR #21708](https://github.com/vllm-project/vllm-ascend/pull/21708) 草稿
+  - 中文：【功能】【LoRA】支持 DeepSeek-V4 注意力 and quantized MoE adapters on Ascend
+  - 原文：[Feature][LoRA] Support DeepSeek-V4 attention and quantized MoE adapters on Ascend
+  - 说明：This change normalizes DeepSeek-V4 adapter target names and extends the dependent quantized MoE LoRA implementation. It also adds a separate W4A8 MXFP implementation and a packed-FP4 format-cast fallback. This additional code path is distin
+- [PR #21333](https://github.com/vllm-project/vllm-ascend/pull/21333) 已合并
+  - 中文：【修复】恢复 DSpark 检查点 state for RFork
+  - 原文：[BugFix] Restore DSpark checkpoint state for RFork
+  - 说明：RFork 拷贝 post-load tensors and does not run the draft model's load 权重 . DeepSeek V4/V4.1 DSpark drafts set has own embed tokens / has own lm head in load 权重 from the 检查点 权重 names, so under RFork these flags kept the
+- [PR #20257](https://github.com/vllm-project/vllm-ascend/pull/20257) 已关闭
+  - 中文：【测试】Check v0.23 baseline CI without DeepSeek-V4 changes
+  - 原文：[Test] Check v0.23 baseline CI without DeepSeek-V4 changes
+  - 说明：This empty PR checks whether the following failures from 17200 also occur without its changes: - DeepSeek-V2-Lite graph logprob mismatch - Llama TP2 base-model output mismatch with fully sharded loras=False Please run the same 测试用例 an
+- [PR #21658](https://github.com/vllm-project/vllm-ascend/pull/21658) 进行中
+  - 中文：【性能】【DSV4.1】Shard DeepSeek V4.1 索引器 query rows across TP ranks
+  - 原文：[Performance][DSV4.1] Shard DeepSeek V4.1 indexer query rows across TP ranks
+  - 说明：DeepSeek V4.1 replicates the 索引器 across tensor-parallel ranks. Each rank projects and scores the same query rows against its local copy of Index K. This PR assigns query rows to TP ranks before the 索引器 projections, RoPE, and quantiz
+- [PR #21652](https://github.com/vllm-project/vllm-ascend/pull/21652) 进行中
+  - 中文：【修复】遵循 NZ mode for DeepSeek V4/V4.1 grouped output projections
+  - 原文：[BugFix] Honor NZ mode for DeepSeek V4/V4.1 grouped output projections
+  - 说明：DeepSeek V4/V4.1 marks wo a with skip 权重 nz conversion=True , so 权重 nz mode=2 cannot 启用 NZ for this BF16 output projection. The underlying torch npu.npu transpose batchmatmul already dispatches ND-input/NZ-权重 calls to aclnnT
+- [Issue #19382](https://github.com/vllm-project/vllm-ascend/issues/19382) 已关闭
+  - 中文：夜间 Daily test failure on 2026-10-21 16:00 - please check
+  - 原文：Nightly Daily test failure on 2026-10-21 16:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 16:00 on 2026-10-21. Failed on: a3-4 card-(part 2-5) Failed 测试用例: - test deepseek v4 w4a8 tp4 basic greedy — psutil.NoSuchProcess: process no longer exists (pid=48828) Failed
 
 #### 2026-11-11
 
-- [PR #21631](https://github.com/vllm-project/vllm-ascend/pull/21631) 进行中
-  - 中文：【功能】Ascend overlay for deepseek-ai/DeepSeek-V4-Flash
-  - 原文：[Feature] Add Ascend overlay for deepseek-ai/DeepSeek-V4-Flash
-  - 说明：Closing: accidentally opened by platform E2E verification against a test batch (tuning 230420). The existing community-maintained overlay at this path must not be overwritten by auto-generated test data. Sorry for the noise. - vLLM main:
-- [Issue #21538](https://github.com/vllm-project/vllm-ascend/issues/21538) 进行中
-  - 中文：夜间 Daily test failure on 2026-11-11 12:00 - please check
-  - 原文：Nightly Daily test failure on 2026-11-11 12:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-11-11. Failed on: DeepSeek-V4-Flash-W8A8-A3 Failed 测试用例: - test single node — RuntimeError: Server at 0.0.0.0 exited unexpectedly. Failed run(s): Merged PRs in
-- [Issue #21515](https://github.com/vllm-project/vllm-ascend/issues/21515) 进行中
-  - 中文：夜间 Daily test failure on 2026-11-11 08:00 - please check
-  - 原文：Nightly Daily test failure on 2026-11-11 08:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-11-11. Failed on: DeepSeek-V4-Flash-W8A8-A3, Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed,
+- [Issue #19137](https://github.com/vllm-project/vllm-ascend/issues/19137) 已关闭
+  - 中文：分层与稀疏KV缓存卸载可以使用deepseekV4系列的么
+  - 说明：📚 The doc issue 分层与稀疏KV缓存卸载可以使用deepseekV4系列的么 Suggest a potential alternative/修复 No response
+- [PR #21578](https://github.com/vllm-project/vllm-ascend/pull/21578) 已关闭
+  - 中文：【测试】One-off DSV4 DSpark PP2 baseline probe
+  - 原文：[Test] One-off DSV4 DSpark PP2 baseline probe
+  - 说明：Throwaway probe PR. No functional change: adds one comment marker in an unrelated e2e file, so CI can run an existing baseline case from main unchanged. Purpose: run tests/e2e/pull request/four card/model runner v2/test spec pp 精度.py:
+- [PR #21576](https://github.com/vllm-project/vllm-ascend/pull/21576) 进行中
+  - 中文：【性能】缓存 DeepSeek V4 and V4.1 ViT RoPE tables on device
+  - 原文：[Performance] Cache DeepSeek V4 and V4.1 ViT RoPE tables on device
+  - 说明：DeepSeek V4 and V4.1 ViT forwards fetch FP32 RoPE cosine and sine tables from a CPU 缓存 and transfer both tensors to the NPU on every forward. Images with the same patch grid can reuse these tables because the rotation coefficients depend
+- [PR #21572](https://github.com/vllm-project/vllm-ascend/pull/21572) 草稿
+  - 中文：【重构】【KV 缓存】Centralize 共享-tuple 缓存 planning
+  - 原文：[Refactor][KV Cache] Centralize shared-tuple cache planning
+  - 说明：get deepseek v4 缓存 layout() and the grouping/bucketing logic that feeds it are duplicated between vllm ascend/core/KV 缓存 配置 builder.py (the pluggable builder on vLLM main) and vllm ascend/patch/platform/patch KV 缓存 utils.py (th
+- [PR #21543](https://github.com/vllm-project/vllm-ascend/pull/21543) 进行中
+  - 中文：【性能】【算子】新增 SwiGLU graph fusion pass
+  - 原文：[Performance][Ops] Add SwiGLU graph fusion pass
+  - 说明：Why Some model paths write the SwiGLU activation with raw aten ops instead of going through AscendSiluAndMul / npu swiglu . For example DeepseekV4VisionMLP.forward : This keeps the chunk - silu - mul 序列 as separate graph ops, with int
+- [PR #20484](https://github.com/vllm-project/vllm-ascend/pull/20484) 已关闭
+  - 中文：【性能】减少 PCP 解码 overhead for DSV4 and DSV4.1
+  - 原文：[Performance] Reduce PCP decode overhead for DSV4 and DSV4.1
+  - 说明：Skip redundant zeroing of fully overwritten DSV4 O-projection inputs and reuse DSV4.1 PCP RoPE lookups per step. Preserve zero padding/empty outputs and separate global KV/local Q buffers. Lowe
+- [PR #21513](https://github.com/vllm-project/vllm-ascend/pull/21513) 进行中
+  - 中文：【文档】新增 deepseek_v41_qli_candidate to nav and 修复 FAQ anchor
+  - 原文：[Doc] Add deepseek_v41_qli_candidate to nav and fix FAQ anchor
+  - 说明：Two doc-only fixes: 1. mkdocs.yml : deepseek v41 qli candidate.md (新增 in 19586) was not listed in the Design Documents nav, so the page was unreachable from the docs sidebar despite existing in the repo. 2. platform.py : the OOM FAQ comm
+- [PR #21511](https://github.com/vllm-project/vllm-ascend/pull/21511) 草稿
+  - 中文：【功能】【DSV4.1】PIECEWISE 运行时 支持
+  - 原文：[Feature][DSV4.1] Add PIECEWISE runtime support
+  - 说明：DS4.1 PIECEWISE execution needs current-request replay/Engram state outside captured graph segments. This draft separates that model-运行时 work from the cross-layer KV pool 特性 in 21116, so it can be reviewed and validated independent
 
 #### 2026-11-10
 
-- [PR #20263](https://github.com/vllm-project/vllm-ascend/pull/20263) 已关闭
-  - 中文：【持续集成】新增 DeepSeek-V4-Flash Mooncake 池化 coverage on A3
-  - 原文：[CI] Add DeepSeek-V4-Flash Mooncake pooling coverage on A3
+- [PR #18994](https://github.com/vllm-project/vllm-ascend/pull/18994) 已关闭
+  - 中文：【持续集成】dsv4 mooncake
+  - 原文：[CI] dsv4 mooncake
   - 说明：【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque
-- [PR #21438](https://github.com/vllm-project/vllm-ascend/pull/21438) 已合并
-  - 中文：【文档】【杂项】Rectify A3 DeepSeek V4 Flash model tutorial deployment for main
-  - 原文：[Doc][Misc] Rectify A3 DeepSeek V4 Flash model tutorial deployment for main
-  - 说明：This PR 更新 the DeepSeek-V4-Flash tutorial deployment configurations for v30. It corrects the parameter from to in the A3 series deployment examples to prevent potential out-of-显存 (OOM) issues during short-序列 deployment. It al
-- [PR #21436](https://github.com/vllm-project/vllm-ascend/pull/21436) 已合并
-  - 中文：【文档】【杂项】Rectify A3 DeepSeek V4 Flash model tutorial deployment for v32
-  - 原文：[Doc][Misc] Rectify A3 DeepSeek V4 Flash model tutorial deployment for v32
-  - 说明：This PR 更新 the DeepSeek-V4-Flash tutorial deployment configurations for v30. It corrects the parameter from to in the A3 series deployment examples to prevent potential out-of-显存 (OOM) issues during short-序列 deployment. It al
-- [PR #21222](https://github.com/vllm-project/vllm-ascend/pull/21222) 已合并
-  - 中文：【文档】【杂项】Rectify A3 DeepSeek V4 Flash model tutorial deployment for v30
-  - 原文：[Doc][Misc] Rectify A3 DeepSeek V4 Flash model tutorial deployment for v30
-  - 说明：This PR 更新 the DeepSeek-V4-Flash tutorial deployment configurations for v30. It corrects the --max-model-len parameter from 1048576 to 512000 in the A3 series deployment examples to prevent potential out-of-显存 (OOM) issues during s
 - [Issue #20563](https://github.com/vllm-project/vllm-ascend/issues/20563) 已关闭
   - 中文：【Recipes】overlay 无法更新 DeepSeek-V4-Flash 的 A3 配置（新增-only 与 modes.variants 限制）
   - 原文：[Recipes] overlay 无法更新 DeepSeek-V4-Flash 的 A3 配置（add-only 与 modes.variants 限制）
   - 说明：现象 尝试用 recipes/overlays/deepseek-ai/DeepSeek-V4-Flash.yaml 更新 Ascend 910C（A3）的实测配置（ v0.30.0rc2-a3 ），CI Recipes / Validate 三种写法全部失败： 1. 新增 variant（ ascend w8a8 mtp a3 / ascend w8a8 dspark a3 ）： features.spec 解码 has no mode available fo
-- [PR #18630](https://github.com/vllm-project/vllm-ascend/pull/18630) 已关闭
-  - 中文：【特点】【WeightTransfer】支持DeepSeek-V4 Flash Vision权重转移
-  - 原文：[Feature][WeightTransfer] Support DeepSeek-V4 Flash Vision weight transfer
-  - 说明：Adds a DeepSeek-V4-Flash-Vision lane to the one-card NPU IPC 权重-transfer e2e test, and fixes the defects in the --启用-sleep-mode + layerwise 权重-更新 + ACL-graph-replay path that the multimodal model exposes. The vision tower is
-- [PR #19248](https://github.com/vllm-project/vllm-ascend/pull/19248) 已关闭
-  - 中文：【修复】【WeightTransfer】DeepSeek-V4 Flash Vision reload across sleep and wake
-  - 原文：[BugFix][WeightTransfer] Fix DeepSeek-V4 Flash Vision reload across sleep and wake
-  - 说明：Adds a one-card DeepSeek-V4 Flash Vision NPU IPC 权重-transfer lane and fixes the sleep → wake → layerwise reload → graph replay path. This follows 18630 and reuses the already-merged Worker sleep preserve parameter names mechanism from 1
+- [PR #20336](https://github.com/vllm-project/vllm-ascend/pull/20336) 已关闭
+  - 中文：【文档】【功能】DeepSeek-V4 支持 matrix for A2/A3
+  - 原文：[Doc][Feature] Add DeepSeek-V4 support matrix for A2/A3
+  - 说明：This pull request adds a 支持 matrix for DeepSeek-V4-Pro and DeepSeek-V4-Flash models on A2/A3 products in the documentation, and enables the markdown tables extended extension in mkdocs.yml . Feedback: The newly 新增 tab block in the d
+- [PR #21092](https://github.com/vllm-project/vllm-ascend/pull/21092) 已关闭
+  - 中文：【性能】【模型】Skip padded DSV4.1 expert routes by default
+  - 原文：[Performance][Model] Skip padded DSV4.1 expert routes by default
+  - 说明：DSV4.1 pads token rows for graph replay and 序列 parallelism. On the AllGather MoE path, 路由 those rows to local experts adds work to the grouped GEMMs. This change filters padding after the router selects experts. Hash 路由 uses
+- [PR #21417](https://github.com/vllm-project/vllm-ascend/pull/21417) 进行中
+  - 中文：【性能】【模型】Skip padded DSV4.1 expert routes by default
+  - 原文：[Performance][Model] Skip padded DSV4.1 expert routes by default
+  - 说明：DeepSeek-V4.1 introduces token padding for graph replay and 序列 parallelism (SP). In the AllGather MoE path, these padded tokens may still be assigned to local experts, resulting in unnecessary computations in the grouped GEMMs. This P
+- [Issue #21406](https://github.com/vllm-project/vllm-ascend/issues/21406) 进行中
+  - 中文：【缺陷】: DSV4.1 on A2 "Failed to mount segment: INVALID_PARAMS" while 启用 mooncake 池化
+  - 原文：[Bug]: DSV4.1 on A2 "Failed to mount segment: INVALID_PARAMS" while enable mooncake pooling
+- [PR #16710](https://github.com/vllm-project/vllm-ascend/pull/16710) 已关闭
+  - 中文：【持续集成】优化 DeepSeek-V4 DSpark test duration
+  - 原文：[CI] Optimize DeepSeek-V4 DSpark test duration
+  - 说明：优化 the execution time of the DeepSeek-V4 DSpark 投机解码 PR test. The current estimated execution time of tests/e2e/pull request/four card/spec 解码/test dspark deepseekv4.py is about 1280 seconds. This PR first adds per
+- [Issue #21396](https://github.com/vllm-project/vllm-ascend/issues/21396) 进行中
+  - 中文：【缺陷】【量化】【A5】W4A8-MXFP4 MoE down_proj scale reshape crashes on odd TP scale-group count
+  - 原文：[Bug][Quantization][A5] W4A8-MXFP4 MoE down_proj scale reshape crashes on odd TP scale-group count
+  - 说明：AscendW4A8MXFPDynamicFusedMoEMethod.process 权重 after 加载 ( vllm ascend/量化/methods/w4a8/w4a8 mxfp4.py ) reshapes w2 权重 scale 's last dimension into pairs of MX groups: k is intermediate size per partition // group size
+- [PR #21384](https://github.com/vllm-project/vllm-ascend/pull/21384) 进行中
+  - 中文：【修复】【模型】Reuse upstream DeepSeek V4 image preprocessing
+  - 原文：[BugFix][Model] Reuse upstream DeepSeek V4 image preprocessing
+  - 说明：The local DeepSeek V4 vision processor still expects four arguments in call hf processor , while current vLLM passes two. With vLLM main 24420b7a , DeepSeek-V4-Flash-Vision-Exp fails during service initialization: The local copy was introdu
 
 #### 2026-11-09
 
+- [PR #21168](https://github.com/vllm-project/vllm-ascend/pull/21168) 已合并
+  - 中文：【修复】【DSpark】【EPLB】DeepSeek V4 expert 权重 mapping with redundant experts
+  - 原文：[BugFix][DSpark][EPLB] Fix DeepSeek V4 expert weight mapping with redundant experts
+  - 说明：DeepSeek V4 DSpark creates MoE layers with the configured redundant experts, but its 检查点 loader builds the expert mapping with num redundant experts=0 . Under MRv2, this can load incorrect logical experts into physical slots and leav
 - [Issue #21335](https://github.com/vllm-project/vllm-ascend/issues/21335) 进行中
   - 中文：【文档】: Feedback for `/en/v0.30.0/tutorials/models/DeepSeek-V4-Flash.html`，启动模型报HCCL函数错误：hcclGetRootInfo(&hcclID)，错误代码为19（调用网络API失败）
   - 原文：[Doc]: Feedback for `/en/v0.30.0/tutorials/models/DeepSeek-V4-Flash.html`，启动模型报HCCL函数错误：hcclGetRootInfo(&hcclID)，错误代码为19（调用网络API失败）
   - 说明：【multiproc executor.py:944】【ERROR】📚 The doc issue A2单机用vllm v0.30启动DeepSeek V4 Flash，报HCCL函数错误：hcclGetRootInfo(&hcclID)，错误代码为19（调用网络API失败）下面为错误详情： Worker TP0 EP0 pid=8713) ERROR 11-09 11:23:33 2026-11-09-11:23:31 (PID:8713, Device:0, Ran
 
+#### 2026-11-07
+
+- [PR #21259](https://github.com/vllm-project/vllm-ascend/pull/21259) 进行中
+  - 中文：【性能】【模型】Capture DeepSeek V4 解码 元数据 in full graphs
+  - 原文：[Performance][Model] Capture DeepSeek V4 decode metadata in full graphs
+  - 说明：Capture DeepSeek V4 target-model SAS/QLI 元数据 producers in FULL 解码 graphs, avoiding repeated host executor construction and CPU scalar preparation. Persistent inputs are refreshed before replay; producer outputs retain stable storag
+
 #### 2026-11-06
 
-- [Issue #21182](https://github.com/vllm-project/vllm-ascend/issues/21182) 进行中
-  - 中文：【文档】: Feedback for `/en/latest/tutorials/models/DeepSeek-V4-Flash.html`
-  - 原文：[Doc]: Feedback for `/en/latest/tutorials/models/DeepSeek-V4-Flash.html`
-  - 说明：📚 The doc issue 设备为650E，使用镜像为v0.30.0rc2-a5，使用4卡部署DeepSeek-V4-Flash-0731模型，出现报错导致部署失败，请大佬帮忙看看如何解决； 模型服务启动脚本： export VLLM USE V2 MODEL RUNNER=1 export OMP PROC BIND=false export OMP NUM THREADS=10 export PYTORCH NPU ALLOC CONF=expandable seg
-- [Issue #21122](https://github.com/vllm-project/vllm-ascend/issues/21122) 进行中
-  - 中文：【缺陷】HCCL Error 19 during DeepSeek-V4-Flash initialization: 修复 by configuring loopback interface inside Docker container / 单机部署 HCCL Error 19 解决方案
-  - 原文：[Bug] HCCL Error 19 during DeepSeek-V4-Flash initialization: Fixed by configuring loopback interface inside Docker container / 单机部署 HCCL Error 19 解决方案
+- [PR #20420](https://github.com/vllm-project/vllm-ascend/pull/20420) 已合并
+  - 中文：【重构】移除 unused tid2eid param after fused_moe refactor.
+  - 原文：[Refactor] Remove unused tid2eid param after fused_moe refactor.
+  - 说明：【input ids】Background. DeepSeek-V4 hash-routed MoE layers do not run top-k over router logits: the experts for a token come from a 检查点 table, topk ids = tid2eid . When V4 支持 landed ( 9270, 7bce23cc0 ), expert selection still liv
+- [Issue #21180](https://github.com/vllm-project/vllm-ascend/issues/21180) 进行中
+  - 中文：【缺陷】: DSV4.1-Flash w4a8 预填充 crashes in aclnnIndex (压缩器.wgate) — vector core exception 507035 on 910B
+  - 原文：[Bug]: DSV4.1-Flash w4a8 prefill crashes in aclnnIndex (compressor.wgate) — vector core exception 507035 on 910B
+- [PR #21177](https://github.com/vllm-project/vllm-ascend/pull/21177) 进行中
+  - 中文：【性能】【DSV4.1】Project 序列 shards before all-gather
+  - 原文：[Performance][DSV4.1] Project sequence shards before all-gather
+  - 说明：With DeepSeek V4.1 序列 parallelism, each TP rank currently gathers the full hidden states before computing replicated 注意力 input projections. This repeats the same projection work across ranks. This PR computes those projections o
+- [PR #21142](https://github.com/vllm-project/vllm-ascend/pull/21142) 进行中
+  - 中文：【性能】【DSv4】Shard 预填充 索引器 rows across TP ranks
+  - 原文：[Performance][DSv4] Shard prefill indexer rows across TP ranks
+  - 说明：What On pure-TP deployments every rank runs the C4 lightning 索引器 over all 预填充 rows with identical (replicated) 索引器 projections — the scoring work is duplicated 张量并行 size -fold. This PR gives each rank a contiguous, co
 
 #### 2026-11-05
 
-- [PR #20907](https://github.com/vllm-project/vllm-ascend/pull/20907) 已合并
-  - 中文：【文档】更新 DeepSeek-V4-Flash A2 DSpark deployment for 256K context
-  - 原文：[Doc] Update DeepSeek-V4-Flash A2 DSpark deployment for 256K context
-  - 说明：对齐 the DeepSeek-V4-Flash-0731-w8a8 A2 DSpark 2P2D deployment guide with the 配置 that was actually validated on Atlas 800I A2: - The default context is 256K on both roles ( --max-model-len 262144 ) with 预填充 --max-num-batched
-- [PR #20901](https://github.com/vllm-project/vllm-ascend/pull/20901) 已合并
-  - 中文：【v0.30.0】【文档】更新 DeepSeek-V4-Flash A2 DSpark deployment for 256K context
-  - 原文：[v0.30.0][Doc] Update DeepSeek-V4-Flash A2 DSpark deployment for 256K context
-  - 说明：对齐 the DeepSeek-V4-Flash-0731-w8a8 A2 DSpark 2P2D deployment guide with the 配置 that was actually validated on Atlas 800I A2: - The default context is 256K on both roles ( --max-model-len 262144 ) with 预填充 --max-num-batched
-- [PR #21060](https://github.com/vllm-project/vllm-ascend/pull/21060) 进行中
-  - 中文：【文档】【修复】DSpark num_speculative_tokens mismatch between 预填充 and 解码 in DeepSeek-V4-Flash A2 PD tutorials
-  - 原文：[Doc][BugFix] Fix DSpark num_speculative_tokens mismatch between Prefill and Decode in DeepSeek-V4-Flash A2 PD tutorials
-  - 说明：In the A2 PD deployment examples of the DeepSeek-V4-Flash tutorial, the 预填充 nodes run DSpark with num 投机 tokens: 5 , but the corresponding 解码 scripts still used num 投机 tokens: 1 . The tutorial itself states that fo
+- [PR #21095](https://github.com/vllm-project/vllm-ascend/pull/21095) 草稿
+  - 中文：【性能】遵循 DSV4.1 multistream token threshold
+  - 原文：[Performance] Honor DSV4.1 multistream token threshold
+  - 说明：This ports the multi-stream token-threshold behavior from vLLM vllm-project/vllm 65832 to the Ascend-native DeepSeek V4.1 注意力 implementation. The Ascend Q/KV preprocessing path only checks multistream dsv4 dsa 重叠 and does not hon
+- [PR #21083](https://github.com/vllm-project/vllm-ascend/pull/21083) 进行中
+  - 中文：【杂项】Use unified KV 缓存 allocation interface for deepseek v4 and v4.1
+  - 原文：[Misc]Use unified kv cache allocation interface for deepseek v4 and v4.1
+  - 说明：【】RFC: 21053 --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by
+- [Issue #20550](https://github.com/vllm-project/vllm-ascend/issues/20550) 已关闭
+  - 中文：【缺陷】: DeepSeek V4.1 Flash produces corrupted output when `--block-size` is omitted
+  - 原文：[Bug]: DeepSeek V4.1 Flash produces corrupted output when `--block-size` is omitted
+  - 说明：Environment - Hardware: Atlas 800 A2, 8 NPUs per node. - Model: DeepSeek V4.1 Flash, Ascend 量化. - Deployment: 2 预填充 nodes + 2 解码 nodes; each node runs TP4 × DP2 with expert parallelism. DSpark 投机解码 uses 5 d
+- [PR #21034](https://github.com/vllm-project/vllm-ascend/pull/21034) 进行中
+  - 中文：【持续集成】新增 DeepSeek-v4 测试用例
+  - 原文：[CI] Add DeepSeek-v4 test case
+  - 说明：【】新增 DeepSeek-v4 测试用例 No by running the 测试用例 --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input,
+- [PR #17167](https://github.com/vllm-project/vllm-ascend/pull/17167) 已关闭
+  - 中文：【重构】【KV 缓存】Carry DSA block geometry in KVCacheSpec
+  - 原文：[Refactor][KV Cache] Carry DSA block geometry in KVCacheSpec
+  - 说明：DeepSeek V4 KV caches have three related block sizes: - the manager block size in 调度器-token units; - the logical block size consumed by 内核 and 元数据 builders; - the number of rows physically stored in one 缓存 page. This PR m
 
 #### 2026-11-04
 
-- [Issue #17385](https://github.com/vllm-project/vllm-ascend/issues/17385) 已关闭
-  - 中文：【缺陷】: DeepSeek V4 flash流式输出概率性返回最后一个trunk中的delta为空，与N卡表现不一致
-  - 原文：[Bug]: DeepSeek V4 flash流式输出概率性返回最后一个trunk中的delta为空，与N卡表现不一致
-- [PR #20189](https://github.com/vllm-project/vllm-ascend/pull/20189) 已合并
-  - 中文：【测试】【功能】single-node PD disaggregation launcher and DeepSeek-V4-Flash-0731-A5-PD.yaml test 配置
-  - 原文：[Test][Feature] Add single-node PD disaggregation launcher and DeepSeek-V4-Flash-0731-A5-PD.yaml  test configuration
-  - 说明：This PR introduces a single-node 预填充-解码 (PD) disaggregation launcher ( launch single node pd.py ) for vLLM-Ascend, which orchestrates a 预填充 engine, a 解码 engine, and a load-balance proxy on a single Atlas node. It also adds a
-- [Issue #20925](https://github.com/vllm-project/vllm-ascend/issues/20925) 进行中
-  - 中文：【缺陷】【KV 缓存】AscendStore write/read 保留 gate asymmetry wastes pool for short prompts
-  - 原文：[Bug][KV Cache] AscendStore write/read retention gate asymmetry wastes pool for short prompts
-  - 说明：" Environment\n\n- AscendStore external KV pool, DeepSeek-V4-Flash PD-disaggregation\n- --block-size 32 , --启用-前缀-缓存 , --前缀-缓存-保留-interval 4096 (i.e. VLLM 前缀缓存 保留 INTERVAL=4096 )\n\n Summary\n\nThe
-- [PR #20588](https://github.com/vllm-project/vllm-ascend/pull/20588) 已合并
-  - 中文：【v0.30.0】【文档】【杂项】Normalize A2 shell examples one parameter per line
-  - 原文：[v0.30.0][Doc][Misc] Normalize A2 shell examples one parameter per line
-  - 说明：Backport of 20587 to releases/v0.30.0 . This PR normalizes the A2 DSpark and KV-池化 shell examples in the DeepSeek-V4-Flash tutorial to 改进 readability and maintainability. Specifically, it: - Splits multi-option vllm serve lines in
-- [PR #20587](https://github.com/vllm-project/vllm-ascend/pull/20587) 已合并
-  - 中文：【文档】【杂项】Normalize A2 shell examples one parameter per line
-  - 原文：[Doc][Misc] Normalize A2 shell examples one parameter per line
-  - 说明：Normalize the A2 DSpark and KV-池化 shell examples in the DeepSeek-V4-Flash tutorial: - 拆分 multi-option vllm serve lines into one --key value per line - 拆分 multi-assignment export lines into one export KEY=value per line - 拆分 th
+- [PR #20916](https://github.com/vllm-project/vllm-ascend/pull/20916) 进行中
+  - 中文：【修复】【DSpark】初始化 num_moe_layers for dynamic EPLB detection
+  - 原文：[BugFix][DSpark] Initialize num_moe_layers for dynamic EPLB detection
+  - 说明：Fixes DSpark DeepSeek V4 dynamic EPLB startup failure. DSparkDeepseekV4ForCausalLM.set moe parameters() collects the MoE layers into moe layers , but did not populate num moe layers . vLLM identifies MoE models only when num moe layers 0 ;
+- [PR #20915](https://github.com/vllm-project/vllm-ascend/pull/20915) 进行中
+  - 中文：【修复】【DSpark】初始化 num_moe_layers for dynamic EPLB detection
+  - 原文：[BugFix][DSpark] Initialize num_moe_layers for dynamic EPLB detection
+  - 说明：Fixes DSpark DeepSeek V4 dynamic EPLB startup failure. DSparkDeepseekV4ForCausalLM.set moe parameters() collects the MoE layers into moe layers , but did not populate num moe layers . vLLM identifies MoE models only when num moe layers 0 ;
 
 #### 2026-11-03
 
-- [PR #19361](https://github.com/vllm-project/vllm-ascend/pull/19361) 已合并
-  - 中文：【功能】【KVCache】支持 PCP for Mooncake layerwise 池化
-  - 原文：[Feature][KVCache] Support PCP for Mooncake layerwise pooling
-  - 说明：DeepSeek-V4-Flash with Mooncake use layerwise=true and --预填充-context-parallel-size 4 fails during connector initialization because context parallelism is rejected. Give each PCP rank its own block-key PUT/GET sessions. Keys include the
+- [PR #20789](https://github.com/vllm-project/vllm-ascend/pull/20789) 进行中
+  - 中文：【功能】对齐 adaptive verification interface and 启用 online estimation for dsv4/glm53
+  - 原文：[Feature] Align adaptive verification interface and enable online estimation for dsv4/glm53
+  - 说明：对齐 the DSA and SFA backend capability declarations with upstream vLLM interfaces, and 启用 adaptive verification using the upstream online acceptance estimator. 新增 workarounds for two idle DP dummy-batch issues: - DFlash/DSpark metada
+- [PR #20788](https://github.com/vllm-project/vllm-ascend/pull/20788) 草稿
+  - 中文：【修复】【KV Transfer】禁用 compression-triggered 预填充 truncation in hybrid connector
+  - 原文：[BugFix][KV Transfer] Disable compression-triggered prefill truncation in hybrid connector
+  - 说明：MooncakeHybridConnector currently enables prompt truncation whenever the model 配置 has compress ratios . For a DeepSeek V4-family prompt ending in <think , a remote-解码 request consequently drops that marker before the P-side sample.
+- [PR #20757](https://github.com/vllm-project/vllm-ascend/pull/20757) 进行中
+  - 中文：【测试】新增 KV pool hit watch to PR-level e2e cases
+  - 原文：[Test] Add KV pool hit watch to PR-level e2e cases
+  - 说明：Upgrade six four-card DSV4/DSV4.1 e2e cases from connector smoke tests to real KV pool hit watching. - 新增 tests/e2e/pull request/kv pool watch.py with a 共享 R1-R5 hit 序列: - R1 cold write - R2/R3 hit - R4 disjoint-prompt isolation
+- [PR #19926](https://github.com/vllm-project/vllm-ascend/pull/19926) 已合并
+  - 中文：【性能】【DSv4.1】【no piecewise】Trim the last KV-source layer in decoder replay
+  - 原文： [Performance][DSv4.1][no piecewise] Trim the last KV-source layer in decoder replay
+  - 说明：Follow In decoder replay steps, the last KV-source layer (layer 20 on DSV4.1-Flash) still ran on every row, though for the trimmed rows only its KV (SWA, compressed, index K) is read. Its 索引器 scoring and top-k, wo, 稀疏 MLA, and MoE f
+- [PR #20667](https://github.com/vllm-project/vllm-ascend/pull/20667) 已合并
+  - 中文：【修复】【Platform】Accept int8/mxfp8 kv-缓存-dtype on the KV_CACHE_DTYPES mirror list
+  - 原文：[BugFix][Platform] Accept int8/mxfp8 kv-cache-dtype on the KV_CACHE_DTYPES mirror list
+  - 说明：vllm serve ... --kv-缓存-dtype mxfp8 (C8-MXFP KV 缓存, A5 QFA path) 鈥?and --kv-缓存-dtype int8 (DeepSeek V4 MLA) on current vLLM main 鈥?aborted at startup with: Root cause: current vLLM main gates CacheConfig.缓存 dtype on the mutable v
+- [PR #20729](https://github.com/vllm-project/vllm-ascend/pull/20729) 进行中
+  - 中文：【Draft】修复 the 精度 issue in dsv4.1
+  - 原文：[Draft]Fix the accuracy issue in dsv4.1
+  - 说明：【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque
+- [PR #20727](https://github.com/vllm-project/vllm-ascend/pull/20727) 进行中
+  - 中文：【性能】【DSv4.1】Shard the Engram wkv projection across TP ranks
+  - 原文：[Performance][DSv4.1] Shard the Engram wkv projection across TP ranks
+  - 说明：Port of upstream vLLM PR vllm-project/vllm 58678 to vLLM Ascend. Without 序列 parallelism, every TP rank holds every token, so the Engram wkv projection (a ReplicatedLinear , (max ngram size - 1) n heads head dim - (hc mult + 1) hidden
+- [PR #18642](https://github.com/vllm-project/vllm-ascend/pull/18642) 已合并
+  - 中文：[v0.30.0] [BugFix] [Model]通过重量加载器(# 16958)应用DeepSeek-V4注意力槽
+  - 原文：[v0.30.0][BugFix][Model] Apply DeepSeek-V4 attention sinks through the weight loader (#16958)
+  - 说明：Backport of 16958 to the releases/v0.30.0 branch. DeepSeek-V4 注意力 Sink 加载 used direct copy calls, bypassing the parameter's current 权重 loader . During live/layerwise reload, those writes land on meta parameters instead of ent
+- [Issue #20526](https://github.com/vllm-project/vllm-ascend/issues/20526) 已关闭
+  - 中文：【缺陷】: Generic MXFP8 loader breaks grouped DeepSeek V4.1 output projection
+  - 原文：[Bug]: Generic MXFP8 loader breaks grouped DeepSeek V4.1 output projection
+  - 说明：Generic block-FP8 加载 on DeepSeek V4.1 leaves wo a as a 2-D MXFP8 权重 and converts it to NZ despite skip 权重 nz conversion . The output projection calls npu transpose quant batchmatmul with 3-D permutations, causing IndexError: Di
 
 #### 2026-11-02
 
-- [Issue #15527](https://github.com/vllm-project/vllm-ascend/issues/15527) 已关闭
-  - 中文：[Bug]: DeepSeekV4-flash-w8a8在双机800I A3使用0.23.0镜像进行PD分离部署，上下文长度设置为非1M（如40960或者128000），部署成功后进行curl请求，代理节点和D节点都报错" D节点的url响应为400 Bad Request",单独curl D节点url是没问题可正常返回结果
-- [Issue #15523](https://github.com/vllm-project/vllm-ascend/issues/15523) 已关闭
-  - 中文：【缺陷】: DeepSeekV4-flash-0731-w8a8在双机A3使用DeepSeekV4-flash-0731-a3镜像进行PD分离部署后，curl 代理的地址端口，D节点报错AttributeError: 'Request' object has no attribute 'num_in_flight_tokens'
-  - 原文：[Bug]: DeepSeekV4-flash-0731-w8a8在双机A3使用DeepSeekV4-flash-0731-a3镜像进行PD分离部署后，curl 代理的地址端口，D节点报错AttributeError: 'Request' object has no attribute 'num_in_flight_tokens'
 - [Issue #20610](https://github.com/vllm-project/vllm-ascend/issues/20610) 进行中
   - 中文：【缺陷】: v0.26rc2+mmc部署dsv4-flash-0731性能劣化
   - 原文：[Bug]: v0.26rc2+mmc部署dsv4-flash-0731性能劣化
 
 #### 2026-11-01
 
-- [PR #20562](https://github.com/vllm-project/vllm-ascend/pull/20562) 进行中
-  - 中文：【功能】recipes: 更新 DeepSeek-V4-Flash A3 to v0.30.0rc2-a3 measured 配置
-  - 原文：[Feature] recipes: update DeepSeek-V4-Flash A3 to v0.30.0rc2-a3 measured config
-  - 说明：What this PR does Refresh the DeepSeek-V4-Flash overlay so the Ascend 910C (Atlas 800T A3) single-node entry matches the 配置 measured on vllm-ascend v0.30.0rc2-a3 (vLLM 0.30.0): - variants.ascend w8a8 : DP4+TP4 with expert paralle
-- [PR #20554](https://github.com/vllm-project/vllm-ascend/pull/20554) 进行中
-  - 中文：【文档】【杂项】补充文档 --前缀-缓存-保留-interval in the DeepSeek-V4 Flash and Pro guides
-  - 原文：[Doc][Misc] Document --prefix-cache-retention-interval in the DeepSeek-V4 Flash and Pro guides
-  - 说明：Adds a --前缀-缓存-保留-interval entry to the parameter lists of DeepSeek-V4-Flash.md and DeepSeek-V4-Pro.md . No launch command changes. Why it is needed: - 20191 then 移除 the remaining export lines and the parameter entry from
-- [Issue #20530](https://github.com/vllm-project/vllm-ascend/issues/20530) 进行中
-  - 中文：夜间 Daily test failure on 2026-11-01 08:00 - please check
-  - 原文：Nightly Daily test failure on 2026-11-01 08:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-11-01. Failed on: a3-4 card-(part 2-5), DeepSeek-V4-Flash-W8A8-A3, Qwen3-32B-QuaRot, Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3, glm-5.2-w4a8-dspark Failed 测试用例: - t
+- [PR #20538](https://github.com/vllm-project/vllm-ascend/pull/20538) 进行中
+  - 中文：【修复】【KVPool】Request lazy store init for 稀疏-索引器 models
+  - 原文：[BugFix][KVPool] Request lazy store init for sparse-indexer models
+  - 说明：KVPoolWorker requests lazy init from the storage backend only for compressed models (use compress, DSV4 compress ratios) — the deferral introduced for that family in 9771. 稀疏-索引器 models (use 稀疏, e.g. GLM-5.x SFA) route their ind
+- [Issue #20537](https://github.com/vllm-project/vllm-ascend/issues/20537) 进行中
+  - 中文：【缺陷】【KV 缓存】prefix_cache_retention_interval is silently ignored on Ascend hybrid KV 缓存 paths
+  - 原文：[Bug][KV Cache] prefix_cache_retention_interval is silently ignored on Ascend hybrid KV cache paths
+  - 说明：Environment - Atlas 800 A3, 8× Ascend910, vllm-ascend:v0.30.0rc2-a3 , vLLM 0.30.0rc2 - DeepSeek-V4.1-Flash-1017-w8a8-mtp, DP4/TP4/EP16, --block-size 32 , --启用-前缀-缓存 Summary 前缀缓存 保留 interval is never consumed on t
+- [Issue #20531](https://github.com/vllm-project/vllm-ascend/issues/20531) 已关闭
+  - 中文：【文档】【A3】【DSv4】APC with long 前缀: KV 缓存 capacity and prefix_cache_retention_interval need documenting
+  - 原文：[Doc][A3][DSv4] APC with long prefix: KV cache capacity and prefix_cache_retention_interval need documenting
+  - 说明：Environment - Hardware: Atlas 800 A3 single node, 8× Ascend910 (16 dies), HBM 65536 MB/die - OS / Driver: npu-smi 26.1.1 - Image: vllm-ascend:v0.30.0rc2-a3 , vLLM 0.30.0rc2 - Model: DeepSeek-V4.1-Flash-1017-w8a8-mtp (W8A8 + INT8 Engram + DS
 
 #### 2026-10-31
 
-- [PR #20494](https://github.com/vllm-project/vllm-ascend/pull/20494) 草稿
-  - 中文：【功能】【MoE】CatCCOS MegaMoE backend for DeepSeek-V4-Flash on Ascend A5
-  - 原文：[Feature][MoE] Add CatCCOS MegaMoE backend for DeepSeek-V4-Flash on Ascend A5
-  - 说明：Extend the CatCCOS 融合 MoE integration to DeepSeek-V4-Flash's MXFP4 expert 权重 on Ascend A5, preserving the existing v0.23 task as a Draft . This submission records the work and does not assert 合并 readiness. Depends on Both PRs tar
-- [PR #20323](https://github.com/vllm-project/vllm-ascend/pull/20323) 已合并
-  - 中文：【文档】移除 obsolete MTP deployment examples from DeepSeek-V4-Flash tutorial
-  - 原文：[Doc] Remove obsolete MTP deployment examples from DeepSeek-V4-Flash tutorial
-  - 说明：移除 the four obsolete A2/A3 MTP deployment tabs from Sections 5.1 and 5.2 of the DeepSeek-V4-Flash tutorial. Keep the existing DSpark examples and 重命名 their tabs to A2 series / A3 series . 移除 stale MTP 权重, image, model-path an
+- [PR #20496](https://github.com/vllm-project/vllm-ascend/pull/20496) 进行中
+  - 中文：【修复】【量化】Exclude DSV4 压缩器 state from 前缀缓存
+  - 原文：[BugFix][Quantization] Exclude DSV4 compressor state from prefix caching
+  - 说明：Fixes 16270 The DeepSeek V4 压缩器 state 缓存 inherited 前缀 cacheable=true . Its very small block size then lowered the global 前缀-缓存 block size, so short prompts could not accumulate enough tokens to register 缓存 entries. T
+- [Issue #20483](https://github.com/vllm-project/vllm-ascend/issues/20483) 进行中
+  - 中文：【缺陷】【MRV1】【Async Scheduling】: Empty sampled-token row (all -1 / discarded) parks a request RUNNING forever — counters/placeholders grow unbounded, no rollback (0.30.0rc2, DeepSeek-V4.1, DSpark)
+  - 原文：[Bug]: [MRV1][Async Scheduling] Empty sampled-token row (all -1 / discarded) parks a request RUNNING forever — counters/placeholders grow unbounded, no rollback (0.30.0rc2, DeepSeek-V4.1, DSpark)
+  - 说明：【缺陷】【MRV1】【Async Scheduling】Empty sampled-token row (all -1 / discarded) parks a request RUNNING forever: num computed tokens & num output placeholders grow unbounded, no rollback — still present in vLLM-Ascend 0.30.0rc2 (DeepSeek-V4.1, D
+- [PR #20479](https://github.com/vllm-project/vllm-ascend/pull/20479) 进行中
+  - 中文：【重构】【KV 缓存】移除 DSV4 exclusion from hybrid allocation
+  - 原文：[Refactor][KV Cache] Remove DSV4 exclusion from hybrid allocation
+  - 说明：Refactor DeepSeek-V4 KV 缓存 allocation so the generic hybrid-allocation path no longer needs a DSV4-specific exclusion. - Determine the DSV4 model from hf 配置.model type == "deepseek v4" instead of probing the compress ratios attribute
+- [PR #17200](https://github.com/vllm-project/vllm-ascend/pull/17200) 已合并
+  - 中文：【修复】DeepSeek-V4 dummy load and ACL graph 权重 更新
+  - 原文：[BugFix] Fix DeepSeek-V4 dummy load and ACL graph weight update
+  - 说明：Backport two DeepSeek-V4 fixes onto releases/v0.23.0 . Both are already on main ( 16485 , 15666 ) and are still broken on this release branch. 1. --load-format=dummy initializes Hash MoE gate.tid2eid with all zeros. Dummy profile still runs
+- [PR #19125](https://github.com/vllm-project/vllm-ascend/pull/19125) 已合并
+  - 中文：【修复】【Platform】Keep the DeepSeek V4 block size the 缓存 is built with
+  - 原文：[BugFix][Platform] Keep the DeepSeek V4 block size the cache is built with
+  - 说明：DeepSeek-V4 on A5 dies at 缓存-spec construction unless --block-size is passed. Reproduced on A5 (ascend950), DeepSeek-V4-Flash, DP8 + EP, no --block-size : Line references in this description are from vLLM v0.31.0 ( db9527a ) , the versio
+- [PR #19007](https://github.com/vllm-project/vllm-ascend/pull/19007) 已合并
+  - 中文：【性能】【MRV2】Share 每步 PCP 元数据 across KV-缓存 groups
+  - 原文：[Performance][MRV2] Share per-step PCP metadata across KV-cache groups
+  - 说明：This PR reduces 注意力 元数据 construction overhead for DeepSeek V4 with model runner v2 and PCP, and extends compatible 优化 to DSpark DSA SWA drafting. Previously, 缓存-group builders independently prepared 元数据 even wh
 
 #### 2026-10-30
 
-- [PR #20215](https://github.com/vllm-project/vllm-ascend/pull/20215) 已合并
-  - 中文：【持续集成】新增 DeepSeek-V4-Flash Mooncake 池化 coverage on A3
-  - 原文：[CI] Add DeepSeek-V4-Flash Mooncake pooling coverage on A3
-  - 说明：新增 a single-node Mooncake KV 池化 test for Eco-Tech/DeepSeek-V4-Flash-0731-w8a8 and register it in the A3 每周 suite. No. These changes affect E2E tests and CI infrastructure only. An ear
+- [Issue #20106](https://github.com/vllm-project/vllm-ascend/issues/20106) 已关闭
+  - 中文：【缺陷】: DeepSeek-V4 VL square dummy image underestimates the profiling workload
+  - 原文：[Bug]: DeepSeek-V4 VL square dummy image underestimates the profiling workload
+- [PR #20107](https://github.com/vllm-project/vllm-ascend/pull/20107) 已合并
+  - 中文：【修复】【Multimodal】Select worst-case DeepSeek-V4 VL dummy images
+  - 原文：[BugFix][Multimodal] Select worst-case DeepSeek-V4 VL dummy images
+  - 说明：Fixes 20106. Ports vllm-project/vllm 59373 to Ascend's local DeepSeek-V4 VL preprocessing implementation. Although the upstream 修复 is included in vLLM v0.32.0, Ascend registers its own processing classes and needs the corresponding change.
+- [Issue #20363](https://github.com/vllm-project/vllm-ascend/issues/20363) 进行中
+  - 中文：【DSV4.1-Flash】【A3】解码 worker crashes with GatherV2 SMMU fault + poison marker under dspark with enforce_eager=False / FULL_DECODE_ONLY graphs
+  - 原文：[DSV4.1-Flash][A3] Decode worker crashes with GatherV2 SMMU fault + poison marker under dspark with enforce_eager=False / FULL_DECODE_ONLY graphs
+  - 说明：Summary On a DeepSeek-V4.1-Flash W8A8 PD-disaggregated deployment (Ascend A3), the 解码-side worker crashed ~2 minutes into a load test at 1 concurrent user (i.e. minimal load), with an aclrtSynchronizeEvent error 507035. plog shows the f
+- [PR #19042](https://github.com/vllm-project/vllm-ascend/pull/19042) 已关闭
+  - 中文：【重构】【模型】Revert "恢复 平台默认 索引器 KV dtype for DeepSeek V4"
+  - 原文：[Refactor][Model] Revert "Restore platform-default indexer KV dtype for DeepSeek V4"
+  - 说明：【重构】【模型】Revert "恢复 平台默认 索引器 KV dtype for DeepSeek V4" Reverts 17635 ( b980a2476dfa259f6112b01ded829b7cfb80d409 ). That commit 新增 get 索引器 k dtype to the DeepSeek V4 索引器: it resolves 索引器 kv dtype=
+- [PR #20343](https://github.com/vllm-project/vllm-ascend/pull/20343) 进行中
+  - 中文：【v0.30.0】【修复】【KV 缓存】遵循 前缀 保留 on DeepSeek-V4/V4.1 hybrid coordinator
+  - 原文：[v0.30.0][BugFix][KV Cache] Honor prefix retention on DeepSeek-V4/V4.1 hybrid coordinator
+  - 说明：On DeepSeek-V4/V4.1-Flash PD-分离式预填充 nodes (4x910B3, DP4 TP8), the 前缀-缓存 hit rate collapses to single digits at 64 concurrency with 64K contexts, while staying ~90% at 32 concurrency. Root cause: both the HBM hybrid coo
 
 #### 2026-10-29
 
-- [PR #20267](https://github.com/vllm-project/vllm-ascend/pull/20267) 已合并
-  - 中文：【文档】【模型】移除 obsolete DeepSeek-V4-Flash MTP examples (v0.30.0)
-  - 原文：[Doc][Model] Remove obsolete DeepSeek-V4-Flash MTP examples (v0.30.0)
-  - 说明：The DeepSeek-V4-Flash tutorial on releases/v0.30.0 still presents obsolete MTP deployment examples alongside the DSpark examples. Delete the four obsolete A2/A3 single-node and PD tabs in full, including the guidance inside those tabs. Rena
-- [PR #19461](https://github.com/vllm-project/vllm-ascend/pull/19461) 已合并
-  - 中文：【release/v0.23.0】【Sampler】【修复】inf in RL sampling by recording stream for q
-  - 原文：[release/v0.23.0][Sampler][BugFix] Fix inf in RL sampling by recording stream for q
-  - 说明：During RL post-training of DeepSeek v4 Flash, an inconsistency between training and inference was observed due to the NPU 显存 of q being prematurely reused before the asynchronous division operation probs.div (q) completed. This PR resol
-- [PR #20191](https://github.com/vllm-project/vllm-ascend/pull/20191) 已合并
-  - 中文：【文档】【杂项】Sync DeepSeek-V4 flash and Pro deployment documentation fixes to main
-  - 原文：[Doc][Misc] Sync DeepSeek-V4 flash and Pro deployment documentation fixes to main
-  - 说明：This PR synchronizes documentation fixes for DeepSeek-V4 deployment to the main branch, matching the changes in 20174. Specifically, it: - Removes hard-coded VLLM 前缀缓存 保留 INTERVAL=4096 environment variable exports from both t
-- [PR #20230](https://github.com/vllm-project/vllm-ascend/pull/20230) 已合并
-  - 中文：【v0.30.0】【文档】【杂项】移除 obsolete DeepSeek-V4 Flash 保留 guidance
-  - 原文：[v0.30.0][Doc][Misc] Remove obsolete DeepSeek-V4 Flash retention guidance
-  - 说明：The releases/v0.30.0 DeepSeek-V4 Flash tutorial no longer exports VLLM 前缀缓存 保留 INTERVAL in its A2/A3/A5 scripts, but three descriptions still direct readers to use or consider that environment variable. 移除 the A2 key-para
-- [PR #20161](https://github.com/vllm-project/vllm-ascend/pull/20161) 已合并
-  - 中文：【文档】【杂项】DeepSeek-V4-Flash: serve the MTP 检查点 for DSpark and 修复 the A2 image block
-  - 原文：[Doc][Misc] DeepSeek-V4-Flash: serve the MTP checkpoint for DSpark and fix the A2 image block
-  - 说明：Fixes two documentation defects in docs/source/tutorials/models/DeepSeek-V4-Flash.md that make the A2 deployment path unusable when the tutorial is followed literally. 1. The A2 DSpark tab served a 检查点 that is not in the 权重 list
-- [PR #20162](https://github.com/vllm-project/vllm-ascend/pull/20162) 已合并
-  - 中文：【v0.30.0】【文档】【杂项】DeepSeek-V4-Flash: serve the MTP 检查点 for DSpark and 修复 the A2 image block
-  - 原文：[v0.30.0][Doc][Misc] DeepSeek-V4-Flash: serve the MTP checkpoint for DSpark and fix the A2 image block
-  - 说明：Fixes two documentation defects in docs/source/tutorials/models/DeepSeek-V4-Flash.md that make the A2 deployment path unusable when the tutorial is followed literally. 1. The A2 DSpark tab served a 检查点 that is not in the 权重 list
-- [PR #20174](https://github.com/vllm-project/vllm-ascend/pull/20174) 已合并
-  - 中文：【v0.30.0】【文档】【杂项】更新 DeepSeek-V4 Flash and Pro deployment documentation
-  - 原文：[v0.30.0][Doc][Misc] Update DeepSeek-V4 Flash and Pro deployment documentation
-  - 说明：更新 the DeepSeek-V4 deployment documentation on releases/v0.30.0 : - In the Flash tutorial, 移除 all seven export VLLM 前缀缓存 保留 INTERVAL=4096 lines and the associated parameter explanation in section 5.1. The script remov
-- [Issue #15200](https://github.com/vllm-project/vllm-ascend/issues/15200) 已关闭
-  - 中文：【缺陷】: 0.23.0 4机A3 3D1D部署DeepSeek-V4-flash，请求参数中携带stop_token_ids导致P实例中断，报错算子为IndexCheck
-  - 原文：[Bug]: 0.23.0 4机A3 3D1D部署DeepSeek-V4-flash，请求参数中携带stop_token_ids导致P实例中断，报错算子为IndexCheck
+- [Issue #20233](https://github.com/vllm-project/vllm-ascend/issues/20233) 进行中
+  - 中文：【缺陷】: A5 two-node DeepSeek-V4 dummy startup fails at the first MC2 Dispatch (quant_mode=4, error 507035)
+  - 原文：[Bug]: A5 two-node DeepSeek-V4 dummy startup fails at the first MC2 Dispatch (quant_mode=4, error 507035)
+- [Issue #20222](https://github.com/vllm-project/vllm-ascend/issues/20222) 进行中
+  - 中文：【缺陷】: 950PR 4卡混部 dsv4.1 pcp4ep4，单curl 解码开始和结束存在共2ms tensormove异常开销
+  - 原文：[Bug]: 950PR 4卡混部 dsv4.1 pcp4ep4，单curl decode开始和结束存在共2ms tensormove异常开销
+- [PR #19901](https://github.com/vllm-project/vllm-ascend/pull/19901) 已关闭
+  - 中文：【性能】【DSv4.1】Trim the last KV-source layer in decoder replay
+  - 原文：[Perf][DSv4.1] Trim the last KV-source layer in decoder replay
+  - 说明：Follow In decoder replay steps, the last KV-source layer (layer 20 on DSV4.1-Flash) still ran on every row, though for the trimmed rows only its KV (SWA, compressed, index K) is read. Its 索引器 scoring and top-k, 稀疏 MLA, wo and MoE fe
+- [PR #20193](https://github.com/vllm-project/vllm-ascend/pull/20193) 进行中
+  - 中文：【修复】【注意力】Derive max_seqlen_q from device query_start_loc in DSv4.1 元数据 tasks
+  - 原文：[BugFix][Attention] Derive max_seqlen_q from device query_start_loc in DSv4.1 metadata tasks
+  - 说明：Summary - 修复 NPU 内核 挂起 (\^GclnnSparseFlashMlaMetadata\ / \^GclnnQuantLightningIndexerV2Metadata\) on the DeepSeek-V4.1 注意力 path: the deferred SMLA/QLI 元数据 closures captured the host-side \common.max query len\ at task crea
+- [PR #20185](https://github.com/vllm-project/vllm-ascend/pull/20185) 进行中
+  - 中文：【修复】Make DeepSeek V4 RoPE meta initialization safe
+  - 原文：[BugFix] Make DeepSeek V4 RoPE meta initialization safe
+  - 说明：When DeepSeek V4/V4.1 is started with --mm-encoder-only , vLLM constructs the skipped language-model component under a meta-device context. ComplexExpRotaryEmbedding previously created inv freq on the active meta device while explicitly cre
+- [PR #14444](https://github.com/vllm-project/vllm-ascend/pull/14444) 已关闭
+  - 中文：【文档】【950DT】新增 Ascend 950DT DeepSeek-V4 deployment guides
+  - 原文：[Doc][950DT] add Ascend 950DT DeepSeek-V4 deployment guides
+  - 说明：Port the DeepSeek-V4 Flash and Pro deployment documentation from releases/v0.23.0 to main while preserving main-specific MkDocs, DSpark, and 配置 更新. - vLLM version: v0.27.1 - vLL
 
 #### 2026-10-28
 
-- [Issue #20142](https://github.com/vllm-project/vllm-ascend/issues/20142) 进行中
-  - 中文：【缺陷】: 基于950DT 8卡4+4 1P1D分离部署Deepseek-v4-flash-0731模型，采用vllm-ascend0.30.rc2镜像及社区脚本创建容器及启动服务，输出No available 共享 显存 broadcast block found in 60 seconds多次后报错RuntimeError: The Inner error is reported as above. The process exits for this inner error
-  - 原文：[Bug]: 基于950DT 8卡4+4 1P1D分离部署Deepseek-v4-flash-0731模型，采用vllm-ascend0.30.rc2镜像及社区脚本创建容器及启动服务，输出No available shared memory broadcast block found in 60 seconds多次后报错RuntimeError: The Inner error is reported as above. The process exits for this inner error
-- [PR #20123](https://github.com/vllm-project/vllm-ascend/pull/20123) 草稿
-  - 中文：【功能】【PD】支持 layerwise P/D disaggregation for DeepSeek-V4-Flash
-  - 原文：[Feature][PD] Support layerwise P/D disaggregation for DeepSeek-V4-Flash
-  - 说明：Adds DeepSeek-V4 (DSV4-Flash) 支持 to MooncakeLayerwiseConnector (layerwise P/D disaggregation), and fixes the issues it exposed. DSV4 doesn't fit the connector's old assumptions. A layer can have up to five KV caches ( .attn compressed
-- [Issue #20077](https://github.com/vllm-project/vllm-ascend/issues/20077) 进行中
-  - 中文：夜间 Daily test failure on 2026-10-28 12:00 - please check
-  - 原文：Nightly Daily test failure on 2026-10-28 12:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-10-28. Failed on: DeepSeek-V4-Flash-W8A8-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed, info were shown above. Failed run(s):
-- [PR #20043](https://github.com/vllm-project/vllm-ascend/pull/20043) 已合并
-  - 中文：【文档】【杂项】DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
-  - 原文：[Doc][Misc] DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
-  - 说明：This PR corrects two items in the A2 sections only of the DeepSeek-V4-Flash guide — 5.2.5 (A2 DSpark) and 5.2.6 (A2 KV 池化). No A3, 950DT, single-node or other section is touched. 1. 移除 启用 flashcomm1 from the three A2 预填充 co
-- [PR #20044](https://github.com/vllm-project/vllm-ascend/pull/20044) 已合并
-  - 中文：【文档】【杂项】DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
-  - 原文：[Doc][Misc] DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
-  - 说明：This PR corrects two items in the A2 sections only of the DeepSeek-V4-Flash guide — 5.2.5 (A2 DSpark) and 5.2.6 (A2 KV 池化). No A3, 950DT, single-node or other section is touched. 1. 移除 启用 flashcomm1 from the three A2 预填充 co
-- [PR #20012](https://github.com/vllm-project/vllm-ascend/pull/20012) 已合并
-  - 中文：【文档】【杂项】Sync DeepSeek-V4-Flash deployment guidance to main
-  - 原文：[Doc][Misc] Sync DeepSeek-V4-Flash deployment guidance to main
-  - 说明：Sync the latest DeepSeek-V4-Flash documentation changes from 19993 (source commit a0e7aab658c3 ) to main . - 移除 the explicit --api-server-count 1 setting from the 950DT DSpark and A3 single-node examples. - Explain --async-scheduling in
-- [PR #20024](https://github.com/vllm-project/vllm-ascend/pull/20024) 已关闭
-  - 中文：【文档】【杂项】DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
-  - 原文：[Doc][Misc] DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
-  - 说明：This PR corrects two items in the A2 sections only of the DeepSeek-V4-Flash guide — 5.2.5 (A2 DSpark) and 5.2.6 (A2 KV 池化). No A3, 950DT, single-node or other section is touched. 1. 移除 启用 flashcomm1 from the three A2 预填充 co
-- [PR #20023](https://github.com/vllm-project/vllm-ascend/pull/20023) 已关闭
-  - 中文：【文档】【杂项】DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
-  - 原文：[Doc][Misc] DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
-  - 说明：This PR corrects two items in the A2 sections only of the DeepSeek-V4-Flash guide — 5.2.5 (A2 DSpark) and 5.2.6 (A2 KV 池化). No A3, 950DT, single-node or other section is touched. 1. 移除 启用 flashcomm1 from the three A2 预填充 co
-- [PR #19993](https://github.com/vllm-project/vllm-ascend/pull/19993) 已合并
-  - 中文：【文档】【v0.30.0】Clarify DeepSeek-V4-Flash API endpoint
-  - 原文：[Doc][v0.30.0] Clarify DeepSeek-V4-Flash API endpoint
-  - 说明：Clarify the request endpoint in Section 6 of the DeepSeek-V4-Flash guide on releases/v0.30.0 : use the API server's IP address and port for ordinary deployments, and the proxy's IP address and port for 预填充/解码 (PD) disaggregated depl
-- [PR #20016](https://github.com/vllm-project/vllm-ascend/pull/20016) 已关闭
-  - 中文：【文档】DeepSeek-V4-Flash A2 DSpark: record the measured draft 4 / 51 解码 profile
-  - 原文：[Doc] DeepSeek-V4-Flash A2 DSpark: record the measured draft 4 / 51 decode profile
-  - 说明：What 更新 the A2 DSpark section (5.2.5) of the DeepSeek-V4-Flash guide. No other section, role or workload is touched. 解码-4k-stable and 解码-16k now record D draft 4 / --max-num-seqs 51 instead of draft 1 / 128. 新增 a tip explaini
-- [PR #20015](https://github.com/vllm-project/vllm-ascend/pull/20015) 已关闭
-  - 中文：【文档】DeepSeek-V4-Flash A2 DSpark: record the measured draft 4 / 51 解码 profile
-  - 原文：[Doc] DeepSeek-V4-Flash A2 DSpark: record the measured draft 4 / 51 decode profile
-  - 说明：What 更新 the A2 DSpark section (5.2.5) of the DeepSeek-V4-Flash guide. No other section, role or workload is touched. 解码-4k-stable and 解码-16k now record D draft 4 / --max-num-seqs 51 instead of draft 1 / 128. 新增 a tip explaini
-
-#### 2026-10-27
-
-- [Issue #19955](https://github.com/vllm-project/vllm-ascend/issues/19955) 进行中
-  - 中文：【缺陷】:使用vllm0.27.0rc1在950D上部署DS-v4-flash-0731报签名失败
-  - 原文：[Bug]:使用vllm0.27.0rc1在950D上部署DS-v4-flash-0731报签名失败
-- [PR #19759](https://github.com/vllm-project/vllm-ascend/pull/19759) 已合并
-  - 中文：【文档】【杂项】Organize DeepSeek-V4-Flash PD and KV 池化 deployment guides
-  - 原文：[Doc][Misc] Organize DeepSeek-V4-Flash PD and KV pooling deployment guides
-  - 说明：Reorganize the DeepSeek-V4-Flash deployment guide into hardware-specific tabs. Group the 950DT, A3, and A2 KV 缓存 Pool examples under Section 5.3, move ultra-long 序列 guidance into the A2 series tab, and preserve existing section anc
-- [PR #19879](https://github.com/vllm-project/vllm-ascend/pull/19879) 已合并
-  - 中文：【文档】【v0.30.0】Restructure DeepSeek-V4-Flash deployment documentation
-  - 原文：[Doc][v0.30.0] Restructure DeepSeek-V4-Flash deployment documentation
-  - 说明：Sync the DeepSeek-V4-Flash deployment-guide changes from 19759 (source commit 2738354da ) to releases/v0.30.0 . Only docs/source/tutorials/models/DeepSeek-V4-Flash.md changes. - Organize ordinary PD and KV 缓存 池化 deployment into hard
+- [PR #20145](https://github.com/vllm-project/vllm-ascend/pull/20145) 进行中
+  - 中文：【功能】opt-in TP sharding for DeepSeek V4 解码 索引器
+  - 原文：[Feature] Add opt-in TP sharding for DeepSeek V4 decode indexer
+  - 说明：DeepSeek V4's C4 解码 索引器 evaluates replicated query rows across tensor-parallel ranks. This PR adds opt-in request-level sharding to distribute QLI computation across the TP group. The design is inspired by vLLM 58536. The implementa
+- [PR #20124](https://github.com/vllm-project/vllm-ascend/pull/20124) 草稿
+  - 中文：【性能】【DSV4.1】Use single-token decoder replay for DeepSeek-V4.1 预填充
+  - 原文：[Performance][DSV4.1] Use single-token decoder replay for DeepSeek-V4.1 prefill
+  - 说明：【vllm-project/vllm 62817】Summary Adapt the 预填充 decoder replay 优化 from to Ascend. Replay only the last token for 预填充 chunks sufficiently far from the prompt end, reducing decoder computation while preserving the replay win
+- [PR #20088](https://github.com/vllm-project/vllm-ascend/pull/20088) 草稿
+  - 中文：【测试】新增 A5 PR E2E coverage for DeepSeek V4 and V4.1 Flash
+  - 原文：[Test] Add A5 PR E2E coverage for DeepSeek V4 and V4.1 Flash
+  - 说明：新增 ten PR E2E cases for the complete DeepSeek V4 Flash and V4.1 Flash 检查点 on Ascend A5. Each case uses Model Runner V2 and four NPUs. Keep one short 修复-output 回退 per model; the other cases verify functional behavior with
+- [PR #20075](https://github.com/vllm-project/vllm-ascend/pull/20075) 草稿
+  - 中文：【功能】【MRV2】Preserve SP token shards across pipeline stages
+  - 原文：[Feature][MRV2] Preserve SP token shards across pipeline stages
+  - 说明：Preserve 序列-parallel main activations across Model Runner V2 pipeline boundaries for DeepSeek-V4, Kimi-K3 AttnRes, and MiniMax-M3. Each TP rank sends its token shard to the matching rank in the next stage instead of transmitting repli
+- [PR #20059](https://github.com/vllm-project/vllm-ascend/pull/20059) 进行中
+  - 中文：【修复】Stream long DSML 工具调用 parameter values for DeepSeek V4/V4.1
+  - 原文：[BugFix] Stream long DSML tool-call parameter values for DeepSeek V4/V4.1
+  - 说明：DeepSeek V4 / V4.1 emit 工具调用 arguments as DSML parameters and configure arg structural chars = {' '} . ParserEngine. compute arg delta() drops every streaming delta that shares no character with that set, and the DSML converter only re
 
 #### 2026-10-26
 
-- [Issue #19830](https://github.com/vllm-project/vllm-ascend/issues/19830) 进行中
-  - 中文：夜间 Daily test failure on 2026-10-26 08:00 - please check
-  - 原文：Nightly Daily test failure on 2026-10-26 08:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-10-26. Failed on: a2-1 card-(part 4-7), DeepSeek-V4-Flash-W8A8-A3 Failed 测试用例: - TestPauseResume::test pause mode keep resumes frozen request — RuntimeError: vl
-- [Issue #19829](https://github.com/vllm-project/vllm-ascend/issues/19829) 进行中
-  - 中文：夜间 Daily test failure on 2026-10-26 08:00 - please check
-  - 原文：Nightly Daily test failure on 2026-10-26 08:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-10-26. Failed on: a2-1 card-(part 4-7), DeepSeek-V4-Flash-W8A8-A3 Failed 测试用例: - TestPauseResume::test pause mode keep resumes frozen request — RuntimeError: vl
-- [PR #19782](https://github.com/vllm-project/vllm-ascend/pull/19782) 进行中
-  - 中文：【releases/v0.18.0】【文档】【杂项】Drop redundant --启用-chunked-预填充 from DeepSeek-V4-Flash A2/A3 guides
-  - 原文：[releases/v0.18.0][Doc][Misc] Drop redundant --enable-chunked-prefill from DeepSeek-V4-Flash A2/A3 guides
-  - 说明：Aligns the A2/A3 inference guides in docs/source/tutorials/models/DeepSeek-V4-Flash.md with the default 调度器 behaviour of vLLM V1: - A2 : removes the redundant --启用-chunked-预填充 from the vllm serve script. Chunked 预填充 is alr
-- [Issue #19779](https://github.com/vllm-project/vllm-ascend/issues/19779) 进行中
-  - 中文：夜间 Daily test failure on 2026-10-26 08:00 - please check
-  - 原文：Nightly Daily test failure on 2026-10-26 08:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-10-26. Failed on: a2-1 card-(part 4-7), DeepSeek-V4-Flash-W8A8-A3 Failed 测试用例: - TestPauseResume::test pause mode keep resumes frozen request — RuntimeError: vl
-- [PR #19772](https://github.com/vllm-project/vllm-ascend/pull/19772) 已合并
-  - 中文：【文档】【v0.30.0】移除 DeepSeek V4 Flash Vision documentation
-  - 原文：[Doc][v0.30.0] Remove DeepSeek V4 Flash Vision documentation
-  - 说明：Apply the DeepSeek-V4-Flash-Vision-Exp documentation removal from 19629 to releases/v0.30.0 , based on b91084581. - Delete the English tutorial and Chinese translation catalog. - 移除 its MkDocs navigation entry and localized navigation t
-- [PR #19758](https://github.com/vllm-project/vllm-ascend/pull/19758) 已合并
-  - 中文：【文档】【v0.30.0】更新 DeepSeek-V4-Flash 池化 and startup instructions
-  - 原文：[Doc][v0.30.0] Update DeepSeek-V4-Flash pooling and startup instructions
-  - 说明：The DeepSeek-V4-Flash 池化 examples are 拆分 across separate top-level sections, and the 950DT startup instructions require 解码 to become healthy before 预填充 starts. Group the A3 and 950DT Memcache examples under Section 5.3, iden
+- [PR #18891](https://github.com/vllm-project/vllm-ascend/pull/18891) 已合并
+  - 中文：【修复】【Platform】Declare the KV 缓存 dtypes DeepSeek V4 can store
+  - 原文：[BugFix][Platform] Declare the KV cache dtypes DeepSeek V4 can store
+  - 说明：A DeepSeek V4 launch on A5 with no --kv-缓存-dtype used to die inside the operator: aclnnMixedQuantSparseFlashMla: Parameter ori kv head dimension ... value 512. It should be 608. A5 picks the KV layout from the literal 缓存 配置.缓存
+- [PR #19868](https://github.com/vllm-project/vllm-ascend/pull/19868) 草稿
+  - 中文：【功能】【MRV2】Integrate 共享 dynamic PP 预填充 运行时 on Ascend
+  - 原文：[Feature][MRV2] Integrate shared dynamic PP prefill runtime on Ascend
+  - 说明：Connect the Ascend MRv2 worker and DSV4 model to the 共享 buffered/dynamic PP 运行时 in vllm-project/vllm 63745 . Load adjacent layer replicas, execute the per-batch layer range, preserve its MoE dispatch order, and finish device timing
+- [PR #19860](https://github.com/vllm-project/vllm-ascend/pull/19860) 已关闭
+  - 中文：【修复】【Platform】Declare the KV 缓存 dtypes DeepSeek V4 can store
+  - 原文：[BugFix][Platform] Declare the KV cache dtypes DeepSeek V4 can store
+  - 说明：Re-opened from 18891, whose CI kept failing on runner-side infrastructure: a2-1 card (part 5-7) died in six minutes for two runs in a row cloning the csrc/third party/catlass submodule ( Unable to access Could not resolve host ), after an e
+- [PR #19850](https://github.com/vllm-project/vllm-ascend/pull/19850) 进行中
+  - 中文：【修复】【TurboQuant】禁用 default boundary skips for DeepSeek V4
+  - 原文：[BugFix][TurboQuant] Disable default boundary skips for DeepSeek V4
+  - 说明：修复 a mismatch between upstream TurboQuant's default boundary-layer policy and the current Ascend DeepSeek V4 缓存 implementation. When using --kv-缓存-dtype turboquant 4bit nc , upstream EngineArgs.create engine 配置() calls TurboQuant
+- [PR #19842](https://github.com/vllm-project/vllm-ascend/pull/19842) 草稿
+  - 中文：【Feat】【模型】支持 DSv4 block size 16 on A3
+  - 原文：[Feat][Model] Support DSv4 block size 16 on A3
+  - 说明：启用 DSv4 --block-size 16 on A3 through the complete 配置 and 缓存-layout path. - Preserve an explicit 16 in refresh block size(). Previously, the DSv4 allowlist silently replaced it with 32, so adding the layout alone did not e
+- [Issue #17347](https://github.com/vllm-project/vllm-ascend/issues/17347) 已关闭
+  - 中文：【功能】: int8 KV 缓存 支持 for GLM-5.3-Flash / DeepSeek-V4-style hybrid models — 解码 path fails at aclnnSparseFlashAttention (EZ1009) while 预填充 path already works
+  - 原文：[Feature]: int8 KV cache support for GLM-5.3-Flash / DeepSeek-V4-style hybrid models — decode path fails at aclnnSparseFlashAttention (EZ1009) while prefill path already works
+  - 说明：The 特性 we need : end-to-end 支持 for --kv-缓存-dtype int8 on GLM-5.3-Flash ( Glm5NextForConditionalGeneration , w8a8, hybrid architecture: MLA + linear-注意力/Mamba + compressed-索引器 稀疏 注意力 (DSA-style), with an MTP
+- [Issue #19810](https://github.com/vllm-project/vllm-ascend/issues/19810) 进行中
+  - 中文：【缺陷】: aclnnSparseAttnSharedkvMetadataGetWorkspaceSize takes abnormally long in vLLM-Ascend 0.26
+  - 原文：[Bug]: aclnnSparseAttnSharedkvMetadataGetWorkspaceSize takes abnormally long in vLLM-Ascend 0.26
 
 #### 2026-10-25
 
-- [PR #19505](https://github.com/vllm-project/vllm-ascend/pull/19505) 已合并
-  - 中文：【文档】新增 A2 workload tuning and KV 池化 for DeepSeek-V4-Flash
-  - 原文：[Doc] Add A2 workload tuning and KV pooling for DeepSeek-V4-Flash
-  - 说明：补充文档 workload-specific A2 deployment settings for DeepSeek-V4-Flash-0731-w8a8 on four Atlas 800I A2 servers (32 NPUs): 预填充 ExternalDP2 × TP1 × PP1 × PCP8 , 解码 DP16 × TP1 , and MooncakeHybridConnector for P-to-D transfer. Each P/
-- [PR #19506](https://github.com/vllm-project/vllm-ascend/pull/19506) 已合并
-  - 中文：【文档】【v0.30.0】新增 A2 workload tuning and KV 池化 for DeepSeek-V4-Flash
-  - 原文：[Doc][v0.30.0] Add A2 workload tuning and KV pooling for DeepSeek-V4-Flash
-  - 说明：Backport of 19505 to releases/v0.30.0 , preserving existing branch-specific documentation. 补充文档 workload-specific A2 deployment settings for DeepSeek-V4-Flash-0731-w8a8 on four Atlas 800I A2 servers (32 NPUs): 预填充 ExternalDP2 × TP1
-- [PR #19629](https://github.com/vllm-project/vllm-ascend/pull/19629) 已合并
-  - 中文：【文档】移除 DeepSeek V4 Flash Vision documentation
-  - 原文：[Doc] Remove DeepSeek V4 Flash Vision documentation
-  - 说明：移除 the entire DeepSeek-V4-Flash-Vision-Exp documentation from the docs site: - Delete the English model tutorial and its Chinese translation catalog. - 移除 the MkDocs navigation entry and localized navigation titles. - 移除 its mod
+- [Issue #19722](https://github.com/vllm-project/vllm-ascend/issues/19722) 进行中
+  - 中文：【缺陷】: Vector core exception (507035) in grouped_matmul_swiglu_quant_v2 kills all TP8 workers under concurrent long-prompt load (Atlas A3, DeepSeek-V4.1-Flash)
+  - 原文：[Bug]: Vector core exception (507035) in grouped_matmul_swiglu_quant_v2 kills all TP8 workers under concurrent long-prompt load (Atlas A3, DeepSeek-V4.1-Flash)
+  - 说明：Environment - vllm-ascend : quay.io/ascend/vllm-ascend:deepseek-v4.1-flash-a3 (vLLM 0.27.1+empty) - CANN : 9.1.0 (built-in OPP) - Platform : Atlas 800I A3, 8×910C (16 logical devices), dual TP8 instances - Model : DeepSeek-V4.1-Flash W4A8 (
 
 #### 2026-10-24
 
-- [PR #18973](https://github.com/vllm-project/vllm-ascend/pull/18973) 已合并
-  - 中文：【文档】【v0.30.0】新增 DeepSeek-V4-Flash-0731 deployment instructions for Ascend 950DT
-  - 原文：[Doc][v0.30.0] Add DeepSeek-V4-Flash-0731 deployment instructions for Ascend 950DT
-  - 说明：新增 DeepSeek-V4-Flash-0731 deployment instructions for Ascend 950DT and A3 on vLLM-Ascend v0.30.0. The existing A2/A3 deployment commands are retained; some A3 examples have Markdown indentation changes. - 新增 the 950DT model entry and the
-- [PR #19385](https://github.com/vllm-project/vllm-ascend/pull/19385) 已合并
-  - 中文：【文档】【功能】A5 deployment examples for DeepSeek-V4-Flash
-  - 原文：[Doc][feature] Add A5 deployment examples for DeepSeek-V4-Flash
-  - 说明：This PR ports the DeepSeek-V4-Flash A5/950DT deployment guidance to the upstream main branch. Specifically, it: - Adds the Ascend 950DT Docker image and DSpark deployment example. - Documents same-node 预填充/解码 separation with NPUs 0–
+- [PR #19710](https://github.com/vllm-project/vllm-ascend/pull/19710) 已关闭
+  - 中文：【文档】新增 A5 Docker commands for DeepSeek V4
+  - 原文：[Doc] add A5 Docker commands for DeepSeek V4
+  - 说明：This is the main -branch counterpart of 19709. The DeepSeek-V4-Pro and DeepSeek-V4-Flash tutorials list 950PR/950DT as supported hardware, but their Docker image installation sections only provide startup commands for the A2 and A3 series.
+- [PR #19709](https://github.com/vllm-project/vllm-ascend/pull/19709) 已关闭
+  - 中文：【文档】新增 A5 Docker commands for DeepSeek V4
+  - 原文：[Doc] add A5 Docker commands for DeepSeek V4
+  - 说明：The DeepSeek-V4-Pro and DeepSeek-V4-Flash tutorials list 950PR/950DT as supported hardware, but their Docker image installation sections only provide startup commands for the A2 and A3 series. This PR adds a 950PR&950DT Products tab to both
+- [PR #14308](https://github.com/vllm-project/vllm-ascend/pull/14308) 已关闭
+  - 中文：【修复】mask premature eos during in_reasoning for DeepSeek-V4
+  - 原文：[Bugfix]mask premature eos during in_reasoning for DeepSeek-V4
+  - 说明：Fixes 14031 This PR fixes the DeepSeek-V4 premature EOS issue on Ascend NPU during reasoning. When reasoning has started with <think but has not reached </think , EOS token id 1 can be sampled unexpectedly and terminate generation early. Th
+- [PR #19676](https://github.com/vllm-project/vllm-ascend/pull/19676) 草稿
+  - 中文：【性能】【KVPool】Compact duplicate DSV4 group-0 Memcache transfers
+  - 原文：[Perf][KVPool] Compact duplicate DSV4 group-0 Memcache transfers
+  - 说明：Non-layerwise Memcache transfers for the validated DeepSeek-V4-Pro group-0 layout serialize the 索引器 data and scale twice: as two separate spans and as one enclosing span at the same address. This adds transfers and packed object bytes t
 
 #### 2026-10-23
 
-- [PR #19634](https://github.com/vllm-project/vllm-ascend/pull/19634) 已合并
-  - 中文：【文档】【v0.30.0】【杂项】更新 DeepSeek-V4-Flash A3 image to v0.30.0rc2-a3
-  - 原文：[Doc][v0.30.0][Misc] Update DeepSeek-V4-Flash A3 image to v0.30.0rc2-a3
-  - 说明：更新 the A3 Docker image in the DeepSeek-V4-Flash deployment guide from quay.io/ascend/vllm-ascend:{{ vllm ascend version }}-a3 to quay.io/ascend/vllm-ascend:v0.30.0rc2-a3 . This pins the A3 installation example to the specific release-ca
-- [PR #19623](https://github.com/vllm-project/vllm-ascend/pull/19623) 已合并
-  - 中文：【文档】新增 A3 PD 池化 deployment for DeepSeek-V4-Flash
-  - 原文：[Doc] Add A3 PD pooling deployment for DeepSeek-V4-Flash
-  - 说明：新增 an A3 1P1D deployment section with a Memcache KV 缓存 Pool to the DeepSeek-V4-Flash model guide on main. This is the main-branch counterpart of 19615, including the 更新 parameter alignment and removal of the incorrect layerwise-poo
-- [PR #19615](https://github.com/vllm-project/vllm-ascend/pull/19615) 已合并
-  - 中文：【v0.30.0】【文档】新增 A3 PD 池化 deployment for DeepSeek-V4-Flash
-  - 原文：[v0.30.0][Doc] Add A3 PD pooling deployment for DeepSeek-V4-Flash
-  - 说明：新增 an A3 1P1D deployment section with a Memcache KV 缓存 Pool to the DeepSeek-V4-Flash model guide on releases/v0.30.0 . All non-池化 parameters follow the existing A3 series with dspark PD example in Section 5.2.1: DP2/TP1/PCP8 Prefil
-- [Issue #19605](https://github.com/vllm-project/vllm-ascend/issues/19605) 进行中
-  - 中文：【缺陷】【DeepSeekV4-flash-0731】: Mooncake connector E1021 06:26:49.437224 6454 transfer_executor_base.cpp:263] Failed to connect to target: 10.233.1.248:20335, status: 103905, errmsg: E19999: Inner Error!
-  - 原文：[Bug]: [DeepSeekV4-flash-0731] Mooncake connector E1021 06:26:49.437224  6454 transfer_executor_base.cpp:263] Failed to connect to target: 10.233.1.248:20335, status: 103905, errmsg: E19999: Inner Error!
+- [PR #19675](https://github.com/vllm-project/vllm-ascend/pull/19675) 进行中
+  - 中文：【v0.30.0】【修复】【量化】ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
+  - 原文：[v0.30.0][BugFix][Quantization] Fix ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
+  - 说明：Backport of 19674 for releases/v0.30.0 . ModelSlim DeepSeek-V4 检查点 can quantize wo a as W8A8 MXFP8 even when the 检查点 is otherwise W4A4. The generic MXFP8 loader leaves its 权重 as a 2D matrix, while 注意力 calls npu tran
+- [PR #19673](https://github.com/vllm-project/vllm-ascend/pull/19673) 已关闭
+  - 中文：【v0.30.0】【修复】【量化】ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
+  - 原文：[v0.30.0][BugFix][Quantization] Fix ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
+  - 说明：Backport of 19672 for releases/v0.30.0 . DeepSeek-V4 ModelSlim 检查点 can quantize wo a as W8A8 MXFP8 even when the 检查点 is otherwise W4A4. The generic MXFP8 loader leaves its 权重 as a 2D matrix, while DSV4 注意力 calls npu
+- [PR #19674](https://github.com/vllm-project/vllm-ascend/pull/19674) 进行中
+  - 中文：【修复】【量化】ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
+  - 原文：[BugFix][Quantization] Fix ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
+  - 说明：ModelSlim DeepSeek-V4 检查点 can quantize wo a as W8A8 MXFP8 even when the 检查点 is otherwise W4A4. The generic MXFP8 loader leaves its 权重 as a 2D matrix, while 注意力 calls npu transpose quant batchmatmul with perm x2=(0,
+- [PR #19672](https://github.com/vllm-project/vllm-ascend/pull/19672) 已关闭
+  - 中文：【修复】【量化】ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
+  - 原文：[BugFix][Quantization] Fix ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
+  - 说明：DeepSeek-V4 ModelSlim 检查点 can quantize wo a as W8A8 MXFP8 even when the 检查点 is otherwise W4A4. The generic MXFP8 loader leaves its 权重 as a 2D matrix, while DSV4 注意力 calls npu transpose quant batchmatmul with perm x2
+- [Issue #19658](https://github.com/vllm-project/vllm-ascend/issues/19658) 进行中
+  - 中文：[Bug]: 4机A2 PD分离部署的DSV4.1 1017在调用responses接口时出现D节点推理超时挂死问题
+- [Issue #19647](https://github.com/vllm-project/vllm-ascend/issues/19647) 进行中
+  - 中文：【缺陷】: MRV2 KV initialization fails on single-slot wrapped 缓存 components
+  - 原文：[Bug]: MRV2 KV initialization fails on single-slot wrapped cache components
+  - 说明：【KV 缓存】【(component a, component b)】DeepseekV41CacheLayer.bind KV 缓存() stores a 缓存 binding in a single-slot outer list: self.KV 缓存 = . When the binding itself is a tuple of Tensor components, the resulting shape is . AscendV2KV
+- [PR #16141](https://github.com/vllm-project/vllm-ascend/pull/16141) 已关闭
+  - 中文：【WIP】【功能】【Core】迁移 DeepSeekV4 KV 缓存 planning to KVCacheConfigBuilder (vLLM PR #53558)
+  - 原文：[WIP][Feature][Core] Migrate DeepSeekV4 KV cache planning to KVCacheConfigBuilder (vLLM PR #53558)
+  - 说明：vLLM PR 53558 makes KVCacheConfigBuilder pluggable (platform model default) and moves KV 缓存 planning from KV 缓存 utils.py to vllm.v1.core.KV 缓存 planning . This PR adapts vllm-ascend and retires the DeepSeekV4 monkey-patches in favou
+- [PR #19580](https://github.com/vllm-project/vllm-ascend/pull/19580) 进行中
+  - 中文：【修复】【MRV2】Unwrap single-slot KV caches before block zeroing
+  - 原文：[BugFix][MRV2] Unwrap single-slot KV caches before block zeroing
+  - 说明：【(K, scale)】修复 the MRV2 KV block-zeroer startup 回退 exposed by the empty-component guard in 18931. DeepseekV41CacheLayer.bind KV 缓存() stores a single-slot wrapper such as . The zeroer treats the inner tuple as a Tensor and raise
+
+#### 2026-10-22
+
+- [PR #19507](https://github.com/vllm-project/vllm-ascend/pull/19507) 进行中
+  - 中文：feat(deepseek-v41): integrate native MXFP8 Engram 卸载 and 重叠
+  - 原文：feat(deepseek-v41): integrate native MXFP8 Engram offload and overlap
+  - 说明：Port the final behavior of local PR24, PR60 and PR70 onto the current ds41-wheel and upstream Engram architecture. 新增 an opt-in row-sharded ElasticBuffer backend with native E4M3/E8M0 检查点 加载, tensor-scale ABI checks, startup pr
+- [PR #19074](https://github.com/vllm-project/vllm-ascend/pull/19074) 已合并
+  - 中文：【持续集成】新增 DSV4.1 PCP DSpark 夜间 coverage
+  - 原文：[CI] Add DSV4.1 PCP DSpark nightly coverage
+  - 说明：新增 a single-node A3-560T 夜间用例 for DeepSeek-V4.1-Flash W8A8 + DSpark + PCP, covering GPQA Diamond 精度. Register the case and 新增 it to the 夜间 documentation. Runner /dev/shm 配置: ascend-gha-runners/docs 298. Does
+- [PR #19220](https://github.com/vllm-project/vllm-ascend/pull/19220) 已合并
+  - 中文：【功能】DSpark bidirectional SparseFlashMla
+  - 原文：[Feature] Add DSpark bidirectional SparseFlashMla
+  - 说明：Adds bidirectional SparseFlashMla 注意力 for DSpark 投机解码 on DeepSeek-V4. This is a rebase of 15061 by @wangbj127 (original author — full credit for the design and implementation) onto current main. The original branch was
 
 #### 2026-10-21
 
-- [PR #19166](https://github.com/vllm-project/vllm-ascend/pull/19166) 已合并
-  - 中文：【持续集成】新增 static and adaptive DSpark 投机解码 测试用例 for DeepSeek-V4-Flash on A5
-  - 原文：[CI] Add static and adaptive DSpark speculative decoding test cases for DeepSeek-V4-Flash on A5
-  - 说明：This PR adds two chat completion 测试用例 for deepseek-ai/DeepSeek-V4-Flash-0731 on Ascend A3, covering DSpark 投机解码 with num 投机 tokens=15 in both static and adaptive verification modes. Does this PR introduce any
-- [Issue #19343](https://github.com/vllm-project/vllm-ascend/issues/19343) 进行中
-  - 中文：夜间 Daily test failure on 2026-10-21 12:00 - please check
-  - 原文：Nightly Daily test failure on 2026-10-21 12:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-10-21. Failed on: a3-4 card-(part 2-5), DeepSeek-V4-Flash-W8A8-A3 Failed 测试用例: - test deepseek v4 w4a8 tp4 basic greedy — psutil.NoSuchProcess: process no longe
-- [PR #19195](https://github.com/vllm-project/vllm-ascend/pull/19195) 已合并
-  - 中文：【文档】【v0.30.0】补充文档 D2RH workflow and Atlas 850E deployment
-  - 原文：[Doc][v0.30.0] Document D2RH workflow and Atlas 850E deployment
-  - 说明：Port the latest documentation from 18135 to releases/v0.30.0. - Describe the D2RH transfer workflow with its diagram. - 新增 inline DeepSeek-V4-Flash P/D launch examples for Atlas 850E with UBoE networking. - Explain host-显存 requirements
-- [PR #19328](https://github.com/vllm-project/vllm-ascend/pull/19328) 进行中
-  - 中文：【修复】【WeightTransfer】DeepSeek-V4 Flash Vision reload with native 保留
-  - 原文：[BugFix][WeightTransfer] Fix DeepSeek-V4 Flash Vision reload with native retention
-  - 说明：Fixes the one-card DeepSeek-V4 Flash Vision sleep → wake → NPU IPC reload path using the existing Worker sleep preserve parameter names mechanism. The PR is rebuilt as one commit directly on official main ee68e53457b9af658bb749a6258f9a8b1e2
-- [PR #19257](https://github.com/vllm-project/vllm-ascend/pull/19257) 已合并
-  - 中文：【文档】Use PCP8 DP2 for A3 DSpark 预填充 with Model Runner V2
-  - 原文：[Doc]Use PCP8 DP2 for A3 DSpark prefill with Model Runner V2
-  - 说明：Port the final documentation changes from 19201 ( releases/v0.30.0 ) to main . 更新 the A3 DeepSeek-V4-Flash DSpark 预填充 example to PCP8 / DP2 / TP1. Extend the launcher to allocate TP × PCP devices per DP rank, 启用 Model Runner V2
-- [PR #19201](https://github.com/vllm-project/vllm-ascend/pull/19201) 已合并
-  - 中文：【文档】【v0.30.0】Use PCP8 DP2 for A3 DSpark 预填充 with Model Runner V2
-  - 原文：[Doc][v0.30.0] Use PCP8 DP2 for A3 DSpark prefill with Model Runner V2
-  - 说明：更新 the DeepSeek-V4-Flash A3 DSpark PD deployment example on releases/v0.30.0 to use 预填充 PCP8 / DP2 / TP1 with Model Runner V2. Set export VLLM USE V2 MODEL RUNNER=1 on both DSpark nodes and 补充文档 that PCP requires V2, while DSA-C
+- [PR #19190](https://github.com/vllm-project/vllm-ascend/pull/19190) 已合并
+  - 中文：【功能】【DSA】Share O-projection buffers across DeepSeek layers
+  - 原文：[Feature][DSA] Share O-projection buffers across DeepSeek layers
+  - 说明：This PR reduces resident OTP 通信-buffer 显存 for DeepSeek V4 and V4.1 by sharing address-stable O-projection exchange scratch across sequential DSA layers. It reserves the 共享 buffers before KV-缓存 profiling and sizes them
+- [PR #19365](https://github.com/vllm-project/vllm-ascend/pull/19365) 草稿
+  - 中文：【重构】【MoE】Preserve A3 共享专家 clamp with official DequantSwiGLU
+  - 原文：[Refactor][MoE] Preserve A3 shared expert clamp with official DequantSwiGLU
+  - 说明：Replace the custom dequant-SwiGLU-quant call for clipped A3 INT8 共享 experts with torch npu.npu dequant swiglu quant , while retaining DeepSeek V4's limit semantics. This is an independent PR based on main 4f3648abd258a5cbdd1a9ae34165a85
+- [PR #19355](https://github.com/vllm-project/vllm-ascend/pull/19355) 进行中
+  - 中文：【性能】【MRV2】Skip CPU length synchronization for DeepSeek V4
+  - 原文：[Performance][MRV2] Skip CPU length synchronization for DeepSeek V4
+  - 说明：MRV2 exempts DeepSeek V4.1 from copying rejection-corrected token counts back to the CPU and waiting for that copy on the next step, but V4 takes the synchronous path even though its 注意力 uses device 序列 lengths. This can interrup
+- [PR #19305](https://github.com/vllm-project/vllm-ascend/pull/19305) 草稿
+  - 中文：【性能】重叠 mHC pre/post with Sinkhorn for the A2 preMix path
+  - 原文：[Performance] Overlap mHC pre/post with Sinkhorn for the A2 preMix path
+  - 说明：Summary The Atlas A2 (non-arch35) preMix path of npu hc pre v3 is ~1.5x slower than the non-premix path at large token counts. DSV4.1 calls hc pre twice per decoder layer and both calls use the delayed pre mix , so this is on the 预填充 ho
+
+#### 2026-10-20
+
+- [PR #19240](https://github.com/vllm-project/vllm-ascend/pull/19240) 已合并
+  - 中文：【修复】Unify DeepSeek V4 张量并行 limits across hardware
+  - 原文：[BugFix] Unify DeepSeek V4 tensor parallel limits across hardware
+  - 说明：A5 now supports tensor parallelism. 移除 the hardware-specific DeepSeek V4 TP policy introduced in 18418 and use the same model-specific limits on all hardware families: - DeepSeek V4 Flash and V4.1 Flash: TP <= 8. - DeepSeek V4 Pro: TP <
+- [PR #19203](https://github.com/vllm-project/vllm-ascend/pull/19203) 已合并
+  - 中文：【修复】【v0.30.0】Validate DeepSeek V4 张量并行 limits
+  - 原文：[BugFix][v0.30.0] Validate DeepSeek V4 tensor parallel limits
+  - 说明：Validate DeepSeek V4 张量并行 limits on releases/v0.30.0 . Adapt 18418 to use the same model-specific limits across all hardware families, including A5 now that it supports tensor parallelism. - DeepSeek V4 Flash and V4.1 Flash: TP <
+- [PR #19265](https://github.com/vllm-project/vllm-ascend/pull/19265) 进行中
+  - 中文：【Feat】【v0.30.0】新增 DSV4 CWS and MRV2 前缀 检查点
+  - 原文：[Feat][v0.30.0] Add DSV4 CWS and MRV2 prefix checkpoints
+  - 说明：DeepSeek-V4 预填充 currently reserves 压缩器-state pages for the in-flight chunk across layers, although only a bounded incomplete tail must persist. This ports the 共享 压缩器 workspace (CWS) from 15452 to vLLM 0.30 and adds pre
+- [PR #19199](https://github.com/vllm-project/vllm-ascend/pull/19199) 已合并
+  - 中文：【修复】【MoE】【v0.30.0】CANN MegaMoE 权重 preparation for DeepSeekV4 W4A8 MXFP
+  - 原文：[BugFix][MoE][v0.30.0] Fix CANN MegaMoE weight preparation for DeepSeekV4 W4A8 MXFP
+  - 说明：Port 18684 to releases/v0.30.0 . Refs 17452. In releases/v0.30.0 , the DeepSeek W4A8 MXFP process 权重 after 加载() override preserves the EPLB-specific byte normalization but applies the non-MegaMoE transformation for all other cases
 
 #### 2026-10-19
 
-- [PR #19198](https://github.com/vllm-project/vllm-ascend/pull/19198) 进行中
-  - 中文：【功能】【DCP】DeepSeek-V4 Flash DSA 解码-context-parallel 注意力 for 910B2
-  - 原文：[Feature][DCP] DeepSeek-V4 Flash DSA decode-context-parallel attention for 910B2
-  - 说明：What 解码 Context Parallelism (DCP) 支持 for the DeepSeek-V4 Flash DSA 注意力 stack on Ascend 910B (int8 索引器 / quant-KV path). The C4 and C128 compressed KV caches and the C4 索引器 K 缓存 are sharded along the 序列 dimens
+- [PR #18684](https://github.com/vllm-project/vllm-ascend/pull/18684) 已合并
+  - 中文：【修复】【MoE】CANN MegaMoE 权重 preparation for DeepSeekV4 W4A8 MXFP
+  - 原文：[BugFix][MoE] Fix CANN MegaMoE weight preparation for DeepSeekV4 W4A8 MXFP
+  - 说明：Refs 17452 What this PR does / why? When CANN MegaMoE is 启用 for DeepSeek W4A8 MXFP MoE, startup fails because AscendW4A8MXFPDSDynamicFusedMoEMethod overrides the common process 权重 after 加载() implementation. The DeepSeek-speci
+- [PR #19188](https://github.com/vllm-project/vllm-ascend/pull/19188) 已关闭
+  - 中文：【Feat】【DSA】Share O-projection buffers across DeepSeek layers
+  - 原文：[Feat][DSA] Share O-projection buffers across DeepSeek layers
+  - 说明：This PR reduces resident OTP 通信-buffer 显存 for DeepSeek V4 and V4.1 by sharing address-stable O-projection exchange scratch across sequential DSA layers. It reserves the 共享 buffers before KV-缓存 profiling and sizes them
 - [Issue #10058](https://github.com/vllm-project/vllm-ascend/issues/10058) 已关闭
   - 中文：【缺陷】: 0.20.2rc1 DeepSeek V4 Flash on A2 16xNPU. the serve mtp==3 acceptence is very low.
   - 原文：[Bug]: 0.20.2rc1 DeepSeek V4 Flash on A2 16xNPU. the serve mtp==3 acceptence is very low.
+- [Issue #19139](https://github.com/vllm-project/vllm-ascend/issues/19139) 进行中
+  - 中文：【文档】对齐 A2/A3 inference guides with vLLM V1 调度器 defaults: 移除 redundant --启用-chunked-预填充 on A2, and recommend ascend-vllm 调度器 for long-run stability on A3
+  - 原文：[Docs] Align A2/A3 inference guides with vLLM V1 scheduler defaults: remove redundant --enable-chunked-prefill on A2, and recommend ascend-vllm scheduler for long-run stability on A3
+  - 说明：In the official tutorial docs/source/tutorials/models/DeepSeek-V4-Flash.md (branch releases/v0.18.0 ), the A2 (Atlas 800I A2) inference script explicitly passes --启用-chunked-预填充 , while the A3 (Atlas 800 A3) script does not . This i
+- [PR #19034](https://github.com/vllm-project/vllm-ascend/pull/19034) 已合并
+  - 中文：【修复】【PCP】Size DSV4.1 replay 元数据 for local segments
+  - 原文：[BugFix][PCP] Size DSV4.1 replay metadata for local segments
+  - 说明：PCP splits a 预填充 request into front/back local segments, so a rank's local batch can contain up to twice max num seqs entries. DSV4.1 Engram gathers replay 元数据 using these local entries but allocates its CPU/GPU replay buffer for o
 - [Issue #19116](https://github.com/vllm-project/vllm-ascend/issues/19116) 进行中
   - 中文：【缺陷】: 投机 execution must be 启用 on all DeepSeek-V4-Flash-0731-W8A8 PD nodes. In some scenarios with high concurrency, enabling dspark will significantly increase the TTFT, in some cases even increasing it by several times.
   - 原文：[Bug]: Speculative execution must be enabled on all DeepSeek-V4-Flash-0731-W8A8 PD nodes. In some scenarios with high concurrency, enabling dspark will significantly increase the TTFT, in some cases even increasing it by several times.
 
 #### 2026-10-17
 
-- [Issue #19071](https://github.com/vllm-project/vllm-ascend/issues/19071) 进行中
-  - 中文：【缺陷】: DeepSeek-V4-Flash 缓存.view stride error with default KV dtype on Ascend 950
-  - 原文：[Bug]: DeepSeek-V4-Flash cache.view stride error with default KV dtype on Ascend 950
+- [PR #18808](https://github.com/vllm-project/vllm-ascend/pull/18808) 已合并
+  - 中文：【v0.30.0】【注意力】【功能】Integrate mixed_quant_sparse_flash_mla op for DeepSeek-V4 FP8 KV path
+  - 原文：[v0.30.0][Attention][Feature] Integrate mixed_quant_sparse_flash_mla op for DeepSeek-V4 FP8 KV path
+  - 说明：Backport Unify the DSV4 稀疏 注意力 path on the MixedQuantSparseFlashMla operator family from cann ops transformer, replacing the previous in-tree custom operators: 移除 the in-tree KvCompressEpilog 自定义算子 (csrc/注意力/kv compr
 
 ### DeepSeek V4.1
+
+#### 2026-11-12
+
+- [PR #21727](https://github.com/vllm-project/vllm-ascend/pull/21727) 进行中
+  - 中文：【修复】【MoE】Share DSpark MegaMoE contexts across CANN buffer APIs
+  - 原文：[BugFix][MoE] Share DSpark MegaMoE contexts across CANN buffer APIs
+  - 说明：DeepSeek V4.1 with DSpark and CANN MegaMoE creates separate target and draft buffers on the same MC2 group. On A5, the second native context can contain zero peer-buffer addresses, causing MegaMoE to fail during startup profiling. Keep one
+- [Issue #21718](https://github.com/vllm-project/vllm-ascend/issues/21718) 进行中
+  - 中文：【缺陷】: 使用pd分离部署方式在910c机器上部署deepseek-v4.1-flash大模型，1P1D(1机组1P,1机组1D)组网，报错TransferEngine initialization failed with ret_value: -1
+  - 原文：[Bug]: 使用pd分离部署方式在910c机器上部署deepseek-v4.1-flash大模型，1P1D(1机组1P,1机组1D)组网，报错TransferEngine initialization failed with ret_value: -1
+- [Issue #21704](https://github.com/vllm-project/vllm-ascend/issues/21704) 进行中
+  - 中文：【缺陷】: 910b使用vllm-ascend==0.30.0版本进行2机协同部署deepseek-v4.1-flash w8a8模型，报错call aclnnMoeDistributeDispatchV4 failed, error code is 561002
+  - 原文：[Bug]: 910b使用vllm-ascend==0.30.0版本进行2机协同部署deepseek-v4.1-flash w8a8模型，报错call aclnnMoeDistributeDispatchV4 failed, error code is 561002
+- [PR #21703](https://github.com/vllm-project/vllm-ascend/pull/21703) 进行中
+  - 中文：【修复】Allow DeepSeek V4.1 DSpark MXFP8 main_proj and DSA wo_a layouts
+  - 原文：[BugFix] Allow DeepSeek V4.1 DSpark MXFP8 main_proj and DSA wo_a layouts
+  - 说明：【n local groups, hidden, o lora rank】DeepSeek V4.1 DSpark on a ModelSlim W8A8 MXFP8 检查点 ( quant method: ascend ) built main proj as BF16, so the draft loader failed on main proj.scale . DSA wo a also needs an ND 权重 of for npu tr
+- [Issue #21684](https://github.com/vllm-project/vllm-ascend/issues/21684) 进行中
+  - 中文：【缺陷】: BF16 target logits change DeepSeek V4.1 DSpark verification on A3
+  - 原文：[Bug]: BF16 target logits change DeepSeek V4.1 DSpark verification on A3
+  - 说明：DeepSeek-V4.1-Flash-1017 W4A8 on Ascend A3 can reject a DSpark candidate because the target head rounds its logits to BF16 before verification. With the target hidden state, head 权重 and proposed token 修复, preserving FP32 logits chan
+- [PR #21659](https://github.com/vllm-project/vllm-ascend/pull/21659) 草稿
+  - 中文：【功能】【DeepSeek-V4.1】启用 A3 元数据 multistream execution
+  - 原文：[Feature][DeepSeek-V4.1] Enable A3 metadata multistream execution
+  - 说明：变更摘要 (Summary) DeepSeek-V4.1-Flash's MRV2 元数据 stream is currently restricted to the A5 packed-缓存 backend. 启用 the same target-owned execution protocol for A3's native INT8 稀疏 backend. - Select the existing TargetDeviceMetadat
+- [PR #21658](https://github.com/vllm-project/vllm-ascend/pull/21658) 进行中
+  - 中文：【性能】【DSV4.1】Shard DeepSeek V4.1 索引器 query rows across TP ranks
+  - 原文：[Performance][DSV4.1] Shard DeepSeek V4.1 indexer query rows across TP ranks
+  - 说明：DeepSeek V4.1 replicates the 索引器 across tensor-parallel ranks. Each rank projects and scores the same query rows against its local copy of Index K. This PR assigns query rows to TP ranks before the 索引器 projections, RoPE, and quantiz
+- [PR #21648](https://github.com/vllm-project/vllm-ascend/pull/21648) 进行中
+  - 中文：【文档】【修复】DeepSeek-V4.1-Flash launcher links in Chinese docs
+  - 原文：[Doc][BugFix] Fix DeepSeek-V4.1-Flash launcher links in Chinese docs
+  - 说明：修复 21597 The Chinese DeepSeek-V4.1-Flash guide links to English heading anchors for the DP launchers, but the translated headings generate different IDs. Clicking these links therefore does not navigate to the launcher scripts. This PR 新增
 
 #### 2026-11-11
 
@@ -382,14 +604,14 @@
   - 中文：【性能】融合 DeepSeek V4.1 索引器 K 缓存 writes and C2 RMSNorm
   - 原文：[Performance] Fuse DeepSeek V4.1 indexer K cache writes and C2 RMSNorm
   - 说明：DeepSeek V4.1 currently publishes 索引器 K through separate RMSNorm, partial RoPE, dynamic INT8 量化, and K/scale 缓存 scatter operations. Its ratio-2 压缩器 also normalizes pooled output in a separate operation. These interme
-- [PR #21623](https://github.com/vllm-project/vllm-ascend/pull/21623) 草稿
+- [PR #21623](https://github.com/vllm-project/vllm-ascend/pull/21623) 进行中
   - 中文：【功能】【Engram】local host VMM for 共享 A3 tables
   - 原文：[Feature][Engram] Add local host VMM for shared A3 tables
   - 说明：On A3 with DeepSeek-V4.1 Flash, TP1/DP16 and 共享 CPU-offloaded Engram, registering the second table's scales can fail with aclrtHostRegisterV2 error 207001. Correlated device logs show remap pfn range returning -ENOMEM ; the exhausted de
-- [PR #21621](https://github.com/vllm-project/vllm-ascend/pull/21621) 草稿
-  - 中文：【修复】【EPLB】DeepSeek V4.1 DSpark expert registration
-  - 原文：[BugFix][EPLB] Fix DeepSeek V4.1 DSpark expert registration
-  - 说明：DeepSeek V4.1 DSpark collects draft MoE layers without setting num moe layers , so MRv2 EPLB can fail to register the draft. Its 检查点 mapping also hard-codes zero redundant experts, leaving the mapping inconsistent with the configured
+- [PR #21621](https://github.com/vllm-project/vllm-ascend/pull/21621) 进行中
+  - 中文：【修复】【DSpark】【EPLB】V4.1 draft expert 加载 and registration
+  - 原文：[BugFix][DSpark][EPLB] Fix V4.1 draft expert loading and registration
+  - 说明：DeepSeek V4.1 DSpark has two EPLB integration bugs: 1. Draft MoE discovery does not set num moe layers , so MRv2 EPLB cannot reliably register the draft model. 2. The 检查点 loader builds its expert mapping with zero redundant experts e
 - [Issue #21608](https://github.com/vllm-project/vllm-ascend/issues/21608) 进行中
   - 中文：【缺陷】【EPLB】DeepSeek V4.1 DSpark misses draft MoE registration and redundant expert mapping
   - 原文：[Bug][EPLB] DeepSeek V4.1 DSpark misses draft MoE registration and redundant expert mapping
@@ -438,9 +660,9 @@
   - 原文：[Feature]: After enabling MemCache for DeepSeek V4.1 Flash, throughput is noticeably lower than Mooncake. We suspect this is caused by memory read/write contention.
   - 说明：<img width="1510" height="807" alt="Image" src=" / <img width="1538" height="756" alt="Image" src=" / Our vLLM-Ascend environment is the official release version 0.30.0. The DeepSeek V4.1 Flash model is configured with CPU 卸载. Under id
 - [Issue #21463](https://github.com/vllm-project/vllm-ascend/issues/21463) 进行中
-  - 中文：【RFC】: Sharing and sharding Engram tables across instances
-  - 原文：[RFC]: Sharing and sharding Engram tables across instances
-  - 说明：Related vLLM RFC: Motivation DeepSeek V4.1 Engram tables can consume substantial host 显存. Host offloading reduces HBM usage, but independently launched model instances may still load separate 拷贝 of the same immutable tables. This is
+  - 中文：【RFC】: Sharing and sharding Engram/PLE tables across instances
+  - 原文：[RFC]: Sharing and sharding Engram/PLE tables across instances
+  - 说明：Related vLLM RFC: Motivation DeepSeek V4.1 Engram tables / PLE tables can consume substantial host 显存. Host offloading reduces HBM usage, but independently launched model instances may still load separate 拷贝 of the same immutable ta
 - [Issue #21461](https://github.com/vllm-project/vllm-ascend/issues/21461) 进行中
   - 中文：【性能】: DeepSeek V4.1 bounded-replay tail ACL graph validation (PR #19286)
   - 原文：[Performance]: DeepSeek V4.1 bounded-replay tail ACL graph validation (PR #19286)
@@ -486,7 +708,7 @@
 - [Issue #21324](https://github.com/vllm-project/vllm-ascend/issues/21324) 进行中
   - 中文：【RFC】: Separate history and request-state capacity for hybrid KV caches
   - 原文：[RFC]: Separate history and request-state capacity for hybrid KV caches
-  - 说明：Motivation. In the tested DeepSeek V4.1 layout, history KV and 稀疏 indices grow with tokens. The sliding window and 压缩器 state are bounded per request. A 共享 block count couples their physical capacities and leaves padding in pa
+  - 说明：Motivation. In DeepSeek V4.1, history KV and 稀疏 indices grow with context length. The sliding-window and 压缩器 state are bounded by the number of live requests. The tested layout uses a common block count and sizes each 共享 phys
 - [PR #21211](https://github.com/vllm-project/vllm-ascend/pull/21211) 已合并
   - 中文：【文档】新增 950DT DeepSeek-V4.1-Flash deployment recipes
   - 原文：[Doc] Add 950DT DeepSeek-V4.1-Flash deployment recipes
@@ -570,7 +792,7 @@
 - [PR #21137](https://github.com/vllm-project/vllm-ascend/pull/21137) 进行中
   - 中文：【功能】Dspark adaptive verification for Deepseek-v4.1
   - 原文：[Feature] add Dspark adaptive verification for Deepseek-v4.1
-  - 说明：【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque
+  - 说明：启用 DSpark adaptive verification for DeepSeek-V4.1-Flash on Ascend Model Runner V2, reusing vLLM’s common budget allocator and sampling flow. - 支持 bounded variable-length FULL 解码 graphs and preserve verification query-width boun
 - [PR #21129](https://github.com/vllm-project/vllm-ascend/pull/21129) 进行中
   - 中文：【功能】【模型】【v0.32.0rc】启用 compact SP replay and 修复 compiled replay for DeepSeek V4.1
   - 原文：[Feature][Model][v0.32.0rc] Enable compact SP replay and fix compiled replay for DeepSeek V4.1
@@ -771,9 +993,9 @@
   - 原文：[Feature][Model] Replace DeepSeek V4.1 compressor with AscendC
   - 说明：Replace the DeepSeek V4.1 C2 压缩器's FP32 projection and Triton 池化 path with the AscendC CompressorV2 operator. The operator combines KV/gate projections, 池化, and FP32 ring-state 更新; the adapter maps compact outputs back
 - [PR #20399](https://github.com/vllm-project/vllm-ascend/pull/20399) 进行中
-  - 中文：【文档】【A5】DeepSeek-V4.1-Flash: single-node DP8 colocated deployment on Ascend 950DT
-  - 原文：[Doc][A5] DeepSeek-V4.1-Flash: single-node DP8 colocated deployment on Ascend 950DT
-  - 说明：What this PR adds A single-node, DP8/TP1 colocated recipe for DeepSeek-V4.1-Flash on Atlas 850E (Ascend 950DT ×8, A5) , as a new tab under §5.1, plus two bullets in §11 Limitations. The existing guide documents A3 colocated (DP4/TP4) and mu
+  - 中文：【文档】【950DT】DeepSeek-V4.1-Flash: long-context notes (DSpark / 显存) and A5 parallelism limits
+  - 原文：[Doc][950DT] DeepSeek-V4.1-Flash: long-context notes (DSpark / memory) and A5 parallelism limits
+  - 说明：Two focused additions for the 950DT (A5) recipe, both from measurements on one Atlas 850E node (8 x Ascend 950DT, CANN 9.2.1, vllm-ascend 0.30.0): 1. §5.1 - 950DT products : a short "Long-context notes" block - 64K-context 服务: keep --s
 - [Issue #20398](https://github.com/vllm-project/vllm-ascend/issues/20398) 进行中
   - 中文：【缺陷】【量化】【A5】TP>1 fails to start for DeepSeek-V4.1-Flash (DS-original W8A8 MXFP8): weight_scale reshape mismatch in w8a8_mxfp8.py
   - 原文：[Bug][Quantization][A5] TP>1 fails to start for DeepSeek-V4.1-Flash (DS-original W8A8 MXFP8): weight_scale reshape mismatch in w8a8_mxfp8.py
@@ -1062,7 +1284,7 @@
 - [PR #19284](https://github.com/vllm-project/vllm-ascend/pull/19284) 进行中
   - 中文：【功能】【模型】启用 DeepSeek V4.1 MRV2 PP with arbitrary layer partitions
   - 原文：[Feature][Model] Enable DeepSeek V4.1 MRV2 PP with arbitrary layer partitions
-  - 说明：启用 experimental DeepSeek V4.1 pipeline parallelism on Model Runner V2 with arbitrary contiguous, nonempty layer partitions. - Resolve cross-stage dependencies from the model topology. Forward 更新 source KV/index-缓存 rows, Top-K se
+  - 说明：启用 experimental DeepSeek V4.1 pipeline parallelism on Model Runner V2 with arbitrary contiguous, nonempty layer partitions. - Derive live cross-stage dependencies from the model topology. Forward 更新 source KV/index-缓存 rows and s
 - [Issue #19258](https://github.com/vllm-project/vllm-ascend/issues/19258) 进行中
   - 中文：【缺陷】: A2 v0.30.0rc2 deepseek v4.1 flash w8a8 mc2 error ret=4 / 561000
   - 原文：[Bug]: A2 v0.30.0rc2 deepseek v4.1 flash w8a8 mc2 error ret=4 / 561000
@@ -1109,538 +1331,373 @@
 - [Issue #19022](https://github.com/vllm-project/vllm-ascend/issues/19022) 进行中
   - 中文：【缺陷】: DeepSeek-V4.1-Flash 解码 挂起 with MoeDistributeDispatchV2 faults during PD burst admission on A3 (v0.30.0rc2)
   - 原文：[Bug]: DeepSeek-V4.1-Flash decode hang with MoeDistributeDispatchV2 faults during PD burst admission on A3 (v0.30.0rc2)
-- [PR #18969](https://github.com/vllm-project/vllm-ascend/pull/18969) 进行中
-  - 中文：【修复】【load_balance_proxy】Forward 解码 backend errors to client instead of empty 200, and 新增 ms log timestamps
-  - 原文：[BugFix][load_balance_proxy] Forward decode backend errors to client instead of empty 200, and add ms log timestamps
-  - 说明：Sync the disaggregated-预填充 load balancer example with the production implementation used for DeepSeek-V4.1 PD-disaggregated deployment. - Prefetch the first chunk from the 解码 backend before the response headers are sent, and inspect
-- [PR #18966](https://github.com/vllm-project/vllm-ascend/pull/18966) 进行中
-  - 中文：【性能】【模型】Skip MRV1 CPU length correction for DeepSeek V4.1
-  - 原文：[Performance][Model] Skip MRV1 CPU length correction for DeepSeek V4.1
-  - 说明：MRV1 currently treats every compressed-注意力 model as requiring exact CPU 序列 lengths. With asynchronous 投机解码, DeepSeek V4.1 consequently waits for the previous valid-sampled-token-count copy and corrects the optimi
-- [PR #18965](https://github.com/vllm-project/vllm-ascend/pull/18965) 进行中
-  - 中文：【v0.30.0】【性能】【模型】Skip MRV1 CPU length correction for DeepSeek V4.1
-  - 原文：[v0.30.0][Performance][Model] Skip MRV1 CPU length correction for DeepSeek V4.1
-  - 说明：MRV1 currently treats every compressed-注意力 model as requiring exact CPU 序列 lengths. With asynchronous 投机解码, DeepSeek V4.1 consequently waits for the previous valid-sampled-token-count copy and corrects the optimi
 
-#### 2026-10-15
+### DeepSeek V4 Flash
 
-- [PR #17496](https://github.com/vllm-project/vllm-ascend/pull/17496) 已合并
-  - 中文：【特点】【型号】支持DeepSeek V4.1解码器绑定重放
-  - 原文：[Feature][Model] Support DeepSeek V4.1 decoder bounded replay
-  - 说明：新增 decoder bounded replay for DeepSeek V4.1 on Ascend MRV2, following vllm-project/vllm 58132. For eligible 预填充 requests, layers after the last KV-source layer process only the final sliding-window tokens. Earlier layers process the fu
+#### 2026-11-12
 
-### DeepSeek V4
+- [Issue #21538](https://github.com/vllm-project/vllm-ascend/issues/21538) 已关闭
+  - 中文：夜间 Daily test failure on 2026-11-11 12:00 - please check
+  - 原文：Nightly Daily test failure on 2026-11-11 12:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-11-11. Failed on: DeepSeek-V4-Flash-W8A8-A3 Failed 测试用例: - test single node — RuntimeError: Server at 0.0.0.0 exited unexpectedly. Failed run(s): Merged PRs in
+- [Issue #21515](https://github.com/vllm-project/vllm-ascend/issues/21515) 已关闭
+  - 中文：夜间 Daily test failure on 2026-11-11 08:00 - please check
+  - 原文：Nightly Daily test failure on 2026-11-11 08:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-11-11. Failed on: DeepSeek-V4-Flash-W8A8-A3, Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed,
+- [Issue #20077](https://github.com/vllm-project/vllm-ascend/issues/20077) 已关闭
+  - 中文：夜间 Daily test failure on 2026-10-28 12:00 - please check
+  - 原文：Nightly Daily test failure on 2026-10-28 12:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-10-28. Failed on: DeepSeek-V4-Flash-W8A8-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed, info were shown above. Failed run(s):
+- [Issue #20530](https://github.com/vllm-project/vllm-ascend/issues/20530) 已关闭
+  - 中文：夜间 Daily test failure on 2026-11-01 08:00 - please check
+  - 原文：Nightly Daily test failure on 2026-11-01 08:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-11-01. Failed on: a3-4 card-(part 2-5), DeepSeek-V4-Flash-W8A8-A3, Qwen3-32B-QuaRot, Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3, glm-5.2-w4a8-dspark Failed 测试用例: - t
+- [Issue #19779](https://github.com/vllm-project/vllm-ascend/issues/19779) 已关闭
+  - 中文：夜间 Daily test failure on 2026-10-26 08:00 - please check
+  - 原文：Nightly Daily test failure on 2026-10-26 08:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-10-26. Failed on: a2-1 card-(part 4-7), DeepSeek-V4-Flash-W8A8-A3 Failed 测试用例: - TestPauseResume::test pause mode keep resumes frozen request — RuntimeError: vl
+- [Issue #19830](https://github.com/vllm-project/vllm-ascend/issues/19830) 已关闭
+  - 中文：夜间 Daily test failure on 2026-10-26 08:00 - please check
+  - 原文：Nightly Daily test failure on 2026-10-26 08:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-10-26. Failed on: a2-1 card-(part 4-7), DeepSeek-V4-Flash-W8A8-A3 Failed 测试用例: - TestPauseResume::test pause mode keep resumes frozen request — RuntimeError: vl
+- [Issue #19829](https://github.com/vllm-project/vllm-ascend/issues/19829) 已关闭
+  - 中文：夜间 Daily test failure on 2026-10-26 08:00 - please check
+  - 原文：Nightly Daily test failure on 2026-10-26 08:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-10-26. Failed on: a2-1 card-(part 4-7), DeepSeek-V4-Flash-W8A8-A3 Failed 测试用例: - TestPauseResume::test pause mode keep resumes frozen request — RuntimeError: vl
+- [Issue #19343](https://github.com/vllm-project/vllm-ascend/issues/19343) 已关闭
+  - 中文：夜间 Daily test failure on 2026-10-21 12:00 - please check
+  - 原文：Nightly Daily test failure on 2026-10-21 12:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-10-21. Failed on: a3-4 card-(part 2-5), DeepSeek-V4-Flash-W8A8-A3 Failed 测试用例: - test deepseek v4 w4a8 tp4 basic greedy — psutil.NoSuchProcess: process no longe
 
 #### 2026-11-11
 
-- [Issue #19137](https://github.com/vllm-project/vllm-ascend/issues/19137) 已关闭
-  - 中文：分层与稀疏KV缓存卸载可以使用deepseekV4系列的么
-  - 说明：📚 The doc issue 分层与稀疏KV缓存卸载可以使用deepseekV4系列的么 Suggest a potential alternative/修复 No response
-- [PR #21578](https://github.com/vllm-project/vllm-ascend/pull/21578) 已关闭
-  - 中文：【测试】One-off DSV4 DSpark PP2 baseline probe
-  - 原文：[Test] One-off DSV4 DSpark PP2 baseline probe
-  - 说明：Throwaway probe PR. No functional change: adds one comment marker in an unrelated e2e file, so CI can run an existing baseline case from main unchanged. Purpose: run tests/e2e/pull request/four card/model runner v2/test spec pp 精度.py:
-- [PR #21576](https://github.com/vllm-project/vllm-ascend/pull/21576) 进行中
-  - 中文：【性能】缓存 DeepSeek V4 and V4.1 ViT RoPE tables on device
-  - 原文：[Performance] Cache DeepSeek V4 and V4.1 ViT RoPE tables on device
-  - 说明：DeepSeek V4 and V4.1 ViT forwards fetch FP32 RoPE cosine and sine tables from a CPU 缓存 and transfer both tensors to the NPU on every forward. Images with the same patch grid can reuse these tables because the rotation coefficients depend
-- [PR #21572](https://github.com/vllm-project/vllm-ascend/pull/21572) 草稿
-  - 中文：【重构】【KV 缓存】Centralize 共享-tuple 缓存 planning
-  - 原文：[Refactor][KV Cache] Centralize shared-tuple cache planning
-  - 说明：get deepseek v4 缓存 layout() and the grouping/bucketing logic that feeds it are duplicated between vllm ascend/core/KV 缓存 配置 builder.py (the pluggable builder on vLLM main) and vllm ascend/patch/platform/patch KV 缓存 utils.py (th
-- [PR #21543](https://github.com/vllm-project/vllm-ascend/pull/21543) 进行中
-  - 中文：【性能】【算子】新增 SwiGLU graph fusion pass
-  - 原文：[Performance][Ops] Add SwiGLU graph fusion pass
-  - 说明：Why Some model paths write the SwiGLU activation with raw aten ops instead of going through AscendSiluAndMul / npu swiglu . For example DeepseekV4VisionMLP.forward : This keeps the chunk - silu - mul 序列 as separate graph ops, with int
-- [PR #20484](https://github.com/vllm-project/vllm-ascend/pull/20484) 已关闭
-  - 中文：【性能】减少 PCP 解码 overhead for DSV4 and DSV4.1
-  - 原文：[Performance] Reduce PCP decode overhead for DSV4 and DSV4.1
-  - 说明：Skip redundant zeroing of fully overwritten DSV4 O-projection inputs and reuse DSV4.1 PCP RoPE lookups per step. Preserve zero padding/empty outputs and separate global KV/local Q buffers. Lowe
-- [PR #21513](https://github.com/vllm-project/vllm-ascend/pull/21513) 进行中
-  - 中文：【文档】新增 deepseek_v41_qli_candidate to nav and 修复 FAQ anchor
-  - 原文：[Doc] Add deepseek_v41_qli_candidate to nav and fix FAQ anchor
-  - 说明：Two doc-only fixes: 1. mkdocs.yml : deepseek v41 qli candidate.md (新增 in 19586) was not listed in the Design Documents nav, so the page was unreachable from the docs sidebar despite existing in the repo. 2. platform.py : the OOM FAQ comm
-- [PR #21511](https://github.com/vllm-project/vllm-ascend/pull/21511) 草稿
-  - 中文：【功能】【DSV4.1】PIECEWISE 运行时 支持
-  - 原文：[Feature][DSV4.1] Add PIECEWISE runtime support
-  - 说明：DS4.1 PIECEWISE execution needs current-request replay/Engram state outside captured graph segments. This draft separates that model-运行时 work from the cross-layer KV pool 特性 in 21116, so it can be reviewed and validated independent
+- [PR #21631](https://github.com/vllm-project/vllm-ascend/pull/21631) 进行中
+  - 中文：【功能】Ascend overlay for deepseek-ai/DeepSeek-V4-Flash
+  - 原文：[Feature] Add Ascend overlay for deepseek-ai/DeepSeek-V4-Flash
+  - 说明：Closing: accidentally opened by platform E2E verification against a test batch (tuning 230420). The existing community-maintained overlay at this path must not be overwritten by auto-generated test data. Sorry for the noise. - vLLM main:
 
 #### 2026-11-10
 
-- [PR #18994](https://github.com/vllm-project/vllm-ascend/pull/18994) 已关闭
-  - 中文：【持续集成】dsv4 mooncake
-  - 原文：[CI] dsv4 mooncake
+- [PR #20263](https://github.com/vllm-project/vllm-ascend/pull/20263) 已关闭
+  - 中文：【持续集成】新增 DeepSeek-V4-Flash Mooncake 池化 coverage on A3
+  - 原文：[CI] Add DeepSeek-V4-Flash Mooncake pooling coverage on A3
   - 说明：【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque
+- [PR #21438](https://github.com/vllm-project/vllm-ascend/pull/21438) 已合并
+  - 中文：【文档】【杂项】Rectify A3 DeepSeek V4 Flash model tutorial deployment for main
+  - 原文：[Doc][Misc] Rectify A3 DeepSeek V4 Flash model tutorial deployment for main
+  - 说明：This PR 更新 the DeepSeek-V4-Flash tutorial deployment configurations for v30. It corrects the parameter from to in the A3 series deployment examples to prevent potential out-of-显存 (OOM) issues during short-序列 deployment. It al
+- [PR #21436](https://github.com/vllm-project/vllm-ascend/pull/21436) 已合并
+  - 中文：【文档】【杂项】Rectify A3 DeepSeek V4 Flash model tutorial deployment for v32
+  - 原文：[Doc][Misc] Rectify A3 DeepSeek V4 Flash model tutorial deployment for v32
+  - 说明：This PR 更新 the DeepSeek-V4-Flash tutorial deployment configurations for v30. It corrects the parameter from to in the A3 series deployment examples to prevent potential out-of-显存 (OOM) issues during short-序列 deployment. It al
+- [PR #21222](https://github.com/vllm-project/vllm-ascend/pull/21222) 已合并
+  - 中文：【文档】【杂项】Rectify A3 DeepSeek V4 Flash model tutorial deployment for v30
+  - 原文：[Doc][Misc] Rectify A3 DeepSeek V4 Flash model tutorial deployment for v30
+  - 说明：This PR 更新 the DeepSeek-V4-Flash tutorial deployment configurations for v30. It corrects the --max-model-len parameter from 1048576 to 512000 in the A3 series deployment examples to prevent potential out-of-显存 (OOM) issues during s
 - [Issue #20563](https://github.com/vllm-project/vllm-ascend/issues/20563) 已关闭
   - 中文：【Recipes】overlay 无法更新 DeepSeek-V4-Flash 的 A3 配置（新增-only 与 modes.variants 限制）
   - 原文：[Recipes] overlay 无法更新 DeepSeek-V4-Flash 的 A3 配置（add-only 与 modes.variants 限制）
   - 说明：现象 尝试用 recipes/overlays/deepseek-ai/DeepSeek-V4-Flash.yaml 更新 Ascend 910C（A3）的实测配置（ v0.30.0rc2-a3 ），CI Recipes / Validate 三种写法全部失败： 1. 新增 variant（ ascend w8a8 mtp a3 / ascend w8a8 dspark a3 ）： features.spec 解码 has no mode available fo
-- [PR #20336](https://github.com/vllm-project/vllm-ascend/pull/20336) 已关闭
-  - 中文：【文档】【功能】DeepSeek-V4 支持 matrix for A2/A3
-  - 原文：[Doc][Feature] Add DeepSeek-V4 support matrix for A2/A3
-  - 说明：This pull request adds a 支持 matrix for DeepSeek-V4-Pro and DeepSeek-V4-Flash models on A2/A3 products in the documentation, and enables the markdown tables extended extension in mkdocs.yml . Feedback: The newly 新增 tab block in the d
-- [PR #21092](https://github.com/vllm-project/vllm-ascend/pull/21092) 已关闭
-  - 中文：【性能】【模型】Skip padded DSV4.1 expert routes by default
-  - 原文：[Performance][Model] Skip padded DSV4.1 expert routes by default
-  - 说明：DSV4.1 pads token rows for graph replay and 序列 parallelism. On the AllGather MoE path, 路由 those rows to local experts adds work to the grouped GEMMs. This change filters padding after the router selects experts. Hash 路由 uses
-- [PR #21417](https://github.com/vllm-project/vllm-ascend/pull/21417) 进行中
-  - 中文：【性能】【模型】Skip padded DSV4.1 expert routes by default
-  - 原文：[Performance][Model] Skip padded DSV4.1 expert routes by default
-  - 说明：DeepSeek-V4.1 introduces token padding for graph replay and 序列 parallelism (SP). In the AllGather MoE path, these padded tokens may still be assigned to local experts, resulting in unnecessary computations in the grouped GEMMs. This P
-- [Issue #21406](https://github.com/vllm-project/vllm-ascend/issues/21406) 进行中
-  - 中文：【缺陷】: DSV4.1 on A2 "Failed to mount segment: INVALID_PARAMS" while 启用 mooncake 池化
-  - 原文：[Bug]: DSV4.1 on A2 "Failed to mount segment: INVALID_PARAMS" while enable mooncake pooling
-- [PR #16710](https://github.com/vllm-project/vllm-ascend/pull/16710) 已关闭
-  - 中文：【持续集成】优化 DeepSeek-V4 DSpark test duration
-  - 原文：[CI] Optimize DeepSeek-V4 DSpark test duration
-  - 说明：优化 the execution time of the DeepSeek-V4 DSpark 投机解码 PR test. The current estimated execution time of tests/e2e/pull request/four card/spec 解码/test dspark deepseekv4.py is about 1280 seconds. This PR first adds per
-- [Issue #21396](https://github.com/vllm-project/vllm-ascend/issues/21396) 进行中
-  - 中文：【缺陷】【量化】【A5】W4A8-MXFP4 MoE down_proj scale reshape crashes on odd TP scale-group count
-  - 原文：[Bug][Quantization][A5] W4A8-MXFP4 MoE down_proj scale reshape crashes on odd TP scale-group count
-  - 说明：AscendW4A8MXFPDynamicFusedMoEMethod.process 权重 after 加载 ( vllm ascend/量化/methods/w4a8/w4a8 mxfp4.py ) reshapes w2 权重 scale 's last dimension into pairs of MX groups: k is intermediate size per partition // group size
-- [PR #21384](https://github.com/vllm-project/vllm-ascend/pull/21384) 进行中
-  - 中文：【修复】【模型】Reuse upstream DeepSeek V4 image preprocessing
-  - 原文：[BugFix][Model] Reuse upstream DeepSeek V4 image preprocessing
-  - 说明：The local DeepSeek V4 vision processor still expects four arguments in call hf processor , while current vLLM passes two. With vLLM main 24420b7a , DeepSeek-V4-Flash-Vision-Exp fails during service initialization: The local copy was introdu
+- [PR #18630](https://github.com/vllm-project/vllm-ascend/pull/18630) 已关闭
+  - 中文：【特点】【WeightTransfer】支持DeepSeek-V4 Flash Vision权重转移
+  - 原文：[Feature][WeightTransfer] Support DeepSeek-V4 Flash Vision weight transfer
+  - 说明：Adds a DeepSeek-V4-Flash-Vision lane to the one-card NPU IPC 权重-transfer e2e test, and fixes the defects in the --启用-sleep-mode + layerwise 权重-更新 + ACL-graph-replay path that the multimodal model exposes. The vision tower is
+- [PR #19248](https://github.com/vllm-project/vllm-ascend/pull/19248) 已关闭
+  - 中文：【修复】【WeightTransfer】DeepSeek-V4 Flash Vision reload across sleep and wake
+  - 原文：[BugFix][WeightTransfer] Fix DeepSeek-V4 Flash Vision reload across sleep and wake
+  - 说明：Adds a one-card DeepSeek-V4 Flash Vision NPU IPC 权重-transfer lane and fixes the sleep → wake → layerwise reload → graph replay path. This follows 18630 and reuses the already-merged Worker sleep preserve parameter names mechanism from 1
 
 #### 2026-11-09
 
-- [PR #21168](https://github.com/vllm-project/vllm-ascend/pull/21168) 已合并
-  - 中文：【修复】【DSpark】【EPLB】DeepSeek V4 expert 权重 mapping with redundant experts
-  - 原文：[BugFix][DSpark][EPLB] Fix DeepSeek V4 expert weight mapping with redundant experts
-  - 说明：DeepSeek V4 DSpark creates MoE layers with the configured redundant experts, but its 检查点 loader builds the expert mapping with num redundant experts=0 . Under MRv2, this can load incorrect logical experts into physical slots and leav
 - [Issue #21335](https://github.com/vllm-project/vllm-ascend/issues/21335) 进行中
   - 中文：【文档】: Feedback for `/en/v0.30.0/tutorials/models/DeepSeek-V4-Flash.html`，启动模型报HCCL函数错误：hcclGetRootInfo(&hcclID)，错误代码为19（调用网络API失败）
   - 原文：[Doc]: Feedback for `/en/v0.30.0/tutorials/models/DeepSeek-V4-Flash.html`，启动模型报HCCL函数错误：hcclGetRootInfo(&hcclID)，错误代码为19（调用网络API失败）
   - 说明：【multiproc executor.py:944】【ERROR】📚 The doc issue A2单机用vllm v0.30启动DeepSeek V4 Flash，报HCCL函数错误：hcclGetRootInfo(&hcclID)，错误代码为19（调用网络API失败）下面为错误详情： Worker TP0 EP0 pid=8713) ERROR 11-09 11:23:33 2026-11-09-11:23:31 (PID:8713, Device:0, Ran
-- [PR #21333](https://github.com/vllm-project/vllm-ascend/pull/21333) 进行中
-  - 中文：【修复】恢复 DSpark 检查点 state for RFork
-  - 原文：[BugFix] Restore DSpark checkpoint state for RFork
-  - 说明：RFork 拷贝 post-load tensors and does not run the draft model's load 权重 . DeepSeek V4/V4.1 DSpark drafts set has own embed tokens / has own lm head in load 权重 from the 检查点 权重 names, so under RFork these flags kept the
-
-#### 2026-11-07
-
-- [PR #21259](https://github.com/vllm-project/vllm-ascend/pull/21259) 进行中
-  - 中文：【性能】【模型】Capture DeepSeek V4 解码 元数据 in full graphs
-  - 原文：[Performance][Model] Capture DeepSeek V4 decode metadata in full graphs
-  - 说明：Capture DeepSeek V4 target-model SAS/QLI 元数据 producers in FULL 解码 graphs, avoiding repeated host executor construction and CPU scalar preparation. Persistent inputs are refreshed before replay; producer outputs retain stable storag
 
 #### 2026-11-06
 
-- [PR #20420](https://github.com/vllm-project/vllm-ascend/pull/20420) 已合并
-  - 中文：【重构】移除 unused tid2eid param after fused_moe refactor.
-  - 原文：[Refactor] Remove unused tid2eid param after fused_moe refactor.
-  - 说明：【input ids】Background. DeepSeek-V4 hash-routed MoE layers do not run top-k over router logits: the experts for a token come from a 检查点 table, topk ids = tid2eid . When V4 支持 landed ( 9270, 7bce23cc0 ), expert selection still liv
-- [Issue #21180](https://github.com/vllm-project/vllm-ascend/issues/21180) 进行中
-  - 中文：【缺陷】: DSV4.1-Flash w4a8 预填充 crashes in aclnnIndex (压缩器.wgate) — vector core exception 507035 on 910B
-  - 原文：[Bug]: DSV4.1-Flash w4a8 prefill crashes in aclnnIndex (compressor.wgate) — vector core exception 507035 on 910B
-- [PR #21177](https://github.com/vllm-project/vllm-ascend/pull/21177) 进行中
-  - 中文：【性能】【DSV4.1】Project 序列 shards before all-gather
-  - 原文：[Performance][DSV4.1] Project sequence shards before all-gather
-  - 说明：With DeepSeek V4.1 序列 parallelism, each TP rank currently gathers the full hidden states before computing replicated 注意力 input projections. This repeats the same projection work across ranks. This PR computes those projections o
-- [PR #21142](https://github.com/vllm-project/vllm-ascend/pull/21142) 进行中
-  - 中文：【性能】【DSv4】Shard 预填充 索引器 rows across TP ranks
-  - 原文：[Performance][DSv4] Shard prefill indexer rows across TP ranks
-  - 说明：What On pure-TP deployments every rank runs the C4 lightning 索引器 over all 预填充 rows with identical (replicated) 索引器 projections — the scoring work is duplicated 张量并行 size -fold. This PR gives each rank a contiguous, co
+- [Issue #21182](https://github.com/vllm-project/vllm-ascend/issues/21182) 进行中
+  - 中文：【文档】: Feedback for `/en/latest/tutorials/models/DeepSeek-V4-Flash.html`
+  - 原文：[Doc]: Feedback for `/en/latest/tutorials/models/DeepSeek-V4-Flash.html`
+  - 说明：📚 The doc issue 设备为650E，使用镜像为v0.30.0rc2-a5，使用4卡部署DeepSeek-V4-Flash-0731模型，出现报错导致部署失败，请大佬帮忙看看如何解决； 模型服务启动脚本： export VLLM USE V2 MODEL RUNNER=1 export OMP PROC BIND=false export OMP NUM THREADS=10 export PYTORCH NPU ALLOC CONF=expandable seg
+- [Issue #21122](https://github.com/vllm-project/vllm-ascend/issues/21122) 进行中
+  - 中文：【缺陷】HCCL Error 19 during DeepSeek-V4-Flash initialization: 修复 by configuring loopback interface inside Docker container / 单机部署 HCCL Error 19 解决方案
+  - 原文：[Bug] HCCL Error 19 during DeepSeek-V4-Flash initialization: Fixed by configuring loopback interface inside Docker container / 单机部署 HCCL Error 19 解决方案
 
 #### 2026-11-05
 
-- [PR #21095](https://github.com/vllm-project/vllm-ascend/pull/21095) 草稿
-  - 中文：【性能】遵循 DSV4.1 multistream token threshold
-  - 原文：[Performance] Honor DSV4.1 multistream token threshold
-  - 说明：This ports the multi-stream token-threshold behavior from vLLM vllm-project/vllm 65832 to the Ascend-native DeepSeek V4.1 注意力 implementation. The Ascend Q/KV preprocessing path only checks multistream dsv4 dsa 重叠 and does not hon
-- [PR #21083](https://github.com/vllm-project/vllm-ascend/pull/21083) 进行中
-  - 中文：【杂项】Use unified KV 缓存 allocation interface for deepseek v4 and v4.1
-  - 原文：[Misc]Use unified kv cache allocation interface for deepseek v4 and v4.1
-  - 说明：【】RFC: 21053 --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by
-- [Issue #20550](https://github.com/vllm-project/vllm-ascend/issues/20550) 已关闭
-  - 中文：【缺陷】: DeepSeek V4.1 Flash produces corrupted output when `--block-size` is omitted
-  - 原文：[Bug]: DeepSeek V4.1 Flash produces corrupted output when `--block-size` is omitted
-  - 说明：Environment - Hardware: Atlas 800 A2, 8 NPUs per node. - Model: DeepSeek V4.1 Flash, Ascend 量化. - Deployment: 2 预填充 nodes + 2 解码 nodes; each node runs TP4 × DP2 with expert parallelism. DSpark 投机解码 uses 5 d
-- [PR #21034](https://github.com/vllm-project/vllm-ascend/pull/21034) 进行中
-  - 中文：【持续集成】新增 DeepSeek-v4 测试用例
-  - 原文：[CI] Add DeepSeek-v4 test case
-  - 说明：【】新增 DeepSeek-v4 测试用例 No by running the 测试用例 --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input,
-- [PR #17167](https://github.com/vllm-project/vllm-ascend/pull/17167) 已关闭
-  - 中文：【重构】【KV 缓存】Carry DSA block geometry in KVCacheSpec
-  - 原文：[Refactor][KV Cache] Carry DSA block geometry in KVCacheSpec
-  - 说明：DeepSeek V4 KV caches have three related block sizes: - the manager block size in 调度器-token units; - the logical block size consumed by 内核 and 元数据 builders; - the number of rows physically stored in one 缓存 page. This PR m
+- [PR #20907](https://github.com/vllm-project/vllm-ascend/pull/20907) 已合并
+  - 中文：【文档】更新 DeepSeek-V4-Flash A2 DSpark deployment for 256K context
+  - 原文：[Doc] Update DeepSeek-V4-Flash A2 DSpark deployment for 256K context
+  - 说明：对齐 the DeepSeek-V4-Flash-0731-w8a8 A2 DSpark 2P2D deployment guide with the 配置 that was actually validated on Atlas 800I A2: - The default context is 256K on both roles ( --max-model-len 262144 ) with 预填充 --max-num-batched
+- [PR #20901](https://github.com/vllm-project/vllm-ascend/pull/20901) 已合并
+  - 中文：【v0.30.0】【文档】更新 DeepSeek-V4-Flash A2 DSpark deployment for 256K context
+  - 原文：[v0.30.0][Doc] Update DeepSeek-V4-Flash A2 DSpark deployment for 256K context
+  - 说明：对齐 the DeepSeek-V4-Flash-0731-w8a8 A2 DSpark 2P2D deployment guide with the 配置 that was actually validated on Atlas 800I A2: - The default context is 256K on both roles ( --max-model-len 262144 ) with 预填充 --max-num-batched
+- [PR #21060](https://github.com/vllm-project/vllm-ascend/pull/21060) 进行中
+  - 中文：【文档】【修复】DSpark num_speculative_tokens mismatch between 预填充 and 解码 in DeepSeek-V4-Flash A2 PD tutorials
+  - 原文：[Doc][BugFix] Fix DSpark num_speculative_tokens mismatch between Prefill and Decode in DeepSeek-V4-Flash A2 PD tutorials
+  - 说明：In the A2 PD deployment examples of the DeepSeek-V4-Flash tutorial, the 预填充 nodes run DSpark with num 投机 tokens: 5 , but the corresponding 解码 scripts still used num 投机 tokens: 1 . The tutorial itself states that fo
 
 #### 2026-11-04
 
-- [PR #20916](https://github.com/vllm-project/vllm-ascend/pull/20916) 进行中
-  - 中文：【修复】【DSpark】初始化 num_moe_layers for dynamic EPLB detection
-  - 原文：[BugFix][DSpark] Initialize num_moe_layers for dynamic EPLB detection
-  - 说明：Fixes DSpark DeepSeek V4 dynamic EPLB startup failure. DSparkDeepseekV4ForCausalLM.set moe parameters() collects the MoE layers into moe layers , but did not populate num moe layers . vLLM identifies MoE models only when num moe layers 0 ;
-- [PR #20915](https://github.com/vllm-project/vllm-ascend/pull/20915) 进行中
-  - 中文：【修复】【DSpark】初始化 num_moe_layers for dynamic EPLB detection
-  - 原文：[BugFix][DSpark] Initialize num_moe_layers for dynamic EPLB detection
-  - 说明：Fixes DSpark DeepSeek V4 dynamic EPLB startup failure. DSparkDeepseekV4ForCausalLM.set moe parameters() collects the MoE layers into moe layers , but did not populate num moe layers . vLLM identifies MoE models only when num moe layers 0 ;
+- [Issue #17385](https://github.com/vllm-project/vllm-ascend/issues/17385) 已关闭
+  - 中文：【缺陷】: DeepSeek V4 flash流式输出概率性返回最后一个trunk中的delta为空，与N卡表现不一致
+  - 原文：[Bug]: DeepSeek V4 flash流式输出概率性返回最后一个trunk中的delta为空，与N卡表现不一致
+- [PR #20189](https://github.com/vllm-project/vllm-ascend/pull/20189) 已合并
+  - 中文：【测试】【功能】single-node PD disaggregation launcher and DeepSeek-V4-Flash-0731-A5-PD.yaml test 配置
+  - 原文：[Test][Feature] Add single-node PD disaggregation launcher and DeepSeek-V4-Flash-0731-A5-PD.yaml  test configuration
+  - 说明：This PR introduces a single-node 预填充-解码 (PD) disaggregation launcher ( launch single node pd.py ) for vLLM-Ascend, which orchestrates a 预填充 engine, a 解码 engine, and a load-balance proxy on a single Atlas node. It also adds a
+- [Issue #20925](https://github.com/vllm-project/vllm-ascend/issues/20925) 进行中
+  - 中文：【缺陷】【KV 缓存】AscendStore write/read 保留 gate asymmetry wastes pool for short prompts
+  - 原文：[Bug][KV Cache] AscendStore write/read retention gate asymmetry wastes pool for short prompts
+  - 说明：" Environment\n\n- AscendStore external KV pool, DeepSeek-V4-Flash PD-disaggregation\n- --block-size 32 , --启用-前缀-缓存 , --前缀-缓存-保留-interval 4096 (i.e. VLLM 前缀缓存 保留 INTERVAL=4096 )\n\n Summary\n\nThe
+- [PR #20588](https://github.com/vllm-project/vllm-ascend/pull/20588) 已合并
+  - 中文：【v0.30.0】【文档】【杂项】Normalize A2 shell examples one parameter per line
+  - 原文：[v0.30.0][Doc][Misc] Normalize A2 shell examples one parameter per line
+  - 说明：Backport of 20587 to releases/v0.30.0 . This PR normalizes the A2 DSpark and KV-池化 shell examples in the DeepSeek-V4-Flash tutorial to 改进 readability and maintainability. Specifically, it: - Splits multi-option vllm serve lines in
+- [PR #20587](https://github.com/vllm-project/vllm-ascend/pull/20587) 已合并
+  - 中文：【文档】【杂项】Normalize A2 shell examples one parameter per line
+  - 原文：[Doc][Misc] Normalize A2 shell examples one parameter per line
+  - 说明：Normalize the A2 DSpark and KV-池化 shell examples in the DeepSeek-V4-Flash tutorial: - 拆分 multi-option vllm serve lines into one --key value per line - 拆分 multi-assignment export lines into one export KEY=value per line - 拆分 th
 
 #### 2026-11-03
 
-- [PR #20789](https://github.com/vllm-project/vllm-ascend/pull/20789) 进行中
-  - 中文：【功能】对齐 adaptive verification interface and 启用 online estimation for dsv4/glm53
-  - 原文：[Feature] Align adaptive verification interface and enable online estimation for dsv4/glm53
-  - 说明：【】TBD. N/A by ci --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, of
-- [PR #20788](https://github.com/vllm-project/vllm-ascend/pull/20788) 草稿
-  - 中文：【修复】【KV Transfer】禁用 compression-triggered 预填充 truncation in hybrid connector
-  - 原文：[BugFix][KV Transfer] Disable compression-triggered prefill truncation in hybrid connector
-  - 说明：MooncakeHybridConnector currently enables prompt truncation whenever the model 配置 has compress ratios . For a DeepSeek V4-family prompt ending in <think , a remote-解码 request consequently drops that marker before the P-side sample.
-- [PR #20757](https://github.com/vllm-project/vllm-ascend/pull/20757) 进行中
-  - 中文：【测试】新增 KV pool hit watch to PR-level e2e cases
-  - 原文：[Test] Add KV pool hit watch to PR-level e2e cases
-  - 说明：Upgrade six four-card DSV4/DSV4.1 e2e cases from connector smoke tests to real KV pool hit watching. - 新增 tests/e2e/pull request/kv pool watch.py with a 共享 R1-R5 hit 序列: - R1 cold write - R2/R3 hit - R4 disjoint-prompt isolation
-- [PR #19926](https://github.com/vllm-project/vllm-ascend/pull/19926) 已合并
-  - 中文：【性能】【DSv4.1】【no piecewise】Trim the last KV-source layer in decoder replay
-  - 原文： [Performance][DSv4.1][no piecewise] Trim the last KV-source layer in decoder replay
-  - 说明：Follow In decoder replay steps, the last KV-source layer (layer 20 on DSV4.1-Flash) still ran on every row, though for the trimmed rows only its KV (SWA, compressed, index K) is read. Its 索引器 scoring and top-k, wo, 稀疏 MLA, and MoE f
-- [PR #20667](https://github.com/vllm-project/vllm-ascend/pull/20667) 已合并
-  - 中文：【修复】【Platform】Accept int8/mxfp8 kv-缓存-dtype on the KV_CACHE_DTYPES mirror list
-  - 原文：[BugFix][Platform] Accept int8/mxfp8 kv-cache-dtype on the KV_CACHE_DTYPES mirror list
-  - 说明：vllm serve ... --kv-缓存-dtype mxfp8 (C8-MXFP KV 缓存, A5 QFA path) 鈥?and --kv-缓存-dtype int8 (DeepSeek V4 MLA) on current vLLM main 鈥?aborted at startup with: Root cause: current vLLM main gates CacheConfig.缓存 dtype on the mutable v
-- [PR #20729](https://github.com/vllm-project/vllm-ascend/pull/20729) 进行中
-  - 中文：【Draft】修复 the 精度 issue in dsv4.1
-  - 原文：[Draft]Fix the accuracy issue in dsv4.1
-  - 说明：【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque
-- [PR #20727](https://github.com/vllm-project/vllm-ascend/pull/20727) 进行中
-  - 中文：【性能】【DSv4.1】Shard the Engram wkv projection across TP ranks
-  - 原文：[Performance][DSv4.1] Shard the Engram wkv projection across TP ranks
-  - 说明：Port of upstream vLLM PR vllm-project/vllm 58678 to vLLM Ascend. Without 序列 parallelism, every TP rank holds every token, so the Engram wkv projection (a ReplicatedLinear , (max ngram size - 1) n heads head dim - (hc mult + 1) hidden
-- [PR #18642](https://github.com/vllm-project/vllm-ascend/pull/18642) 已合并
-  - 中文：[v0.30.0] [BugFix] [Model]通过重量加载器(# 16958)应用DeepSeek-V4注意力槽
-  - 原文：[v0.30.0][BugFix][Model] Apply DeepSeek-V4 attention sinks through the weight loader (#16958)
-  - 说明：Backport of 16958 to the releases/v0.30.0 branch. DeepSeek-V4 注意力 Sink 加载 used direct copy calls, bypassing the parameter's current 权重 loader . During live/layerwise reload, those writes land on meta parameters instead of ent
-- [Issue #20526](https://github.com/vllm-project/vllm-ascend/issues/20526) 已关闭
-  - 中文：【缺陷】: Generic MXFP8 loader breaks grouped DeepSeek V4.1 output projection
-  - 原文：[Bug]: Generic MXFP8 loader breaks grouped DeepSeek V4.1 output projection
-  - 说明：Generic block-FP8 加载 on DeepSeek V4.1 leaves wo a as a 2-D MXFP8 权重 and converts it to NZ despite skip 权重 nz conversion . The output projection calls npu transpose quant batchmatmul with 3-D permutations, causing IndexError: Di
+- [PR #19361](https://github.com/vllm-project/vllm-ascend/pull/19361) 已合并
+  - 中文：【功能】【KVCache】支持 PCP for Mooncake layerwise 池化
+  - 原文：[Feature][KVCache] Support PCP for Mooncake layerwise pooling
+  - 说明：DeepSeek-V4-Flash with Mooncake use layerwise=true and --预填充-context-parallel-size 4 fails during connector initialization because context parallelism is rejected. Give each PCP rank its own block-key PUT/GET sessions. Keys include the
 
 #### 2026-11-02
 
+- [Issue #15527](https://github.com/vllm-project/vllm-ascend/issues/15527) 已关闭
+  - 中文：[Bug]: DeepSeekV4-flash-w8a8在双机800I A3使用0.23.0镜像进行PD分离部署，上下文长度设置为非1M（如40960或者128000），部署成功后进行curl请求，代理节点和D节点都报错" D节点的url响应为400 Bad Request",单独curl D节点url是没问题可正常返回结果
+- [Issue #15523](https://github.com/vllm-project/vllm-ascend/issues/15523) 已关闭
+  - 中文：【缺陷】: DeepSeekV4-flash-0731-w8a8在双机A3使用DeepSeekV4-flash-0731-a3镜像进行PD分离部署后，curl 代理的地址端口，D节点报错AttributeError: 'Request' object has no attribute 'num_in_flight_tokens'
+  - 原文：[Bug]: DeepSeekV4-flash-0731-w8a8在双机A3使用DeepSeekV4-flash-0731-a3镜像进行PD分离部署后，curl 代理的地址端口，D节点报错AttributeError: 'Request' object has no attribute 'num_in_flight_tokens'
 - [Issue #20610](https://github.com/vllm-project/vllm-ascend/issues/20610) 进行中
   - 中文：【缺陷】: v0.26rc2+mmc部署dsv4-flash-0731性能劣化
   - 原文：[Bug]: v0.26rc2+mmc部署dsv4-flash-0731性能劣化
 
 #### 2026-11-01
 
-- [PR #20538](https://github.com/vllm-project/vllm-ascend/pull/20538) 进行中
-  - 中文：【修复】【KVPool】Request lazy store init for 稀疏-索引器 models
-  - 原文：[BugFix][KVPool] Request lazy store init for sparse-indexer models
-  - 说明：KVPoolWorker requests lazy init from the storage backend only for compressed models (use compress, DSV4 compress ratios) — the deferral introduced for that family in 9771. 稀疏-索引器 models (use 稀疏, e.g. GLM-5.x SFA) route their ind
-- [Issue #20537](https://github.com/vllm-project/vllm-ascend/issues/20537) 进行中
-  - 中文：【缺陷】【KV 缓存】prefix_cache_retention_interval is silently ignored on Ascend hybrid KV 缓存 paths
-  - 原文：[Bug][KV Cache] prefix_cache_retention_interval is silently ignored on Ascend hybrid KV cache paths
-  - 说明：Environment - Atlas 800 A3, 8× Ascend910, vllm-ascend:v0.30.0rc2-a3 , vLLM 0.30.0rc2 - DeepSeek-V4.1-Flash-1017-w8a8-mtp, DP4/TP4/EP16, --block-size 32 , --启用-前缀-缓存 Summary 前缀缓存 保留 interval is never consumed on t
-- [Issue #20531](https://github.com/vllm-project/vllm-ascend/issues/20531) 已关闭
-  - 中文：【文档】【A3】【DSv4】APC with long 前缀: KV 缓存 capacity and prefix_cache_retention_interval need documenting
-  - 原文：[Doc][A3][DSv4] APC with long prefix: KV cache capacity and prefix_cache_retention_interval need documenting
-  - 说明：Environment - Hardware: Atlas 800 A3 single node, 8× Ascend910 (16 dies), HBM 65536 MB/die - OS / Driver: npu-smi 26.1.1 - Image: vllm-ascend:v0.30.0rc2-a3 , vLLM 0.30.0rc2 - Model: DeepSeek-V4.1-Flash-1017-w8a8-mtp (W8A8 + INT8 Engram + DS
+- [PR #20562](https://github.com/vllm-project/vllm-ascend/pull/20562) 进行中
+  - 中文：【功能】recipes: 更新 DeepSeek-V4-Flash A3 to v0.30.0rc2-a3 measured 配置
+  - 原文：[Feature] recipes: update DeepSeek-V4-Flash A3 to v0.30.0rc2-a3 measured config
+  - 说明：What this PR does Refresh the DeepSeek-V4-Flash overlay so the Ascend 910C (Atlas 800T A3) single-node entry matches the 配置 measured on vllm-ascend v0.30.0rc2-a3 (vLLM 0.30.0): - variants.ascend w8a8 : DP4+TP4 with expert paralle
+- [PR #20554](https://github.com/vllm-project/vllm-ascend/pull/20554) 进行中
+  - 中文：【文档】【杂项】补充文档 --前缀-缓存-保留-interval in the DeepSeek-V4 Flash and Pro guides
+  - 原文：[Doc][Misc] Document --prefix-cache-retention-interval in the DeepSeek-V4 Flash and Pro guides
+  - 说明：Adds a --前缀-缓存-保留-interval entry to the parameter lists of DeepSeek-V4-Flash.md and DeepSeek-V4-Pro.md . No launch command changes. Why it is needed: - 20191 then 移除 the remaining export lines and the parameter entry from
 
 #### 2026-10-31
 
-- [PR #20496](https://github.com/vllm-project/vllm-ascend/pull/20496) 进行中
-  - 中文：【修复】【量化】Exclude DSV4 压缩器 state from 前缀缓存
-  - 原文：[BugFix][Quantization] Exclude DSV4 compressor state from prefix caching
-  - 说明：Fixes 16270 The DeepSeek V4 压缩器 state 缓存 inherited 前缀 cacheable=true . Its very small block size then lowered the global 前缀-缓存 block size, so short prompts could not accumulate enough tokens to register 缓存 entries. T
-- [Issue #20483](https://github.com/vllm-project/vllm-ascend/issues/20483) 进行中
-  - 中文：【缺陷】【MRV1】【Async Scheduling】: Empty sampled-token row (all -1 / discarded) parks a request RUNNING forever — counters/placeholders grow unbounded, no rollback (0.30.0rc2, DeepSeek-V4.1, DSpark)
-  - 原文：[Bug]: [MRV1][Async Scheduling] Empty sampled-token row (all -1 / discarded) parks a request RUNNING forever — counters/placeholders grow unbounded, no rollback (0.30.0rc2, DeepSeek-V4.1, DSpark)
-  - 说明：【缺陷】【MRV1】【Async Scheduling】Empty sampled-token row (all -1 / discarded) parks a request RUNNING forever: num computed tokens & num output placeholders grow unbounded, no rollback — still present in vLLM-Ascend 0.30.0rc2 (DeepSeek-V4.1, D
-- [PR #20479](https://github.com/vllm-project/vllm-ascend/pull/20479) 进行中
-  - 中文：【重构】【KV 缓存】移除 DSV4 exclusion from hybrid allocation
-  - 原文：[Refactor][KV Cache] Remove DSV4 exclusion from hybrid allocation
-  - 说明：Refactor DeepSeek-V4 KV 缓存 allocation so the generic hybrid-allocation path no longer needs a DSV4-specific exclusion. - Determine the DSV4 model from hf 配置.model type == "deepseek v4" instead of probing the compress ratios attribute
-- [PR #17200](https://github.com/vllm-project/vllm-ascend/pull/17200) 已合并
-  - 中文：【修复】DeepSeek-V4 dummy load and ACL graph 权重 更新
-  - 原文：[BugFix] Fix DeepSeek-V4 dummy load and ACL graph weight update
-  - 说明：Backport two DeepSeek-V4 fixes onto releases/v0.23.0 . Both are already on main ( 16485 , 15666 ) and are still broken on this release branch. 1. --load-format=dummy initializes Hash MoE gate.tid2eid with all zeros. Dummy profile still runs
-- [PR #19125](https://github.com/vllm-project/vllm-ascend/pull/19125) 已合并
-  - 中文：【修复】【Platform】Keep the DeepSeek V4 block size the 缓存 is built with
-  - 原文：[BugFix][Platform] Keep the DeepSeek V4 block size the cache is built with
-  - 说明：DeepSeek-V4 on A5 dies at 缓存-spec construction unless --block-size is passed. Reproduced on A5 (ascend950), DeepSeek-V4-Flash, DP8 + EP, no --block-size : Line references in this description are from vLLM v0.31.0 ( db9527a ) , the versio
-- [PR #19007](https://github.com/vllm-project/vllm-ascend/pull/19007) 已合并
-  - 中文：【性能】【MRV2】Share 每步 PCP 元数据 across KV-缓存 groups
-  - 原文：[Performance][MRV2] Share per-step PCP metadata across KV-cache groups
-  - 说明：This PR reduces 注意力 元数据 construction overhead for DeepSeek V4 with model runner v2 and PCP, and extends compatible 优化 to DSpark DSA SWA drafting. Previously, 缓存-group builders independently prepared 元数据 even wh
+- [PR #20494](https://github.com/vllm-project/vllm-ascend/pull/20494) 草稿
+  - 中文：【功能】【MoE】CatCCOS MegaMoE backend for DeepSeek-V4-Flash on Ascend A5
+  - 原文：[Feature][MoE] Add CatCCOS MegaMoE backend for DeepSeek-V4-Flash on Ascend A5
+  - 说明：Extend the CatCCOS 融合 MoE integration to DeepSeek-V4-Flash's MXFP4 expert 权重 on Ascend A5, preserving the existing v0.23 task as a Draft . This submission records the work and does not assert 合并 readiness. Depends on Both PRs tar
+- [PR #20323](https://github.com/vllm-project/vllm-ascend/pull/20323) 已合并
+  - 中文：【文档】移除 obsolete MTP deployment examples from DeepSeek-V4-Flash tutorial
+  - 原文：[Doc] Remove obsolete MTP deployment examples from DeepSeek-V4-Flash tutorial
+  - 说明：移除 the four obsolete A2/A3 MTP deployment tabs from Sections 5.1 and 5.2 of the DeepSeek-V4-Flash tutorial. Keep the existing DSpark examples and 重命名 their tabs to A2 series / A3 series . 移除 stale MTP 权重, image, model-path an
 
 #### 2026-10-30
 
-- [Issue #20106](https://github.com/vllm-project/vllm-ascend/issues/20106) 已关闭
-  - 中文：【缺陷】: DeepSeek-V4 VL square dummy image underestimates the profiling workload
-  - 原文：[Bug]: DeepSeek-V4 VL square dummy image underestimates the profiling workload
-- [PR #20107](https://github.com/vllm-project/vllm-ascend/pull/20107) 已合并
-  - 中文：【修复】【Multimodal】Select worst-case DeepSeek-V4 VL dummy images
-  - 原文：[BugFix][Multimodal] Select worst-case DeepSeek-V4 VL dummy images
-  - 说明：Fixes 20106. Ports vllm-project/vllm 59373 to Ascend's local DeepSeek-V4 VL preprocessing implementation. Although the upstream 修复 is included in vLLM v0.32.0, Ascend registers its own processing classes and needs the corresponding change.
-- [Issue #20363](https://github.com/vllm-project/vllm-ascend/issues/20363) 进行中
-  - 中文：【DSV4.1-Flash】【A3】解码 worker crashes with GatherV2 SMMU fault + poison marker under dspark with enforce_eager=False / FULL_DECODE_ONLY graphs
-  - 原文：[DSV4.1-Flash][A3] Decode worker crashes with GatherV2 SMMU fault + poison marker under dspark with enforce_eager=False / FULL_DECODE_ONLY graphs
-  - 说明：Summary On a DeepSeek-V4.1-Flash W8A8 PD-disaggregated deployment (Ascend A3), the 解码-side worker crashed ~2 minutes into a load test at 1 concurrent user (i.e. minimal load), with an aclrtSynchronizeEvent error 507035. plog shows the f
-- [PR #19042](https://github.com/vllm-project/vllm-ascend/pull/19042) 已关闭
-  - 中文：【重构】【模型】Revert "恢复 平台默认 索引器 KV dtype for DeepSeek V4"
-  - 原文：[Refactor][Model] Revert "Restore platform-default indexer KV dtype for DeepSeek V4"
-  - 说明：【重构】【模型】Revert "恢复 平台默认 索引器 KV dtype for DeepSeek V4" Reverts 17635 ( b980a2476dfa259f6112b01ded829b7cfb80d409 ). That commit 新增 get 索引器 k dtype to the DeepSeek V4 索引器: it resolves 索引器 kv dtype=
-- [PR #20343](https://github.com/vllm-project/vllm-ascend/pull/20343) 进行中
-  - 中文：【v0.30.0】【修复】【KV 缓存】遵循 前缀 保留 on DeepSeek-V4/V4.1 hybrid coordinator
-  - 原文：[v0.30.0][BugFix][KV Cache] Honor prefix retention on DeepSeek-V4/V4.1 hybrid coordinator
-  - 说明：On DeepSeek-V4/V4.1-Flash PD-分离式预填充 nodes (4x910B3, DP4 TP8), the 前缀-缓存 hit rate collapses to single digits at 64 concurrency with 64K contexts, while staying ~90% at 32 concurrency. Root cause: both the HBM hybrid coo
+- [PR #20215](https://github.com/vllm-project/vllm-ascend/pull/20215) 已合并
+  - 中文：【持续集成】新增 DeepSeek-V4-Flash Mooncake 池化 coverage on A3
+  - 原文：[CI] Add DeepSeek-V4-Flash Mooncake pooling coverage on A3
+  - 说明：新增 a single-node Mooncake KV 池化 test for Eco-Tech/DeepSeek-V4-Flash-0731-w8a8 and register it in the A3 每周 suite. No. These changes affect E2E tests and CI infrastructure only. An ear
 
 #### 2026-10-29
 
-- [PR #20257](https://github.com/vllm-project/vllm-ascend/pull/20257) 进行中
-  - 中文：【测试】Check v0.23 baseline CI without DeepSeek-V4 changes
-  - 原文：[Test] Check v0.23 baseline CI without DeepSeek-V4 changes
-  - 说明：This empty PR checks whether the following failures from 17200 also occur without its changes: - DeepSeek-V2-Lite graph logprob mismatch - Llama TP2 base-model output mismatch with fully sharded loras=False Please run the same 测试用例 an
-- [Issue #20233](https://github.com/vllm-project/vllm-ascend/issues/20233) 进行中
-  - 中文：【缺陷】: A5 two-node DeepSeek-V4 dummy startup fails at the first MC2 Dispatch (quant_mode=4, error 507035)
-  - 原文：[Bug]: A5 two-node DeepSeek-V4 dummy startup fails at the first MC2 Dispatch (quant_mode=4, error 507035)
-- [Issue #20222](https://github.com/vllm-project/vllm-ascend/issues/20222) 进行中
-  - 中文：【缺陷】: 950PR 4卡混部 dsv4.1 pcp4ep4，单curl 解码开始和结束存在共2ms tensormove异常开销
-  - 原文：[Bug]: 950PR 4卡混部 dsv4.1 pcp4ep4，单curl decode开始和结束存在共2ms tensormove异常开销
-- [PR #19901](https://github.com/vllm-project/vllm-ascend/pull/19901) 已关闭
-  - 中文：【性能】【DSv4.1】Trim the last KV-source layer in decoder replay
-  - 原文：[Perf][DSv4.1] Trim the last KV-source layer in decoder replay
-  - 说明：Follow In decoder replay steps, the last KV-source layer (layer 20 on DSV4.1-Flash) still ran on every row, though for the trimmed rows only its KV (SWA, compressed, index K) is read. Its 索引器 scoring and top-k, 稀疏 MLA, wo and MoE fe
-- [PR #20193](https://github.com/vllm-project/vllm-ascend/pull/20193) 进行中
-  - 中文：【修复】【注意力】Derive max_seqlen_q from device query_start_loc in DSv4.1 元数据 tasks
-  - 原文：[BugFix][Attention] Derive max_seqlen_q from device query_start_loc in DSv4.1 metadata tasks
-  - 说明：Summary - 修复 NPU 内核 挂起 (\^GclnnSparseFlashMlaMetadata\ / \^GclnnQuantLightningIndexerV2Metadata\) on the DeepSeek-V4.1 注意力 path: the deferred SMLA/QLI 元数据 closures captured the host-side \common.max query len\ at task crea
-- [PR #20185](https://github.com/vllm-project/vllm-ascend/pull/20185) 进行中
-  - 中文：【修复】Make DeepSeek V4 RoPE meta initialization safe
-  - 原文：[BugFix] Make DeepSeek V4 RoPE meta initialization safe
-  - 说明：When DeepSeek V4/V4.1 is started with --mm-encoder-only , vLLM constructs the skipped language-model component under a meta-device context. ComplexExpRotaryEmbedding previously created inv freq on the active meta device while explicitly cre
-- [PR #14444](https://github.com/vllm-project/vllm-ascend/pull/14444) 已关闭
-  - 中文：【文档】【950DT】新增 Ascend 950DT DeepSeek-V4 deployment guides
-  - 原文：[Doc][950DT] add Ascend 950DT DeepSeek-V4 deployment guides
-  - 说明：Port the DeepSeek-V4 Flash and Pro deployment documentation from releases/v0.23.0 to main while preserving main-specific MkDocs, DSpark, and 配置 更新. - vLLM version: v0.27.1 - vLL
+- [PR #20267](https://github.com/vllm-project/vllm-ascend/pull/20267) 已合并
+  - 中文：【文档】【模型】移除 obsolete DeepSeek-V4-Flash MTP examples (v0.30.0)
+  - 原文：[Doc][Model] Remove obsolete DeepSeek-V4-Flash MTP examples (v0.30.0)
+  - 说明：The DeepSeek-V4-Flash tutorial on releases/v0.30.0 still presents obsolete MTP deployment examples alongside the DSpark examples. Delete the four obsolete A2/A3 single-node and PD tabs in full, including the guidance inside those tabs. Rena
+- [PR #19461](https://github.com/vllm-project/vllm-ascend/pull/19461) 已合并
+  - 中文：【release/v0.23.0】【Sampler】【修复】inf in RL sampling by recording stream for q
+  - 原文：[release/v0.23.0][Sampler][BugFix] Fix inf in RL sampling by recording stream for q
+  - 说明：During RL post-training of DeepSeek v4 Flash, an inconsistency between training and inference was observed due to the NPU 显存 of q being prematurely reused before the asynchronous division operation probs.div (q) completed. This PR resol
+- [PR #20191](https://github.com/vllm-project/vllm-ascend/pull/20191) 已合并
+  - 中文：【文档】【杂项】Sync DeepSeek-V4 flash and Pro deployment documentation fixes to main
+  - 原文：[Doc][Misc] Sync DeepSeek-V4 flash and Pro deployment documentation fixes to main
+  - 说明：This PR synchronizes documentation fixes for DeepSeek-V4 deployment to the main branch, matching the changes in 20174. Specifically, it: - Removes hard-coded VLLM 前缀缓存 保留 INTERVAL=4096 environment variable exports from both t
+- [PR #20230](https://github.com/vllm-project/vllm-ascend/pull/20230) 已合并
+  - 中文：【v0.30.0】【文档】【杂项】移除 obsolete DeepSeek-V4 Flash 保留 guidance
+  - 原文：[v0.30.0][Doc][Misc] Remove obsolete DeepSeek-V4 Flash retention guidance
+  - 说明：The releases/v0.30.0 DeepSeek-V4 Flash tutorial no longer exports VLLM 前缀缓存 保留 INTERVAL in its A2/A3/A5 scripts, but three descriptions still direct readers to use or consider that environment variable. 移除 the A2 key-para
+- [PR #20161](https://github.com/vllm-project/vllm-ascend/pull/20161) 已合并
+  - 中文：【文档】【杂项】DeepSeek-V4-Flash: serve the MTP 检查点 for DSpark and 修复 the A2 image block
+  - 原文：[Doc][Misc] DeepSeek-V4-Flash: serve the MTP checkpoint for DSpark and fix the A2 image block
+  - 说明：Fixes two documentation defects in docs/source/tutorials/models/DeepSeek-V4-Flash.md that make the A2 deployment path unusable when the tutorial is followed literally. 1. The A2 DSpark tab served a 检查点 that is not in the 权重 list
+- [PR #20162](https://github.com/vllm-project/vllm-ascend/pull/20162) 已合并
+  - 中文：【v0.30.0】【文档】【杂项】DeepSeek-V4-Flash: serve the MTP 检查点 for DSpark and 修复 the A2 image block
+  - 原文：[v0.30.0][Doc][Misc] DeepSeek-V4-Flash: serve the MTP checkpoint for DSpark and fix the A2 image block
+  - 说明：Fixes two documentation defects in docs/source/tutorials/models/DeepSeek-V4-Flash.md that make the A2 deployment path unusable when the tutorial is followed literally. 1. The A2 DSpark tab served a 检查点 that is not in the 权重 list
+- [PR #20174](https://github.com/vllm-project/vllm-ascend/pull/20174) 已合并
+  - 中文：【v0.30.0】【文档】【杂项】更新 DeepSeek-V4 Flash and Pro deployment documentation
+  - 原文：[v0.30.0][Doc][Misc] Update DeepSeek-V4 Flash and Pro deployment documentation
+  - 说明：更新 the DeepSeek-V4 deployment documentation on releases/v0.30.0 : - In the Flash tutorial, 移除 all seven export VLLM 前缀缓存 保留 INTERVAL=4096 lines and the associated parameter explanation in section 5.1. The script remov
+- [Issue #15200](https://github.com/vllm-project/vllm-ascend/issues/15200) 已关闭
+  - 中文：【缺陷】: 0.23.0 4机A3 3D1D部署DeepSeek-V4-flash，请求参数中携带stop_token_ids导致P实例中断，报错算子为IndexCheck
+  - 原文：[Bug]: 0.23.0 4机A3 3D1D部署DeepSeek-V4-flash，请求参数中携带stop_token_ids导致P实例中断，报错算子为IndexCheck
 
 #### 2026-10-28
 
-- [PR #20145](https://github.com/vllm-project/vllm-ascend/pull/20145) 进行中
-  - 中文：【功能】opt-in TP sharding for DeepSeek V4 解码 索引器
-  - 原文：[Feature] Add opt-in TP sharding for DeepSeek V4 decode indexer
-  - 说明：DeepSeek V4's C4 解码 索引器 evaluates replicated query rows across tensor-parallel ranks. This PR adds opt-in request-level sharding to distribute QLI computation across the TP group. The design is inspired by vLLM 58536. The implementa
-- [PR #20124](https://github.com/vllm-project/vllm-ascend/pull/20124) 草稿
-  - 中文：【性能】【DSV4.1】Use single-token decoder replay for DeepSeek-V4.1 预填充
-  - 原文：[Performance][DSV4.1] Use single-token decoder replay for DeepSeek-V4.1 prefill
-  - 说明：【vllm-project/vllm 62817】Summary Adapt the 预填充 decoder replay 优化 from to Ascend. Replay only the last token for 预填充 chunks sufficiently far from the prompt end, reducing decoder computation while preserving the replay win
-- [PR #20088](https://github.com/vllm-project/vllm-ascend/pull/20088) 草稿
-  - 中文：【测试】新增 A5 PR E2E coverage for DeepSeek V4 and V4.1 Flash
-  - 原文：[Test] Add A5 PR E2E coverage for DeepSeek V4 and V4.1 Flash
-  - 说明：新增 ten PR E2E cases for the complete DeepSeek V4 Flash and V4.1 Flash 检查点 on Ascend A5. Each case uses Model Runner V2 and four NPUs. Keep one short 修复-output 回退 per model; the other cases verify functional behavior with
-- [PR #20075](https://github.com/vllm-project/vllm-ascend/pull/20075) 草稿
-  - 中文：【功能】【MRV2】Preserve SP token shards across pipeline stages
-  - 原文：[Feature][MRV2] Preserve SP token shards across pipeline stages
-  - 说明：Preserve 序列-parallel main activations across Model Runner V2 pipeline boundaries for DeepSeek-V4, Kimi-K3 AttnRes, and MiniMax-M3. Each TP rank sends its token shard to the matching rank in the next stage instead of transmitting repli
-- [PR #20059](https://github.com/vllm-project/vllm-ascend/pull/20059) 进行中
-  - 中文：【修复】Stream long DSML 工具调用 parameter values for DeepSeek V4/V4.1
-  - 原文：[BugFix] Stream long DSML tool-call parameter values for DeepSeek V4/V4.1
-  - 说明：DeepSeek V4 / V4.1 emit 工具调用 arguments as DSML parameters and configure arg structural chars = {' '} . ParserEngine. compute arg delta() drops every streaming delta that shares no character with that set, and the DSML converter only re
+- [Issue #20142](https://github.com/vllm-project/vllm-ascend/issues/20142) 进行中
+  - 中文：【缺陷】: 基于950DT 8卡4+4 1P1D分离部署Deepseek-v4-flash-0731模型，采用vllm-ascend0.30.rc2镜像及社区脚本创建容器及启动服务，输出No available 共享 显存 broadcast block found in 60 seconds多次后报错RuntimeError: The Inner error is reported as above. The process exits for this inner error
+  - 原文：[Bug]: 基于950DT 8卡4+4 1P1D分离部署Deepseek-v4-flash-0731模型，采用vllm-ascend0.30.rc2镜像及社区脚本创建容器及启动服务，输出No available shared memory broadcast block found in 60 seconds多次后报错RuntimeError: The Inner error is reported as above. The process exits for this inner error
+- [PR #20123](https://github.com/vllm-project/vllm-ascend/pull/20123) 草稿
+  - 中文：【功能】【PD】支持 layerwise P/D disaggregation for DeepSeek-V4-Flash
+  - 原文：[Feature][PD] Support layerwise P/D disaggregation for DeepSeek-V4-Flash
+  - 说明：Adds DeepSeek-V4 (DSV4-Flash) 支持 to MooncakeLayerwiseConnector (layerwise P/D disaggregation), and fixes the issues it exposed. DSV4 doesn't fit the connector's old assumptions. A layer can have up to five KV caches ( .attn compressed
+- [PR #20043](https://github.com/vllm-project/vllm-ascend/pull/20043) 已合并
+  - 中文：【文档】【杂项】DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
+  - 原文：[Doc][Misc] DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
+  - 说明：This PR corrects two items in the A2 sections only of the DeepSeek-V4-Flash guide — 5.2.5 (A2 DSpark) and 5.2.6 (A2 KV 池化). No A3, 950DT, single-node or other section is touched. 1. 移除 启用 flashcomm1 from the three A2 预填充 co
+- [PR #20044](https://github.com/vllm-project/vllm-ascend/pull/20044) 已合并
+  - 中文：【文档】【杂项】DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
+  - 原文：[Doc][Misc] DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
+  - 说明：This PR corrects two items in the A2 sections only of the DeepSeek-V4-Flash guide — 5.2.5 (A2 DSpark) and 5.2.6 (A2 KV 池化). No A3, 950DT, single-node or other section is touched. 1. 移除 启用 flashcomm1 from the three A2 预填充 co
+- [PR #20012](https://github.com/vllm-project/vllm-ascend/pull/20012) 已合并
+  - 中文：【文档】【杂项】Sync DeepSeek-V4-Flash deployment guidance to main
+  - 原文：[Doc][Misc] Sync DeepSeek-V4-Flash deployment guidance to main
+  - 说明：Sync the latest DeepSeek-V4-Flash documentation changes from 19993 (source commit a0e7aab658c3 ) to main . - 移除 the explicit --api-server-count 1 setting from the 950DT DSpark and A3 single-node examples. - Explain --async-scheduling in
+- [PR #20024](https://github.com/vllm-project/vllm-ascend/pull/20024) 已关闭
+  - 中文：【文档】【杂项】DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
+  - 原文：[Doc][Misc] DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
+  - 说明：This PR corrects two items in the A2 sections only of the DeepSeek-V4-Flash guide — 5.2.5 (A2 DSpark) and 5.2.6 (A2 KV 池化). No A3, 950DT, single-node or other section is touched. 1. 移除 启用 flashcomm1 from the three A2 预填充 co
+- [PR #20023](https://github.com/vllm-project/vllm-ascend/pull/20023) 已关闭
+  - 中文：【文档】【杂项】DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
+  - 原文：[Doc][Misc] DeepSeek-V4-Flash A2: drop the inert enable_flashcomm1 and record the measured draft profile
+  - 说明：This PR corrects two items in the A2 sections only of the DeepSeek-V4-Flash guide — 5.2.5 (A2 DSpark) and 5.2.6 (A2 KV 池化). No A3, 950DT, single-node or other section is touched. 1. 移除 启用 flashcomm1 from the three A2 预填充 co
+- [PR #19993](https://github.com/vllm-project/vllm-ascend/pull/19993) 已合并
+  - 中文：【文档】【v0.30.0】Clarify DeepSeek-V4-Flash API endpoint
+  - 原文：[Doc][v0.30.0] Clarify DeepSeek-V4-Flash API endpoint
+  - 说明：Clarify the request endpoint in Section 6 of the DeepSeek-V4-Flash guide on releases/v0.30.0 : use the API server's IP address and port for ordinary deployments, and the proxy's IP address and port for 预填充/解码 (PD) disaggregated depl
+- [PR #20016](https://github.com/vllm-project/vllm-ascend/pull/20016) 已关闭
+  - 中文：【文档】DeepSeek-V4-Flash A2 DSpark: record the measured draft 4 / 51 解码 profile
+  - 原文：[Doc] DeepSeek-V4-Flash A2 DSpark: record the measured draft 4 / 51 decode profile
+  - 说明：What 更新 the A2 DSpark section (5.2.5) of the DeepSeek-V4-Flash guide. No other section, role or workload is touched. 解码-4k-stable and 解码-16k now record D draft 4 / --max-num-seqs 51 instead of draft 1 / 128. 新增 a tip explaini
+- [PR #20015](https://github.com/vllm-project/vllm-ascend/pull/20015) 已关闭
+  - 中文：【文档】DeepSeek-V4-Flash A2 DSpark: record the measured draft 4 / 51 解码 profile
+  - 原文：[Doc] DeepSeek-V4-Flash A2 DSpark: record the measured draft 4 / 51 decode profile
+  - 说明：What 更新 the A2 DSpark section (5.2.5) of the DeepSeek-V4-Flash guide. No other section, role or workload is touched. 解码-4k-stable and 解码-16k now record D draft 4 / --max-num-seqs 51 instead of draft 1 / 128. 新增 a tip explaini
+
+#### 2026-10-27
+
+- [Issue #19955](https://github.com/vllm-project/vllm-ascend/issues/19955) 进行中
+  - 中文：【缺陷】:使用vllm0.27.0rc1在950D上部署DS-v4-flash-0731报签名失败
+  - 原文：[Bug]:使用vllm0.27.0rc1在950D上部署DS-v4-flash-0731报签名失败
+- [PR #19759](https://github.com/vllm-project/vllm-ascend/pull/19759) 已合并
+  - 中文：【文档】【杂项】Organize DeepSeek-V4-Flash PD and KV 池化 deployment guides
+  - 原文：[Doc][Misc] Organize DeepSeek-V4-Flash PD and KV pooling deployment guides
+  - 说明：Reorganize the DeepSeek-V4-Flash deployment guide into hardware-specific tabs. Group the 950DT, A3, and A2 KV 缓存 Pool examples under Section 5.3, move ultra-long 序列 guidance into the A2 series tab, and preserve existing section anc
+- [PR #19879](https://github.com/vllm-project/vllm-ascend/pull/19879) 已合并
+  - 中文：【文档】【v0.30.0】Restructure DeepSeek-V4-Flash deployment documentation
+  - 原文：[Doc][v0.30.0] Restructure DeepSeek-V4-Flash deployment documentation
+  - 说明：Sync the DeepSeek-V4-Flash deployment-guide changes from 19759 (source commit 2738354da ) to releases/v0.30.0 . Only docs/source/tutorials/models/DeepSeek-V4-Flash.md changes. - Organize ordinary PD and KV 缓存 池化 deployment into hard
 
 #### 2026-10-26
 
-- [PR #18891](https://github.com/vllm-project/vllm-ascend/pull/18891) 已合并
-  - 中文：【修复】【Platform】Declare the KV 缓存 dtypes DeepSeek V4 can store
-  - 原文：[BugFix][Platform] Declare the KV cache dtypes DeepSeek V4 can store
-  - 说明：A DeepSeek V4 launch on A5 with no --kv-缓存-dtype used to die inside the operator: aclnnMixedQuantSparseFlashMla: Parameter ori kv head dimension ... value 512. It should be 608. A5 picks the KV layout from the literal 缓存 配置.缓存
-- [PR #19868](https://github.com/vllm-project/vllm-ascend/pull/19868) 草稿
-  - 中文：【功能】【MRV2】Integrate 共享 dynamic PP 预填充 运行时 on Ascend
-  - 原文：[Feature][MRV2] Integrate shared dynamic PP prefill runtime on Ascend
-  - 说明：Connect the Ascend MRv2 worker and DSV4 model to the 共享 buffered/dynamic PP 运行时 in vllm-project/vllm 63745 . Load adjacent layer replicas, execute the per-batch layer range, preserve its MoE dispatch order, and finish device timing
-- [PR #19860](https://github.com/vllm-project/vllm-ascend/pull/19860) 已关闭
-  - 中文：【修复】【Platform】Declare the KV 缓存 dtypes DeepSeek V4 can store
-  - 原文：[BugFix][Platform] Declare the KV cache dtypes DeepSeek V4 can store
-  - 说明：Re-opened from 18891, whose CI kept failing on runner-side infrastructure: a2-1 card (part 5-7) died in six minutes for two runs in a row cloning the csrc/third party/catlass submodule ( Unable to access Could not resolve host ), after an e
-- [PR #19850](https://github.com/vllm-project/vllm-ascend/pull/19850) 进行中
-  - 中文：【修复】【TurboQuant】禁用 default boundary skips for DeepSeek V4
-  - 原文：[BugFix][TurboQuant] Disable default boundary skips for DeepSeek V4
-  - 说明：修复 a mismatch between upstream TurboQuant's default boundary-layer policy and the current Ascend DeepSeek V4 缓存 implementation. When using --kv-缓存-dtype turboquant 4bit nc , upstream EngineArgs.create engine 配置() calls TurboQuant
-- [PR #19842](https://github.com/vllm-project/vllm-ascend/pull/19842) 草稿
-  - 中文：【Feat】【模型】支持 DSv4 block size 16 on A3
-  - 原文：[Feat][Model] Support DSv4 block size 16 on A3
-  - 说明：启用 DSv4 --block-size 16 on A3 through the complete 配置 and 缓存-layout path. - Preserve an explicit 16 in refresh block size(). Previously, the DSv4 allowlist silently replaced it with 32, so adding the layout alone did not e
-- [Issue #17347](https://github.com/vllm-project/vllm-ascend/issues/17347) 已关闭
-  - 中文：【功能】: int8 KV 缓存 支持 for GLM-5.3-Flash / DeepSeek-V4-style hybrid models — 解码 path fails at aclnnSparseFlashAttention (EZ1009) while 预填充 path already works
-  - 原文：[Feature]: int8 KV cache support for GLM-5.3-Flash / DeepSeek-V4-style hybrid models — decode path fails at aclnnSparseFlashAttention (EZ1009) while prefill path already works
-  - 说明：The 特性 we need : end-to-end 支持 for --kv-缓存-dtype int8 on GLM-5.3-Flash ( Glm5NextForConditionalGeneration , w8a8, hybrid architecture: MLA + linear-注意力/Mamba + compressed-索引器 稀疏 注意力 (DSA-style), with an MTP
-- [Issue #19810](https://github.com/vllm-project/vllm-ascend/issues/19810) 进行中
-  - 中文：【缺陷】: aclnnSparseAttnSharedkvMetadataGetWorkspaceSize takes abnormally long in vLLM-Ascend 0.26
-  - 原文：[Bug]: aclnnSparseAttnSharedkvMetadataGetWorkspaceSize takes abnormally long in vLLM-Ascend 0.26
+- [PR #19782](https://github.com/vllm-project/vllm-ascend/pull/19782) 进行中
+  - 中文：【releases/v0.18.0】【文档】【杂项】Drop redundant --启用-chunked-预填充 from DeepSeek-V4-Flash A2/A3 guides
+  - 原文：[releases/v0.18.0][Doc][Misc] Drop redundant --enable-chunked-prefill from DeepSeek-V4-Flash A2/A3 guides
+  - 说明：Aligns the A2/A3 inference guides in docs/source/tutorials/models/DeepSeek-V4-Flash.md with the default 调度器 behaviour of vLLM V1: - A2 : removes the redundant --启用-chunked-预填充 from the vllm serve script. Chunked 预填充 is alr
+- [PR #19772](https://github.com/vllm-project/vllm-ascend/pull/19772) 已合并
+  - 中文：【文档】【v0.30.0】移除 DeepSeek V4 Flash Vision documentation
+  - 原文：[Doc][v0.30.0] Remove DeepSeek V4 Flash Vision documentation
+  - 说明：Apply the DeepSeek-V4-Flash-Vision-Exp documentation removal from 19629 to releases/v0.30.0 , based on b91084581. - Delete the English tutorial and Chinese translation catalog. - 移除 its MkDocs navigation entry and localized navigation t
+- [PR #19758](https://github.com/vllm-project/vllm-ascend/pull/19758) 已合并
+  - 中文：【文档】【v0.30.0】更新 DeepSeek-V4-Flash 池化 and startup instructions
+  - 原文：[Doc][v0.30.0] Update DeepSeek-V4-Flash pooling and startup instructions
+  - 说明：The DeepSeek-V4-Flash 池化 examples are 拆分 across separate top-level sections, and the 950DT startup instructions require 解码 to become healthy before 预填充 starts. Group the A3 and 950DT Memcache examples under Section 5.3, iden
 
 #### 2026-10-25
 
-- [Issue #19722](https://github.com/vllm-project/vllm-ascend/issues/19722) 进行中
-  - 中文：【缺陷】: Vector core exception (507035) in grouped_matmul_swiglu_quant_v2 kills all TP8 workers under concurrent long-prompt load (Atlas A3, DeepSeek-V4.1-Flash)
-  - 原文：[Bug]: Vector core exception (507035) in grouped_matmul_swiglu_quant_v2 kills all TP8 workers under concurrent long-prompt load (Atlas A3, DeepSeek-V4.1-Flash)
-  - 说明：Environment - vllm-ascend : quay.io/ascend/vllm-ascend:deepseek-v4.1-flash-a3 (vLLM 0.27.1+empty) - CANN : 9.1.0 (built-in OPP) - Platform : Atlas 800I A3, 8×910C (16 logical devices), dual TP8 instances - Model : DeepSeek-V4.1-Flash W4A8 (
+- [PR #19505](https://github.com/vllm-project/vllm-ascend/pull/19505) 已合并
+  - 中文：【文档】新增 A2 workload tuning and KV 池化 for DeepSeek-V4-Flash
+  - 原文：[Doc] Add A2 workload tuning and KV pooling for DeepSeek-V4-Flash
+  - 说明：补充文档 workload-specific A2 deployment settings for DeepSeek-V4-Flash-0731-w8a8 on four Atlas 800I A2 servers (32 NPUs): 预填充 ExternalDP2 × TP1 × PP1 × PCP8 , 解码 DP16 × TP1 , and MooncakeHybridConnector for P-to-D transfer. Each P/
+- [PR #19506](https://github.com/vllm-project/vllm-ascend/pull/19506) 已合并
+  - 中文：【文档】【v0.30.0】新增 A2 workload tuning and KV 池化 for DeepSeek-V4-Flash
+  - 原文：[Doc][v0.30.0] Add A2 workload tuning and KV pooling for DeepSeek-V4-Flash
+  - 说明：Backport of 19505 to releases/v0.30.0 , preserving existing branch-specific documentation. 补充文档 workload-specific A2 deployment settings for DeepSeek-V4-Flash-0731-w8a8 on four Atlas 800I A2 servers (32 NPUs): 预填充 ExternalDP2 × TP1
+- [PR #19629](https://github.com/vllm-project/vllm-ascend/pull/19629) 已合并
+  - 中文：【文档】移除 DeepSeek V4 Flash Vision documentation
+  - 原文：[Doc] Remove DeepSeek V4 Flash Vision documentation
+  - 说明：移除 the entire DeepSeek-V4-Flash-Vision-Exp documentation from the docs site: - Delete the English model tutorial and its Chinese translation catalog. - 移除 the MkDocs navigation entry and localized navigation titles. - 移除 its mod
 
 #### 2026-10-24
 
-- [PR #19710](https://github.com/vllm-project/vllm-ascend/pull/19710) 已关闭
-  - 中文：【文档】新增 A5 Docker commands for DeepSeek V4
-  - 原文：[Doc] add A5 Docker commands for DeepSeek V4
-  - 说明：This is the main -branch counterpart of 19709. The DeepSeek-V4-Pro and DeepSeek-V4-Flash tutorials list 950PR/950DT as supported hardware, but their Docker image installation sections only provide startup commands for the A2 and A3 series.
-- [PR #19709](https://github.com/vllm-project/vllm-ascend/pull/19709) 已关闭
-  - 中文：【文档】新增 A5 Docker commands for DeepSeek V4
-  - 原文：[Doc] add A5 Docker commands for DeepSeek V4
-  - 说明：The DeepSeek-V4-Pro and DeepSeek-V4-Flash tutorials list 950PR/950DT as supported hardware, but their Docker image installation sections only provide startup commands for the A2 and A3 series. This PR adds a 950PR&950DT Products tab to both
-- [PR #14308](https://github.com/vllm-project/vllm-ascend/pull/14308) 已关闭
-  - 中文：【修复】mask premature eos during in_reasoning for DeepSeek-V4
-  - 原文：[Bugfix]mask premature eos during in_reasoning for DeepSeek-V4
-  - 说明：Fixes 14031 This PR fixes the DeepSeek-V4 premature EOS issue on Ascend NPU during reasoning. When reasoning has started with <think but has not reached </think , EOS token id 1 can be sampled unexpectedly and terminate generation early. Th
-- [PR #19676](https://github.com/vllm-project/vllm-ascend/pull/19676) 草稿
-  - 中文：【性能】【KVPool】Compact duplicate DSV4 group-0 Memcache transfers
-  - 原文：[Perf][KVPool] Compact duplicate DSV4 group-0 Memcache transfers
-  - 说明：Non-layerwise Memcache transfers for the validated DeepSeek-V4-Pro group-0 layout serialize the 索引器 data and scale twice: as two separate spans and as one enclosing span at the same address. This adds transfers and packed object bytes t
+- [PR #18973](https://github.com/vllm-project/vllm-ascend/pull/18973) 已合并
+  - 中文：【文档】【v0.30.0】新增 DeepSeek-V4-Flash-0731 deployment instructions for Ascend 950DT
+  - 原文：[Doc][v0.30.0] Add DeepSeek-V4-Flash-0731 deployment instructions for Ascend 950DT
+  - 说明：新增 DeepSeek-V4-Flash-0731 deployment instructions for Ascend 950DT and A3 on vLLM-Ascend v0.30.0. The existing A2/A3 deployment commands are retained; some A3 examples have Markdown indentation changes. - 新增 the 950DT model entry and the
+- [PR #19385](https://github.com/vllm-project/vllm-ascend/pull/19385) 已合并
+  - 中文：【文档】【功能】A5 deployment examples for DeepSeek-V4-Flash
+  - 原文：[Doc][feature] Add A5 deployment examples for DeepSeek-V4-Flash
+  - 说明：This PR ports the DeepSeek-V4-Flash A5/950DT deployment guidance to the upstream main branch. Specifically, it: - Adds the Ascend 950DT Docker image and DSpark deployment example. - Documents same-node 预填充/解码 separation with NPUs 0–
 
 #### 2026-10-23
 
-- [PR #19675](https://github.com/vllm-project/vllm-ascend/pull/19675) 进行中
-  - 中文：【v0.30.0】【修复】【量化】ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
-  - 原文：[v0.30.0][BugFix][Quantization] Fix ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
-  - 说明：Backport of 19674 for releases/v0.30.0 . ModelSlim DeepSeek-V4 检查点 can quantize wo a as W8A8 MXFP8 even when the 检查点 is otherwise W4A4. The generic MXFP8 loader leaves its 权重 as a 2D matrix, while 注意力 calls npu tran
-- [PR #19673](https://github.com/vllm-project/vllm-ascend/pull/19673) 已关闭
-  - 中文：【v0.30.0】【修复】【量化】ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
-  - 原文：[v0.30.0][BugFix][Quantization] Fix ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
-  - 说明：Backport of 19672 for releases/v0.30.0 . DeepSeek-V4 ModelSlim 检查点 can quantize wo a as W8A8 MXFP8 even when the 检查点 is otherwise W4A4. The generic MXFP8 loader leaves its 权重 as a 2D matrix, while DSV4 注意力 calls npu
-- [PR #19674](https://github.com/vllm-project/vllm-ascend/pull/19674) 进行中
-  - 中文：【修复】【量化】ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
-  - 原文：[BugFix][Quantization] Fix ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
-  - 说明：ModelSlim DeepSeek-V4 检查点 can quantize wo a as W8A8 MXFP8 even when the 检查点 is otherwise W4A4. The generic MXFP8 loader leaves its 权重 as a 2D matrix, while 注意力 calls npu transpose quant batchmatmul with perm x2=(0,
-- [PR #19672](https://github.com/vllm-project/vllm-ascend/pull/19672) 已关闭
-  - 中文：【修复】【量化】ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
-  - 原文：[BugFix][Quantization] Fix ModelSlim DeepSeek-V4 wo_a grouped MXFP8 layout
-  - 说明：DeepSeek-V4 ModelSlim 检查点 can quantize wo a as W8A8 MXFP8 even when the 检查点 is otherwise W4A4. The generic MXFP8 loader leaves its 权重 as a 2D matrix, while DSV4 注意力 calls npu transpose quant batchmatmul with perm x2
-- [Issue #19658](https://github.com/vllm-project/vllm-ascend/issues/19658) 进行中
-  - 中文：[Bug]: 4机A2 PD分离部署的DSV4.1 1017在调用responses接口时出现D节点推理超时挂死问题
-- [Issue #19647](https://github.com/vllm-project/vllm-ascend/issues/19647) 进行中
-  - 中文：【缺陷】: MRV2 KV initialization fails on single-slot wrapped 缓存 components
-  - 原文：[Bug]: MRV2 KV initialization fails on single-slot wrapped cache components
-  - 说明：【KV 缓存】【(component a, component b)】DeepseekV41CacheLayer.bind KV 缓存() stores a 缓存 binding in a single-slot outer list: self.KV 缓存 = . When the binding itself is a tuple of Tensor components, the resulting shape is . AscendV2KV
-- [PR #16141](https://github.com/vllm-project/vllm-ascend/pull/16141) 已关闭
-  - 中文：【WIP】【功能】【Core】迁移 DeepSeekV4 KV 缓存 planning to KVCacheConfigBuilder (vLLM PR #53558)
-  - 原文：[WIP][Feature][Core] Migrate DeepSeekV4 KV cache planning to KVCacheConfigBuilder (vLLM PR #53558)
-  - 说明：vLLM PR 53558 makes KVCacheConfigBuilder pluggable (platform model default) and moves KV 缓存 planning from KV 缓存 utils.py to vllm.v1.core.KV 缓存 planning . This PR adapts vllm-ascend and retires the DeepSeekV4 monkey-patches in favou
-- [PR #19580](https://github.com/vllm-project/vllm-ascend/pull/19580) 进行中
-  - 中文：【修复】【MRV2】Unwrap single-slot KV caches before block zeroing
-  - 原文：[BugFix][MRV2] Unwrap single-slot KV caches before block zeroing
-  - 说明：【(K, scale)】修复 the MRV2 KV block-zeroer startup 回退 exposed by the empty-component guard in 18931. DeepseekV41CacheLayer.bind KV 缓存() stores a single-slot wrapper such as . The zeroer treats the inner tuple as a Tensor and raise
-
-#### 2026-10-22
-
-- [PR #19507](https://github.com/vllm-project/vllm-ascend/pull/19507) 进行中
-  - 中文：feat(deepseek-v41): integrate native MXFP8 Engram 卸载 and 重叠
-  - 原文：feat(deepseek-v41): integrate native MXFP8 Engram offload and overlap
-  - 说明：Port the final behavior of local PR24, PR60 and PR70 onto the current ds41-wheel and upstream Engram architecture. 新增 an opt-in row-sharded ElasticBuffer backend with native E4M3/E8M0 检查点 加载, tensor-scale ABI checks, startup pr
-- [PR #19074](https://github.com/vllm-project/vllm-ascend/pull/19074) 已合并
-  - 中文：【持续集成】新增 DSV4.1 PCP DSpark 夜间 coverage
-  - 原文：[CI] Add DSV4.1 PCP DSpark nightly coverage
-  - 说明：新增 a single-node A3-560T 夜间用例 for DeepSeek-V4.1-Flash W8A8 + DSpark + PCP, covering GPQA Diamond 精度. Register the case and 新增 it to the 夜间 documentation. Runner /dev/shm 配置: ascend-gha-runners/docs 298. Does
-- [PR #19220](https://github.com/vllm-project/vllm-ascend/pull/19220) 已合并
-  - 中文：【功能】DSpark bidirectional SparseFlashMla
-  - 原文：[Feature] Add DSpark bidirectional SparseFlashMla
-  - 说明：Adds bidirectional SparseFlashMla 注意力 for DSpark 投机解码 on DeepSeek-V4. This is a rebase of 15061 by @wangbj127 (original author — full credit for the design and implementation) onto current main. The original branch was
+- [PR #19634](https://github.com/vllm-project/vllm-ascend/pull/19634) 已合并
+  - 中文：【文档】【v0.30.0】【杂项】更新 DeepSeek-V4-Flash A3 image to v0.30.0rc2-a3
+  - 原文：[Doc][v0.30.0][Misc] Update DeepSeek-V4-Flash A3 image to v0.30.0rc2-a3
+  - 说明：更新 the A3 Docker image in the DeepSeek-V4-Flash deployment guide from quay.io/ascend/vllm-ascend:{{ vllm ascend version }}-a3 to quay.io/ascend/vllm-ascend:v0.30.0rc2-a3 . This pins the A3 installation example to the specific release-ca
+- [PR #19623](https://github.com/vllm-project/vllm-ascend/pull/19623) 已合并
+  - 中文：【文档】新增 A3 PD 池化 deployment for DeepSeek-V4-Flash
+  - 原文：[Doc] Add A3 PD pooling deployment for DeepSeek-V4-Flash
+  - 说明：新增 an A3 1P1D deployment section with a Memcache KV 缓存 Pool to the DeepSeek-V4-Flash model guide on main. This is the main-branch counterpart of 19615, including the 更新 parameter alignment and removal of the incorrect layerwise-poo
+- [PR #19615](https://github.com/vllm-project/vllm-ascend/pull/19615) 已合并
+  - 中文：【v0.30.0】【文档】新增 A3 PD 池化 deployment for DeepSeek-V4-Flash
+  - 原文：[v0.30.0][Doc] Add A3 PD pooling deployment for DeepSeek-V4-Flash
+  - 说明：新增 an A3 1P1D deployment section with a Memcache KV 缓存 Pool to the DeepSeek-V4-Flash model guide on releases/v0.30.0 . All non-池化 parameters follow the existing A3 series with dspark PD example in Section 5.2.1: DP2/TP1/PCP8 Prefil
+- [Issue #19605](https://github.com/vllm-project/vllm-ascend/issues/19605) 进行中
+  - 中文：【缺陷】【DeepSeekV4-flash-0731】: Mooncake connector E1021 06:26:49.437224 6454 transfer_executor_base.cpp:263] Failed to connect to target: 10.233.1.248:20335, status: 103905, errmsg: E19999: Inner Error!
+  - 原文：[Bug]: [DeepSeekV4-flash-0731] Mooncake connector E1021 06:26:49.437224  6454 transfer_executor_base.cpp:263] Failed to connect to target: 10.233.1.248:20335, status: 103905, errmsg: E19999: Inner Error!
 
 #### 2026-10-21
 
-- [Issue #19382](https://github.com/vllm-project/vllm-ascend/issues/19382) 进行中
-  - 中文：夜间 Daily test failure on 2026-10-21 16:00 - please check
-  - 原文：Nightly Daily test failure on 2026-10-21 16:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 16:00 on 2026-10-21. Failed on: a3-4 card-(part 2-5) Failed 测试用例: - test deepseek v4 w4a8 tp4 basic greedy — psutil.NoSuchProcess: process no longer exists (pid=48828) Failed
-- [PR #19190](https://github.com/vllm-project/vllm-ascend/pull/19190) 已合并
-  - 中文：【功能】【DSA】Share O-projection buffers across DeepSeek layers
-  - 原文：[Feature][DSA] Share O-projection buffers across DeepSeek layers
-  - 说明：This PR reduces resident OTP 通信-buffer 显存 for DeepSeek V4 and V4.1 by sharing address-stable O-projection exchange scratch across sequential DSA layers. It reserves the 共享 buffers before KV-缓存 profiling and sizes them
-- [PR #19365](https://github.com/vllm-project/vllm-ascend/pull/19365) 草稿
-  - 中文：【重构】【MoE】Preserve A3 共享专家 clamp with official DequantSwiGLU
-  - 原文：[Refactor][MoE] Preserve A3 shared expert clamp with official DequantSwiGLU
-  - 说明：Replace the custom dequant-SwiGLU-quant call for clipped A3 INT8 共享 experts with torch npu.npu dequant swiglu quant , while retaining DeepSeek V4's limit semantics. This is an independent PR based on main 4f3648abd258a5cbdd1a9ae34165a85
-- [PR #19355](https://github.com/vllm-project/vllm-ascend/pull/19355) 进行中
-  - 中文：【性能】【MRV2】Skip CPU length synchronization for DeepSeek V4
-  - 原文：[Performance][MRV2] Skip CPU length synchronization for DeepSeek V4
-  - 说明：MRV2 exempts DeepSeek V4.1 from copying rejection-corrected token counts back to the CPU and waiting for that copy on the next step, but V4 takes the synchronous path even though its 注意力 uses device 序列 lengths. This can interrup
-- [PR #19305](https://github.com/vllm-project/vllm-ascend/pull/19305) 草稿
-  - 中文：【性能】重叠 mHC pre/post with Sinkhorn for the A2 preMix path
-  - 原文：[Performance] Overlap mHC pre/post with Sinkhorn for the A2 preMix path
-  - 说明：Summary The Atlas A2 (non-arch35) preMix path of npu hc pre v3 is ~1.5x slower than the non-premix path at large token counts. DSV4.1 calls hc pre twice per decoder layer and both calls use the delayed pre mix , so this is on the 预填充 ho
-
-#### 2026-10-20
-
-- [PR #19240](https://github.com/vllm-project/vllm-ascend/pull/19240) 已合并
-  - 中文：【修复】Unify DeepSeek V4 张量并行 limits across hardware
-  - 原文：[BugFix] Unify DeepSeek V4 tensor parallel limits across hardware
-  - 说明：A5 now supports tensor parallelism. 移除 the hardware-specific DeepSeek V4 TP policy introduced in 18418 and use the same model-specific limits on all hardware families: - DeepSeek V4 Flash and V4.1 Flash: TP <= 8. - DeepSeek V4 Pro: TP <
-- [PR #19203](https://github.com/vllm-project/vllm-ascend/pull/19203) 已合并
-  - 中文：【修复】【v0.30.0】Validate DeepSeek V4 张量并行 limits
-  - 原文：[BugFix][v0.30.0] Validate DeepSeek V4 tensor parallel limits
-  - 说明：Validate DeepSeek V4 张量并行 limits on releases/v0.30.0 . Adapt 18418 to use the same model-specific limits across all hardware families, including A5 now that it supports tensor parallelism. - DeepSeek V4 Flash and V4.1 Flash: TP <
-- [PR #19265](https://github.com/vllm-project/vllm-ascend/pull/19265) 进行中
-  - 中文：【Feat】【v0.30.0】新增 DSV4 CWS and MRV2 前缀 检查点
-  - 原文：[Feat][v0.30.0] Add DSV4 CWS and MRV2 prefix checkpoints
-  - 说明：DeepSeek-V4 预填充 currently reserves 压缩器-state pages for the in-flight chunk across layers, although only a bounded incomplete tail must persist. This ports the 共享 压缩器 workspace (CWS) from 15452 to vLLM 0.30 and adds pre
-- [PR #19199](https://github.com/vllm-project/vllm-ascend/pull/19199) 已合并
-  - 中文：【修复】【MoE】【v0.30.0】CANN MegaMoE 权重 preparation for DeepSeekV4 W4A8 MXFP
-  - 原文：[BugFix][MoE][v0.30.0] Fix CANN MegaMoE weight preparation for DeepSeekV4 W4A8 MXFP
-  - 说明：Port 18684 to releases/v0.30.0 . Refs 17452. In releases/v0.30.0 , the DeepSeek W4A8 MXFP process 权重 after 加载() override preserves the EPLB-specific byte normalization but applies the non-MegaMoE transformation for all other cases
+- [PR #19166](https://github.com/vllm-project/vllm-ascend/pull/19166) 已合并
+  - 中文：【持续集成】新增 static and adaptive DSpark 投机解码 测试用例 for DeepSeek-V4-Flash on A5
+  - 原文：[CI] Add static and adaptive DSpark speculative decoding test cases for DeepSeek-V4-Flash on A5
+  - 说明：This PR adds two chat completion 测试用例 for deepseek-ai/DeepSeek-V4-Flash-0731 on Ascend A3, covering DSpark 投机解码 with num 投机 tokens=15 in both static and adaptive verification modes. Does this PR introduce any
+- [PR #19195](https://github.com/vllm-project/vllm-ascend/pull/19195) 已合并
+  - 中文：【文档】【v0.30.0】补充文档 D2RH workflow and Atlas 850E deployment
+  - 原文：[Doc][v0.30.0] Document D2RH workflow and Atlas 850E deployment
+  - 说明：Port the latest documentation from 18135 to releases/v0.30.0. - Describe the D2RH transfer workflow with its diagram. - 新增 inline DeepSeek-V4-Flash P/D launch examples for Atlas 850E with UBoE networking. - Explain host-显存 requirements
+- [PR #19328](https://github.com/vllm-project/vllm-ascend/pull/19328) 进行中
+  - 中文：【修复】【WeightTransfer】DeepSeek-V4 Flash Vision reload with native 保留
+  - 原文：[BugFix][WeightTransfer] Fix DeepSeek-V4 Flash Vision reload with native retention
+  - 说明：Fixes the one-card DeepSeek-V4 Flash Vision sleep → wake → NPU IPC reload path using the existing Worker sleep preserve parameter names mechanism. The PR is rebuilt as one commit directly on official main ee68e53457b9af658bb749a6258f9a8b1e2
+- [PR #19257](https://github.com/vllm-project/vllm-ascend/pull/19257) 已合并
+  - 中文：【文档】Use PCP8 DP2 for A3 DSpark 预填充 with Model Runner V2
+  - 原文：[Doc]Use PCP8 DP2 for A3 DSpark prefill with Model Runner V2
+  - 说明：Port the final documentation changes from 19201 ( releases/v0.30.0 ) to main . 更新 the A3 DeepSeek-V4-Flash DSpark 预填充 example to PCP8 / DP2 / TP1. Extend the launcher to allocate TP × PCP devices per DP rank, 启用 Model Runner V2
+- [PR #19201](https://github.com/vllm-project/vllm-ascend/pull/19201) 已合并
+  - 中文：【文档】【v0.30.0】Use PCP8 DP2 for A3 DSpark 预填充 with Model Runner V2
+  - 原文：[Doc][v0.30.0] Use PCP8 DP2 for A3 DSpark prefill with Model Runner V2
+  - 说明：更新 the DeepSeek-V4-Flash A3 DSpark PD deployment example on releases/v0.30.0 to use 预填充 PCP8 / DP2 / TP1 with Model Runner V2. Set export VLLM USE V2 MODEL RUNNER=1 on both DSpark nodes and 补充文档 that PCP requires V2, while DSA-C
 
 #### 2026-10-19
 
-- [PR #18684](https://github.com/vllm-project/vllm-ascend/pull/18684) 已合并
-  - 中文：【修复】【MoE】CANN MegaMoE 权重 preparation for DeepSeekV4 W4A8 MXFP
-  - 原文：[BugFix][MoE] Fix CANN MegaMoE weight preparation for DeepSeekV4 W4A8 MXFP
-  - 说明：Refs 17452 What this PR does / why? When CANN MegaMoE is 启用 for DeepSeek W4A8 MXFP MoE, startup fails because AscendW4A8MXFPDSDynamicFusedMoEMethod overrides the common process 权重 after 加载() implementation. The DeepSeek-speci
-- [PR #19188](https://github.com/vllm-project/vllm-ascend/pull/19188) 已关闭
-  - 中文：【Feat】【DSA】Share O-projection buffers across DeepSeek layers
-  - 原文：[Feat][DSA] Share O-projection buffers across DeepSeek layers
-  - 说明：This PR reduces resident OTP 通信-buffer 显存 for DeepSeek V4 and V4.1 by sharing address-stable O-projection exchange scratch across sequential DSA layers. It reserves the 共享 buffers before KV-缓存 profiling and sizes them
+- [PR #19198](https://github.com/vllm-project/vllm-ascend/pull/19198) 进行中
+  - 中文：【功能】【DCP】DeepSeek-V4 Flash DSA 解码-context-parallel 注意力 for 910B2
+  - 原文：[Feature][DCP] DeepSeek-V4 Flash DSA decode-context-parallel attention for 910B2
+  - 说明：What 解码 Context Parallelism (DCP) 支持 for the DeepSeek-V4 Flash DSA 注意力 stack on Ascend 910B (int8 索引器 / quant-KV path). The C4 and C128 compressed KV caches and the C4 索引器 K 缓存 are sharded along the 序列 dimens
 - [Issue #10058](https://github.com/vllm-project/vllm-ascend/issues/10058) 已关闭
   - 中文：【缺陷】: 0.20.2rc1 DeepSeek V4 Flash on A2 16xNPU. the serve mtp==3 acceptence is very low.
   - 原文：[Bug]: 0.20.2rc1 DeepSeek V4 Flash on A2 16xNPU. the serve mtp==3 acceptence is very low.
-- [Issue #19139](https://github.com/vllm-project/vllm-ascend/issues/19139) 进行中
-  - 中文：【文档】对齐 A2/A3 inference guides with vLLM V1 调度器 defaults: 移除 redundant --启用-chunked-预填充 on A2, and recommend ascend-vllm 调度器 for long-run stability on A3
-  - 原文：[Docs] Align A2/A3 inference guides with vLLM V1 scheduler defaults: remove redundant --enable-chunked-prefill on A2, and recommend ascend-vllm scheduler for long-run stability on A3
-  - 说明：In the official tutorial docs/source/tutorials/models/DeepSeek-V4-Flash.md (branch releases/v0.18.0 ), the A2 (Atlas 800I A2) inference script explicitly passes --启用-chunked-预填充 , while the A3 (Atlas 800 A3) script does not . This i
-- [PR #19034](https://github.com/vllm-project/vllm-ascend/pull/19034) 已合并
-  - 中文：【修复】【PCP】Size DSV4.1 replay 元数据 for local segments
-  - 原文：[BugFix][PCP] Size DSV4.1 replay metadata for local segments
-  - 说明：PCP splits a 预填充 request into front/back local segments, so a rank's local batch can contain up to twice max num seqs entries. DSV4.1 Engram gathers replay 元数据 using these local entries but allocates its CPU/GPU replay buffer for o
 - [Issue #19116](https://github.com/vllm-project/vllm-ascend/issues/19116) 进行中
   - 中文：【缺陷】: 投机 execution must be 启用 on all DeepSeek-V4-Flash-0731-W8A8 PD nodes. In some scenarios with high concurrency, enabling dspark will significantly increase the TTFT, in some cases even increasing it by several times.
   - 原文：[Bug]: Speculative execution must be enabled on all DeepSeek-V4-Flash-0731-W8A8 PD nodes. In some scenarios with high concurrency, enabling dspark will significantly increase the TTFT, in some cases even increasing it by several times.
 
 #### 2026-10-17
 
-- [PR #18808](https://github.com/vllm-project/vllm-ascend/pull/18808) 已合并
-  - 中文：【v0.30.0】【注意力】【功能】Integrate mixed_quant_sparse_flash_mla op for DeepSeek-V4 FP8 KV path
-  - 原文：[v0.30.0][Attention][Feature] Integrate mixed_quant_sparse_flash_mla op for DeepSeek-V4 FP8 KV path
-  - 说明：Backport Unify the DSV4 稀疏 注意力 path on the MixedQuantSparseFlashMla operator family from cann ops transformer, replacing the previous in-tree custom operators: 移除 the in-tree KvCompressEpilog 自定义算子 (csrc/注意力/kv compr
-
-#### 2026-10-16
-
-- [PR #18967](https://github.com/vllm-project/vllm-ascend/pull/18967) 进行中
-  - 中文：【功能】【SpecDecode】启用 ACL-graph capture for the DSpark draft model (opt-in)
-  - 原文：[Feature][SpecDecode] Enable ACL-graph capture for the DSpark draft model (opt-in)
-  - 说明：The DSpark draft model (DeepSeek V4.x MTP heads) currently runs eager-only : AscendDSparkProposer. init hard-disables 图模式 ( self.use cuda graph = False , "DSpark runs eager only"). On DeepSeek-V4.1-Flash this costs ~20% of end-to-end
-- [PR #18959](https://github.com/vllm-project/vllm-ascend/pull/18959) 进行中
-  - 中文：【修复】【模型】Declare DSV4 压缩器 state 缓存 blocks in token units
-  - 原文：[BugFix][Model] Declare DSV4 compressor state cache blocks in token units
-  - 说明：AscendCompressorStateCache.get KV 缓存 spec reported its slot count (2/8 state slots) in the spec's block size field, which every 缓存-manager consumer reads as a token count — one slot holds one compress ratio-token interval. The engine-
-- [PR #18884](https://github.com/vllm-project/vllm-ascend/pull/18884) 已合并
-  - 中文：【重构】【Patch】移除 obsolete DeepSeek V4 vision converter
-  - 原文：[Refactor][Patch] Remove obsolete DeepSeek V4 vision converter
-  - 说明：vLLM v0.31 natively routes DeepSeek-V4 vision 检查点 to DeepseekV4ForConditionalGeneration and sets the multimodal 前缀 元数据 必填 by the Ascend path. The Ascend compatibility converter therefore duplicates upstream behavior a
-
-#### 2026-10-15
-
-- [PR #18494](https://github.com/vllm-project/vllm-ascend/pull/18494) 已关闭
-  - 中文：[BugFix] [DSA]拒绝A5上DeepSeek V4的不受支持的KV缓存数据类型
-  - 原文：[BugFix][DSA] Reject unsupported KV cache dtypes for DeepSeek V4 on A5
-  - 说明：【修复】【DSA】Reject unsupported KV 缓存 dtypes for DeepSeek V4 on A5 The A5 DeepSeek V4 稀疏-注意力 path builds a single KV 缓存 implementation, kv compress epilog , whose binding accepts only E5M2/E4M3. Its bf16 counterpart needs s
-- [PR #15317](https://github.com/vllm-project/vllm-ascend/pull/15317) 已关闭
-  - 中文：【修复】【Frontend】Handle DeepSeek V4 trailing system messages
-  - 原文：[BugFix][Frontend] Handle DeepSeek V4 trailing system messages
-  - 说明：Backport the DeepSeek V4 trailing-system prompt-rendering 修复 from for the vLLM version currently supported by vLLM-Ascend. For a message 序列 such as system - user - system , the existing renderer leaves the prompt at a bare system-mes
+- [Issue #19071](https://github.com/vllm-project/vllm-ascend/issues/19071) 进行中
+  - 中文：【缺陷】: DeepSeek-V4-Flash 缓存.view stride error with default KV dtype on Ascend 950
+  - 原文：[Bug]: DeepSeek-V4-Flash cache.view stride error with default KV dtype on Ascend 950
 
 ### DeepSeek V4 Pro
 
@@ -1755,13 +1812,6 @@
   - 原文：[v0.30.0][Doc][Misc] Update DeepSeek V4 Pro A3 DSpark PD deployment for MRv2 on v0.30.0
   - 说明：This PR 更新 the DeepSeek-V4-Pro tutorial for the vLLM-Ascend v0.30.0 release, focusing on Atlas 800 A3 deployment with DSpark. Specifically, it: - Removes the legacy A3 MTP 配置 from Multi-Node Online Deployment and the MTP var
 
-#### 2026-10-16
-
-- [PR #17768](https://github.com/vllm-project/vllm-ascend/pull/17768) 已关闭
-  - 中文：【持续集成】迁移 DeepSeek V4 Pro PD 夜间 to PCP
-  - 原文：[CI] Migrate DeepSeek V4 Pro PD nightly to PCP
-  - 说明：- 迁移 the DeepSeek V4 Pro W4A8 PD 夜间 prefiller from DSA-CP TP8 to MRV2 TP2 x PCP4. - 对齐 the Mooncake 预填充 topology with TP2 and keep the decoder topology unchanged. - Lower the prefiller GPU 显存 utilization from 0.94 to 0.
-
 ### DeepSeek R1
 
 #### 2026-11-11
@@ -1816,46 +1866,6 @@
   - 原文：[Doc][Misc] Remove redundant dynamic chunked pipeline parallel tutorial
   - 说明：The CPP user guide already covers deployment, tuning, online calibration, and 性能. The separate DeepSeek-V3.1 tutorial duplicates that guidance and uses a model whose vLLM Ascend 支持 ended in v0.30.0. - Delete the redundant tuto
 
-### DeepSeek V3.2
-
-#### 2026-11-04
-
-- [PR #19715](https://github.com/vllm-project/vllm-ascend/pull/19715) 已关闭
-  - 中文：【测试】【MRV2】新增 DeepSeek V3.2 MRV1/MRV2 parity harness
-  - 原文：[Test][MRV2] Add DeepSeek V3.2 MRV1/MRV2 parity harness
-  - 说明：Part of 20666. Adds a reproducible 夜间 entry point for comparing DeepSeek V3.2 W8A8 on MRV1 and MRV2 with the official single-node A3 topology (DP2 + TP8 + EP + MTP + FULL 解码 ONLY ). The new harness: - records the model revision, so
-
-#### 2026-11-02
-
-- [PR #20675](https://github.com/vllm-project/vllm-ascend/pull/20675) 进行中
-  - 中文：【测试】【MRV2】新增 DeepSeek V3.2 MRV1/MRV2 parity 回退 harness
-  - 原文：[Test][MRV2] Add DeepSeek V3.2 MRV1/MRV2 parity regression harness
-  - 说明：Part of 20674 and 20673. Adds a resource-heavy, manual 夜间 回退 for DeepSeek V3.2 W8A8 on MRV1 and MRV2. This is a test-only change; no production runner behavior or environment variable is changed, and no v0.30.0-era patch is for
-- [Issue #20674](https://github.com/vllm-project/vllm-ascend/issues/20674) 进行中
-  - 中文：【测试】【MRV2】DeepSeek V3.2 精度 nondeterminism and batch=4 性能 回退
-  - 原文：[Test][MRV2] DeepSeek V3.2 accuracy nondeterminism and batch=4 performance regression
-  - 说明：Problem DeepSeek-V3.2-W8A8 still has two independent MRV1/MRV2 acceptance issues on a single exclusive Atlas 800T A3 (16 NPUs): 1. The 严格 logprob gate is not stable for all prompts. With the candidate source mount verified, short-Englis
-- [Issue #20673](https://github.com/vllm-project/vllm-ascend/issues/20673) 进行中
-  - 中文：【测试】【MRV2】DeepSeek V3.2 精度 and 性能 parity with MRV1
-  - 原文：[Test][MRV2] DeepSeek V3.2 accuracy and performance parity with MRV1
-  - 说明：背景 需要系统验证 DeepSeek V3.2 在 Model Runner V2（MRV2）上的精度与性能，并以 Model Runner V1（MRV1）为基准，确保重构不引入功能或性能回归。 本 issue 由 @wisdom1710 认领，用于跟踪测试配置、真机数据、回归用例及后续问题修复。 验收范围 1. 可复现配置 - 在 tests/e2e 或 nightly 增加 DeepSeek V3.2 的可复现配置。 - 记录模型 revision、硬件、CANN /
-- [Issue #20622](https://github.com/vllm-project/vllm-ascend/issues/20622) 已关闭
-  - 中文：【测试】【MRV2】DeepSeek V3.2 精度 nondeterminism and batch=4 性能 回退
-  - 原文：[Test][MRV2] DeepSeek V3.2 accuracy nondeterminism and batch=4 performance regression
-  - 说明：Problem DeepSeek-V3.2-W8A8 still has two independent MRV1/MRV2 acceptance issues on a single exclusive Atlas 800T A3 (16 NPUs): 1. The 严格 logprob gate is not stable for all prompts. With the candidate source mount verified, short-Englis
-- [Issue #20666](https://github.com/vllm-project/vllm-ascend/issues/20666) 已关闭
-  - 中文：【测试】【MRV2】DeepSeek V3.2 精度 and 性能 parity with MRV1
-  - 原文：[Test][MRV2] DeepSeek V3.2 accuracy and performance parity with MRV1
-  - 说明：背景 需要系统验证 DeepSeek V3.2 在 Model Runner V2（MRV2）上的精度与性能，并以 Model Runner V1（MRV1）为基准，确保重构不引入功能或性能回归。 本 issue 由 @wisdom1710 认领，用于跟踪测试配置、真机数据、回归用例及后续问题修复。 验收范围 1. 可复现配置 - 在 tests/e2e 或 nightly 增加 DeepSeek V3.2 的可复现配置。 - 记录模型 revision、硬件、CANN /
-- [PR #20630](https://github.com/vllm-project/vllm-ascend/pull/20630) 已关闭
-  - 中文：【测试】【MRV2】新增 DeepSeek V3.2 MRV1/MRV2 parity 回退 harness
-  - 原文：[Test][MRV2] Add DeepSeek V3.2 MRV1/MRV2 parity regression harness
-  - 说明：Part of 20622 and 20666. Adds a resource-heavy, manual 夜间 回退 for DeepSeek V3.2 W8A8 on MRV1 and MRV2. This is a test-only change; no production runner behavior or environment variable is changed, and no v0.30.0-era patch is for
-- [Issue #19713](https://github.com/vllm-project/vllm-ascend/issues/19713) 已关闭
-  - 中文：【测试】【MRV2】DeepSeek V3.2 精度 and 性能 parity with MRV1
-  - 原文：[Test][MRV2] DeepSeek V3.2 accuracy and performance parity with MRV1
-  - 说明：背景 需要系统验证 DeepSeek V3.2 在 Model Runner V2（MRV2）上的精度与性能，并以 Model Runner V1（MRV1）为基准，确保重构不引入功能或性能回归。 本 issue 由 @wisdom1710 认领，用于跟踪测试配置、真机数据、回归用例及后续问题修复。 验收范围 1. 可复现配置 - 在 tests/e2e 或 nightly 增加 DeepSeek V3.2 的可复现配置。 - 记录模型 revision、硬件、CANN /
-
 ### DeepSeek V3
 
 #### 2026-11-03
@@ -1888,6 +1898,47 @@
 ## Qwen
 
 ### Qwen3.8
+
+#### 2026-11-13
+
+- [PR #21758](https://github.com/vllm-project/vllm-ascend/pull/21758) 草稿
+  - 中文：【性能】Skip QSA CPU length sync for Ascend builder
+  - 原文：[Performance] Skip QSA CPU length sync for Ascend builder
+  - 说明：Qwen3.8-Flash-Next with MTP can skip the per-解码-step CPU 序列-length synchronization when every 元数据 consumer accepts the optimistic CPU upper bound and uses rejection-corrected lengths on device. The capability guard already al
+
+#### 2026-11-12
+
+- [PR #21752](https://github.com/vllm-project/vllm-ascend/pull/21752) 进行中
+  - 中文：【文档】【releases/v0.32.0rc】Sync Qwen3.8 Flash Next PD deployment guide
+  - 原文：[Doc][releases/v0.32.0rc] Sync Qwen3.8 Flash Next PD deployment guide
+  - 说明：Backports the seven documentation commits from 21692 to releases/v0.32.0rc . This adds the A2 and A3 image-and-text and long-context PD examples, aligns the A3 three-tier 池化 topology, and makes the host huge-page troubleshooting note a
+- [PR #21751](https://github.com/vllm-project/vllm-ascend/pull/21751) 进行中
+  - 中文：【功能】【模型】Qwen PLE UVA host 卸载 with DP 显存 sharing
+  - 原文：[Feature][Model] Add Qwen PLE UVA host offload with DP memory sharing
+  - 说明：新增 a UVA implementation of Qwen3.8-Flash-Next PLE host 卸载 on main that does not depend on MemFabric's 卸载.卸载() API. This provides an alternative to the GVA approach in 21448 and carries the host lookup approach from 20560 ont
+- [PR #21730](https://github.com/vllm-project/vllm-ascend/pull/21730) 进行中
+  - 中文：修复: correct Mamba state indexing and PLE inputs for Qwen3.8
+  - 原文：fix: correct Mamba state indexing and PLE inputs for Qwen3.8
+  - 说明：Fixes three issues affecting Qwen3.8 inference 精度 on Ascend: - Use persistent request slots for Mamba state 拷贝 and 初始化 the alignment context during KV-缓存 initialization. - Perform PLE embedding lookup and tensor-parallel
+- [Issue #21641](https://github.com/vllm-project/vllm-ascend/issues/21641) 已关闭
+  - 中文：【功能】: 310P运行Qwen3.8-27B-w8a8-310p，出现DIST call hccl api failed
+  - 原文：[Feature]: 310P运行Qwen3.8-27B-w8a8-310p，出现DIST call hccl api failed
+  - 说明：启动容器的命令： docker run -it -d \ --shm-size=1g \ --net=host \ --name Qwen3.8-27B \ --device=/dev/davinci0 \ --device=/dev/davinci1 \ --device=/dev/davinci2 \ --device=/dev/davinci3 \ --device /dev/davinci manager \ --device /dev/devmm svm \ --d
+- [PR #21697](https://github.com/vllm-project/vllm-ascend/pull/21697) 进行中
+  - 中文：【修复】【持续集成】Preserve Qwen3.8 PLE state across IPC sleep cycles
+  - 原文：[BugFix][CI] Preserve Qwen3.8 PLE state across IPC sleep cycles
+  - 说明：新增 a four-layer Qwen3.8-Flash-Next TP2 unpacked IPC 回退 following 20535, and 修复 the PLE context corruption it exposes after level-2 sleep. MRV2 creates model state inside the discardable 权重 pool. PLE's immutable n-gram offsets
+- [PR #21693](https://github.com/vllm-project/vllm-ascend/pull/21693) 进行中
+  - 中文：【功能】【模型】支持 预填充 context parallelism for Qwen3.8-Flash-Next
+  - 原文：[Feature][Model] Support prefill context parallelism for Qwen3.8-Flash-Next
+  - 说明：启用 预填充 context parallelism (PCP) for Qwen3.8-Flash-Next on Model Runner V2. Reuse the KDA projection sharding over TP × PCP for Gated DeltaNet and process each rank's heads in global causal token order. Use the existing PCP token la
+- [PR #21692](https://github.com/vllm-project/vllm-ascend/pull/21692) 进行中
+  - 中文：【文档】Expand Qwen3.8-Flash-Next A3 PD deployment guidance
+  - 原文：[Doc] Expand Qwen3.8-Flash-Next A3 PD deployment guidance
+  - 说明：- 新增 A3 image-and-text 10K and 1M long-context PD examples. The image-and-text example uses vision-encoder data parallelism on 预填充 and exposes a separate API per 解码 DP rank. - 对齐 the basic and base 池化 A3 commands with the r
+- [Issue #21647](https://github.com/vllm-project/vllm-ascend/issues/21647) 进行中
+  - 中文：【缺陷】: Fail to load Qwen3.8-Flash-Next model.
+  - 原文：[Bug]: Fail to load Qwen3.8-Flash-Next model.
 
 #### 2026-11-11
 
@@ -1988,11 +2039,11 @@
 - [Issue #21113](https://github.com/vllm-project/vllm-ascend/issues/21113) 进行中
   - 中文：【缺陷】Default cudagraph_capture_sizes exhausts NPU SQ/CQ streams on dense models (AclmdlRICaptureBegin 207005)
   - 原文：[Bug] Default cudagraph_capture_sizes exhausts NPU SQ/CQ streams on dense models (AclmdlRICaptureBegin 207005)
-  - 说明：Environment - vllm-ascend 0.30.0rc2, vLLM 0.30.0, CANN 9.2.0, torch npu 2.10 - Atlas 910B2 64 GiB, Ubuntu 22.04 aarch64 - Model: Qwen3.8-27B-w8a8 (msmodelslim W8A8 DYNAMIC , ~29.6 GB 权重), --max-model-len 8192 Reproduce Expected Capture
+  - 说明：Environment: vllm-ascend 0.30.0rc2, vLLM 0.30.0, CANN 9.2.0, torch npu 2.10; Atlas 910B2 64GB. Model: Qwen3.8-27B-w8a8 (msmodelslim W8A8 DYNAMIC , ~29.6GB), --max-model-len 8192 . Repro: Startup aborts during graph capture: Driver plog show
 - [Issue #21112](https://github.com/vllm-project/vllm-ascend/issues/21112) 进行中
   - 中文：【缺陷】权重-only W8A16 compressed-tensors 检查点 fall through _detect_quant_type and abort with bare NotImplementedError
   - 原文：[Bug] Weight-only W8A16 compressed-tensors checkpoints fall through _detect_quant_type and abort with bare NotImplementedError
-  - 说明：Environment - vllm-ascend 0.30.0rc2 ( 8fde6d4e3 ), vLLM 0.30.0, CANN 9.2.0, torch/torch npu 2.10 - Atlas 910B2 64 GiB, Ubuntu 22.04 aarch64 - Model: Qwen3.8-27B-W8A16 — compressed-tensors pack-quantized , GPTQ int8 channel-wise symmetric we
+  - 说明：Environment: vllm-ascend 0.30.0rc2 ( 8fde6d4e3 ), vLLM 0.30.0, CANN 9.2.0, torch/torch npu 2.10; Atlas 910B2 64GB. Model: Qwen3.8-27B-W8A16 , compressed-tensors pack-quantized , GPTQ int8 channel-wise symmetric 权重, input activations: n
 - [PR #20361](https://github.com/vllm-project/vllm-ascend/pull/20361) 已合并
   - 中文：【功能】gdn adaptive verify for dspark
   - 原文：[Feature] add gdn adaptive verify for dspark
@@ -2278,18 +2329,72 @@
   - 原文：[BugFix][Model] Support dense sequence parallelism for the Qwen3.5 family (Qwen3.8-27B) [releases/v0.30.0]
   - 说明：Adaptation of the dense-SP 特性 for the v0.30.0 release line (vLLM v0.30.0 pin). Same content as the main-line PR. Upstream vLLM gates 序列 parallelism on use 序列 parallel moe , which requires an MoE 检查点 with expert paral
 
-#### 2026-10-16
-
-- [PR #18983](https://github.com/vllm-project/vllm-ascend/pull/18983) 草稿
-  - 中文：【持续集成】【模型】新增 Qwen3.8 Flash Next 性能 夜间用例
-  - 原文：[CI][Model] Add Qwen3.8 Flash Next performance nightly cases
-  - 说明：合并 order: 合并 20509 into releases/v0.32.0rc first. This main PR is on hold and remains draft; do not 合并 it yet. 新增 Qwen3.8 Flash Next 128K/1K and 16K/1K 性能 回退 cases for A3 and A5 through the existing YAML-driven Ni
-- [PR #18921](https://github.com/vllm-project/vllm-ascend/pull/18921) 进行中
-  - 中文：【修复】【Qwen3.8】Preserve PLE history and multi-token 解码 state
-  - 原文：[BugFix][Qwen3.8] Preserve PLE history and multi-token decode state
-  - 说明：1. PLE context can contain placeholder tokens during asynchronous scheduling PLE constructs n-gram embeddings from the current input tokens and their preceding token history. This history must contain the actual tokens consumed by the model
-
 ### Qwen3.6
+
+#### 2026-11-13
+
+- [PR #21757](https://github.com/vllm-project/vllm-ascend/pull/21757) 进行中
+  - 中文：【文档】【杂项】Correct Qwen3.6 投机解码 guidance
+  - 原文：[Doc][Misc] Correct Qwen3.6 speculative decoding guidance
+  - 说明：This aligns the Qwen3.6-35B-A3B 投机-解码 examples with the online-服务 CLI and the current graph behavior: - use --投机-配置 instead of the underscore spelling; - do not recommend enforce eager: true in the performan
+
+#### 2026-11-12
+
+- [Issue #20609](https://github.com/vllm-project/vllm-ascend/issues/20609) 已关闭
+  - 中文：【MRV2】Qwen3.6-35B-A3B batched MTP is not batch-invariant: identical prompts in one batch diverge (MRV1 and MRV2)
+  - 原文：[MRV2] Qwen3.6-35B-A3B batched MTP is not batch-invariant: identical prompts in one batch diverge (MRV1 and MRV2)
+  - 说明：Summary On Atlas 800T A3, Qwen3.6-35B-A3B W8A8 with qwen3 5 mtp and two concurrent prompts is not reproducible within either MRV1 or MRV2. Both runners exceed the 解码 tolerance on the second prompt and both eventually diverge on token id
+- [Issue #20608](https://github.com/vllm-project/vllm-ascend/issues/20608) 已关闭
+  - 中文：【MRV2】Qwen3.6-35B-A3B 预填充 TTFT 回退: host ACLNN workspace/tiling is not reused
+  - 原文：[MRV2] Qwen3.6-35B-A3B prefill TTFT regression: host ACLNN workspace/tiling is not reused
+  - 说明：Summary On Atlas 800T A3, with Qwen3.6-35B-A3B W8A8, TP=2, MTP=3 and ACL Graph 启用, the MRV2 model runner is 25.4% slower than MRV1 on 预填充 TTFT for batch=4, prompt len=2048, max tokens=1 . The 回退 is reproducible and is not c
+- [Issue #20153](https://github.com/vllm-project/vllm-ascend/issues/20153) 已关闭
+  - 中文：【MRV2】Complete Qwen3.6 adaptation on Model Runner v2 and ensure 精度/性能 parity with MRV1
+  - 原文：[MRV2] Complete Qwen3.6 adaptation on Model Runner v2 and ensure accuracy/performance parity with MRV1
+  - 说明：Motivation Model Runner v2 is the next-generation worker path in vllm-ascend ( vllm ascend/worker/v2/ ), and the Qwen3.6 family (dense 27B and MoE 35B-A3B) is currently exercised on MRV1 only. Existing reports show the MRV2 path is not read
+- [PR #20624](https://github.com/vllm-project/vllm-ascend/pull/20624) 已关闭
+  - 中文：test: 新增 Qwen3.6 MRV1/MRV2 parity e2e coverage
+  - 原文：test: add Qwen3.6 MRV1/MRV2 parity e2e coverage
+  - 说明：Summary Adds tests/e2e/pull request/one card/model runner v2/test qwen3 6 mrv2.py covering the Qwen3.6 family on Model Runner V2 versus Model Runner V1. Coverage: - batch=1 parity: TP1 and TP2, eager and FULL 解码 ONLY , greedy and random
+- [PR #20623](https://github.com/vllm-project/vllm-ascend/pull/20623) 已关闭
+  - 中文：docs: 补充文档 Qwen3.6 Model Runner V2 支持 and known issues
+  - 原文：docs: document Qwen3.6 Model Runner V2 support and known issues
+  - 说明：Summary - 35B-A3B tutorial: 新增 Known Issues for Model Runner V2 covering the 预填充 TTFT host overhead ( 20608) and the batch 1 divergence ( 20609); renumber FAQ to 11 and 更新 its in-page reference. - 27B tutorial: 新增 a Model Runner V
+- [Issue #21749](https://github.com/vllm-project/vllm-ascend/issues/21749) 进行中
+  - 中文：【MRV2】Qwen3.6 adaptation and Model Runner V1/V2 parity: delivery tracking
+  - 原文：[MRV2] Qwen3.6 adaptation and Model Runner V1/V2 parity: delivery tracking
+  - 说明：Objective Complete Qwen3.6 adaptation on Model Runner V2 and establish 精度 / 性能 parity with the frozen Model Runner V1 reference, on a reproducible environment. Reference environment for every number below: vLLM-Ascend v0.30.0
+- [PR #21747](https://github.com/vllm-project/vllm-ascend/pull/21747) 进行中
+  - 中文：docs: 补充文档 Qwen3.6 Model Runner V2 支持 and the open V2 issues
+  - 原文：docs: document Qwen3.6 Model Runner V2 support and the open V2 issues
+  - 说明：Documents how Qwen3.6 runs on Model Runner V2 and what is currently known to be imperfect: - docs/source/user guide/支持 matrix/supported models.md : notes that Model Runner V2 is the only runner in this release and links the two open V2
+- [PR #21746](https://github.com/vllm-project/vllm-ascend/pull/21746) 进行中
+  - 中文：test: cover Qwen3.6 Model Runner V2 with main-recorded goldens
+  - 说明：Adds e2e coverage for the Qwen3.6 family on Model Runner V2, with goldens recorded on the last release that still contains Model Runner V1 ( v0.30.0 , image digest sha256:e6c22b94f4ab3634ad20ae4ad28b73b79ef59a1e9eb0372454affd8c186e36a6 ). M
+- [PR #21745](https://github.com/vllm-project/vllm-ascend/pull/21745) 进行中
+  - 中文：修复: run Qwen3.6 W8A8 on the fp32 dequant scale and the fp32 GDN state path
+  - 原文：fix: run Qwen3.6 W8A8 on the fp32 dequant scale and the fp32 GDN state path
+  - 说明：Qwen3.6 W8A8 检查点 cannot start on Ascend without two compatibility fixes: - vllm ascend/量化/methods/w8a8/w8a8 dynamic.py : pass the fp32 dequant scale that the loader already prepares ( 权重 scale fp32 ) on the dense and g
+- [Issue #21743](https://github.com/vllm-project/vllm-ascend/issues/21743) 进行中
+  - 中文：【测试】Qwen3.6/Qwen3.5 spec-解码 acceptance goldens are stale and not reproducible
+  - 原文：[Test] Qwen3.6/Qwen3.5 spec-decode acceptance goldens are stale and not reproducible
+  - 说明：Summary Three in-tree spec-解码 acceptance tests assert a 修复 golden value with an 8-10% tolerance. On vLLM-Ascend v0.30.0 (CANN 9.1.0, driver 25.5.0, Atlas 800T A3) all three measure higher , two of them fail, and the dense case additi
+- [Issue #21742](https://github.com/vllm-project/vllm-ascend/issues/21742) 进行中
+  - 中文：【MRV2】Qwen3.6-35B-A3B batched MTP is not batch-invariant: identical prompts diverge at index 10-22
+  - 原文：[MRV2] Qwen3.6-35B-A3B batched MTP is not batch-invariant: identical prompts diverge at index 10-22
+  - 说明：Summary With more than one 序列 in a 调度器 batch and MTP 投机解码 启用, two identical prompts can produce different final token sequences , on Model Runner V1 as well as on Model Runner V2. The first divergent token i
+- [Issue #21741](https://github.com/vllm-project/vllm-ascend/issues/21741) 进行中
+  - 中文：【MRV2】Qwen3.6 预填充: host-side ACLNN workspace/tiling overhead grows with the operator working set
+  - 原文：[MRV2] Qwen3.6 prefill: host-side ACLNN workspace/tiling overhead grows with the operator working set
+  - 说明：Summary On Model Runner V2 with 投机解码 and ACL Graph, the host side of a 预填充 wave costs more than on Model Runner V1: the NPU executes the same operators at the same speed, but aclnn GetWorkspaceSize / Tiling calls occupy
+- [Issue #21740](https://github.com/vllm-project/vllm-ascend/issues/21740) 进行中
+  - 中文：【MRV2】Qwen3.6 long-context 预填充 is ~36% slower on Model Runner V2: the blocking seq-len sync removes stream 重叠
+  - 原文：[MRV2] Qwen3.6 long-context prefill is ~36% slower on Model Runner V2: the blocking seq-len sync removes stream overlap
+  - 说明：Summary On Atlas 800T A3, Qwen3.6-27B W8A8 with TP=2, Model Runner V2 needs +36% wall time for a ~200k-token 预填充 while executing the same operators, the same number of times, at the same speed as Model Runner V1 (+0.4% NPU time, +2.4% h
+- [PR #21649](https://github.com/vllm-project/vllm-ascend/pull/21649) 进行中
+  - 中文：【文档】【杂项】修复 Supported Features link in Qwen3.5-27B/Qwen3.6-27B tutorial
+  - 原文：[Doc][Misc] Fix Supported Features link in Qwen3.5-27B/Qwen3.6-27B tutorial
+  - 说明：The first link in the "Supported Features" section of the Qwen3.5-27B & Qwen3.6-27B tutorial is labeled "Supported Features List", but it pointed to user guide/支持 matrix/supported models.md (the Supported Models page). This PR points i
 
 #### 2026-11-11
 
@@ -2357,28 +2462,12 @@
   - 中文：【持续集成】新增 测试用例 for Qwen3.6-35B-w8a8
   - 原文：[CI] add test cases for Qwen3.6-35B-w8a8
   - 说明：【】新增 测试用例 for Qwen3.6-35B-w8a8 No by running 测试用例 --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty
-- [PR #20624](https://github.com/vllm-project/vllm-ascend/pull/20624) 进行中
-  - 中文：test: 新增 Qwen3.6 MRV1/MRV2 parity e2e coverage
-  - 原文：test: add Qwen3.6 MRV1/MRV2 parity e2e coverage
-  - 说明：Summary Adds tests/e2e/pull request/one card/model runner v2/test qwen3 6 mrv2.py covering the Qwen3.6 family on Model Runner V2 versus Model Runner V1. Coverage: - batch=1 parity: TP1 and TP2, eager and FULL 解码 ONLY , greedy and random
-- [PR #20623](https://github.com/vllm-project/vllm-ascend/pull/20623) 进行中
-  - 中文：docs: 补充文档 Qwen3.6 Model Runner V2 支持 and known issues
-  - 原文：docs: document Qwen3.6 Model Runner V2 support and known issues
-  - 说明：Summary - 35B-A3B tutorial: 新增 Known Issues for Model Runner V2 covering the 预填充 TTFT host overhead ( 20608) and the batch 1 divergence ( 20609); renumber FAQ to 11 and 更新 its in-page reference. - 27B tutorial: 新增 a Model Runner V
 - [Issue #20569](https://github.com/vllm-project/vllm-ascend/issues/20569) 已关闭
   - 中文：【缺陷】:在Atlas 650E上，单机两卡使用vllm-ascend0.30.RC2部署Qwen3.6-35B-A3B报错HCCLALLGather
   - 原文：[Bug]:在Atlas 650E上，单机两卡使用vllm-ascend0.30.RC2部署Qwen3.6-35B-A3B报错HCCLALLGather
 - [Issue #15536](https://github.com/vllm-project/vllm-ascend/issues/15536) 已关闭
   - 中文：【缺陷】: Qwen3.6-27B在8张300I DUO卡上使用0.23.0RC1-310P镜像进行部署，一直报错Not allow to synchronize captured-stream, stream_id=35.
   - 原文：[Bug]: Qwen3.6-27B在8张300I DUO卡上使用0.23.0RC1-310P镜像进行部署，一直报错Not allow to synchronize captured-stream, stream_id=35.
-- [Issue #20609](https://github.com/vllm-project/vllm-ascend/issues/20609) 进行中
-  - 中文：【MRV2】Qwen3.6-35B-A3B batched MTP is not batch-invariant: identical prompts in one batch diverge (MRV1 and MRV2)
-  - 原文：[MRV2] Qwen3.6-35B-A3B batched MTP is not batch-invariant: identical prompts in one batch diverge (MRV1 and MRV2)
-  - 说明：Summary On Atlas 800T A3, Qwen3.6-35B-A3B W8A8 with qwen3 5 mtp and two concurrent prompts is not reproducible within either MRV1 or MRV2. Both runners exceed the 解码 tolerance on the second prompt and both eventually diverge on token id
-- [Issue #20608](https://github.com/vllm-project/vllm-ascend/issues/20608) 进行中
-  - 中文：【MRV2】Qwen3.6-35B-A3B 预填充 TTFT 回退: host ACLNN workspace/tiling is not reused
-  - 原文：[MRV2] Qwen3.6-35B-A3B prefill TTFT regression: host ACLNN workspace/tiling is not reused
-  - 说明：Summary On Atlas 800T A3, with Qwen3.6-35B-A3B W8A8, TP=2, MTP=3 and ACL Graph 启用, the MRV2 model runner is 25.4% slower than MRV1 on 预填充 TTFT for batch=4, prompt len=2048, max tokens=1 . The 回退 is reproducible and is not c
 - [Issue #20607](https://github.com/vllm-project/vllm-ascend/issues/20607) 进行中
   - 中文：【性能】解码 GDN 注意力 元数据 is rebuilt for every GDN KV-缓存 group (~22% of a host-bound step)
   - 原文：[Performance] Decode GDN attention metadata is rebuilt for every GDN KV-cache group (~22% of a host-bound step)
@@ -2405,10 +2494,6 @@
   - 中文：【文档】【杂项】Modify model 服务 host and 更新 evaluation instructions
   - 原文：[Doc][Misc] Modify model serving host and update evaluation instructions
   - 说明：This PR 更新 the host IP from 127.0.0.1 to 0.0.0.0 in the model 服务 instructions for Qwen3.5 and Qwen3.6 models, allowing the served models to be accessible externally (e.g., from within a Docker container). It also refactors and sim
-- [Issue #20153](https://github.com/vllm-project/vllm-ascend/issues/20153) 进行中
-  - 中文：【MRV2】Complete Qwen3.6 adaptation on Model Runner v2 and ensure 精度/性能 parity with MRV1
-  - 原文：[MRV2] Complete Qwen3.6 adaptation on Model Runner v2 and ensure accuracy/performance parity with MRV1
-  - 说明：Motivation Model Runner v2 is the next-generation worker path in vllm-ascend ( vllm ascend/worker/v2/ ), and the Qwen3.6 family (dense 27B and MoE 35B-A3B) is currently exercised on MRV1 only. Existing reports show the MRV2 path is not read
 
 #### 2026-10-28
 
@@ -2525,6 +2610,33 @@
 
 ### Qwen3.5
 
+#### 2026-11-12
+
+- [Issue #21743](https://github.com/vllm-project/vllm-ascend/issues/21743) 进行中
+  - 中文：【测试】Qwen3.6/Qwen3.5 spec-解码 acceptance goldens are stale and not reproducible
+  - 原文：[Test] Qwen3.6/Qwen3.5 spec-decode acceptance goldens are stale and not reproducible
+  - 说明：Summary Three in-tree spec-解码 acceptance tests assert a 修复 golden value with an 8-10% tolerance. On vLLM-Ascend v0.30.0 (CANN 9.1.0, driver 25.5.0, Atlas 800T A3) all three measure higher , two of them fail, and the dense case additi
+- [Issue #21731](https://github.com/vllm-project/vllm-ascend/issues/21731) 进行中
+  - 中文：【文档】: Feedback for `/en/latest/user_guide/support_matrix/supported_models.html`
+  - 原文：[Doc]: Feedback for `/en/latest/user_guide/support_matrix/supported_models.html`
+  - 说明：📚 The doc issue 1、从vLLM-Ascend社区模型支持列表上看，Qwen3.5 Dense/Moe都不支持池化，但从Ascend Inference Solution 26.2.0版本来看应该是支持的，需核实 2、vLLM-Ascend社区模型支持列表，看不出PD分离KV transfer这个子特性的支持情况，只有池化特性，需补充。 Suggest a potential alternative/修复 No response
+- [PR #21715](https://github.com/vllm-project/vllm-ascend/pull/21715) 进行中
+  - 中文：【性能】融合 matmul-collective ops for dense 序列 parallelism (MC2)
+  - 原文：[Performance] Fuse matmul-collective ops for dense sequence parallelism (MC2)
+  - 说明：This PR adds MC2 (matmul-collective) fusion for dense 序列 parallelism on the Qwen3.5 family. It fuses the 序列 all-gather into column GEMMs ( npu all gather base mm ) and the 减少-scatter into row GEMMs ( npu mm 减少 scatter ba
+- [PR #16998](https://github.com/vllm-project/vllm-ascend/pull/16998) 已关闭
+  - 中文：【性能】【型号】Fuse matmul + allreduce for Qwen3.5 row-parallel linears on Ascend
+  - 原文：[Performance][Model] Fuse matmul+allreduce for Qwen3.5 row-parallel linears on Ascend
+  - 说明：Under TP, every row-parallel linear in Qwen3.5 (注意力 o proj , MLP down proj , GDN out proj ) runs a matmul followed by an all-减少: the all-减少 (减少-scatter + all-gather on the ring) makes the activation cross the HCCL link twi
+- [PR #20621](https://github.com/vllm-project/vllm-ascend/pull/20621) 已关闭
+  - 中文：【功能】【模型】启用 dense 序列 parallelism for all dense decoder families
+  - 原文：[Feature][Model] Enable dense sequence parallelism for all dense decoder families
+  - 说明：The FlashComm 切换 previously 启用 dense 序列 parallelism only for the Qwen3.5 family, through a model-type whitelist and a per-family decoder-layer patch. This moves the layout to the generic layer primitives every dense family sh
+- [PR #21649](https://github.com/vllm-project/vllm-ascend/pull/21649) 进行中
+  - 中文：【文档】【杂项】修复 Supported Features link in Qwen3.5-27B/Qwen3.6-27B tutorial
+  - 原文：[Doc][Misc] Fix Supported Features link in Qwen3.5-27B/Qwen3.6-27B tutorial
+  - 说明：The first link in the "Supported Features" section of the Qwen3.5-27B & Qwen3.6-27B tutorial is labeled "Supported Features List", but it pointed to user guide/支持 matrix/supported models.md (the Supported Models page). This PR points i
+
 #### 2026-11-11
 
 - [PR #21592](https://github.com/vllm-project/vllm-ascend/pull/21592) 进行中
@@ -2536,9 +2648,9 @@
   - 原文：[Model][Feature] Support CLEF decision models on Ascend
   - 说明：Adds Ascend 支持 for Cloudflare/clef and Cloudflare/clef-flash by reusing the upstream joint-schema implementation with Ascend Qwen3.5 multimodal preprocessing. Both 检查点 use the upstream ClefFlashForJointSchema architecture selec
 - [PR #21582](https://github.com/vllm-project/vllm-ascend/pull/21582) 进行中
-  - 中文：【修复】【注意力】遵循 EncoderOnlyAttentionSpec in Ascend attentio…
-  - 原文：[BugFix][Attention] Honor EncoderOnlyAttentionSpec in Ascend attentio…
-  - 说明：…n 元数据 Qwen3.5-family hybrid models run bidirectional full-注意力 layers when is causal=False. vLLM marks those layers ENCODER ONLY and the model runner creates an EncoderOnlyAttentionSpec group that keeps no KV 缓存. GPU implement
+  - 中文：【修复】【注意力】遵循 EncoderOnlyAttentionSpec in Ascend 注意力 元数据
+  - 原文：[BugFix][Attention] Honor EncoderOnlyAttentionSpec in Ascend attention metadata
+  - 说明：Qwen3.5-family hybrid models run bidirectional full-注意力 layers when is causal=False . vLLM marks those layers ENCODER ONLY and the model runner creates an EncoderOnlyAttentionSpec group that keeps no KV 缓存. On GPU, the backend disp
 
 #### 2026-11-09
 
@@ -2615,10 +2727,6 @@
 
 #### 2026-11-02
 
-- [PR #20621](https://github.com/vllm-project/vllm-ascend/pull/20621) 进行中
-  - 中文：【功能】【模型】启用 dense 序列 parallelism for all dense decoder families
-  - 原文：[Feature][Model] Enable dense sequence parallelism for all dense decoder families
-  - 说明：The FlashComm 切换 previously 启用 dense 序列 parallelism only for the Qwen3.5 family, through a model-type whitelist and a per-family decoder-layer patch. This moves the layout to the generic layer primitives every dense family sh
 - [PR #20590](https://github.com/vllm-project/vllm-ascend/pull/20590) 进行中
   - 中文：【文档】新增 Ascend 310P overlays for Qwen3.5-2B/4B/9B
   - 原文：[Doc] Add Ascend 310P overlays for Qwen3.5-2B/4B/9B
@@ -2784,8 +2892,8 @@
   - 原文：[Doc][Misc] Add Qwen397B multimodal input notes to support matrix
   - 说明：Fill the empty Note cells for Qwen3.5-397B-A17B in the 950DT Products and A2/A3 tables with Text, image, video . Both entries are under Multimodal Language Models. The multimodal 950DT tab and hardware cells already use 950DT Products . The
 - [PR #19442](https://github.com/vllm-project/vllm-ascend/pull/19442) 进行中
-  - 中文：【测试】新增 a Qwen3.5-35B-A3B case to the TP4 batch-invariance e2e
-  - 原文：[Test] Add a Qwen3.5-35B-A3B case to the TP4 batch-invariance e2e
+  - 中文：【修复】【测试】Declare GDN batch-invariance 支持 and cover Qwen3.5-35B-A3B in the TP4 e2e
+  - 原文：[BugFix][Test] Declare GDN batch-invariance support and cover Qwen3.5-35B-A3B in the TP4 e2e
   - 说明：The TP4 batch-invariance e2e only covered Qwen/Qwen3-30B-A3B : all full 注意力, MoE 路由 at 128 experts with no 共享专家. Qwen/Qwen3.5-35B-A3B is a hybrid MoE whose 40 layers repeat a 3:1 pattern, so 30 are gated-delta-net linear
 
 #### 2026-10-21
@@ -2842,14 +2950,21 @@
   - 原文：[Bug]: Qwen3.5-397B C8 V-scale corruption after partial asynchronous PD imports
   - 说明：Tracking status Track the 397B static V-scale lifecycle problem separately from the 35B K-scale writeback race. 19016 is on hold and should not be merged while this issue is being reviewed. The standalone K-scale 修复 is tracked by 19064; th
 
-#### 2026-10-15
-
-- [PR #18522](https://github.com/vllm-project/vllm-ascend/pull/18522) 已合并
-  - 中文：[Bugfix] Gate在bfloat16上融合了GDN预填充路径以修复fp16模型（ ColQwen3.5 ）崩溃
-  - 原文：[Bugfix] Gate fused GDN prefill paths on bfloat16 to fix fp16 models (ColQwen3.5) crash
-  - 说明：This is a recurrence of 14456: the earlier 修复 did not 新增 a dtype gate at the dispatch layer. 修复 Gate both 融合 预填充 dispatches in vllm ascend/ops/gdn.py on query non spec.dtype == torch.bfloat16 , so fp16 models fall back to the Trit
-
 ### Qwen3
+
+#### 2026-11-12
+
+- [PR #21726](https://github.com/vllm-project/vllm-ascend/pull/21726) 进行中
+  - 中文：【性能】【Core】【Kernel】新增 opt-in Qwen3 customization with 运行时-adaptive AscendC operator
+  - 原文：[Performance][Core][Kernel] Add opt-in Qwen3 customization with runtime-adaptive AscendC operator
+  - 说明：This PR is a reference implementation of 20851 - Model-layer definition : vllm ascend/models/custom/qwen3 4b 14b 910b.py , defining AscendQwen3CustomForCausalLM (inheriting from Qwen3ForCausalLM ). - AscendC operators : csrc/custom/qwen3 4b
+- [PR #16335](https://github.com/vllm-project/vllm-ascend/pull/16335) 已关闭
+  - 中文：[Ops] [Feature]支持Qwen3系列MRoPE的内联COS/SIN计算
+  - 原文：[Ops][Feature] Support inline cos/sin calculation for MRoPE in Qwen3 Family
+  - 说明：This PR fuses online MRoPE cos/sin generation into the existing Triton 拆分-QKV, RMSNorm and MRoPE operator for Qwen3-family models. It removes the indexed cos sin 缓存 gather and avoids materializing a per-token cos sin tensor before lau
+- [Issue #4395](https://github.com/vllm-project/vllm-ascend/issues/4395) 已关闭
+  - 中文：[性能需求]: tpot不如mindIE，期待优化
+  - 说明：Anything you want to discuss about vllm on ascend. 环境：vllm0110基于cann8.3rc1，910b4，qwen3模型的dense和moe 问题：相比mindIE，vllm的ttft快，tpot慢，期待优化 压测： 框架 环境 ttft 1000/tpot ------ ------ ------ ------------ vllm qwen3-235b-int8，单机8卡，2k输入，16并发 1.3s 14tok/s
 
 #### 2026-11-11
 
@@ -2942,6 +3057,22 @@
   - 原文：[CI] Bind Qwen3 A2 performance tests to dedicated runner
   - 说明：Route qwen3-30b-a3b-bf16-a2-性能 and qwen3-30b-a3b-w8a8-a2-性能 to linux-aarch64-a2-binding-4 by updating their os fields in .github/workflows/configs/夜间 配置.yaml . Register the same label in .github/actionlint.yaml un
 
+### Qwen3-Next
+
+#### 2026-11-12
+
+- [PR #19959](https://github.com/vllm-project/vllm-ascend/pull/19959) 已关闭
+  - 中文：【修复】【Platform】prefix_cache_retention_interval silently ignored on hybrid models
+  - 原文：[BugFix][Platform] Fix prefix_cache_retention_interval silently ignored on hybrid models
+  - 说明：Fixes 19241 --前缀-缓存-保留-interval is silently ignored when 服务 hybrid models (e.g. Qwen3-Next) on Ascend: invalid values do not raise and the 特性 never takes effect. Root cause: upstream vLLM promoted VLLM 前缀缓存 R
+
+#### 2026-11-11
+
+- [PR #21552](https://github.com/vllm-project/vllm-ascend/pull/21552) 进行中
+  - 中文：【文档】【Recipe】新增 Ascend overlay for Qwen3-Next-80B-A3B-Instruct
+  - 原文：[Doc][Recipe] Add Ascend overlay for Qwen3-Next-80B-A3B-Instruct
+  - 说明：Adds recipes/overlays/Qwen/Qwen3-Next-80B-A3B-Instruct.yaml for Qwen/Qwen3-Next-80B-A3B-Instruct . - ascend bf16 a3 : the BF16 检查点 with TP=4, --max-model-len 32768 , --gpu-显存-utilization 0.8 and FULL 解码 ONLY ACLGraph — the si
+
 ### Qwen3-VL
 
 #### 2026-11-11
@@ -2992,22 +3123,6 @@
   - 中文：【文档】【Recipe】新增 Ascend overlay for Qwen3-VL-30B-A3B-Instruct
   - 原文：[Doc][Recipe] Add Ascend overlay for Qwen3-VL-30B-A3B-Instruct
   - 说明：Summary Adds the Ascend overlay for Qwen/Qwen3-VL-30B-A3B-Instruct under the new recipes/overlays layout introduced by vllm-project/vllm-ascend 19381 and the renderer cutover in vllm-project/recipes 1160. - Adds variants.ascend bf16 for one
-
-### Qwen3-Next
-
-#### 2026-11-11
-
-- [PR #21552](https://github.com/vllm-project/vllm-ascend/pull/21552) 进行中
-  - 中文：【文档】【Recipe】新增 Ascend overlay for Qwen3-Next-80B-A3B-Instruct
-  - 原文：[Doc][Recipe] Add Ascend overlay for Qwen3-Next-80B-A3B-Instruct
-  - 说明：Adds recipes/overlays/Qwen/Qwen3-Next-80B-A3B-Instruct.yaml for Qwen/Qwen3-Next-80B-A3B-Instruct . - ascend bf16 a3 : the BF16 检查点 with TP=4, --max-model-len 32768 , --gpu-显存-utilization 0.8 and FULL 解码 ONLY ACLGraph — the si
-
-#### 2026-10-27
-
-- [PR #19959](https://github.com/vllm-project/vllm-ascend/pull/19959) 进行中
-  - 中文：【修复】【Platform】prefix_cache_retention_interval silently ignored on hybrid models
-  - 原文：[BugFix][Platform] Fix prefix_cache_retention_interval silently ignored on hybrid models
-  - 说明：Fixes 19241 --前缀-缓存-保留-interval is silently ignored when 服务 hybrid models (e.g. Qwen3-Next) on Ascend: invalid values do not raise and the 特性 never takes effect. Root cause: upstream vLLM promoted VLLM 前缀缓存 R
 
 ### Qwen3 MoE
 
@@ -3106,6 +3221,13 @@
 
 ### GLM-5
 
+#### 2026-11-12
+
+- [PR #21439](https://github.com/vllm-project/vllm-ascend/pull/21439) 已合并
+  - 中文：【功能】【SpecDecode】支持 GLM-5.3-Flash DFlash2
+  - 原文：[Feature][SpecDecode] Support GLM-5.3-Flash DFlash2
+  - 说明：GLM-5.3-Flash could not start DFlash2 投机解码 because the target model did not expose the 必填 Eagle3 auxiliary hidden-state interface. This PR enables the DFlash2 path on Ascend and fixes the target/draft integration point
+
 #### 2026-11-11
 
 - [Issue #21598](https://github.com/vllm-project/vllm-ascend/issues/21598) 进行中
@@ -3139,10 +3261,6 @@
   - 中文：【功能】【SpecDecode】支持 GLM-5.3-Flash DFlash2 on Ascend
   - 原文：[Feature][SpecDecode] Support GLM-5.3-Flash DFlash2 on Ascend
   - 说明：GLM-5.3-Flash ( Glm5NextForConditionalGeneration ) could not start 投机解码 with a DFlash2 draft. The v2 model runner enables use aux hidden state outputs for method="dflash" and then calls set eagle3 aux hidden state layers , w
-- [PR #21439](https://github.com/vllm-project/vllm-ascend/pull/21439) 进行中
-  - 中文：【功能】【SpecDecode】支持 GLM-5.3-Flash DFlash2
-  - 原文：[Feature][SpecDecode] Support GLM-5.3-Flash DFlash2
-  - 说明：GLM-5.3-Flash ( Glm5NextForConditionalGeneration ) could not start 投机解码 with a DFlash2 draft. The v2 model runner enables use aux hidden state outputs for method="dflash" and requires the target to implement the 共享 Eagle
 - [PR #21435](https://github.com/vllm-project/vllm-ascend/pull/21435) 进行中
   - 中文：【性能】【模型】Skip unused GLM-5.3-Flash MTP 检查点 shards
   - 原文：[Performance][Model] Skip unused GLM-5.3-Flash MTP checkpoint shards
@@ -3193,7 +3311,7 @@
 - [PR #20789](https://github.com/vllm-project/vllm-ascend/pull/20789) 进行中
   - 中文：【功能】对齐 adaptive verification interface and 启用 online estimation for dsv4/glm53
   - 原文：[Feature] Align adaptive verification interface and enable online estimation for dsv4/glm53
-  - 说明：【】TBD. N/A by ci --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, of
+  - 说明：对齐 the DSA and SFA backend capability declarations with upstream vLLM interfaces, and 启用 adaptive verification using the upstream online acceptance estimator. 新增 workarounds for two idle DP dummy-batch issues: - DFlash/DSpark metada
 - [PR #20758](https://github.com/vllm-project/vllm-ascend/pull/20758) 草稿
   - 中文：【修复】【V2】Adapt Ascend 内核 block size handling to vLLM AttentionGroup
   - 原文：[BugFix][V2] Adapt Ascend kernel block size handling to vLLM AttentionGroup
@@ -3391,100 +3509,14 @@
   - 原文：[Feature][GLM-5.3-Flash] Enable torch.compile for GLM-5.3-Flash backbone and MTP
   - 说明：GLM-5 Next (GLM-5.3-Flash) ran its text backbone and MTP draft model in eager 模式 only: neither Glm5NextModel nor Glm5NextMTP carried @支持 torch compile , so enabling compilation in the vLLM 配置 had no effect on them. This PR 启用
 
-#### 2026-10-16
-
-- [PR #18930](https://github.com/vllm-project/vllm-ascend/pull/18930) 已合并
-  - 中文：【重构】【Patch】Use upstream GLM-5-Next 配置 支持
-  - 原文：[Refactor][Patch] Use upstream GLM-5-Next config support
-  - 说明：vLLM v0.31.0 and the verified main pin ( c4df37dfcc7f72ca41cd43801a468526ecf99a2b ) already register glm5 next , glm5 next text , and glm5 next vision , and recognize the GLM-5-Next text model types for MLA. The upstream 配置 classes have
-- [Issue #18951](https://github.com/vllm-project/vllm-ascend/issues/18951) 进行中
-  - 中文：【缺陷】: GLM-5.3-Flash-w8a8基于vllm-ascend 0.30.0rc2部署（1P1D）128K/2K性能测试正常，256K/2K测试崩溃
-  - 原文：[Bug]: GLM-5.3-Flash-w8a8基于vllm-ascend 0.30.0rc2部署（1P1D）128K/2K性能测试正常，256K/2K测试崩溃
-- [PR #18938](https://github.com/vllm-project/vllm-ascend/pull/18938) 已关闭
-  - 中文：Docs turboquant glm52 glm53 0.30.0
-  - 说明：【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque
-
-#### 2026-10-15
-
-- [Issue #16085](https://github.com/vllm-project/vllm-ascend/issues/16085) 已关闭
-  - 中文：【缺陷】: 0.26.0rc1 GLM5.3 dcp=8 and sfa-c8 true 的场景 必定精度异常，出现乱码
-  - 原文：[Bug]: 0.26.0rc1 GLM5.3 dcp=8 and sfa-c8 true 的场景 必定精度异常，出现乱码
-
-### GLM-5.1
-
-#### 2026-11-10
-
-- [PR #21376](https://github.com/vllm-project/vllm-ascend/pull/21376) 已合并
-  - 中文：【文档】【修复】对齐 GLM-5.1 PD KV topology with PCP16
-  - 原文：[Doc][BugFix] Align GLM-5.1 PD KV topology with PCP16
-  - 说明：The GLM-5.1 A3 PD 服务 commands and topology use 预填充 PP2/TP1/PCP16, but the four KV 配置 blocks still declare TP16 without PCP. 对齐 all four declarations to TP1/PCP16 while retaining DP1, PP2 and the 41/37 layer partition.
-- [PR #21377](https://github.com/vllm-project/vllm-ascend/pull/21377) 已合并
-  - 中文：【v0.32.0rc】【文档】【修复】对齐 GLM-5.1 PD KV topology with PCP16
-  - 原文：[v0.32.0rc][Doc][BugFix] Align GLM-5.1 PD KV topology with PCP16
-  - 说明：The GLM-5.1 A3 PD 服务 commands and topology use 预填充 PP2/TP1/PCP16, but the four KV 配置 blocks still declare TP16 without PCP. 对齐 all four declarations to TP1/PCP16 while retaining DP1, PP2 and the 41/37 layer partition.
-
-#### 2026-11-09
-
-- [PR #21343](https://github.com/vllm-project/vllm-ascend/pull/21343) 已关闭
-  - 中文：【测试】Reproduce GLM-5.1 权重 卸载 startup failure
-  - 原文：[Test] Reproduce GLM-5.1 weight offload startup failure
-  - 说明：Adds a reproduction note to the existing GLM-5.1-w8a8c8-MTP-卸载-test-perf case. The branch starts at 3725f6b36 for a single-case 每周-A3 reproduction of the MRv2 expert 权重 卸载 startup failure. The original job failed during me
-
-#### 2026-11-02
-
-- [PR #18634](https://github.com/vllm-project/vllm-ascend/pull/18634) 已关闭
-  - 中文：【测试】新增 MiniMax-M3 支持 to RLHF 权重 transfer tests
-  - 原文：[Test] Add MiniMax-M3 support to RLHF weight transfer tests
-  - 说明：新增 MiniMax-M3 to the 共享 RLHF 权重-transfer E2E matrix, move IPC coverage to two-card TP2, and replace GLM-5.1 with GLM-5.3-Flash. Each model is selected for unpacked IPC. Qwen3.5 provides representative IPC/HCCL coverage in both pack
-
-#### 2026-10-30
-
-- [Issue #20388](https://github.com/vllm-project/vllm-ascend/issues/20388) 进行中
-  - 中文：【性能】: GLM-5.1 A5 TP8 paired V1/V2 服务 differences in both run orders
-  - 原文：[Performance]: GLM-5.1 A5 TP8 paired V1/V2 serving differences in both run orders
-  - 说明：Proposal to 改进 性能 Investigate the measured V2 服务 differences before claiming runner parity. Compare same-host 修复 token-ID workloads in reversed orders; use the request-phase and iteration-histogram evidence below to ch
-- [PR #20387](https://github.com/vllm-project/vllm-ascend/pull/20387) 进行中
-  - 中文：【修复】【测试】新增 GLM-5.1 paired runner checks and repair FP8 KV fallback
-  - 原文：[BugFix][Test] Add GLM-5.1 paired runner checks and repair FP8 KV fallback
-  - 说明：新增 reproducible GLM-5.1 Model Runner V1/V2 comparisons for the full mixed-MXFP4/MXFP8 检查点 on A5 TP8/EP8: identical token-ID inputs, greedy/seeded sampling, 修复-history logprobs, token-ID SSE latency, 修复-group controls, real-gen
-
-#### 2026-10-28
-
-- [PR #20034](https://github.com/vllm-project/vllm-ascend/pull/20034) 草稿
-  - 中文：【文档】新增 GLM-5.1 Ascend recipe overlay
-  - 原文：[Doc] Add GLM-5.1 Ascend recipe overlay
-  - 说明：迁移 the GLM-5.1 Ascend content from vllm-project/vllm 62890 into recipes/overlays/zai-org/GLM-5.1.yaml , following the source ownership established by recipes 1160 and vllm-ascend 19381. This adds an overlay, not another complete model
-
-#### 2026-10-26
-
-- [PR #19832](https://github.com/vllm-project/vllm-ascend/pull/19832) 已合并
-  - 中文：【v0.30.0】【文档】【杂项】更新 支持 status for GLM-5.1, Qwen3.5/3.6-27B, and Kimi-K2.6 to Supported
-  - 原文：[v0.30.0][Doc][Misc] Update support status for GLM-5.1, Qwen3.5/3.6-27B, and Kimi-K2.6 to Supported
-  - 说明：This PR 更新 the 支持 status of several models in the 支持 matrix to reflect their current verification status: - 更新 GLM-5.1 , Qwen3.5-27B / Qwen3.6-27B , and Kimi-K2.6 from Experimental (🔵) to Supported (✅). - Reorders the "
-- [PR #19822](https://github.com/vllm-project/vllm-ascend/pull/19822) 进行中
-  - 中文：【v0.30.0】【文档】【杂项】Mark GLM-5.1 A2/A3 支持 as supported
-  - 原文：[v0.30.0][Doc][Misc] Mark GLM-5.1 A2/A3 support as supported
-  - 说明：Mark GLM-5.1 支持 on A2/A3 with a green check in Supported Models and synchronize the Chinese translation entry. The GLM-5.1 A2/A3 status changes from blue to supported. Other 特性 column
-- [PR #19821](https://github.com/vllm-project/vllm-ascend/pull/19821) 进行中
-  - 中文：【文档】【杂项】Mark GLM-5.1 A2/A3 支持 as supported
-  - 原文：[Doc][Misc] Mark GLM-5.1 A2/A3 support as supported
-  - 说明：Mark GLM-5.1 支持 on A2/A3 with a green check in Supported Models and synchronize the Chinese translation entry. The GLM-5.1 A2/A3 status changes from blue to supported. Other 特性 column
-
-#### 2026-10-17
-
-- [PR #19067](https://github.com/vllm-project/vllm-ascend/pull/19067) 已合并
-  - 中文：【持续集成】恢复 C8 KV 缓存 for GLM5.1 128K 夜间
-  - 原文：[CI] Restore C8 KV cache for GLM5.1 128K nightly
-  - 说明：The GLM5.1 W8A8C8 A3 128K 夜间 has insufficient device-显存 capacity for the main KV 缓存 when it uses BF16. The approximately 166K/153K-token KV pools on node 0/node 1 cannot keep the intended six long requests per DP engine resident
-
-#### 2026-10-16
-
-- [PR #17836](https://github.com/vllm-project/vllm-ascend/pull/17836) 已关闭
-  - 中文：【持续集成】【PCP】迁移 GLM MRV2 nightlies from DSA-CP to PCP
-  - 原文：[CI][PCP] Migrate GLM MRV2 nightlies from DSA-CP to PCP
-  - 说明：- 迁移 five GLM MRV2 夜间 configurations from DSA-CP to PCP while preserving their device counts. - 对齐 the GLM-5.1 PD 预填充 topology and KV transfer 元数据 with the new TP size. - Keep the GLM-5.2 DCP topology and raise its HCC
-
 ### GLM-5.2
+
+#### 2026-11-12
+
+- [Issue #19646](https://github.com/vllm-project/vllm-ascend/issues/19646) 已关闭
+  - 中文：夜间 Daily test failure on 2026-10-23 16:00 - please check
+  - 原文：Nightly Daily test failure on 2026-10-23 16:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 16:00 on 2026-10-23. Failed on: a3-4 card-(part 1-5), MiniMax-M3-BF16-A3, glm-5.2-w4a8-dspark Failed 测试用例: - test k3 mla pd tp2 — RuntimeError: Timeout: these nodes did not b
 
 #### 2026-11-10
 
@@ -3657,10 +3689,6 @@
 
 #### 2026-10-23
 
-- [Issue #19646](https://github.com/vllm-project/vllm-ascend/issues/19646) 进行中
-  - 中文：夜间 Daily test failure on 2026-10-23 16:00 - please check
-  - 原文：Nightly Daily test failure on 2026-10-23 16:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 16:00 on 2026-10-23. Failed on: a3-4 card-(part 1-5), MiniMax-M3-BF16-A3, glm-5.2-w4a8-dspark Failed 测试用例: - test k3 mla pd tp2 — RuntimeError: Timeout: these nodes did not b
 - [PR #19546](https://github.com/vllm-project/vllm-ascend/pull/19546) 已合并
   - 中文：【文档】【杂项】启用 共享专家 DP in GLM-5.3 950DT 预填充 examples
   - 原文：[Doc][Misc] Enable shared expert DP in GLM-5.3 950DT Prefill examples
@@ -3734,6 +3762,73 @@
   - 原文：[Doc] TurboQuant does not support context parallelism
   - 说明：Adds the context-parallelism restriction to the --kv-缓存-dtype turboquant 4bit nc entries for GLM-5.2 and GLM-5.3: TurboQuant does not 支持 DCP/PCP. The entries landed without it in 18566. Three places, same wording: GLM5.2 section 5.1
 
+### GLM-5.1
+
+#### 2026-11-10
+
+- [PR #21376](https://github.com/vllm-project/vllm-ascend/pull/21376) 已合并
+  - 中文：【文档】【修复】对齐 GLM-5.1 PD KV topology with PCP16
+  - 原文：[Doc][BugFix] Align GLM-5.1 PD KV topology with PCP16
+  - 说明：The GLM-5.1 A3 PD 服务 commands and topology use 预填充 PP2/TP1/PCP16, but the four KV 配置 blocks still declare TP16 without PCP. 对齐 all four declarations to TP1/PCP16 while retaining DP1, PP2 and the 41/37 layer partition.
+- [PR #21377](https://github.com/vllm-project/vllm-ascend/pull/21377) 已合并
+  - 中文：【v0.32.0rc】【文档】【修复】对齐 GLM-5.1 PD KV topology with PCP16
+  - 原文：[v0.32.0rc][Doc][BugFix] Align GLM-5.1 PD KV topology with PCP16
+  - 说明：The GLM-5.1 A3 PD 服务 commands and topology use 预填充 PP2/TP1/PCP16, but the four KV 配置 blocks still declare TP16 without PCP. 对齐 all four declarations to TP1/PCP16 while retaining DP1, PP2 and the 41/37 layer partition.
+
+#### 2026-11-09
+
+- [PR #21343](https://github.com/vllm-project/vllm-ascend/pull/21343) 已关闭
+  - 中文：【测试】Reproduce GLM-5.1 权重 卸载 startup failure
+  - 原文：[Test] Reproduce GLM-5.1 weight offload startup failure
+  - 说明：Adds a reproduction note to the existing GLM-5.1-w8a8c8-MTP-卸载-test-perf case. The branch starts at 3725f6b36 for a single-case 每周-A3 reproduction of the MRv2 expert 权重 卸载 startup failure. The original job failed during me
+
+#### 2026-11-02
+
+- [PR #18634](https://github.com/vllm-project/vllm-ascend/pull/18634) 已关闭
+  - 中文：【测试】新增 MiniMax-M3 支持 to RLHF 权重 transfer tests
+  - 原文：[Test] Add MiniMax-M3 support to RLHF weight transfer tests
+  - 说明：新增 MiniMax-M3 to the 共享 RLHF 权重-transfer E2E matrix, move IPC coverage to two-card TP2, and replace GLM-5.1 with GLM-5.3-Flash. Each model is selected for unpacked IPC. Qwen3.5 provides representative IPC/HCCL coverage in both pack
+
+#### 2026-10-30
+
+- [Issue #20388](https://github.com/vllm-project/vllm-ascend/issues/20388) 进行中
+  - 中文：【性能】: GLM-5.1 A5 TP8 paired V1/V2 服务 differences in both run orders
+  - 原文：[Performance]: GLM-5.1 A5 TP8 paired V1/V2 serving differences in both run orders
+  - 说明：Proposal to 改进 性能 Investigate the measured V2 服务 differences before claiming runner parity. Compare same-host 修复 token-ID workloads in reversed orders; use the request-phase and iteration-histogram evidence below to ch
+- [PR #20387](https://github.com/vllm-project/vllm-ascend/pull/20387) 进行中
+  - 中文：【修复】【测试】新增 GLM-5.1 paired runner checks and repair FP8 KV fallback
+  - 原文：[BugFix][Test] Add GLM-5.1 paired runner checks and repair FP8 KV fallback
+  - 说明：新增 reproducible GLM-5.1 Model Runner V1/V2 comparisons for the full mixed-MXFP4/MXFP8 检查点 on A5 TP8/EP8: identical token-ID inputs, greedy/seeded sampling, 修复-history logprobs, token-ID SSE latency, 修复-group controls, real-gen
+
+#### 2026-10-28
+
+- [PR #20034](https://github.com/vllm-project/vllm-ascend/pull/20034) 草稿
+  - 中文：【文档】新增 GLM-5.1 Ascend recipe overlay
+  - 原文：[Doc] Add GLM-5.1 Ascend recipe overlay
+  - 说明：迁移 the GLM-5.1 Ascend content from vllm-project/vllm 62890 into recipes/overlays/zai-org/GLM-5.1.yaml , following the source ownership established by recipes 1160 and vllm-ascend 19381. This adds an overlay, not another complete model
+
+#### 2026-10-26
+
+- [PR #19832](https://github.com/vllm-project/vllm-ascend/pull/19832) 已合并
+  - 中文：【v0.30.0】【文档】【杂项】更新 支持 status for GLM-5.1, Qwen3.5/3.6-27B, and Kimi-K2.6 to Supported
+  - 原文：[v0.30.0][Doc][Misc] Update support status for GLM-5.1, Qwen3.5/3.6-27B, and Kimi-K2.6 to Supported
+  - 说明：This PR 更新 the 支持 status of several models in the 支持 matrix to reflect their current verification status: - 更新 GLM-5.1 , Qwen3.5-27B / Qwen3.6-27B , and Kimi-K2.6 from Experimental (🔵) to Supported (✅). - Reorders the "
+- [PR #19822](https://github.com/vllm-project/vllm-ascend/pull/19822) 进行中
+  - 中文：【v0.30.0】【文档】【杂项】Mark GLM-5.1 A2/A3 支持 as supported
+  - 原文：[v0.30.0][Doc][Misc] Mark GLM-5.1 A2/A3 support as supported
+  - 说明：Mark GLM-5.1 支持 on A2/A3 with a green check in Supported Models and synchronize the Chinese translation entry. The GLM-5.1 A2/A3 status changes from blue to supported. Other 特性 column
+- [PR #19821](https://github.com/vllm-project/vllm-ascend/pull/19821) 进行中
+  - 中文：【文档】【杂项】Mark GLM-5.1 A2/A3 支持 as supported
+  - 原文：[Doc][Misc] Mark GLM-5.1 A2/A3 support as supported
+  - 说明：Mark GLM-5.1 支持 on A2/A3 with a green check in Supported Models and synchronize the Chinese translation entry. The GLM-5.1 A2/A3 status changes from blue to supported. Other 特性 column
+
+#### 2026-10-17
+
+- [PR #19067](https://github.com/vllm-project/vllm-ascend/pull/19067) 已合并
+  - 中文：【持续集成】恢复 C8 KV 缓存 for GLM5.1 128K 夜间
+  - 原文：[CI] Restore C8 KV cache for GLM5.1 128K nightly
+  - 说明：The GLM5.1 W8A8C8 A3 128K 夜间 has insufficient device-显存 capacity for the main KV 缓存 when it uses BF16. The approximately 166K/153K-token KV pools on node 0/node 1 cannot keep the intended six long requests per DP engine resident
+
 ### GLM-4
 
 #### 2026-11-09
@@ -3781,12 +3876,35 @@
 
 ### Kimi K3
 
-#### 2026-11-11
+#### 2026-11-12
 
-- [PR #21602](https://github.com/vllm-project/vllm-ascend/pull/21602) 进行中
+- [PR #21657](https://github.com/vllm-project/vllm-ascend/pull/21657) 已合并
+  - 中文：【测试】【杂项】更新 Kimi-K3 benchmark configurations and baselines
+  - 原文：[Test][Misc] Update Kimi-K3 benchmark configurations and baselines
+  - 说明：This PR 更新 the benchmark configurations for the Kimi-K3 model ( Kimi-K3-W4A8-A3-1M-PD.yaml ): 1. Removes the acc aime2025 精度 benchmark. 2. 更新 the baseline for the acc gpqa 精度 benchmark from 93 to 93.5 . 3. Adds a new p
+- [PR #21601](https://github.com/vllm-project/vllm-ascend/pull/21601) 已合并
+  - 中文：【修复】【模型】Normalize Kimi image patches on NPU
+  - 原文：[BugFix][Model] Normalize Kimi image patches on NPU
+  - 说明：新增 CPU-reference-exact NPU pixel normalization for Kimi-K3/K3.1 image inputs. The vision tower receives normalized BF16/FP16 patches before patch projection when mm device do normalize is 启用. - 支持 14x14 RGB patches with mean/std
+- [PR #15851](https://github.com/vllm-project/vllm-ascend/pull/15851) 已合并
+  - 中文：【功能】支持 Kimi K3 GQA DSpark with target DCP
+  - 原文：[Feature] Support Kimi K3 GQA DSpark with target DCP
+  - 说明：启用 Kimi K3 DCP with the GQA draft model RadixArk/Kimi-K3-DSpark on Ascend Model Runner V2. - 传递 dcp sharded through 缓存 specs, grouping, 显存 accounting, slot mapping, 注意力 元数据, 调度器 block spans, and 前缀-cac
+- [PR #21675](https://github.com/vllm-project/vllm-ascend/pull/21675) 进行中
+  - 中文：feat: 支持 MLA 注意力 mode for DFlash2 draft models
+  - 原文：feat: support MLA attention mode for DFlash2 draft models
+  - 说明：检查点 such as RadixArk/Kimi-K3.1-Dflash2-Preview declare dflash 配置.注意力 mode="mla" and store DeepSeek-style MLA draft 权重 (q a proj/kv a proj with mqa/kv a layernorm/kv b proj/q b proj/o proj), which the GQA-only DFlash2Q
+- [PR #21602](https://github.com/vllm-project/vllm-ascend/pull/21602) 已合并
   - 中文：【修复】【测试】singlecard operator regressions after Kimi integration
   - 原文：[BugFix][Test] Fix singlecard operator regressions after Kimi integration
   - 说明：修复 the singlecard operator test regressions reported after 20878: - Set is kimi k31=True in the native-head QSFA fixture so it exercises the custom 内核's native-head and three-result contract, including when return lse=False , rather th
+- [PR #21491](https://github.com/vllm-project/vllm-ascend/pull/21491) 已合并
+  - 中文：【测试】新增 Kimi K3.1 Pro to A3 每周 PD tests
+  - 原文：[Test] Add Kimi K3.1 Pro to A3 Weekly PD tests
+  - 说明：- 新增 an eight-node A3 每周用例 for Kimi K3.1 Pro W4A8 using the documented 4P4D deployment with a 1M-token context limit. The case runs GPQA, a 128K warm-up, and a 128K 吞吐 benchmark. - Move both eight-node Kimi cases into the A3
+
+#### 2026-11-11
+
 - [PR #21569](https://github.com/vllm-project/vllm-ascend/pull/21569) 进行中
   - 中文：【功能】【模型】支持 Kimi K3 C8 QuantFlashMLA 解码
   - 原文：[Feature][Model] Support Kimi K3 C8 QuantFlashMLA decode
@@ -3846,9 +3964,9 @@
   - 中文：【缺陷】: Kimi-K3 with DSpark on Ascend: seeded output changes with concurrency on the same DP rank
   - 原文：[Bug]: Kimi-K3 with DSpark on Ascend: seeded output changes with concurrency on the same DP rank
 - [PR #21385](https://github.com/vllm-project/vllm-ascend/pull/21385) 进行中
-  - 中文：【测试】新增 Kimi-K3 W4A8 EP256 精度 test on A5 for v0.30.0
-  - 原文：[Test] Add Kimi-K3 W4A8 EP256 accuracy test on A5 for v0.30.0
-  - 说明：新增 a native YAML-driven 精度 case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on one A5 node with eight NPUs. - Register Kimi-K3-W4A8-E256-A5-GSM8K-First100 in the A5 夜间 matrix. - Evaluate the first 100 GSM8K questio
+  - 中文：【releases/v0.30.0】【测试】【功能】Kimi-K3 W4A8 E256 精度 test on A5
+  - 原文：[releases/v0.30.0][Test][Feature] Add Kimi-K3 W4A8 E256 accuracy test on A5
+  - 说明：新增 a native YAML-driven diagnostic 精度 case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on one A5 node with eight NPUs, targeting releases/v0.30.0 . - Register Kimi-K3-W4A8-E256-A5-GSM8K-First100 in the A5 夜间 matrix
 
 #### 2026-11-09
 
@@ -3857,9 +3975,9 @@
   - 原文：[Test] Add native YAML accuracy case for pruned Kimi-K3 on A5
   - 说明：Superseded by 21284, submitted from Task2 2 tcase main Kimi-K3 Experts256 A5 TCase with current main integrated. Historical discussion and 夜间 records are retained here. 新增 a native YAML-driven 精度 case for Kimi-K3 W4A8 MXFP/QuaRo
 - [PR #21284](https://github.com/vllm-project/vllm-ascend/pull/21284) 进行中
-  - 中文：【测试】新增 native YAML 精度 case for pruned Kimi-K3 on A5
-  - 原文：[Test] Add native YAML accuracy case for pruned Kimi-K3 on A5
-  - 说明：新增 a native YAML-driven 精度 case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on one A5 node with eight NPUs. - Register Kimi-K3-W4A8-E256-A5-GSM8K-First100 in the A5 夜间 matrix. - Evaluate the first 100 GSM8K questio
+  - 中文：【修复】【测试】对齐 Kimi-K3 A5 numerics and 新增 pruned EP256 夜间 coverage
+  - 原文：[BugFix][Test] Align Kimi-K3 A5 numerics and add pruned EP256 nightly coverage
+  - 说明：新增 an A5 夜间 diagnostic case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts, and 对齐 its inference numerics with the v0.30.0 reference. Before the numerical fixes, main could produce different generated token IDs for the s
 
 #### 2026-11-06
 
@@ -4125,38 +4243,31 @@
   - 中文：【修复】【KDA】【v0.30.0】Match fallback compiled launches to Triton signatures
   - 原文：[BugFix][KDA][v0.30.0] Match fallback compiled launches to Triton signatures
   - 说明：Backport of 18672 to releases/v0.30.0 . Kimi K3 预填充 can fail in StridedKDAFallbackPlan. copy with: The fallback prepares batch memcpy 内核 with BLOCK SIZE=8192 , then directly invokes the retained compiled 内核 with only three runti
-- [PR #18952](https://github.com/vllm-project/vllm-ascend/pull/18952) 草稿
-  - 中文：【性能】【Kimi】Apply BF16 Router option to external gate
-  - 原文：[Performance][Kimi] Apply BF16 Router option to external gate
-  - 说明：Kimi K3 computes Router logits through an external GateLinear , so the internal-router BF16 option in 18903 does not change Kimi's FP32 Router matmul. Extend that option to Kimi's external gate: use BF16 operands and the loaded BF16 gate we
-- [PR #18939](https://github.com/vllm-project/vllm-ascend/pull/18939) 进行中
-  - 中文：【测试】【Kimi】Backport MRV2 E2E coverage to v0.30.0
-  - 原文：[Test][Kimi] Backport MRV2 E2E coverage to v0.30.0
-  - 说明：Backport the Kimi K3 Model Runner V2 coverage from 18042 to releases/v0.30.0 . - 新增 the standard four-card MRV2 functional E2E coverage, reusing the existing Kimi K3 model fixtures and scenario helpers. - Register the four-node internal-DP
-- [PR #18672](https://github.com/vllm-project/vllm-ascend/pull/18672) 已合并
-  - 中文：[BugFix] [KDA]将回退编译的启动与Triton签名匹配
-  - 原文：[BugFix][KDA] Match fallback compiled launches to Triton signatures
-  - 说明：Kimi K3 预填充 can fail in StridedKDAFallbackPlan. copy with: The fallback prepares batch memcpy 内核 with BLOCK SIZE=8192 , then directly invokes the retained compiled 内核 with only three 运行时 arguments. Triton 3.6 retains the con
-
-#### 2026-10-15
-
-- [PR #18834](https://github.com/vllm-project/vllm-ascend/pull/18834) 已合并
-  - 中文：【文档】【模型】Sync Kimi-K3 guide from official v0.27 branch
-  - 原文：[Doc][Model] Sync Kimi-K3 guide from official v0.27 branch
-  - 说明：Synchronize docs/source/tutorials/models/Kimi-K3.md on main from the official vllm-project/vllm-ascend:releases/v0.27.1rc guide at 0ce124446a0f59c431da76e31ffcc53489622513 . Source: Bring in the official PD connector 配置 更新,
-- [PR #18835](https://github.com/vllm-project/vllm-ascend/pull/18835) 已合并
-  - 中文：【文档】【模型】Sync Kimi-K3 guide from official v0.27 branch
-  - 原文：[Doc][Model] Sync Kimi-K3 guide from official v0.27 branch
-  - 说明：Synchronize docs/source/tutorials/models/Kimi-K3.md on releases/v0.30.0 from the official vllm-project/vllm-ascend:releases/v0.27.1rc guide at 0ce124446a0f59c431da76e31ffcc53489622513 . Source: Bring in the official PD connector configurati
 
 ### Kimi K2
 
-#### 2026-11-11
+#### 2026-11-12
 
-- [Issue #21515](https://github.com/vllm-project/vllm-ascend/issues/21515) 进行中
+- [Issue #21515](https://github.com/vllm-project/vllm-ascend/issues/21515) 已关闭
   - 中文：夜间 Daily test failure on 2026-11-11 08:00 - please check
   - 原文：Nightly Daily test failure on 2026-11-11 08:00 - please check
   - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-11-11. Failed on: DeepSeek-V4-Flash-W8A8-A3, Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed,
+- [Issue #21161](https://github.com/vllm-project/vllm-ascend/issues/21161) 已关闭
+  - 中文：夜间 Daily test failure on 2026-11-06 12:00 - please check
+  - 原文：Nightly Daily test failure on 2026-11-06 12:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-11-06. Failed on: Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — RuntimeError: Server at 0.0.0.0 exited unexpectedly. Failed run(s): Me
+- [Issue #19939](https://github.com/vllm-project/vllm-ascend/issues/19939) 已关闭
+  - 中文：夜间 Daily test failure on 2026-10-27 08:00 - please check
+  - 原文：Nightly Daily test failure on 2026-10-27 08:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-10-27. Failed on: Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed, info were shown above. Fai
+- [Issue #18833](https://github.com/vllm-project/vllm-ascend/issues/18833) 已关闭
+  - 中文：夜间 Daily test failure on 2026-10-15 12:00 - please check
+  - 原文：Nightly Daily test failure on 2026-10-15 12:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-10-15. Failed on: a3-2 card-(part 5-5), Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test hccl 权重 transfer transaction — AssertionError: qwen3.5-35b
+- [Issue #21644](https://github.com/vllm-project/vllm-ascend/issues/21644) 进行中
+  - 中文：夜间 Daily test failure on 2026-11-12 08:00 - please check
+  - 原文：Nightly Daily test failure on 2026-11-12 08:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-11-12. Failed on: Kimi-K2.6-w4a8-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed, info were shown above. Failed run(s): Merged P
 
 #### 2026-11-09
 
@@ -4175,13 +4286,6 @@
   - 中文：【文档】新增 Kimi-K2.6 Ascend W4A8 deployment recipe
   - 原文：[Docs] Add Kimi-K2.6 Ascend W4A8 deployment recipe
   - 说明：Replaces 20795 to use the dedicated Task1 1 doc Kimi-K2.6 recipe 更新 branch. The recipe file is unchanged; the branch includes current main. The predecessor will be closed to 避免 duplicate review. 迁移 and 更新 the Kimi-K2.6 Ascen
-
-#### 2026-11-06
-
-- [Issue #21161](https://github.com/vllm-project/vllm-ascend/issues/21161) 进行中
-  - 中文：夜间 Daily test failure on 2026-11-06 12:00 - please check
-  - 原文：Nightly Daily test failure on 2026-11-06 12:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-11-06. Failed on: Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — RuntimeError: Server at 0.0.0.0 exited unexpectedly. Failed run(s): Me
 
 #### 2026-11-03
 
@@ -4223,13 +4327,6 @@
   - 中文：【文档】【杂项】Backport Kimi-K2.6 deployment docs to v0.30.0
   - 原文：[Doc][Misc] Backport Kimi-K2.6 deployment docs to v0.30.0
   - 说明：Backport the Kimi-K2.6 deployment guide changes from 19783 to releases/v0.30.0 . - Keep only A3 and A2 Docker installation tabs; 移除 the 950DT products tab. - Use /data/media for local media access and explain the parameter. Describe sce
-
-#### 2026-10-27
-
-- [Issue #19939](https://github.com/vllm-project/vllm-ascend/issues/19939) 进行中
-  - 中文：夜间 Daily test failure on 2026-10-27 08:00 - please check
-  - 原文：Nightly Daily test failure on 2026-10-27 08:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-10-27. Failed on: Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed, info were shown above. Fai
 
 #### 2026-10-26
 
@@ -4349,17 +4446,6 @@
   - 原文：[Test] Add A5 nightly GPQA-D coverage for Gemma 4 MXFP4
   - 说明：新增 A5 夜间 GPQA-D 精度 coverage for Gemma 4 MXFP4 models: - 31B: baseline 71.72%, tolerance ±5 percentage points. - 26B-A4B: baseline 70.71%, tolerance ±5 percentage points. No. Tested
 
-#### 2026-10-16
-
-- [PR #18690](https://github.com/vllm-project/vllm-ascend/pull/18690) 已合并
-  - 中文：[文档] [模型] [v0.30.0]添加Gemma4量化部署指导
-  - 原文：[Doc][Model][v0.30.0] Add Gemma4 quantized deployment guidance
-  - 说明：Backports the Gemma4 quantized deployment guidance from 18565 to releases/v0.30.0 . - documents the public Gemma4 31B dense and 26B-A4B MoE MXFP4 检查点 - adds TP4DP2 服务 examples for 950PR&950DT Products with --量化 ascend
-- [PR #18985](https://github.com/vllm-project/vllm-ascend/pull/18985) 进行中
-  - 中文：【持续集成】新增 Gemma 4 MXFP4 models to A5 download list
-  - 原文：[CI] Add Gemma 4 MXFP4 models to A5 download list
-  - 说明：新增 the following ModelScope 检查点 to models.a5 in .github/workflows/misc/model dataset list.json so their 权重 can be downloaded for upcoming 夜间 coverage: - Eco-Tech/gemma-4-26B-A4B-it-w4a4-mxfp4 - Eco-Tech/gemma-4-31B-it-w4a
-
 ## Step
 
 ### Step3
@@ -4445,12 +4531,92 @@
 
 ### 平台与通用
 
+#### 2026-11-13
+
+- [PR #21475](https://github.com/vllm-project/vllm-ascend/pull/21475) 已合并
+  - 中文：【修复】【MRV2】Refresh the padding mask on every real batch
+  - 原文：[BugFix][MRV2] Refresh the padding mask on every real batch
+  - 说明：Currently, a view of the persistent is padding buffer is passed to ForwardContext without being refreshed for real batches, which affects downstream consumers such as EPLB load accounting and bounded decoder replay. Because graph capture in
+
 #### 2026-11-12
 
-- [Issue #21632](https://github.com/vllm-project/vllm-ascend/issues/21632) 进行中
-  - 中文：【RFC】: Request-sharded DFlash2 candidate generation under PCP on MRV2
-  - 原文：[RFC]: Request-sharded DFlash2 candidate generation under PCP on MRV2
-  - 说明：Motivation. DFlash2 currently repeats candidate generation across PCP ranks when used with the replicated draft path on Model Runner V2. This RFC proposes request-level sharding of that work, primarily to 改进 multi-request 吞吐. R
+- [PR #20853](https://github.com/vllm-project/vllm-ascend/pull/20853) 已合并
+  - 中文：【修复】Sync SWA block IDs before KV Pool 预填充 saves
+  - 原文：[BugFix] Sync SWA block IDs before KV Pool prefill saves
+  - 说明：During chunked 预填充, vLLM replaces released SWA request blocks with null blocks. KV Pool's request tracker previously only appended new block IDs, so a later save could associate an old key with a recycled physical slot when that key was
+- [PR #21556](https://github.com/vllm-project/vllm-ascend/pull/21556) 已合并
+  - 中文：【修复】【v0.30.0】Sync SWA block IDs before KV Pool 预填充 saves
+  - 原文：[BugFix][v0.30.0] Sync SWA block IDs before KV Pool prefill saves
+  - 说明：Backport the final net changes of 20853 (head b1a0e9b664bd3d2b17a0413949010c4e1d6eee29 ) to releases/v0.30.0 . During chunked 预填充, vLLM retires old SWA blocks and replaces their request-table entries with null blocks. KV Pool's tracker
+- [PR #21557](https://github.com/vllm-project/vllm-ascend/pull/21557) 已合并
+  - 中文：【修复】【v0.32.0rc】Sync SWA block IDs before KV Pool 预填充 saves
+  - 原文：[BugFix][v0.32.0rc] Sync SWA block IDs before KV Pool prefill saves
+  - 说明：Backport the final net changes of 20853 (head b1a0e9b664bd3d2b17a0413949010c4e1d6eee29 ) to releases/v0.32.0rc . During chunked 预填充, vLLM retires old SWA blocks and replaces their request-table entries with null blocks. KV Pool's tracke
+- [PR #20374](https://github.com/vllm-project/vllm-ascend/pull/20374) 已合并
+  - 中文：【性能】【V4.1】Compress PCP 预填充 缓存 rows locally
+  - 原文：[Performance][V4.1] Compress PCP prefill cache rows locally
+  - 说明：Project SWA KV and compress C1/C2 locally for PCP batches, then gather KV and BF16 latent rows for replicated 缓存 writes. Preserve C2 cross-chunk pairing, persistent ring state, token alignment and empty-rank collectives. Does this PR int
+- [PR #19528](https://github.com/vllm-project/vllm-ascend/pull/19528) 已合并
+  - 中文：【功能】【Engram】Share host tables across P/D instances in A3
+  - 原文：[Feature][Engram] Share host tables across P/D instances in A3
+  - 说明：Follow-up to 16689. Independent P/D instances can now: share one owner-backed Engram table while retaining their own request/KV state and TP row layouts. The current implementation uses MemFabric BM GVA instead of a custom CANN VMM binding.
+- [PR #21464](https://github.com/vllm-project/vllm-ascend/pull/21464) 已合并
+  - 中文：【v0.32.0rc】【文档】【修复】truncated model 支持 tables in Chinese docs
+  - 原文：[v0.32.0rc][Doc][BugFix] Fix truncated model support tables in Chinese docs
+  - 说明：The translations in 21440 contain truncated HTML model 支持 tables, causing rows to disappear from the Chinese documentation. Large HTML table blocks were extracted as single translation entries. This PR: - Adds pymdown-multimd-table and
+- [Issue #21719](https://github.com/vllm-project/vllm-ascend/issues/21719) 进行中
+  - 中文：【RFC】Reuse vLLM vocab-parallel TopK for DFlash2 on Ascend
+  - 原文：[RFC] Reuse vLLM vocab-parallel TopK for DFlash2 on Ascend
+  - 说明：Motivation Upstream DFlash2 delegates candidate selection to LogitsProcessor.get top k tokens() . Ascend has a separate implementation because a replicated draft can share a target LM head whose vocabulary 权重 are sharded across 预填充
+- [PR #20821](https://github.com/vllm-project/vllm-ascend/pull/20821) 已合并
+  - 中文：【修复】Set MRV2 PP broadcast HCCL options at creation
+  - 原文：[BugFix] Set MRV2 PP broadcast HCCL options at creation
+  - 说明：The independent MRV2 PP sampled-token broadcast group inherits the global HCCL BUFFSIZE . Recreate it through the public distributed API with Ascend’s group-level HCCL options, then retire the unused group created by the parent runner. Does
+- [PR #21057](https://github.com/vllm-project/vllm-ascend/pull/21057) 已合并
+  - 中文：【修复】【NPU】恢复 AscendRMSNorm residual gate after A5 custom-op enablement
+  - 原文：[BugFix][NPU] Restore AscendRMSNorm residual gate after A5 custom-op enablement
+  - 说明：The 融合 npu 新增 rms norm bias 自定义算子 does not 支持 batch invariance — 16139 explicitly disclaims this. 16139 nevertheless made AscendRMSNorm.forward oot call it unconditionally, dropping the 启用 自定义算子() gate and the native to
+- [PR #21701](https://github.com/vllm-project/vllm-ascend/pull/21701) 进行中
+  - 中文：[临时/勿合入] 验证 karc 专用 4 卡档：a3-800i-fed-karc-4 两用例
+  - 说明：目的（临时验证 PR， 勿合入 ） 把 4 卡 A3 作业固定到新的线下专用 scale set linux-aarch64-a3-800i-fed-karc-4，只跑两个 a3-4 用例，用于在「作业全部落单一线下成员集群」的条件下复现/定位 ARC hook 在 Post Checkout 阶段工作区同步变慢、连接被重置的问题。 改动 - 仅替换 .github/workflows/pr test.yaml ：保留 select-tests / prepare-csrc
+- [PR #21316](https://github.com/vllm-project/vllm-ascend/pull/21316) 已合并
+  - 中文：【修复】【EPLB】Rebuild Gloo NZ receives with the destination's cast parameters
+  - 原文：[BugFix][EPLB] Rebuild Gloo NZ receives with the destination's cast parameters
+  - 说明：Roadmap 20602 item 5. FRACTAL NZ is not a single physical layout: npu format cast derives the C0 tiling from customize dtype / input dtype , so a 权重 cast with them reports a C0 variant. A W4A8MXFP expert 权重 is cast with customize dt
+- [Issue #21696](https://github.com/vllm-project/vllm-ascend/issues/21696) 进行中
+  - 中文：DeepSeek 4.1 flash w4a8 四机3p1d权重加载慢导致超时
+- [PR #21656](https://github.com/vllm-project/vllm-ascend/pull/21656) 已合并
+  - 中文：【修复】【测试】对齐 A3/A5 smoke tests with native operator contracts
+  - 原文：[BugFix][Test] Align A3/A5 smoke tests with native operator contracts
+  - 说明：修复 the 69 additional A3 smoke failures in job 130859285206, plus the 18 empty-稀疏-row QSFA assertion failures observed when retesting with merged 21602. Only four test files change: - Keep INT8 quantizer inputs contiguous, matching the
+- [PR #19129](https://github.com/vllm-project/vllm-ascend/pull/19129) 已合并
+  - 中文：【修复】减少 ViT mRoPE setup block size to 16 on Ascend
+  - 原文：[BugFix] Reduce ViT mRoPE setup block size to 16 on Ascend
+  - 说明：修复 MiniMax-M3 ViT mRoPE setup compilation failures on Ascend A5 by changing the token tile from upstream's 32 to a 修复 BLOCK N=16 . For MiniMax-M3's BLOCK D=64 , 16 x 64 compiles while 32 x 64 reports Ub overflow in the tested A5 environ
+- [PR #21191](https://github.com/vllm-project/vllm-ascend/pull/21191) 已合并
+  - 中文：【性能】【注意力】Reuse device query boundaries to 避免 redundant H2D
+  - 原文：[Performance][Attention] Reuse device query boundaries to avoid redundant H2D
+  - 说明：Fixes 21181. AscendAttentionMetadataBuilder.build() 拷贝 query start loc cpu to a new device tensor although common 元数据 already contains the device boundaries. In merged MTP draft 解码 graphs, this duplicate H2D can be captured and
+- [PR #21606](https://github.com/vllm-project/vllm-ascend/pull/21606) 已合并
+  - 中文：【v0.32.0rc】【文档】Translated Doc files 2026-11-11
+  - 原文：[v0.32.0rc][Doc] Translated Doc files 2026-11-11
+  - 说明：Auto-Translation Summary Translated 3 file(s): - <code /home/runner/ work/vllm-ascend/vllm-ascend/docs/source/locale/zh CN/LC MESSAGES/tutorials/models/MiniMax-M3.1-Flash.po</code - <code /home/runner/ work/vllm-ascend/vllm-ascend/docs/sour
+- [Issue #21665](https://github.com/vllm-project/vllm-ascend/issues/21665) 进行中
+  - 中文：【RFC】: 优化 Muse Spark DSpark drafting on Ascend MRV2
+  - 原文：[RFC]: Optimize Muse Spark DSpark drafting on Ascend MRV2
+  - 说明：Motivation. Upstream vLLM 66764 optimizes the regular Muse Spark DSpark draft path by fusing draft and context normalization, eligible context KV writes, and the Markov sampling tail. Track the corresponding MRV2 work on Ascend once the Mus
+- [PR #21650](https://github.com/vllm-project/vllm-ascend/pull/21650) 已合并
+  - 中文：【v0.32.0rc】【文档】【修复】对齐 A3 pooled and A5 eager DSpark settings
+  - 原文：[v0.32.0rc][Doc][BugFix] Align A3 pooled and A5 eager DSpark settings
+  - 说明：21499 启用 DSpark draft graphs in both A3 and 950DT (A5) MiniMax M3.1 single-node and PD 解码 examples. On the existing v0.32 运行时, native A5 drafts select CANN FlashAttn only in eager 模式; enabling draft graphs 切换 to FIA and
+- [PR #21547](https://github.com/vllm-project/vllm-ascend/pull/21547) 已合并
+  - 中文：【修复】Guard dp_shared_memory auto-启用 with cpu_offload check
+  - 原文：[BugFix] Guard dp_shared_memory auto-enable with cpu_offload check
+  - 说明：When cpu 卸载=False (e.g. ETP path with embedding across dp=True ) and DP 1 on Model Runner V2, AscendConfig.derive and validate auto-set dp 共享 显存=True . This conflicts with the upstream constraint validate 共享 显存 which re
+- [Issue #21640](https://github.com/vllm-project/vllm-ascend/issues/21640) 进行中
+  - 中文：【RFC】: 支持 DSpine 投机解码 on Ascend Model Runner V2
+  - 原文：[RFC]: Support DSpine speculative decoding on Ascend Model Runner V2
+  - 说明：Motivation. DSpine is a parallel drafter for 投机解码. It extends DFlash with adjacent causal injection through a per-layer code bridge and refines transition scores for candidate pairs before sampling. This RFC tracks bringing
 
 #### 2026-11-11
 
@@ -6245,100 +6411,3 @@
   - 中文：【性能】【KVPool】减少 AscendStore lookup and save overhead
   - 原文：[Performance][KVPool] Reduce AscendStore lookup and save overhead
   - 说明：Main-branch counterpart of 18837. Long-input AscendStore lookup and non-layerwise save repeatedly expand local HBM hits, walk excluded chunks, and recompute identical reachability masks. - Mark complete HBM-前缀 hashes lazily instead of b
-- [Issue #19021](https://github.com/vllm-project/vllm-ascend/issues/19021) 进行中
-  - 中文：【缺陷】: Mooncake AscendDirectTransport KV transfer fails 100% on PD disaggregated deployment with EI0014 device_ip invalid
-  - 原文：[Bug]: Mooncake AscendDirectTransport KV transfer fails 100% on PD disaggregated deployment with EI0014 device_ip invalid
-- [PR #18999](https://github.com/vllm-project/vllm-ascend/pull/18999) 已合并
-  - 中文：【功能】【KV 卸载】Layerwise KV 卸载 for long-context
-  - 原文：[Feature][KV Offload] Layerwise KV offload for long-context
-  - 说明：Background. In PD-disaggregated deployments, both 预填充 and 解码 instances are exposed to severe HBM pressure from full-length KV caches: - 预填充 instances must retain the full-length KV in HBM until the transfer to the 解码 side co
-- [PR #18905](https://github.com/vllm-project/vllm-ascend/pull/18905) 已合并
-  - 中文：【修复】【v0.30.0】Ensure full range load of kv pool when enabling 预填充 layerwise 卸载
-  - 原文：[Bugfix][v0.30.0] Ensure full range load of kv pool when enabling prefill layerwise offload
-  - 说明：port 18987 . This PR fixes the following 2 bugs when enabling layerwise 预填充 卸载: 1. 16947 introduces a special mechanism for 优化 KV pool: a block's all-rank presence is cached per (group, block hash) with a 30s TTL and a 200k-e
-- [PR #18927](https://github.com/vllm-project/vllm-ascend/pull/18927) 已合并
-  - 中文：【修复】【MoE】【v0.30.0】Revert A3 GMM dequant SiTU quant fusion (#16655)
-  - 原文：[BugFix][MoE] [v0.30.0] Revert A3 GMM dequant SiTU quant fusion (#16655)
-  - 说明：Backport the rollback in 18902 to releases/v0.30.0 because 性能 回退 was reported during validation of 16655. This release branch contains the original merged commit 9f0f60de677972fba9de69996b7699c98a521f81 . Eligible A3 W4A8 S
-- [PR #18987](https://github.com/vllm-project/vllm-ascend/pull/18987) 已合并
-  - 中文：【修复】Ensure full range load of kv pool when enabling 预填充 layerwise 卸载
-  - 原文：[Bugfix] Ensure full range load of kv pool when enabling prefill layerwise offload
-  - 说明：This PR fixes the following 2 bugs when enabling layerwise 预填充 卸载: 1. 16947 introduces a special mechanism for 优化 KV pool: a block's all-rank presence is cached per (group, block hash) with a 30s TTL and a 200k-entry cap, and
-- [PR #18900](https://github.com/vllm-project/vllm-ascend/pull/18900) 已合并
-  - 中文：【v0.30.0】【修复】【KV Pool】Clean up noisy layerwise log printing
-  - 原文：[v0.30.0][Bugfix][KV Pool] Clean up noisy layerwise log printing
-  - 说明：Cherry-pick of 18899 to releases/v0.30.0 . Cleans up misleading/noisy logging in the AscendStore KV Pool layerwise transfer path: - Demote build 共享 / build transfer gva-skip logs from WARNING to 调试 ( kv transfer.py ). Zero GVAs are t
-- [PR #18856](https://github.com/vllm-project/vllm-ascend/pull/18856) 已合并
-  - 中文：【v0.30.0】【文档】【杂项】补充文档 PCP execution and DCP integration
-  - 原文：[v0.30.0][Doc][Misc] Document PCP execution and DCP integration
-  - 说明：Backport 18855 to releases/v0.30.0 , building on 18737. The context-parallel design guide documents DCP and DSA-CP but lacks the MRV2 PCP execution flow. Extend the existing page with PCP rank topology, head-tail 预填充 partitioning, decod
-
-#### 2026-10-15
-
-- [PR #18894](https://github.com/vllm-project/vllm-ascend/pull/18894) 已合并
-  - 中文：【修复】【MoE】Preserve quantized 共享专家 output gate
-  - 原文：[BugFix][MoE] Preserve quantized shared expert output gate
-  - 说明：融合 W4A8MXFP and W8A8/W4A8 共享-expert paths returned the Down projection without applying the optional output gate. For models with an expert gate , this omitted sigmoid(expert gate(hidden states)) and changed the model output. Route t
-- [PR #18895](https://github.com/vllm-project/vllm-ascend/pull/18895) 已合并
-  - 中文：【修复】【MoE】Preserve quantized 共享专家 output gate (v0.30.0)
-  - 原文：[BugFix][MoE] Preserve quantized shared expert output gate (v0.30.0)
-  - 说明：融合 W4A8MXFP and W8A8/W4A8 共享-expert paths returned the Down projection without applying the optional output gate. For models with an expert gate , this omitted sigmoid(expert gate(hidden states)) and changed the model output. Route t
-- [PR #18877](https://github.com/vllm-project/vllm-ascend/pull/18877) 已合并
-  - 中文：【修复】【PCP】【v0.30.0】Clear V4.1 query 元数据 on empty ranks
-  - 原文：[BugFix][PCP][v0.30.0] Clear V4.1 query metadata on empty ranks
-  - 说明：Backport of 18876 to releases/v0.30.0 . - vLLM main:
-- [PR #18842](https://github.com/vllm-project/vllm-ascend/pull/18842) 已合并
-  - 中文：【修复】【v0.30.0】Backport MLA PROLOG 预填充 and 显存 fixes (#18798)
-  - 原文：[BugFix][v0.30.0] Backport MLA PROLOG prefill and memory fixes (#18798)
-  - 说明：Backport all four commits from 18798 (source head ac5d971d1c40a14babeb18d015a6001cb2114876 ) to releases/v0.30.0 , which already contains the MLA PROLOG 特性 from 18682. This PR now contains the fixes; the original empty baseline commit
-- [PR #18798](https://github.com/vllm-project/vllm-ascend/pull/18798) 已合并
-  - 中文：【修复】【注意力】strided MLA 预填充 RoPE padding and KV reads
-  - 原文：[BugFix][Attention] Fix strided MLA prefill RoPE padding and KV reads
-  - 说明：修复 two strided MLA PROLOG V3 预填充 regressions introduced by 18256 and observed in the Kimi A3 夜间 run: 1. Slice the 预填充 cos/sin tables to the actual 预填充 token count before query RoPE and PROLOG V3. 元数据 can retain graph
-- [PR #18890](https://github.com/vllm-project/vllm-ascend/pull/18890) 已合并
-  - 中文：【修复】【Build】Rust build entrypoint for vLLM 0.31.0
-  - 原文：[BugFix][Build] Fix Rust build entrypoint for vLLM 0.31.0
-  - 说明：vLLM v0.31.0 moved the Rust build wrapper from build rust.sh to tools/build rust.sh . All eight root Dockerfiles still invoke the old path, causing image builds to fail with exit code 127. - Invoke bash tools/build rust.sh for A2, A3, A5 an
-- [PR #18876](https://github.com/vllm-project/vllm-ascend/pull/18876) 已合并
-  - 中文：【修复】【PCP】Clear V4.1 query 元数据 on empty ranks
-  - 原文：[BugFix][PCP] Clear V4.1 query metadata on empty ranks
-  - 说明：With V4.1 PCP 解码 request sharding, a rank can have no real queries while FULL graph replay still executes captured 注意力 operators. The empty-rank builder bypasses the ordinary builder's 元数据 reset, leaving stale SMLA/QLI tasks
-- [PR #18748](https://github.com/vllm-project/vllm-ascend/pull/18748) 已合并
-  - 中文：[BugFix] [KV Transfer] [v0.30.0]月饼合并需要全页覆盖
-  - 原文：[BugFix][KV Transfer][v0.30.0] Require full page coverage for Mooncake merging
-  - 说明：Mooncake can publish different tensor counts for the same layer when its 缓存 views occupy only part of a 共享 physical page. The existing 合并 check accepts the views when the backing storage has enough spare capacity to cover a full-p
-- [PR #16730](https://github.com/vllm-project/vllm-ascend/pull/16730) 已合并
-  - 中文：【功能】【模型】Use CANN operators for GLM-5.3-Flash pooled indexing
-  - 原文：[Feature][Model] Use CANN operators for GLM-5.3-Flash pooled indexing
-  - 说明：Connects BF16 GLM-5.3-Flash pooled indexing to CANN KeyPool/PoolKeyIndexer, including DSA-CP. Reuses layer/draft 元数据 and removes redundant SFA input preparation. Depends on 18295. PD/MTP fixes keep per-group 块表 stable across
-- [PR #18289](https://github.com/vllm-project/vllm-ascend/pull/18289) 已合并
-  - 中文：【功能】【v0.30.0】Backport CANN pooled indexing for GLM-5.3-Flash
-  - 原文：[Feature][v0.30.0] Backport CANN pooled indexing for GLM-5.3-Flash
-  - 说明：Connects BF16 GLM-5.3-Flash pooled indexing to CANN KeyPool/PoolKeyIndexer, including DSA-CP. Reuses layer/draft 元数据 and removes redundant SFA input preparation. Depends on 18296. PD/MTP fixes keep per-group 块表 stable across
-- [PR #18768](https://github.com/vllm-project/vllm-ascend/pull/18768) 已合并
-  - 中文：【修复】【注意力】Backport DCP FIA workspace ownership 修复 to v0.30.0
-  - 原文：[BugFix][Attention] Backport DCP FIA workspace ownership fix to v0.30.0
-  - 说明：修复 FIA workspace ownership during DCP MLA graph capture. Backport of 18767 to releases/v0.30.0 ; review follow-up commit: 2add010e3c48918569c051b40cec16fd7440c6be . AscendMlaDCPImpl. forward 解码 selects the target, draft 解码, or draf
-- [PR #18767](https://github.com/vllm-project/vllm-ascend/pull/18767) 已合并
-  - 中文：【修复】【注意力】Preserve DCP FIA workspace ownership during draft capture
-  - 原文：[BugFix][Attention] Preserve DCP FIA workspace ownership during draft capture
-  - 说明：修复 FIA workspace ownership during DCP MLA graph capture. Backport to releases/v0.30.0 : 18768. AscendMlaDCPImpl. forward 解码 selects the target, draft 解码, or draft 预填充 graph registry, but the original implementation always saved
-- [PR #18820](https://github.com/vllm-project/vllm-ascend/pull/18820) 已合并
-  - 中文：【性能】【MoE】Backport BF16 router GEMM with FP32 accumulation to v0.30.0
-  - 原文：[Performance][MoE] Backport BF16 router GEMM with FP32 accumulation to v0.30.0
-  - 说明：Backport the complete changes from (commit 15ec560120d93d38f428e97ec9af9221665be743) to releases/v0.30.0. - Let AscendGateLinear 权重 follow the model dtype and use BF16 input/权重 GEMM with FP32 accumulation/output when eligible (no b
-- [PR #18747](https://github.com/vllm-project/vllm-ascend/pull/18747) 已合并
-  - 中文：[BugFix] [KV Transfer]月饼合并需要全页覆盖
-  - 原文：[BugFix][KV Transfer] Require full page coverage for Mooncake merging
-  - 说明：Mooncake can publish different tensor counts for the same layer when its 缓存 views occupy only part of a 共享 physical page. The existing 合并 check accepts the views when the backing storage has enough spare capacity to cover a full-p
-- [PR #18854](https://github.com/vllm-project/vllm-ascend/pull/18854) 已合并
-  - 中文：【修复】【杂项】Make Ascend skills explicit-only and streamline agent guidance
-  - 原文：[BugFix][Misc] Make Ascend skills explicit-only and streamline agent guidance
-  - 说明：The model-adapter and release-management skills currently allow automatic invocation when a conversation matches their descriptions. Require explicit invocation, and keep always-loaded agent guidance focused on the current task. - 新增 polic
-- [PR #18823](https://github.com/vllm-project/vllm-ascend/pull/18823) 已合并
-  - 中文：【修复】【KVTransfer】Report Mooncake HMA receive failures by request
-  - 原文：[BugFix][KVTransfer] Report Mooncake HMA receive failures by request
-  - 说明：Report P2P Mooncake receive failures through KVConnectorTransferResults.failed recving when the logical 缓存 has multiple groups or requires HMA. Flat block IDs do not identify the affected request across independent 缓存 groups; vLLM 0.3
-- [Issue #18871](https://github.com/vllm-project/vllm-ascend/issues/18871) 进行中
-  - 中文：【缺陷】: a3日构建镜像的cann仍然是9.1.0，memcache1.2.0。需要升级！
-  - 原文：[Bug]: a3日构建镜像的cann仍然是9.1.0，memcache1.2.0。需要升级！

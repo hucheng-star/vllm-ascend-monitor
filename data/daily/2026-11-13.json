@@ -1,0 +1,295 @@
+{
+  "day": "2026-11-13",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "ds-v3.2",
+      "name": "DeepSeek V3.2",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 21760,
+          "title": "[Bug][MRV2] Burst arrivals during a prefill step cause a TTFT tail on DP2/TP8/EP (bs4/2048)",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/21760",
+          "author": "wisdom1710",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T22:27:21Z",
+          "updatedAt": "2026-11-12T22:27:21Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "On a single exclusive Atlas 800T A3 (16 NPU), DeepSeek V3.2 W8A8 with DP2 + TP8 + EP (MoE SP), MTP3, FULL DECODE ONLY , burst requests at batch=4 / seq=2048 show a reproducible TTFT tail on MRV2 relative to MRV1 under the same v0.30.0 image",
+          "modelIds": [
+            "ds-v3.2"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【缺陷】【MRV2】Burst arrivals during a 预填充 step cause a TTFT tail on DP2/TP8/EP (bs4/2048)",
+          "excerptZh": "On a single exclusive Atlas 800T A3 (16 NPU), DeepSeek V3.2 W8A8 with DP2 + TP8 + EP (MoE SP), MTP3, FULL 解码 ONLY , burst requests at batch=4 / seq=2048 show a reproducible TTFT tail on MRV2 relative to MRV1 under the same v0.30.0 image"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21758,
+          "title": "[Performance] Skip QSA CPU length sync for Ascend builder",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21758",
+          "author": "muziyuhui666",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-12T18:27:37Z",
+          "updatedAt": "2026-11-12T18:28:54Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Qwen3.8-Flash-Next with MTP can skip the per-decode-step CPU sequence-length synchronization when every metadata consumer accepts the optimistic CPU upper bound and uses rejection-corrected lengths on device. The capability guard already al",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【性能】Skip QSA CPU length sync for Ascend builder",
+          "excerptZh": "Qwen3.8-Flash-Next with MTP can skip the per-解码-step CPU 序列-length synchronization when every 元数据 consumer accepts the optimistic CPU upper bound and uses rejection-corrected lengths on device. The capability guard already al"
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21475,
+          "title": "[BugFix][MRV2] Refresh the padding mask on every real batch",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21475",
+          "author": "liuyao0",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-10T11:20:34Z",
+          "updatedAt": "2026-11-12T16:01:11Z",
+          "closedAt": "2026-11-12T16:01:11Z",
+          "mergedAt": "2026-11-12T16:01:11Z",
+          "comments": 0,
+          "excerpt": "Currently, a view of the persistent is padding buffer is passed to ForwardContext without being refreshed for real batches, which affects downstream consumers such as EPLB load accounting and bounded decoder replay. Because graph capture in",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】【MRV2】Refresh the padding mask on every real batch",
+          "excerptZh": "Currently, a view of the persistent is padding buffer is passed to ForwardContext without being refreshed for real batches, which affects downstream consumers such as EPLB load accounting and bounded decoder replay. Because graph capture in"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 21749,
+          "title": "[MRV2] Qwen3.6 adaptation and Model Runner V1/V2 parity: delivery tracking",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/21749",
+          "author": "qq3499",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T14:16:39Z",
+          "updatedAt": "2026-11-12T17:14:37Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 2,
+          "excerpt": "Objective Complete Qwen3.6 adaptation on Model Runner V2 and establish accuracy / performance parity with the frozen Model Runner V1 reference, on a reproducible environment. Reference environment for every number below: vLLM-Ascend v0.30.0",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 4,
+          "titleZh": "【MRV2】Qwen3.6 adaptation and Model Runner V1/V2 parity: delivery tracking",
+          "excerptZh": "Objective Complete Qwen3.6 adaptation on Model Runner V2 and establish 精度 / 性能 parity with the frozen Model Runner V1 reference, on a reproducible environment. Reference environment for every number below: vLLM-Ascend v0.30.0"
+        },
+        {
+          "kind": "issue",
+          "number": 21740,
+          "title": "[MRV2] Qwen3.6 long-context prefill is ~36% slower on Model Runner V2: the blocking seq-len sync removes stream overlap",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/21740",
+          "author": "qq3499",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T14:14:44Z",
+          "updatedAt": "2026-11-12T17:14:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 2,
+          "excerpt": "Summary On Atlas 800T A3, Qwen3.6-27B W8A8 with TP=2, Model Runner V2 needs +36% wall time for a ~200k-token prefill while executing the same operators, the same number of times, at the same speed as Model Runner V1 (+0.4% NPU time, +2.4% h",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 4,
+          "titleZh": "【MRV2】Qwen3.6 long-context 预填充 is ~36% slower on Model Runner V2: the blocking seq-len sync removes stream 重叠",
+          "excerptZh": "Summary On Atlas 800T A3, Qwen3.6-27B W8A8 with TP=2, Model Runner V2 needs +36% wall time for a ~200k-token 预填充 while executing the same operators, the same number of times, at the same speed as Model Runner V1 (+0.4% NPU time, +2.4% h"
+        },
+        {
+          "kind": "pr",
+          "number": 21757,
+          "title": "[Doc][Misc] Correct Qwen3.6 speculative decoding guidance",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21757",
+          "author": "wzi690421-droid",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T17:27:20Z",
+          "updatedAt": "2026-11-12T17:52:17Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This aligns the Qwen3.6-35B-A3B speculative-decoding examples with the online-serving CLI and the current graph behavior: - use --speculative-config instead of the underscore spelling; - do not recommend enforce eager: true in the performan",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【杂项】Correct Qwen3.6 投机解码 guidance",
+          "excerptZh": "This aligns the Qwen3.6-35B-A3B 投机-解码 examples with the online-服务 CLI and the current graph behavior: - use --投机-配置 instead of the underscore spelling; - do not recommend enforce eager: true in the performan"
+        },
+        {
+          "kind": "pr",
+          "number": 21746,
+          "title": "test: cover Qwen3.6 Model Runner V2 with main-recorded goldens",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21746",
+          "author": "qq3499",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T14:15:55Z",
+          "updatedAt": "2026-11-12T16:05:40Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds e2e coverage for the Qwen3.6 family on Model Runner V2, with goldens recorded on the last release that still contains Model Runner V1 ( v0.30.0 , image digest sha256:e6c22b94f4ab3634ad20ae4ad28b73b79ef59a1e9eb0372454affd8c186e36a6 ). M",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "test: cover Qwen3.6 Model Runner V2 with main-recorded goldens",
+          "excerptZh": "Adds e2e coverage for the Qwen3.6 family on Model Runner V2, with goldens recorded on the last release that still contains Model Runner V1 ( v0.30.0 , image digest sha256:e6c22b94f4ab3634ad20ae4ad28b73b79ef59a1e9eb0372454affd8c186e36a6 ). M"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21385,
+          "title": "[releases/v0.30.0][Test][Feature] Add Kimi-K3 W4A8 E256 accuracy test on A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21385",
+          "author": "CuiZ2007",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-09T16:24:16Z",
+          "updatedAt": "2026-11-12T19:00:40Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add a native YAML-driven diagnostic accuracy case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on one A5 node with eight NPUs, targeting releases/v0.30.0 . - Register Kimi-K3-W4A8-E256-A5-GSM8K-First100 in the A5 nightly matrix",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【releases/v0.30.0】【测试】【功能】Kimi-K3 W4A8 E256 精度 test on A5",
+          "excerptZh": "新增 a native YAML-driven diagnostic 精度 case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts on one A5 node with eight NPUs, targeting releases/v0.30.0 . - Register Kimi-K3-W4A8-E256-A5-GSM8K-First100 in the A5 夜间 matrix"
+        },
+        {
+          "kind": "pr",
+          "number": 21284,
+          "title": "[BugFix][Test] Align Kimi-K3 A5 numerics and add pruned EP256 nightly coverage",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21284",
+          "author": "CuiZ2007",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-08T18:26:08Z",
+          "updatedAt": "2026-11-12T19:00:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add an A5 nightly diagnostic case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts, and align its inference numerics with the v0.30.0 reference. Before the numerical fixes, main could produce different generated token IDs for the s",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【测试】对齐 Kimi-K3 A5 numerics and 新增 pruned EP256 夜间 coverage",
+          "excerptZh": "新增 an A5 夜间 diagnostic case for Kimi-K3 W4A8 MXFP/QuaRot pruned to 256 routed experts, and 对齐 its inference numerics with the v0.30.0 reference. Before the numerical fixes, main could produce different generated token IDs for the s"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19442,
+          "title": "[BugFix][Test] Declare GDN batch-invariance support and cover Qwen3.5-35B-A3B in the TP4 e2e",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19442",
+          "author": "EliasKaslan",
+          "labels": [
+            "module:tests",
+            "module:ops"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-22T04:58:50Z",
+          "updatedAt": "2026-11-12T16:09:02Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "The TP4 batch-invariance e2e only covered Qwen/Qwen3-30B-A3B : all full attention, MoE routing at 128 experts with no shared expert. Qwen/Qwen3.5-35B-A3B is a hybrid MoE whose 40 layers repeat a 3:1 pattern, so 30 are gated-delta-net linear",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【测试】Declare GDN batch-invariance 支持 and cover Qwen3.5-35B-A3B in the TP4 e2e",
+          "excerptZh": "The TP4 batch-invariance e2e only covered Qwen/Qwen3-30B-A3B : all full 注意力, MoE 路由 at 128 experts with no 共享专家. Qwen/Qwen3.5-35B-A3B is a hybrid MoE whose 40 layers repeat a 3:1 pattern, so 30 are gated-delta-net linear"
+        }
+      ]
+    }
+  ]
+}
