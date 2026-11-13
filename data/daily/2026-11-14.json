@@ -1,0 +1,189 @@
+{
+  "day": "2026-11-14",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21859,
+          "title": "[BugFix][Model] GLM-5.3-Flash: build the multimodal processor with the engine tokenizer",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21859",
+          "author": "HuayuSha",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T18:16:38Z",
+          "updatedAt": "2026-11-13T19:00:25Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Glm5NextProcessingInfo builds the vendored Glm5NextProcessor from the model path only: and Glm5NextProcessor.from pretrained then loads a second tokenizer itself with AutoTokenizer.from pretrained(model path) and no kwargs. This ignores sev",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【修复】【模型】GLM-5.3-Flash: build the multimodal processor with the engine tokenizer",
+          "excerptZh": "Glm5NextProcessingInfo builds the vendored Glm5NextProcessor from the model path only: and Glm5NextProcessor.from pretrained then loads a second tokenizer itself with AutoTokenizer.from pretrained(model path) and no kwargs. This ignores sev"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21861,
+          "title": "[Doc] Drop enable_flashcomm1 from single-card Qwen3.8-27B examples",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21861",
+          "author": "nikolas-sapa",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T21:31:15Z",
+          "updatedAt": "2026-11-13T21:32:39Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Fixes 21189 The 950DT and 950PR single-card examples in docs/source/tutorials/models/Qwen3.8-27B.md run vllm serve with --tensor-parallel-size 1 while also passing --additional-config '{\"enable cpu binding\": true, \"enable flashcomm1\": true}",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】Drop enable_flashcomm1 from single-card Qwen3.8-27B examples",
+          "excerptZh": "Fixes 21189 The 950DT and 950PR single-card examples in docs/source/tutorials/models/Qwen3.8-27B.md run vllm serve with --tensor-parallel-size 1 while also passing --additional-配置 '{\"启用 cpu binding\": true, \"启用 flashcomm1\": true}"
+        },
+        {
+          "kind": "pr",
+          "number": 21851,
+          "title": "[Feature] Port RecoverSSM, PP/SP, Decode-PP and PCP stack to main",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21851",
+          "author": "Lethobenthos20",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T11:49:21Z",
+          "updatedAt": "2026-11-13T19:10:34Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary This PR ports the Qwen3.8 Flash Next work from 21636 to the current main branch and folds the related changes into one reviewable stack. The stack includes: - the PRs referenced by 21636: 20485, 21627, 21589, 20943, 20944, and 20947",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】Port RecoverSSM, PP/SP, 解码-PP and PCP stack to main",
+          "excerptZh": "Summary This PR ports the Qwen3.8 Flash Next work from 21636 to the current main branch and folds the related changes into one reviewable stack. The stack includes: - the PRs referenced by 21636: 20485, 21627, 21589, 20943, 20944, and 20947"
+        },
+        {
+          "kind": "pr",
+          "number": 21856,
+          "title": "[Doc][Feature] recipes: Add Ascend 910B PD separation support for Qwen3.8-Flash-Next",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21856",
+          "author": "xszbuaa",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T15:20:49Z",
+          "updatedAt": "2026-11-13T16:54:20Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add new file Qwen3.8-Flash-Next.yaml under vllm-ascend/recipes/overlays/Qwen, add Ascend 910B w4a8 PD separation support for Qwen3.8-Flash-Next Does this PR introduce any user-facing change? No. Recipes metadata only (builder output for Hua",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【功能】recipes: 新增 Ascend 910B PD separation 支持 for Qwen3.8-Flash-Next",
+          "excerptZh": "新增 new file Qwen3.8-Flash-Next.yaml under vllm-ascend/recipes/overlays/Qwen, 新增 Ascend 910B w4a8 PD separation 支持 for Qwen3.8-Flash-Next No. Recipes 元数据 only (builder output for Hua"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21549,
+          "title": "[Feature] Add experimental Kimi KDA RecoverSSM support",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21549",
+          "author": "MAyang38",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-11T06:51:49Z",
+          "updatedAt": "2026-11-13T16:12:03Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add an experimental, opt-in Ascend KDA RecoverSSM path for Kimi K3 and K3.1 speculative decoding. Verification keeps the recurrent checkpoint unchanged and writes request-indexed records; after sampling, the accepted state and convolution h",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 2,
+          "titleZh": "【功能】experimental Kimi KDA RecoverSSM 支持",
+          "excerptZh": "新增 an experimental, opt-in Ascend KDA RecoverSSM path for Kimi K3 and K3.1 投机解码. Verification keeps the recurrent 检查点 unchanged and writes request-indexed records; after sampling, the accepted state and convolution h"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21852,
+          "title": "[Doc][Recipe] add Ascend 910B (Atlas 800I A2) W4A8 PD support to DeepSeek-V4.1-Flash overlay",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21852",
+          "author": "troubadourHUI",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T12:26:32Z",
+          "updatedAt": "2026-11-13T17:33:53Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds a new deepseek-ai/DeepSeek-V4.1-Flash overlay carrying validated Ascend 910B (Atlas 800I A2 / 910B4) support for the W4A8 checkpoint in prefill/decode disaggregation. The overlay is new, so no other model recipe is touched. Why: 1M-con",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【Recipe】新增 Ascend 910B (Atlas 800I A2) W4A8 PD 支持 to DeepSeek-V4.1-Flash overlay",
+          "excerptZh": "Adds a new deepseek-ai/DeepSeek-V4.1-Flash overlay carrying validated Ascend 910B (Atlas 800I A2 / 910B4) 支持 for the W4A8 检查点 in 预填充/解码 disaggregation. The overlay is new, so no other model recipe is touched. Why: 1M-con"
+        }
+      ]
+    }
+  ]
+}
