@@ -3,119 +3,236 @@
   "timezone": "Asia/Shanghai",
   "groups": [
     {
-      "id": "glm-5",
-      "name": "GLM-5",
-      "family": "GLM",
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
       "items": [
         {
           "kind": "pr",
-          "number": 21859,
-          "title": "[BugFix][Model] GLM-5.3-Flash: build the multimodal processor with the engine tokenizer",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/21859",
-          "author": "HuayuSha",
+          "number": 20360,
+          "title": "[Feature][MRV2][310P] Support structured outputs for Model Runner V2",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20360",
+          "author": "Thiagor2002",
           "labels": [
-            "module:tests"
+            "module:tests",
+            "ready-precise"
           ],
-          "state": "open",
+          "state": "closed",
           "draft": false,
-          "createdAt": "2026-11-13T18:16:38Z",
-          "updatedAt": "2026-11-13T19:00:25Z",
-          "closedAt": null,
-          "mergedAt": null,
+          "createdAt": "2026-10-30T09:11:08Z",
+          "updatedAt": "2026-11-14T06:22:59Z",
+          "closedAt": "2026-11-14T02:17:03Z",
+          "mergedAt": "2026-11-14T02:17:02Z",
           "comments": 0,
-          "excerpt": "Glm5NextProcessingInfo builds the vendored Glm5NextProcessor from the model path only: and Glm5NextProcessor.from pretrained then loads a second tokenizer itself with AutoTokenizer.from pretrained(model path) and no kwargs. This ignores sev",
-          "modelIds": [
-            "glm-5"
-          ],
-          "action": "opened",
-          "score": 6,
-          "titleZh": "【修复】【模型】GLM-5.3-Flash: build the multimodal processor with the engine tokenizer",
-          "excerptZh": "Glm5NextProcessingInfo builds the vendored Glm5NextProcessor from the model path only: and Glm5NextProcessor.from pretrained then loads a second tokenizer itself with AutoTokenizer.from pretrained(model path) and no kwargs. This ignores sev"
-        }
-      ]
-    },
-    {
-      "id": "qwen3.8",
-      "name": "Qwen3.8",
-      "family": "Qwen",
-      "items": [
-        {
-          "kind": "pr",
-          "number": 21861,
-          "title": "[Doc] Drop enable_flashcomm1 from single-card Qwen3.8-27B examples",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/21861",
-          "author": "nikolas-sapa",
-          "labels": [
-            "documentation"
-          ],
-          "state": "open",
-          "draft": false,
-          "createdAt": "2026-11-13T21:31:15Z",
-          "updatedAt": "2026-11-13T21:32:39Z",
-          "closedAt": null,
-          "mergedAt": null,
-          "comments": 0,
-          "excerpt": "Fixes 21189 The 950DT and 950PR single-card examples in docs/source/tutorials/models/Qwen3.8-27B.md run vllm serve with --tensor-parallel-size 1 while also passing --additional-config '{\"enable cpu binding\": true, \"enable flashcomm1\": true}",
-          "modelIds": [
-            "qwen3.8"
-          ],
-          "action": "opened",
-          "score": 3,
-          "titleZh": "【文档】Drop enable_flashcomm1 from single-card Qwen3.8-27B examples",
-          "excerptZh": "Fixes 21189 The 950DT and 950PR single-card examples in docs/source/tutorials/models/Qwen3.8-27B.md run vllm serve with --tensor-parallel-size 1 while also passing --additional-配置 '{\"启用 cpu binding\": true, \"启用 flashcomm1\": true}"
+          "excerpt": "This PR enables structured outputs for the Ascend 310P Model Runner V2. Previously, the 310P MRV2 path raised NotImplementedError when grammar output was provided. The implementation: - Reorders the scheduler-provided grammar bitmask rows t",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【功能】【MRV2】【310P】支持 structured outputs for Model Runner V2",
+          "excerptZh": "This PR enables structured outputs for the Ascend 310P Model Runner V2. Previously, the 310P MRV2 path raised NotImplementedError when grammar output was provided. The implementation: - Reorders the 调度器-provided grammar bitmask rows t"
         },
         {
           "kind": "pr",
-          "number": 21851,
-          "title": "[Feature] Port RecoverSSM, PP/SP, Decode-PP and PCP stack to main",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/21851",
-          "author": "Lethobenthos20",
+          "number": 21584,
+          "title": "[Performance][Kernel] Share exact radix sorting across BF16 and FP32 candidate packing",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21584",
+          "author": "AuroraEmiya",
           "labels": [
             "documentation",
             "module:tests",
             "module:ops",
-            "module:core"
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-11T09:34:18Z",
+          "updatedAt": "2026-11-14T03:16:28Z",
+          "closedAt": "2026-11-14T03:16:27Z",
+          "mergedAt": "2026-11-14T03:16:27Z",
+          "comments": 0,
+          "excerpt": "Replace the FP32 compare/exchange sort in fused candidate packing with the stable radix implementation shared by BF16 and FP32. The shared operator is called by the context-parallel sharded indexer through pack local candidates ; this chang",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【性能】【Kernel】Share exact radix sorting across BF16 and FP32 candidate packing",
+          "excerptZh": "Replace the FP32 compare/exchange sort in 融合 candidate packing with the stable radix implementation 共享 by BF16 and FP32. The 共享 operator is called by the context-parallel sharded 索引器 through pack local candidates ; this chang"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21708,
+          "title": "[Feature][LoRA] Extend DeepSeek-V4 LoRA target mapping and quantized MoE support",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21708",
+          "author": "Liuchenbing-2026",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-11-13T11:49:21Z",
-          "updatedAt": "2026-11-13T19:10:34Z",
+          "createdAt": "2026-11-12T09:22:32Z",
+          "updatedAt": "2026-11-14T09:59:42Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Summary This PR ports the Qwen3.8 Flash Next work from 21636 to the current main branch and folds the related changes into one reviewable stack. The stack includes: - the PRs referenced by 21636: 20485, 21627, 21589, 20943, 20944, and 20947",
+          "excerpt": "This PR includes shared attention, linear-wrapper, quantized MoE and graph-dispatch adaptations, together with DeepSeek-V4 target-name mapping and the additional quantized expert implementation described below. The current main-targeted dif",
           "modelIds": [
-            "qwen3.8"
+            "ds-v4"
           ],
           "action": "updated",
           "score": 3,
-          "titleZh": "【功能】Port RecoverSSM, PP/SP, 解码-PP and PCP stack to main",
-          "excerptZh": "Summary This PR ports the Qwen3.8 Flash Next work from 21636 to the current main branch and folds the related changes into one reviewable stack. The stack includes: - the PRs referenced by 21636: 20485, 21627, 21589, 20943, 20944, and 20947"
+          "titleZh": "【功能】【LoRA】Extend DeepSeek-V4 LoRA target mapping and quantized MoE 支持",
+          "excerptZh": "This PR includes 共享 注意力, linear-wrapper, quantized MoE and graph-dispatch adaptations, together with DeepSeek-V4 target-name mapping and the additional quantized expert implementation described below. The current main-targeted dif"
         },
         {
           "kind": "pr",
-          "number": 21856,
-          "title": "[Doc][Feature] recipes: Add Ascend 910B PD separation support for Qwen3.8-Flash-Next",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/21856",
-          "author": "xszbuaa",
+          "number": 21083,
+          "title": "[Misc]Use unified kv cache allocation interface for deepseek v4 and v4.1",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21083",
+          "author": "Angazenn",
           "labels": [
-            "recipe"
+            "module:tests",
+            "ready-precise"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-11-13T15:20:49Z",
-          "updatedAt": "2026-11-13T16:54:20Z",
+          "createdAt": "2026-11-05T09:54:56Z",
+          "updatedAt": "2026-11-14T04:04:32Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Add new file Qwen3.8-Flash-Next.yaml under vllm-ascend/recipes/overlays/Qwen, add Ascend 910B w4a8 PD separation support for Qwen3.8-Flash-Next Does this PR introduce any user-facing change? No. Recipes metadata only (builder output for Hua",
+          "excerpt": "RFC: 21053 Does this PR introduce any user-facing change? --- Checklist Testing - [ ] Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by",
           "modelIds": [
-            "qwen3.8"
+            "ds-v4"
           ],
           "action": "updated",
           "score": 0,
-          "titleZh": "【文档】【功能】recipes: 新增 Ascend 910B PD separation 支持 for Qwen3.8-Flash-Next",
-          "excerptZh": "新增 new file Qwen3.8-Flash-Next.yaml under vllm-ascend/recipes/overlays/Qwen, 新增 Ascend 910B w4a8 PD separation 支持 for Qwen3.8-Flash-Next No. Recipes 元数据 only (builder output for Hua"
+          "titleZh": "【杂项】Use unified KV 缓存 allocation interface for deepseek v4 and v4.1",
+          "excerptZh": "【】RFC: 21053 --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 15076,
+          "title": "[Feature][LoRA] Support DeepSeek-V4.1 attention and W4A8 MoE LoRA on Ascend",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/15076",
+          "author": "Liuchenbing-2026",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-08-27T05:56:27Z",
+          "updatedAt": "2026-11-14T09:53:55Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Ascend attention implementations can retain projection references created before LoRA replacement or consume base weights directly, bypassing adapter updates. This change connects the LoRA-wrapped modules to the DeepSeek-V4.1 execution path",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【LoRA】支持 DeepSeek-V4.1 注意力 and W4A8 MoE LoRA on Ascend",
+          "excerptZh": "Ascend 注意力 implementations can retain projection references created before LoRA replacement or consume base 权重 directly, bypassing adapter 更新. This change connects the LoRA-wrapped modules to the DeepSeek-V4.1 execution path"
+        },
+        {
+          "kind": "pr",
+          "number": 21823,
+          "title": "[Performance][MoE] Prepare DeepSeek V4.1 hash routing inputs once per forward",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21823",
+          "author": "linfeng-yuan",
+          "labels": [
+            "module:tests",
+            "module:ops"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-13T08:30:37Z",
+          "updatedAt": "2026-11-14T09:31:03Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Prepare normalized routing IDs and the image sentinel mask once per V4.1 target or draft forward and share them across MoE layers. Preserve the original IDs consumed by embedding and Engram. The optional prepared mask passes through routing",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 2,
+          "titleZh": "【性能】【MoE】Prepare DeepSeek V4.1 hash 路由 inputs once per forward",
+          "excerptZh": "Prepare normalized 路由 IDs and the image sentinel mask once per V4.1 target or draft forward and share them across MoE layers. Preserve the original IDs consumed by embedding and Engram. The optional prepared mask passes through 路由"
+        },
+        {
+          "kind": "pr",
+          "number": 21826,
+          "title": "[Performance][Model] Integrate the fused DeepSeek V4.1 attention epilogue on A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21826",
+          "author": "linfeng-yuan",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-13T08:30:45Z",
+          "updatedAt": "2026-11-14T09:29:27Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Integrate the A5 CannBotDSL attention epilogue into V4.1: inverse RoPE and both MX projections write directly to the caller-owned output, including zeroing graph padding. Weight packing happens once during loading; forward does not add layo",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 2,
+          "titleZh": "【性能】【模型】Integrate the 融合 DeepSeek V4.1 注意力 epilogue on A5",
+          "excerptZh": "Integrate the A5 CannBotDSL 注意力 epilogue into V4.1: inverse RoPE and both MX projections write directly to the caller-owned output, including zeroing graph padding. 权重 packing happens once during 加载; forward does not 新增 layo"
+        },
+        {
+          "kind": "pr",
+          "number": 21116,
+          "title": "[Feature][KV Pool] Add a cross-layer shared KV strategy under use_layerwise",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21116",
+          "author": "tyy0829",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-05T15:19:07Z",
+          "updatedAt": "2026-11-14T08:15:28Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4.1 shares KV sources across consumer layers. This draft schedules Memcache GVA copies at source/consumer boundaries so earlier computation can overlap later transfers, under the existing use layerwise option. Routing resolves the",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 2,
+          "titleZh": "【功能】【KV Pool】a cross-layer 共享 KV strategy under use_layerwise",
+          "excerptZh": "DeepSeek V4.1 shares KV sources across consumer layers. This draft schedules Memcache GVA 拷贝 at source/consumer boundaries so earlier computation can 重叠 later transfers, under the existing use layerwise option. 路由 resolves the"
         }
       ]
     },
@@ -133,12 +250,14 @@
           "labels": [
             "documentation",
             "module:tests",
-            "module:ops"
+            "module:ops",
+            "ready-precise",
+            "ci-run"
           ],
           "state": "open",
-          "draft": true,
+          "draft": false,
           "createdAt": "2026-11-11T06:51:49Z",
-          "updatedAt": "2026-11-13T16:12:03Z",
+          "updatedAt": "2026-11-14T09:40:55Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
@@ -147,41 +266,161 @@
             "kimi-k3"
           ],
           "action": "updated",
-          "score": 2,
+          "score": 3,
           "titleZh": "【功能】experimental Kimi KDA RecoverSSM 支持",
           "excerptZh": "新增 an experimental, opt-in Ascend KDA RecoverSSM path for Kimi K3 and K3.1 投机解码. Verification keeps the recurrent 检查点 unchanged and writes request-indexed records; after sampling, the accepted state and convolution h"
         }
       ]
     },
     {
-      "id": "ds-v4.1",
-      "name": "DeepSeek V4.1",
-      "family": "DeepSeek",
+      "id": "qwen3-omni",
+      "name": "Qwen3-Omni",
+      "family": "Qwen",
       "items": [
         {
           "kind": "pr",
-          "number": 21852,
-          "title": "[Doc][Recipe] add Ascend 910B (Atlas 800I A2) W4A8 PD support to DeepSeek-V4.1-Flash overlay",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/21852",
-          "author": "troubadourHUI",
+          "number": 20243,
+          "title": "[BugFix][EC Connector] Take memcache EC load shapes from the request",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20243",
+          "author": "wenshanchao",
           "labels": [
-            "recipe"
+            "module:tests",
+            "ready-precise"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-11-13T12:26:32Z",
-          "updatedAt": "2026-11-13T17:33:53Z",
+          "createdAt": "2026-10-29T09:29:29Z",
+          "updatedAt": "2026-11-14T08:10:10Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Adds a new deepseek-ai/DeepSeek-V4.1-Flash overlay carrying validated Ascend 910B (Atlas 800I A2 / 910B4) support for the W4A8 checkpoint in prefill/decode disaggregation. The overlay is new, so no other model recipe is touched. Why: 1M-con",
+          "excerpt": "EC producers size each transfer before the item is encoded, and the size depends on the encoder output width, which varies by model and modality. Qwen3-Omni is the motivating case: its visual DeepStack output is 8192 wide ( out hidden size ",
           "modelIds": [
-            "ds-v4.1"
+            "qwen3-omni"
           ],
           "action": "updated",
-          "score": 0,
-          "titleZh": "【文档】【Recipe】新增 Ascend 910B (Atlas 800I A2) W4A8 PD 支持 to DeepSeek-V4.1-Flash overlay",
-          "excerptZh": "Adds a new deepseek-ai/DeepSeek-V4.1-Flash overlay carrying validated Ascend 910B (Atlas 800I A2 / 910B4) 支持 for the W4A8 检查点 in 预填充/解码 disaggregation. The overlay is new, so no other model recipe is touched. Why: 1M-con"
+          "score": 3,
+          "titleZh": "【修复】【EC Connector】Take memcache EC load shapes from the request",
+          "excerptZh": "EC producers size each transfer before the item is encoded, and the size depends on the encoder output width, which varies by model and modality. Qwen3-Omni is the motivating case: its visual DeepStack output is 8192 wide ( out hidden size"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19442,
+          "title": "[BugFix][Test] Declare GDN batch-invariance support and cover Qwen3.5-35B-A3B in the TP4 e2e",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19442",
+          "author": "EliasKaslan",
+          "labels": [
+            "module:tests",
+            "module:ops"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-22T04:58:50Z",
+          "updatedAt": "2026-11-14T07:44:07Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "The TP4 batch-invariance e2e only covered Qwen/Qwen3-30B-A3B : all full attention, MoE routing at 128 experts with no shared expert. Qwen/Qwen3.5-35B-A3B is a hybrid MoE whose 40 layers repeat a 3:1 pattern, so 30 are gated-delta-net linear",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【测试】Declare GDN batch-invariance 支持 and cover Qwen3.5-35B-A3B in the TP4 e2e",
+          "excerptZh": "The TP4 batch-invariance e2e only covered Qwen/Qwen3-30B-A3B : all full 注意力, MoE 路由 at 128 experts with no 共享专家. Qwen/Qwen3.5-35B-A3B is a hybrid MoE whose 40 layers repeat a 3:1 pattern, so 30 are gated-delta-net linear"
+        },
+        {
+          "kind": "pr",
+          "number": 17051,
+          "title": "[BugFix][310P] fix performance degrade issue with MTP for Qwen3.5-2B on the 310P",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/17051",
+          "author": "Thiagor2002",
+          "labels": [
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-09-21T03:06:19Z",
+          "updatedAt": "2026-11-14T06:26:13Z",
+          "closedAt": "2026-10-11T03:51:14Z",
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "On Ascend 310P , enabling MTP ( num speculative tokens=1 ) for Qwen3.5-2B-W8A8 can make ais bench synthetic decode slower than MTP-off (higher TPOT / lower output throughput), while larger models such as Qwen3.5-9B still benefit from MTP on",
+          "modelIds": [
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【310P】性能 degrade issue with MTP for Qwen3.5-2B on the 310P",
+          "excerptZh": "On Ascend 310P , enabling MTP ( num 投机 tokens=1 ) for Qwen3.5-2B-W8A8 can make ais bench synthetic 解码 slower than MTP-off (higher TPOT / lower output 吞吐), while larger models such as Qwen3.5-9B still benefit from MTP on"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21693,
+          "title": "[Feature][Model] Support prefill context parallelism for Qwen3.8-Flash-Next",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21693",
+          "author": "wzx0726",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T07:46:39Z",
+          "updatedAt": "2026-11-14T07:14:02Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable prefill context parallelism (PCP) for Qwen3.8-Flash-Next on Model Runner V2. Reuse the KDA projection sharding over TP × PCP for Gated DeltaNet and process each rank's heads in global causal token order. Share pcp gather tokens and p",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】支持 预填充 context parallelism for Qwen3.8-Flash-Next",
+          "excerptZh": "启用 预填充 context parallelism (PCP) for Qwen3.8-Flash-Next on Model Runner V2. Reuse the KDA projection sharding over TP × PCP for Gated DeltaNet and process each rank's heads in global causal token order. Share pcp gather tokens and p"
+        },
+        {
+          "kind": "pr",
+          "number": 21730,
+          "title": "[BugFix] Correct Qwen3.8 Mamba state and PLE numerical precision",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21730",
+          "author": "sustech-lz",
+          "labels": [
+            "module:tests",
+            "module:ops"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T13:25:16Z",
+          "updatedAt": "2026-11-14T03:45:15Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Fix Qwen3.8 inference correctness on Ascend in four related paths: - Use persistent request slots for Mamba state copies and rebuild the alignment context during KV-cache initialization. - Perform PLE embedding lookup and tensor-parallel re",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】Correct Qwen3.8 Mamba state and PLE numerical 精度",
+          "excerptZh": "修复 Qwen3.8 inference correctness on Ascend in four related paths: - Use persistent request slots for Mamba state 拷贝 and rebuild the alignment context during KV-缓存 initialization. - Perform PLE embedding lookup and tensor-parallel re"
         }
       ]
     }
