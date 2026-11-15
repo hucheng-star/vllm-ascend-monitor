@@ -1,0 +1,41 @@
+{
+  "day": "2026-11-16",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 20311,
+          "title": "[Feature][Model] Enable Qwen3.8 Flash Next PP and SP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20311",
+          "author": "Lethobenthos20",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-30T02:57:09Z",
+          "updatedAt": "2026-11-15T17:09:35Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary Adapt the existing Qwen3.8/Qwen4-Exp pipeline-parallel (PP) and sequence-parallel (SP/FlashComm1) work from Lethobenthos20/vllm-ascend 4 onto the current vllm-project/vllm-ascend main , then make the packed QSA/GDN/PLE KV-cache layo",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】启用 Qwen3.8 Flash Next PP and SP",
+          "excerptZh": "Summary Adapt the existing Qwen3.8/Qwen4-Exp pipeline-parallel (PP) and 序列-parallel (SP/FlashComm1) work from Lethobenthos20/vllm-ascend 4 onto the current vllm-project/vllm-ascend main , then make the packed QSA/GDN/PLE KV-缓存 layo"
+        }
+      ]
+    }
+  ]
+}

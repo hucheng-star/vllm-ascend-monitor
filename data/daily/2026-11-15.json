@@ -3,34 +3,65 @@
   "timezone": "Asia/Shanghai",
   "groups": [
     {
-      "id": "ds-v4",
-      "name": "DeepSeek V4",
-      "family": "DeepSeek",
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
       "items": [
         {
           "kind": "pr",
-          "number": 21896,
-          "title": "[Performance][DSV4.1] Capture native decode metadata with first-consumer SWA priority",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/21896",
-          "author": "KeyanHu-git",
+          "number": 21549,
+          "title": "[Feature] Add experimental Kimi KDA RecoverSSM support",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21549",
+          "author": "MAyang38",
           "labels": [
-            "module:tests"
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-11T06:51:49Z",
+          "updatedAt": "2026-11-15T10:11:41Z",
+          "closedAt": "2026-11-15T10:11:41Z",
+          "mergedAt": "2026-11-15T10:11:41Z",
+          "comments": 0,
+          "excerpt": "Add an experimental, opt-in Ascend KDA RecoverSSM path for Kimi K3 and K3.1 speculative decoding. Verification keeps the recurrent checkpoint unchanged and writes request-indexed records; after sampling, the accepted state and convolution h",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "merged",
+          "score": 7,
+          "titleZh": "【功能】experimental Kimi KDA RecoverSSM 支持",
+          "excerptZh": "新增 an experimental, opt-in Ascend KDA RecoverSSM path for Kimi K3 and K3.1 投机解码. Verification keeps the recurrent 检查点 unchanged and writes request-indexed records; after sampling, the accepted state and convolution h"
+        },
+        {
+          "kind": "pr",
+          "number": 21903,
+          "title": "[Refactor][MRV2] Reuse unified KV cache allocation for Kimi K3",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21903",
+          "author": "yxk-fdu",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "merge-conflicts"
           ],
           "state": "open",
-          "draft": false,
-          "createdAt": "2026-11-14T19:32:20Z",
-          "updatedAt": "2026-11-14T19:34:03Z",
+          "draft": true,
+          "createdAt": "2026-11-15T03:05:21Z",
+          "updatedAt": "2026-11-15T10:16:10Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "On non-packed-cache (native) DeepSeek-V4.1-Flash FULL DECODE ONLY execution, main currently restricts TargetDeviceMetadata to the A5 packed-cache backend, leaving native slot coordinate conversion, C2 compressed lengths, and SMLA / QLI meta",
+          "excerpt": "Route MRV2 Kimi K3 through the descriptor-driven allocator introduced for DeepSeek V4/V4.1. The worker uses the existing cache placements to allocate backing storage. KDA state views come from MambaSpec . MLA initialization builds the kerne",
           "modelIds": [
-            "ds-v4"
+            "kimi-k3"
           ],
           "action": "opened",
-          "score": 6,
-          "titleZh": "【性能】【DSV4.1】Capture native 解码 元数据 with first-consumer SWA priority",
-          "excerptZh": "On non-packed-缓存 (native) DeepSeek-V4.1-Flash FULL 解码 ONLY execution, main currently restricts TargetDeviceMetadata to the A5 packed-缓存 backend, leaving native slot coordinate conversion, C2 compressed lengths, and SMLA / QLI meta"
+          "score": 5,
+          "titleZh": "【重构】【MRV2】Reuse unified KV 缓存 allocation for Kimi K3",
+          "excerptZh": "Route MRV2 Kimi K3 through the descriptor-driven allocator introduced for DeepSeek V4/V4.1. The worker uses the existing 缓存 placements to allocate backing storage. KDA state views come from MambaSpec . MLA initialization builds the kerne"
         }
       ]
     },
@@ -41,30 +72,324 @@
       "items": [
         {
           "kind": "pr",
-          "number": 20926,
-          "title": "[Feature][HiSparse] Add Ascend backend foundation",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/20926",
-          "author": "zhenwenqi2024",
+          "number": 21310,
+          "title": "[Refactor][Core] Remove dynamic chunk size CPP feature, configuration, and documentation",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21310",
+          "author": "pisceskkk",
           "labels": [
             "documentation",
             "module:tests",
-            "module:ops",
             "module:core",
             "ready-precise"
           ],
           "state": "closed",
           "draft": false,
-          "createdAt": "2026-11-04T08:43:55Z",
-          "updatedAt": "2026-11-14T22:51:34Z",
-          "closedAt": "2026-11-14T22:51:34Z",
-          "mergedAt": "2026-11-14T22:51:34Z",
+          "createdAt": "2026-11-09T04:47:31Z",
+          "updatedAt": "2026-11-15T10:28:02Z",
+          "closedAt": "2026-11-15T09:23:43Z",
+          "mergedAt": "2026-11-15T09:23:43Z",
           "comments": 0,
-          "excerpt": "Add experimental HiSparse support for Ascend, enabling dynamic KV offload while reusing vLLM Core's HMA allocation, Coordinator, request lifecycle and Runtime. - Add an AscendC SIMT/ACLNN residency resolver with MTP query-union handling and",
+          "excerpt": "What does this PR do? Following the sunset announcement in 21304, this PR completely removes the dynamic chunk size Chunked Pipeline Parallelism (CPP) feature from vllm-ascend main branch. Background & Motivation The dynamic chunk size CPP ",
           "modelIds": [],
           "action": "merged",
           "score": 5,
-          "titleZh": "【功能】【HiSparse】Ascend backend foundation",
-          "excerptZh": "新增 experimental HiSparse 支持 for Ascend, enabling dynamic KV 卸载 while reusing vLLM Core's HMA allocation, Coordinator, request lifecycle and 运行时. - 新增 an AscendC SIMT/ACLNN residency resolver with MTP query-union handling and"
+          "titleZh": "【重构】【Core】移除 dynamic chunk size CPP 特性, 配置, and documentation",
+          "excerptZh": "What does this PR do? Following the sunset announcement in 21304, this PR completely removes the dynamic chunk size Chunked Pipeline Parallelism (CPP) 特性 from vllm-ascend main branch. Background & Motivation The dynamic chunk size CPP"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21730,
+          "title": "[BugFix] Correct Qwen3.8-Flash-Next Mamba state and PLE numerical precision",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21730",
+          "author": "sustech-lz",
+          "labels": [
+            "module:tests",
+            "module:ops"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T13:25:16Z",
+          "updatedAt": "2026-11-15T10:48:35Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Fix Qwen3.8 inference correctness on Ascend in four related paths: - Use persistent request slots for Mamba state copies and rebuild the alignment context during KV-cache initialization. - Perform PLE embedding lookup and tensor-parallel re",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】Correct Qwen3.8-Flash-Next Mamba state and PLE numerical 精度",
+          "excerptZh": "修复 Qwen3.8 inference correctness on Ascend in four related paths: - Use persistent request slots for Mamba state 拷贝 and rebuild the alignment context during KV-缓存 initialization. - Perform PLE embedding lookup and tensor-parallel re"
+        },
+        {
+          "kind": "pr",
+          "number": 21856,
+          "title": "[Doc][Feature] recipes: Add Ascend 910B PD separation support for Qwen3.8-Flash-Next",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21856",
+          "author": "xszbuaa",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T15:20:49Z",
+          "updatedAt": "2026-11-15T05:51:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add new file Qwen3.8-Flash-Next.yaml under vllm-ascend/recipes/overlays/Qwen, add Ascend 910B w4a8 PD separation support for Qwen3.8-Flash-Next Does this PR introduce any user-facing change? No. Recipes metadata only (builder output for Hua",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【功能】recipes: 新增 Ascend 910B PD separation 支持 for Qwen3.8-Flash-Next",
+          "excerptZh": "新增 new file Qwen3.8-Flash-Next.yaml under vllm-ascend/recipes/overlays/Qwen, 新增 Ascend 910B w4a8 PD separation 支持 for Qwen3.8-Flash-Next No. Recipes 元数据 only (builder output for Hua"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21813,
+          "title": "[Feature][KV Connector][Mooncake] Add layerwise and SWA replay for deepseek v4.1 flash",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21813",
+          "author": "wangyuqi0429",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T07:21:01Z",
+          "updatedAt": "2026-11-15T09:41:55Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Does this PR introduce any user-facing change? --- Checklist Testing - [ ] Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【KV Connector】【Mooncake】layerwise and SWA replay for deepseek v4.1 flash",
+          "excerptZh": "【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque"
+        },
+        {
+          "kind": "pr",
+          "number": 21526,
+          "title": "[Performance][Kernel] Fuse DeepSeek-V4.1 indexer prologue on Ascend A2/A3",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21526",
+          "author": "jwkkkkkkdada",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-11T03:47:58Z",
+          "updatedAt": "2026-11-15T02:25:18Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Ascend 950 already provides a packed-cache-specific fusion for index-key quantization and cache publication. Building on this optimization approach, this PR introduces a broader A2/A3 AscendC fusion that combines Wk projection, RMSNorm, par",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】【Kernel】融合 DeepSeek-V4.1 索引器 prologue on Ascend A2/A3",
+          "excerptZh": "Ascend 950 already provides a packed-缓存-specific fusion for index-key 量化 and 缓存 publication. Building on this 优化 approach, this PR introduces a broader A2/A3 AscendC fusion that combines Wk projection, RMSNorm, par"
+        },
+        {
+          "kind": "pr",
+          "number": 21250,
+          "title": "[BugFix][KVOffload] Bound DeepSeek V4.1 replay CPU cache allocations",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21250",
+          "author": "ckeyever",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-07T08:37:55Z",
+          "updatedAt": "2026-11-15T02:24:42Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4.1 allocates independent physical cache slots, while upstream native offloading interprets the first KV-cache descriptor's size as the reservation for the entire pool. With SWA bounded replay enabled, this can size CPU mirrors fr",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【KVOffload】Bound DeepSeek V4.1 replay CPU 缓存 allocations",
+          "excerptZh": "DeepSeek V4.1 allocates independent physical 缓存 slots, while upstream native offloading interprets the first KV-缓存 descriptor's size as the reservation for the entire pool. With SWA bounded replay 启用, this can size CPU mirrors fr"
+        },
+        {
+          "kind": "pr",
+          "number": 21826,
+          "title": "[Performance][Model] Integrate the fused DeepSeek V4.1 attention epilogue on A5",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21826",
+          "author": "linfeng-yuan",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "module:quantization",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-13T08:30:45Z",
+          "updatedAt": "2026-11-15T03:14:54Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Integrate the A5 CannBotDSL attention epilogue into V4.1: inverse RoPE and both MX projections write directly to the caller-owned output, including zeroing graph padding. Weight packing happens once during loading; forward does not add layo",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 2,
+          "titleZh": "【性能】【模型】Integrate the 融合 DeepSeek V4.1 注意力 epilogue on A5",
+          "excerptZh": "Integrate the A5 CannBotDSL 注意力 epilogue into V4.1: inverse RoPE and both MX projections write directly to the caller-owned output, including zeroing graph padding. 权重 packing happens once during 加载; forward does not 新增 layo"
+        },
+        {
+          "kind": "pr",
+          "number": 21825,
+          "title": "[Performance][Model] Keep DeepSeek V4.1 Compressor batch extents dynamic",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21825",
+          "author": "linfeng-yuan",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-13T08:30:42Z",
+          "updatedAt": "2026-11-15T03:14:50Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Use runtime batch, cache-block, and slot counts in the C2 pool and cache-update kernels. Keep the computation and cache layout fixed so changing the batch geometry can reuse the compiled kernels. Does this PR introduce any user-facing chang",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 2,
+          "titleZh": "【性能】【模型】Keep DeepSeek V4.1 压缩器 batch extents dynamic",
+          "excerptZh": "Use 运行时 batch, 缓存-block, and slot counts in the C2 pool and 缓存-更新 内核. Keep the computation and 缓存 layout 修复 so changing the batch geometry can reuse the compiled 内核. Does this PR introduce any user-facing chang"
+        },
+        {
+          "kind": "pr",
+          "number": 21823,
+          "title": "[Performance][MoE] Prepare DeepSeek V4.1 hash routing inputs once per forward",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21823",
+          "author": "linfeng-yuan",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-13T08:30:37Z",
+          "updatedAt": "2026-11-15T03:14:42Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Prepare normalized routing IDs and the image sentinel mask once per V4.1 target or draft forward and share them across MoE layers. Preserve the original IDs consumed by embedding and Engram. The optional prepared mask passes through routing",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 2,
+          "titleZh": "【性能】【MoE】Prepare DeepSeek V4.1 hash 路由 inputs once per forward",
+          "excerptZh": "Prepare normalized 路由 IDs and the image sentinel mask once per V4.1 target or draft forward and share them across MoE layers. Preserve the original IDs consumed by embedding and Engram. The optional prepared mask passes through 路由"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21757,
+          "title": "[Doc] Avoid disabling ACLGraph in Qwen3.6 MTP guidance",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21757",
+          "author": "wzi690421-droid",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T17:27:20Z",
+          "updatedAt": "2026-11-15T06:48:44Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Remove enforce eager: true from the Qwen3.6 MTP performance-tuning example. On Model Runner V2, this option forces the draft model's compilation mode to NONE ; the multi-module MTP speculator also sets its ACLGraph mode to NONE . Following ",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】避免 disabling ACLGraph in Qwen3.6 MTP guidance",
+          "excerptZh": "移除 enforce eager: true from the Qwen3.6 MTP 性能-tuning example. On Model Runner V2, this option forces the draft model's compilation mode to NONE ; the multi-module MTP speculator also sets its ACLGraph mode to NONE . Following"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21083,
+          "title": "[Misc]Use unified kv cache allocation interface for deepseek v4 and v4.1",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21083",
+          "author": "Angazenn",
+          "labels": [
+            "module:tests",
+            "merge-conflicts",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-05T09:54:56Z",
+          "updatedAt": "2026-11-15T02:18:34Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "RFC: 21053 Does this PR introduce any user-facing change? --- Checklist Testing - [ ] Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【杂项】Use unified KV 缓存 allocation interface for deepseek v4 and v4.1",
+          "excerptZh": "【】RFC: 21053 --- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by"
         }
       ]
     }

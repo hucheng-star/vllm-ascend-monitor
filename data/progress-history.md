@@ -1,8 +1,8 @@
 # vLLM-Ascend 各模型历史进展
 
-更新时间：2026-11-14T23:00:12.129Z
+更新时间：2026-11-15T23:00:03.990Z
 
-收录 2026-10-16 以来仍被提到的模型相关 PR 与 Issue，按事件日期由近到远。中文在前，原文在后。
+收录 2026-10-17 以来仍被提到的模型相关 PR 与 Issue，按事件日期由近到远。中文在前，原文在后。
 
 ## DeepSeek
 
@@ -1604,7 +1604,7 @@
 - [PR #20494](https://github.com/vllm-project/vllm-ascend/pull/20494) 草稿
   - 中文：【功能】【MoE】CatCCOS MegaMoE backend for DeepSeek-V4-Flash on Ascend A5
   - 原文：[Feature][MoE] Add CatCCOS MegaMoE backend for DeepSeek-V4-Flash on Ascend A5
-  - 说明：Extend the CatCCOS 融合 MoE integration to DeepSeek-V4-Flash's MXFP4 expert 权重 on Ascend A5, preserving the existing v0.23 task as a Draft . This submission records the work and does not assert 合并 readiness. Depends on Both PRs tar
+  - 说明：2026-11-15 archived-Draft CI maintenance: current head b0af479 , on 更新 Qwen prerequisite b8d71a2 ; release base and Draft status retained. Full format, three-version full mypy and latest hosted lint/type passed. Hardware jobs were skip
 - [PR #20323](https://github.com/vllm-project/vllm-ascend/pull/20323) 已合并
   - 中文：【文档】移除 obsolete MTP deployment examples from DeepSeek-V4-Flash tutorial
   - 原文：[Doc] Remove obsolete MTP deployment examples from DeepSeek-V4-Flash tutorial
@@ -2025,8 +2025,8 @@
   - 原文：[Feature][Model] Add Qwen PLE UVA host offload with DP memory sharing
   - 说明：新增 a UVA implementation of Qwen3.8-Flash-Next PLE host 卸载 on main. This carries the host lookup approach from 20560 onto the current model interfaces. - Register AscendPLEHostEmbedding through upstream register oot , without rebinding
 - [PR #21730](https://github.com/vllm-project/vllm-ascend/pull/21730) 进行中
-  - 中文：【修复】Correct Qwen3.8 Mamba state and PLE numerical 精度
-  - 原文：[BugFix] Correct Qwen3.8 Mamba state and PLE numerical precision
+  - 中文：【修复】Correct Qwen3.8-Flash-Next Mamba state and PLE numerical 精度
+  - 原文：[BugFix] Correct Qwen3.8-Flash-Next Mamba state and PLE numerical precision
   - 说明：修复 Qwen3.8 inference correctness on Ascend in four related paths: - Use persistent request slots for Mamba state 拷贝 and rebuild the alignment context during KV-缓存 initialization. - Perform PLE embedding lookup and tensor-parallel re
 - [Issue #21641](https://github.com/vllm-project/vllm-ascend/issues/21641) 已关闭
   - 中文：【功能】: 310P运行Qwen3.8-27B-w8a8-310p，出现DIST call hccl api failed
@@ -2550,7 +2550,7 @@
 - [PR #20493](https://github.com/vllm-project/vllm-ascend/pull/20493) 草稿
   - 中文：【功能】【MoE】CatCCOS MegaMoE backend for Qwen3 on Ascend A5
   - 原文：[Feature][MoE] Add CatCCOS MegaMoE backend for Qwen3 on Ascend A5
-  - 说明：新增 an opt-in CatCCOS 融合 MoE backend for Qwen3-style unquantized 检查点 on Ascend A5, preserving the existing releases/v0.23.0 integration work as a Draft . This PR records the implementation and its validation boundary; it is not b
+  - 说明：2026-11-15 archived-Draft CI maintenance: current head b8d71a2 ; release base and Draft status retained. Mapping/test types and shell lint 修复; full format plus three-version full mypy passed, and the latest hosted lint/type job passed. H
 - [PR #20485](https://github.com/vllm-project/vllm-ascend/pull/20485) 进行中
   - 中文：Qwen3 支持 recoverSSM
   - 原文：Qwen3 support recoverSSM
@@ -2621,8 +2621,8 @@
   - 原文：[Doc][Recipe] Add Ascend overlay for Qwen3.6-35B-A3B
   - 说明：This PR adds the Huawei-scoped recipe overlay for Qwen/Qwen3.6-35B-A3B . Variants: - ascend w8a8 a3 (Ascend 910C): W8A8 检查点, variant tp: 2 , BF16 activations, no 专家并行, 135168 context, FULL AND PIECEWISE ACLGraph, HCCL BUFF
 - [PR #21757](https://github.com/vllm-project/vllm-ascend/pull/21757) 进行中
-  - 中文：【文档】【修复】避免 disabling ACLGraph in Qwen3.6 MTP guidance
-  - 原文：[Doc][BugFix] Avoid disabling ACLGraph in Qwen3.6 MTP guidance
+  - 中文：【文档】避免 disabling ACLGraph in Qwen3.6 MTP guidance
+  - 原文：[Doc] Avoid disabling ACLGraph in Qwen3.6 MTP guidance
   - 说明：移除 enforce eager: true from the Qwen3.6 MTP 性能-tuning example. On Model Runner V2, this option forces the draft model's compilation mode to NONE ; the multi-module MTP speculator also sets its ACLGraph mode to NONE . Following
 
 #### 2026-11-12
@@ -3931,13 +3931,6 @@
   - 中文：[Doc]: glm5.2长上下文高并发报错
   - 说明：📚 The doc issue 就高并发时报错 Suggest a potential alternative/修复 扩容？
 
-#### 2026-10-18
-
-- [PR #19107](https://github.com/vllm-project/vllm-ascend/pull/19107) 进行中
-  - 中文：【修复】【算子】遵循 model RMSNorm epsilon in MLAPO
-  - 原文：[BugFix][Ops] Honor model RMSNorm epsilon in MLAPO
-  - 说明：MLAPO uses a 修复 1e-6 for both Q and KV RMSNorm, even when the model's layers specify a different epsilon. GLM-5.2 检查点 with rms norm eps=1e-5 therefore use a different normalization formula in the 融合 path than in the native pat
-
 ### GLM-4
 
 #### 2026-11-09
@@ -3972,118 +3965,18 @@
 
 ## Kimi
 
-### Kimi K2
-
-#### 2026-11-14
-
-- [Issue #21894](https://github.com/vllm-project/vllm-ascend/issues/21894) 进行中
-  - 中文：【缺陷】: Intermittent duplicated JSON braces with identical greedy requests on Kimi-K2.6 / A3
-  - 原文：[Bug]: Intermittent duplicated JSON braces with identical greedy requests on Kimi-K2.6 / A3
-
-#### 2026-11-13
-
-- [PR #21810](https://github.com/vllm-project/vllm-ascend/pull/21810) 已合并
-  - 中文：【文档】修复 nonexistent release tags in Kimi-K2.6 tutorial
-  - 原文：[Doc] Fix nonexistent release tags in Kimi-K2.6 tutorial
-  - 说明：docs/source/tutorials/models/Kimi-K2.6.md references release tags that do not exist in this repository: - "Kimi-K2.6 was first supported in vLLM-Ascend v0.20.0rc1" - there is no v0.20.0rc1 tag ( git tag -l "v0.20 " returns only v0.20.2rc1 )
-- [Issue #21644](https://github.com/vllm-project/vllm-ascend/issues/21644) 已关闭
-  - 中文：夜间 Daily test failure on 2026-11-12 08:00 - please check
-  - 原文：Nightly Daily test failure on 2026-11-12 08:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-11-12. Failed on: Kimi-K2.6-w4a8-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed, info were shown above. Failed run(s): Merged P
-
-#### 2026-11-12
-
-- [Issue #21515](https://github.com/vllm-project/vllm-ascend/issues/21515) 已关闭
-  - 中文：夜间 Daily test failure on 2026-11-11 08:00 - please check
-  - 原文：Nightly Daily test failure on 2026-11-11 08:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-11-11. Failed on: DeepSeek-V4-Flash-W8A8-A3, Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed,
-- [Issue #21161](https://github.com/vllm-project/vllm-ascend/issues/21161) 已关闭
-  - 中文：夜间 Daily test failure on 2026-11-06 12:00 - please check
-  - 原文：Nightly Daily test failure on 2026-11-06 12:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-11-06. Failed on: Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — RuntimeError: Server at 0.0.0.0 exited unexpectedly. Failed run(s): Me
-- [Issue #19939](https://github.com/vllm-project/vllm-ascend/issues/19939) 已关闭
-  - 中文：夜间 Daily test failure on 2026-10-27 08:00 - please check
-  - 原文：Nightly Daily test failure on 2026-10-27 08:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-10-27. Failed on: Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed, info were shown above. Fai
-- [Issue #18833](https://github.com/vllm-project/vllm-ascend/issues/18833) 已关闭
-  - 中文：夜间 Daily test failure on 2026-10-15 12:00 - please check
-  - 原文：Nightly Daily test failure on 2026-10-15 12:00 - please check
-  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-10-15. Failed on: a3-2 card-(part 5-5), Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test hccl 权重 transfer transaction — AssertionError: qwen3.5-35b
-
-#### 2026-11-09
-
-- [PR #20649](https://github.com/vllm-project/vllm-ascend/pull/20649) 已合并
-  - 中文：【releases/v0.30.0】【文档】【杂项】Backport Kimi-K2.6 deployment and 精度 更新
-  - 原文：[releases/v0.30.0][Doc][Misc] Backport Kimi-K2.6 deployment and accuracy updates
-  - 说明：Backport 20464 to releases/v0.30.0 (the main PR is currently open). Cherry-picked commits: 6e75827c5 , 13a5d9361 , b7f7e9c1a , and 387f47373 with source references retained. All four documentation commits cherry-picked cleanly; the existing
-
-#### 2026-11-08
-
-- [PR #20795](https://github.com/vllm-project/vllm-ascend/pull/20795) 已关闭
-  - 中文：【文档】新增 Kimi-K2.6 Ascend W4A8 deployment recipe
-  - 原文：[Docs] Add Kimi-K2.6 Ascend W4A8 deployment recipe
-  - 说明：Superseded by 21280, submitted from Task1 1 doc Kimi-K2.6 recipe 更新 with the same recipe contents and current main integrated. 迁移 and 更新 the Kimi-K2.6 Ascend recipe in recipes/overlays/moonshotai/Kimi-K2.6.yaml , following the
-- [PR #21280](https://github.com/vllm-project/vllm-ascend/pull/21280) 进行中
-  - 中文：【文档】新增 Kimi-K2.6 Ascend W4A8 deployment recipe
-  - 原文：[Docs] Add Kimi-K2.6 Ascend W4A8 deployment recipe
-  - 说明：Replaces 20795 to use the dedicated Task1 1 doc Kimi-K2.6 recipe 更新 branch. The recipe file is unchanged; the branch includes current main. The predecessor will be closed to 避免 duplicate review. 迁移 and 更新 the Kimi-K2.6 Ascen
-
-#### 2026-11-03
-
-- [PR #20617](https://github.com/vllm-project/vllm-ascend/pull/20617) 已合并
-  - 中文：【修复】【注意力】Identify V2 EAGLE MLA drafts from upstream model tag
-  - 原文：[BugFix][Attention] Identify V2 EAGLE MLA drafts from upstream model tag
-  - 说明：Ascend MLA identifies drafts from the top-level model 配置.runner type . Upstream V2 EAGLE intentionally retains the target 运行时 配置 and supplies the draft ModelConfig separately, so this test alone misses EAGLE draft layers.
-
-#### 2026-11-02
-
-- [Issue #20154](https://github.com/vllm-project/vllm-ascend/issues/20154) 已关闭
-  - 中文：【MRV2】Kimi K2.6 精度 & 性能 comparison between Model Runner v2 and Model Runner v1
-  - 原文：[MRV2] Kimi K2.6 accuracy & performance comparison between Model Runner v2 and Model Runner v1
-  - 说明：Motivation Model Runner v2 is being rolled out as the next-generation worker path in vllm-ascend. Kimi-K2.6-W4A8 already has MRV2 夜间 coverage in one topology ( Kimi-K2.6-W4A8-MRV2-PCP-DCP , 18267), but there is no systematic same-input
-- [PR #20648](https://github.com/vllm-project/vllm-ascend/pull/20648) 已关闭
-  - 中文：【releases/v0.23.0】【文档】【杂项】Backport Kimi-K2.6 deployment and 精度 更新
-  - 原文：[releases/v0.23.0][Doc][Misc] Backport Kimi-K2.6 deployment and accuracy updates
-  - 说明：Backport 20464 to releases/v0.23.0 (the main PR is currently open). Cherry-picked commits: 6e75827c5 , 13a5d9361 , b7f7e9c1a , and 387f47373 with source references retained. The cherry-pick 必填 conflict resolution for the older Sphinx
-- [PR #20464](https://github.com/vllm-project/vllm-ascend/pull/20464) 已合并
-  - 中文：【文档】【杂项】修复 Kimi-K2.6 deployment instructions and 更新 精度 results
-  - 原文：[Doc][Misc] Fix Kimi-K2.6 deployment instructions and update accuracy results
-  - 说明：Clarify version requirements, 修复 deployment and benchmark examples, and refresh 精度 results in the Kimi-K2.6 guide. - Use {{ vllm ascend version }} in the introductory validation-version statement, while retaining v0.20.0rc1 as the fi
-
-#### 2026-10-28
-
-- [PR #20119](https://github.com/vllm-project/vllm-ascend/pull/20119) 已合并
-  - 中文：【文档】Backport Kimi-K2.6 deployment clarifications to v0.30.0
-  - 原文：[Doc] Backport Kimi-K2.6 deployment clarifications to v0.30.0
-  - 说明：Backport 20118 to releases/v0.30.0 by cherry-picking commit 1b8212a10 with git cherry-pick -x (no conflicts). Clarify the Kimi-K2.6 deployment guide so that the documented hardware requirements, context length, and multi-node topology are e
-- [PR #20118](https://github.com/vllm-project/vllm-ascend/pull/20118) 已合并
-  - 中文：【文档】Clarify Kimi-K2.6 deployment requirements
-  - 原文：[Doc] Clarify Kimi-K2.6 deployment requirements
-  - 说明：Clarify the Kimi-K2.6 deployment guide so that the documented hardware requirements, context length, and multi-node topology are explicit. - 新增 the Atlas 800 A3 (64 GB × 16) node requirement for the Eagle3 and DFlash draft models. - Change
-- [PR #19783](https://github.com/vllm-project/vllm-ascend/pull/19783) 已合并
-  - 中文：【文档】【杂项】更新 Kimi-K2.6 deployment documentation
-  - 原文：[Doc][Misc] Update Kimi-K2.6 deployment documentation
-  - 说明：Clarify the Kimi-K2.6 deployment guide. - Keep only A3 and A2 Docker installation tabs; 移除 the 950DT products tab. - Use /data/media for local media access and explain the parameter. Describe scenarios where balance scheduling can incre
-- [PR #20057](https://github.com/vllm-project/vllm-ascend/pull/20057) 已合并
-  - 中文：【文档】【杂项】Backport Kimi-K2.6 deployment docs to v0.30.0
-  - 原文：[Doc][Misc] Backport Kimi-K2.6 deployment docs to v0.30.0
-  - 说明：Backport the Kimi-K2.6 deployment guide changes from 19783 to releases/v0.30.0 . - Keep only A3 and A2 Docker installation tabs; 移除 the 950DT products tab. - Use /data/media for local media access and explain the parameter. Describe sce
-
-#### 2026-10-26
-
-- [PR #19832](https://github.com/vllm-project/vllm-ascend/pull/19832) 已合并
-  - 中文：【v0.30.0】【文档】【杂项】更新 支持 status for GLM-5.1, Qwen3.5/3.6-27B, and Kimi-K2.6 to Supported
-  - 原文：[v0.30.0][Doc][Misc] Update support status for GLM-5.1, Qwen3.5/3.6-27B, and Kimi-K2.6 to Supported
-  - 说明：This PR 更新 the 支持 status of several models in the 支持 matrix to reflect their current verification status: - 更新 GLM-5.1 , Qwen3.5-27B / Qwen3.6-27B , and Kimi-K2.6 from Experimental (🔵) to Supported (✅). - Reorders the "
-
-#### 2026-10-19
-
-- [PR #16170](https://github.com/vllm-project/vllm-ascend/pull/16170) 已合并
-  - 中文：【持续集成】【nightly】新增 Kimi-K2.6-w4a8-DFlash-A3 spec 解码 夜间 tests
-  - 原文：[CI][nightly] Add Kimi-K2.6-w4a8-DFlash-A3 spec decode nightly tests
-  - 说明：新增 a 夜间 test for Kimi-K2.6 acceptance rate per position. No. Nighly test passed. - vLLM main:
-
 ### Kimi K3
+
+#### 2026-11-15
+
+- [PR #21549](https://github.com/vllm-project/vllm-ascend/pull/21549) 已合并
+  - 中文：【功能】experimental Kimi KDA RecoverSSM 支持
+  - 原文：[Feature] Add experimental Kimi KDA RecoverSSM support
+  - 说明：新增 an experimental, opt-in Ascend KDA RecoverSSM path for Kimi K3 and K3.1 投机解码. Verification keeps the recurrent 检查点 unchanged and writes request-indexed records; after sampling, the accepted state and convolution h
+- [PR #21903](https://github.com/vllm-project/vllm-ascend/pull/21903) 草稿
+  - 中文：【重构】【MRV2】Reuse unified KV 缓存 allocation for Kimi K3
+  - 原文：[Refactor][MRV2] Reuse unified KV cache allocation for Kimi K3
+  - 说明：Route MRV2 Kimi K3 through the descriptor-driven allocator introduced for DeepSeek V4/V4.1. The worker uses the existing 缓存 placements to allocate backing storage. KDA state views come from MambaSpec . MLA initialization builds the kerne
 
 #### 2026-11-13
 
@@ -4137,10 +4030,6 @@
   - 中文：【修复】【模型】Re-pack Kimi K3.1 Pro KDA conv 权重 after layerwise reload
   - 原文：[BugFix][Model] Re-pack Kimi K3.1 Pro KDA conv weight after layerwise reload
   - 说明：【3C, 1, W】【W, 3C】The Kimi K3.1 Pro KDA layer ( AscendKimiK3DeltaAttention ) registers ascend conv1d 权重 , a derived parameter that converts the 检查点's FP32 conv 权重 into the activation-dtype layout consumed by fla npu 's causa
-- [PR #21549](https://github.com/vllm-project/vllm-ascend/pull/21549) 进行中
-  - 中文：【功能】experimental Kimi KDA RecoverSSM 支持
-  - 原文：[Feature] Add experimental Kimi KDA RecoverSSM support
-  - 说明：新增 an experimental, opt-in Ascend KDA RecoverSSM path for Kimi K3 and K3.1 投机解码. Verification keeps the recurrent 检查点 unchanged and writes request-indexed records; after sampling, the accepted state and convolution h
 - [PR #21001](https://github.com/vllm-project/vllm-ascend/pull/21001) 已合并
   - 中文：【测试】【杂项】Adjust Kimi-K3-MRV2-A3 GPQA baseline to 95
   - 原文：[Test][Misc] Adjust Kimi-K3-MRV2-A3 GPQA baseline to 95
@@ -4406,6 +4295,117 @@
   - 原文：[BugFix] Honor normalized YaRN attention factor in MLA
   - 说明：Port the normalized YaRN selection from to the Ascend DeepSeek MLA constructor and its GLM5Next / Kimi K3 counterparts. These constructors still read apply yarn scaling , which may be absent after 配置 normalization. With 注意力
 
+### Kimi K2
+
+#### 2026-11-14
+
+- [Issue #21894](https://github.com/vllm-project/vllm-ascend/issues/21894) 进行中
+  - 中文：【缺陷】: Intermittent duplicated JSON braces with identical greedy requests on Kimi-K2.6 / A3
+  - 原文：[Bug]: Intermittent duplicated JSON braces with identical greedy requests on Kimi-K2.6 / A3
+
+#### 2026-11-13
+
+- [PR #21810](https://github.com/vllm-project/vllm-ascend/pull/21810) 已合并
+  - 中文：【文档】修复 nonexistent release tags in Kimi-K2.6 tutorial
+  - 原文：[Doc] Fix nonexistent release tags in Kimi-K2.6 tutorial
+  - 说明：docs/source/tutorials/models/Kimi-K2.6.md references release tags that do not exist in this repository: - "Kimi-K2.6 was first supported in vLLM-Ascend v0.20.0rc1" - there is no v0.20.0rc1 tag ( git tag -l "v0.20 " returns only v0.20.2rc1 )
+- [Issue #21644](https://github.com/vllm-project/vllm-ascend/issues/21644) 已关闭
+  - 中文：夜间 Daily test failure on 2026-11-12 08:00 - please check
+  - 原文：Nightly Daily test failure on 2026-11-12 08:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-11-12. Failed on: Kimi-K2.6-w4a8-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed, info were shown above. Failed run(s): Merged P
+
+#### 2026-11-12
+
+- [Issue #21515](https://github.com/vllm-project/vllm-ascend/issues/21515) 已关闭
+  - 中文：夜间 Daily test failure on 2026-11-11 08:00 - please check
+  - 原文：Nightly Daily test failure on 2026-11-11 08:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-11-11. Failed on: DeepSeek-V4-Flash-W8A8-A3, Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed,
+- [Issue #21161](https://github.com/vllm-project/vllm-ascend/issues/21161) 已关闭
+  - 中文：夜间 Daily test failure on 2026-11-06 12:00 - please check
+  - 原文：Nightly Daily test failure on 2026-11-06 12:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-11-06. Failed on: Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — RuntimeError: Server at 0.0.0.0 exited unexpectedly. Failed run(s): Me
+- [Issue #19939](https://github.com/vllm-project/vllm-ascend/issues/19939) 已关闭
+  - 中文：夜间 Daily test failure on 2026-10-27 08:00 - please check
+  - 原文：Nightly Daily test failure on 2026-10-27 08:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 08:00 on 2026-10-27. Failed on: Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test single node — AssertionError: some aisbench cases failed, info were shown above. Fai
+- [Issue #18833](https://github.com/vllm-project/vllm-ascend/issues/18833) 已关闭
+  - 中文：夜间 Daily test failure on 2026-10-15 12:00 - please check
+  - 原文：Nightly Daily test failure on 2026-10-15 12:00 - please check
+  - 说明：The 夜间 Daily test for vllm-ascend reported failures at 12:00 on 2026-10-15. Failed on: a3-2 card-(part 5-5), Kimi-K2.6-w4a8-A3, MiniMax-M3-BF16-A3 Failed 测试用例: - test hccl 权重 transfer transaction — AssertionError: qwen3.5-35b
+
+#### 2026-11-09
+
+- [PR #20649](https://github.com/vllm-project/vllm-ascend/pull/20649) 已合并
+  - 中文：【releases/v0.30.0】【文档】【杂项】Backport Kimi-K2.6 deployment and 精度 更新
+  - 原文：[releases/v0.30.0][Doc][Misc] Backport Kimi-K2.6 deployment and accuracy updates
+  - 说明：Backport 20464 to releases/v0.30.0 (the main PR is currently open). Cherry-picked commits: 6e75827c5 , 13a5d9361 , b7f7e9c1a , and 387f47373 with source references retained. All four documentation commits cherry-picked cleanly; the existing
+
+#### 2026-11-08
+
+- [PR #20795](https://github.com/vllm-project/vllm-ascend/pull/20795) 已关闭
+  - 中文：【文档】新增 Kimi-K2.6 Ascend W4A8 deployment recipe
+  - 原文：[Docs] Add Kimi-K2.6 Ascend W4A8 deployment recipe
+  - 说明：Superseded by 21280, submitted from Task1 1 doc Kimi-K2.6 recipe 更新 with the same recipe contents and current main integrated. 迁移 and 更新 the Kimi-K2.6 Ascend recipe in recipes/overlays/moonshotai/Kimi-K2.6.yaml , following the
+- [PR #21280](https://github.com/vllm-project/vllm-ascend/pull/21280) 进行中
+  - 中文：【文档】新增 Kimi-K2.6 Ascend W4A8 deployment recipe
+  - 原文：[Docs] Add Kimi-K2.6 Ascend W4A8 deployment recipe
+  - 说明：Replaces 20795 to use the dedicated Task1 1 doc Kimi-K2.6 recipe 更新 branch. The recipe file is unchanged; the branch includes current main. The predecessor will be closed to 避免 duplicate review. 迁移 and 更新 the Kimi-K2.6 Ascen
+
+#### 2026-11-03
+
+- [PR #20617](https://github.com/vllm-project/vllm-ascend/pull/20617) 已合并
+  - 中文：【修复】【注意力】Identify V2 EAGLE MLA drafts from upstream model tag
+  - 原文：[BugFix][Attention] Identify V2 EAGLE MLA drafts from upstream model tag
+  - 说明：Ascend MLA identifies drafts from the top-level model 配置.runner type . Upstream V2 EAGLE intentionally retains the target 运行时 配置 and supplies the draft ModelConfig separately, so this test alone misses EAGLE draft layers.
+
+#### 2026-11-02
+
+- [Issue #20154](https://github.com/vllm-project/vllm-ascend/issues/20154) 已关闭
+  - 中文：【MRV2】Kimi K2.6 精度 & 性能 comparison between Model Runner v2 and Model Runner v1
+  - 原文：[MRV2] Kimi K2.6 accuracy & performance comparison between Model Runner v2 and Model Runner v1
+  - 说明：Motivation Model Runner v2 is being rolled out as the next-generation worker path in vllm-ascend. Kimi-K2.6-W4A8 already has MRV2 夜间 coverage in one topology ( Kimi-K2.6-W4A8-MRV2-PCP-DCP , 18267), but there is no systematic same-input
+- [PR #20648](https://github.com/vllm-project/vllm-ascend/pull/20648) 已关闭
+  - 中文：【releases/v0.23.0】【文档】【杂项】Backport Kimi-K2.6 deployment and 精度 更新
+  - 原文：[releases/v0.23.0][Doc][Misc] Backport Kimi-K2.6 deployment and accuracy updates
+  - 说明：Backport 20464 to releases/v0.23.0 (the main PR is currently open). Cherry-picked commits: 6e75827c5 , 13a5d9361 , b7f7e9c1a , and 387f47373 with source references retained. The cherry-pick 必填 conflict resolution for the older Sphinx
+- [PR #20464](https://github.com/vllm-project/vllm-ascend/pull/20464) 已合并
+  - 中文：【文档】【杂项】修复 Kimi-K2.6 deployment instructions and 更新 精度 results
+  - 原文：[Doc][Misc] Fix Kimi-K2.6 deployment instructions and update accuracy results
+  - 说明：Clarify version requirements, 修复 deployment and benchmark examples, and refresh 精度 results in the Kimi-K2.6 guide. - Use {{ vllm ascend version }} in the introductory validation-version statement, while retaining v0.20.0rc1 as the fi
+
+#### 2026-10-28
+
+- [PR #20119](https://github.com/vllm-project/vllm-ascend/pull/20119) 已合并
+  - 中文：【文档】Backport Kimi-K2.6 deployment clarifications to v0.30.0
+  - 原文：[Doc] Backport Kimi-K2.6 deployment clarifications to v0.30.0
+  - 说明：Backport 20118 to releases/v0.30.0 by cherry-picking commit 1b8212a10 with git cherry-pick -x (no conflicts). Clarify the Kimi-K2.6 deployment guide so that the documented hardware requirements, context length, and multi-node topology are e
+- [PR #20118](https://github.com/vllm-project/vllm-ascend/pull/20118) 已合并
+  - 中文：【文档】Clarify Kimi-K2.6 deployment requirements
+  - 原文：[Doc] Clarify Kimi-K2.6 deployment requirements
+  - 说明：Clarify the Kimi-K2.6 deployment guide so that the documented hardware requirements, context length, and multi-node topology are explicit. - 新增 the Atlas 800 A3 (64 GB × 16) node requirement for the Eagle3 and DFlash draft models. - Change
+- [PR #19783](https://github.com/vllm-project/vllm-ascend/pull/19783) 已合并
+  - 中文：【文档】【杂项】更新 Kimi-K2.6 deployment documentation
+  - 原文：[Doc][Misc] Update Kimi-K2.6 deployment documentation
+  - 说明：Clarify the Kimi-K2.6 deployment guide. - Keep only A3 and A2 Docker installation tabs; 移除 the 950DT products tab. - Use /data/media for local media access and explain the parameter. Describe scenarios where balance scheduling can incre
+- [PR #20057](https://github.com/vllm-project/vllm-ascend/pull/20057) 已合并
+  - 中文：【文档】【杂项】Backport Kimi-K2.6 deployment docs to v0.30.0
+  - 原文：[Doc][Misc] Backport Kimi-K2.6 deployment docs to v0.30.0
+  - 说明：Backport the Kimi-K2.6 deployment guide changes from 19783 to releases/v0.30.0 . - Keep only A3 and A2 Docker installation tabs; 移除 the 950DT products tab. - Use /data/media for local media access and explain the parameter. Describe sce
+
+#### 2026-10-26
+
+- [PR #19832](https://github.com/vllm-project/vllm-ascend/pull/19832) 已合并
+  - 中文：【v0.30.0】【文档】【杂项】更新 支持 status for GLM-5.1, Qwen3.5/3.6-27B, and Kimi-K2.6 to Supported
+  - 原文：[v0.30.0][Doc][Misc] Update support status for GLM-5.1, Qwen3.5/3.6-27B, and Kimi-K2.6 to Supported
+  - 说明：This PR 更新 the 支持 status of several models in the 支持 matrix to reflect their current verification status: - 更新 GLM-5.1 , Qwen3.5-27B / Qwen3.6-27B , and Kimi-K2.6 from Experimental (🔵) to Supported (✅). - Reorders the "
+
+#### 2026-10-19
+
+- [PR #16170](https://github.com/vllm-project/vllm-ascend/pull/16170) 已合并
+  - 中文：【持续集成】【nightly】新增 Kimi-K2.6-w4a8-DFlash-A3 spec 解码 夜间 tests
+  - 原文：[CI][nightly] Add Kimi-K2.6-w4a8-DFlash-A3 spec decode nightly tests
+  - 说明：新增 a 夜间 test for Kimi-K2.6 acceptance rate per position. No. Nighly test passed. - vLLM main:
+
 ## MiniMax
 
 ### MiniMax-M2.7
@@ -4586,6 +4586,10 @@
 
 #### 2026-11-15
 
+- [PR #21310](https://github.com/vllm-project/vllm-ascend/pull/21310) 已合并
+  - 中文：【重构】【Core】移除 dynamic chunk size CPP 特性, 配置, and documentation
+  - 原文：[Refactor][Core] Remove dynamic chunk size CPP feature, configuration, and documentation
+  - 说明：What does this PR do? Following the sunset announcement in 21304, this PR completely removes the dynamic chunk size Chunked Pipeline Parallelism (CPP) 特性 from vllm-ascend main branch. Background & Motivation The dynamic chunk size CPP
 - [PR #20926](https://github.com/vllm-project/vllm-ascend/pull/20926) 已合并
   - 中文：【功能】【HiSparse】Ascend backend foundation
   - 原文：[Feature][HiSparse] Add Ascend backend foundation
@@ -6405,7 +6409,3 @@
   - 中文：【修复】Preserve GLM-5.3-Flash MRV2 MTP capture lifecycle
   - 原文：[BugFix] Preserve GLM-5.3-Flash MRV2 MTP capture lifecycle
   - 说明：When index share for mtp iteration is 启用, MTP 运行时 computes top-k in the first draft step and reuses those indices in later steps. The Ascend MRV2 capture override omitted the existing lifecycle hooks and captured 解码 with skip t
-- [PR #19073](https://github.com/vllm-project/vllm-ascend/pull/19073) 已合并
-  - 中文：【修复】Prevent GLM KPool empty-work 显存 corruption on A3
-  - 原文：[BugFix] Prevent GLM KPool empty-work memory corruption on A3
-  - 说明：修复 A3 GLM KPool 显存 corruption when DSA-CP leaves a local shard with queries but no completed pooled keys. On the reproduced A3 stack, CANN PoolKeyIndexer entered an empty-work initialization path that wrote beyond its TND output alloca
