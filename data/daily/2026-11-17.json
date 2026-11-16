@@ -1,0 +1,463 @@
+{
+  "day": "2026-11-17",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "ds-v3.2",
+      "name": "DeepSeek V3.2",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 21760,
+          "title": "[Bug][MRV2] Burst arrivals during a prefill step cause a TTFT tail on DP2/TP8/EP (bs4/2048)",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/21760",
+          "author": "wisdom1710",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T22:27:21Z",
+          "updatedAt": "2026-11-16T17:17:48Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 2,
+          "excerpt": "On a single exclusive Atlas 800T A3 (16 NPU), DeepSeek V3.2 W8A8 with DP2 + TP8 + EP, MTP3, FULL DECODE ONLY , a burst of 4 requests at seq=2048 is sometimes coalesced into fewer prefill steps and sometimes split. When it splits, the traili",
+          "modelIds": [
+            "ds-v3.2"
+          ],
+          "action": "updated",
+          "score": 4,
+          "titleZh": "【缺陷】【MRV2】Burst arrivals during a 预填充 step cause a TTFT tail on DP2/TP8/EP (bs4/2048)",
+          "excerptZh": "On a single exclusive Atlas 800T A3 (16 NPU), DeepSeek V3.2 W8A8 with DP2 + TP8 + EP, MTP3, FULL 解码 ONLY , a burst of 4 requests at seq=2048 is sometimes coalesced into fewer 预填充 steps and sometimes 拆分. When it splits, the traili"
+        },
+        {
+          "kind": "issue",
+          "number": 20674,
+          "title": "[Test][MRV2] DeepSeek V3.2 accuracy: reproducible p3 logprob offset and non-greedy repeatability",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/20674",
+          "author": "wisdom1710",
+          "labels": [
+            "triaged"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-02T12:33:12Z",
+          "updatedAt": "2026-11-16T16:53:15Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 3,
+          "excerpt": "Update (2026-11-17). The batch=4 performance half of this issue has been withdrawn: re-analysis of the raw benchmark JSON showed that the reported throughput deltas came from only the first half of each ABBA round, and that once batches are",
+          "modelIds": [
+            "ds-v3.2"
+          ],
+          "action": "updated",
+          "score": 1,
+          "titleZh": "【测试】【MRV2】DeepSeek V3.2 精度: reproducible p3 logprob offset and non-greedy repeatability",
+          "excerptZh": "更新 (2026-11-17). The batch=4 性能 half of this issue has been withdrawn: re-analysis of the raw benchmark JSON showed that the reported 吞吐 deltas came from only the first half of each ABBA round, and that once batches are"
+        },
+        {
+          "kind": "pr",
+          "number": 20675,
+          "title": "[Test][MRV2] Add DeepSeek V3.2 MRV1/MRV2 parity regression harness",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20675",
+          "author": "wisdom1710",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-02T12:34:52Z",
+          "updatedAt": "2026-11-16T17:27:41Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Part of 20674 and 20673. Adds a resource-heavy, manual nightly regression for DeepSeek V3.2 W8A8 on MRV1 and MRV2. This is a test-only change; no production runner behavior or environment variable is changed, and no v0.30.0-era patch is for",
+          "modelIds": [
+            "ds-v3.2"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】【MRV2】新增 DeepSeek V3.2 MRV1/MRV2 parity 回退 harness",
+          "excerptZh": "Part of 20674 and 20673. Adds a resource-heavy, manual 夜间 回退 for DeepSeek V3.2 W8A8 on MRV1 and MRV2. This is a test-only change; no production runner behavior or environment variable is changed, and no v0.30.0-era patch is for"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 22077,
+          "title": "[Feature] Support ModelSlim INT8 and MXFP8 PLE embeddings for Qwen3.8",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22077",
+          "author": "dlsccc",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-16T13:28:15Z",
+          "updatedAt": "2026-11-16T22:44:06Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Qwen3.8-Flash-Next ModelSlim checkpoints can quantize the PLE n-gram tables separately from their linear/MoE layers. The Ascend PLE adapter currently always selects unquantized embedding storage for ModelSlim, so it cannot load the quantize",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】支持 ModelSlim INT8 and MXFP8 PLE embeddings for Qwen3.8",
+          "excerptZh": "Qwen3.8-Flash-Next ModelSlim 检查点 can quantize the PLE n-gram tables separately from their linear/MoE layers. The Ascend PLE adapter currently always selects unquantized embedding storage for ModelSlim, so it cannot load the quantize"
+        },
+        {
+          "kind": "pr",
+          "number": 21851,
+          "title": "[Feature] Port RecoverSSM, PP/SP, Decode-PP and PCP stack to main",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21851",
+          "author": "Lethobenthos20",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T11:49:21Z",
+          "updatedAt": "2026-11-16T22:43:57Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary This PR ports the Qwen3.8 Flash Next work from 21636 to the current main branch and folds the related changes into one reviewable stack. The stack includes: - the PRs referenced by 21636: 20485, 21627, 21589, 20943, 20944, and 20947",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】Port RecoverSSM, PP/SP, 解码-PP and PCP stack to main",
+          "excerptZh": "Summary This PR ports the Qwen3.8 Flash Next work from 21636 to the current main branch and folds the related changes into one reviewable stack. The stack includes: - the PRs referenced by 21636: 20485, 21627, 21589, 20943, 20944, and 20947"
+        },
+        {
+          "kind": "pr",
+          "number": 21693,
+          "title": "[Feature][Model] Support prefill context parallelism for Qwen3.8-Flash-Next",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21693",
+          "author": "wzx0726",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T07:46:39Z",
+          "updatedAt": "2026-11-16T22:43:47Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable prefill context parallelism (PCP) for Qwen3.8-Flash-Next on Model Runner V2. Reuse the KDA projection sharding over TP × PCP for Gated DeltaNet and process each rank's heads in global causal token order. Share pcp gather tokens and p",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】支持 预填充 context parallelism for Qwen3.8-Flash-Next",
+          "excerptZh": "启用 预填充 context parallelism (PCP) for Qwen3.8-Flash-Next on Model Runner V2. Reuse the KDA projection sharding over TP × PCP for Gated DeltaNet and process each rank's heads in global causal token order. Share pcp gather tokens and p"
+        },
+        {
+          "kind": "pr",
+          "number": 20311,
+          "title": "[Feature][Model] Enable Qwen3.8 Flash Next PP and SP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20311",
+          "author": "Lethobenthos20",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-30T02:57:09Z",
+          "updatedAt": "2026-11-16T17:04:54Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary Adapt the existing Qwen3.8/Qwen4-Exp pipeline-parallel (PP) and sequence-parallel (SP/FlashComm1) work from Lethobenthos20/vllm-ascend 4 onto the current vllm-project/vllm-ascend main , then make the packed QSA/GDN/PLE KV-cache layo",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】启用 Qwen3.8 Flash Next PP and SP",
+          "excerptZh": "Summary Adapt the existing Qwen3.8/Qwen4-Exp pipeline-parallel (PP) and 序列-parallel (SP/FlashComm1) work from Lethobenthos20/vllm-ascend 4 onto the current vllm-project/vllm-ascend main , then make the packed QSA/GDN/PLE KV-缓存 layo"
+        },
+        {
+          "kind": "pr",
+          "number": 21856,
+          "title": "[Ops][Feature] recipes: Add Ascend 910B PD separation support for Qwen3.8-Flash-Next",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21856",
+          "author": "xszbuaa",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T15:20:49Z",
+          "updatedAt": "2026-11-16T16:01:33Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add new file Qwen3.8-Flash-Next.yaml under vllm-ascend/recipes/overlays/Qwen, add Ascend 910B w4a8 PD separation support for Qwen3.8-Flash-Next Does this PR introduce any user-facing change? No. Recipes metadata only (builder output for Hua",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【算子】【功能】recipes: 新增 Ascend 910B PD separation 支持 for Qwen3.8-Flash-Next",
+          "excerptZh": "新增 new file Qwen3.8-Flash-Next.yaml under vllm-ascend/recipes/overlays/Qwen, 新增 Ascend 910B w4a8 PD separation 支持 for Qwen3.8-Flash-Next No. Recipes 元数据 only (builder output for Hua"
+        },
+        {
+          "kind": "pr",
+          "number": 21844,
+          "title": "[Test] Add A2 KV-pool protection cases for Qwen3.8-27B W8A8",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21844",
+          "author": "xiapeih628-bit",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T09:51:34Z",
+          "updatedAt": "2026-11-16T17:19:42Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds four single-node kv both scenarios guarding the two-card A2 pooling matrix (mooncake/memcache backends x bulk/layerwise transfer, tier-2 DRAM and tier-3 SSD-armed) for the hybrid-GDN Qwen3.8-27B W8A8 model: scenario backend mode tier -",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 A2 KV-pool protection cases for Qwen3.8-27B W8A8",
+          "excerptZh": "Adds four single-node kv both scenarios guarding the two-card A2 池化 matrix (mooncake/memcache backends x bulk/layerwise transfer, tier-2 DRAM and tier-3 SSD-armed) for the hybrid-GDN Qwen3.8-27B W8A8 model: scenario backend mode tier -"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21896,
+          "title": "[Performance][DSV4.1] Capture native decode metadata with first-consumer SWA priority",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21896",
+          "author": "KeyanHu-git",
+          "labels": [
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-14T19:32:20Z",
+          "updatedAt": "2026-11-16T22:44:00Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "On non-packed-cache (native) DeepSeek-V4.1-Flash FULL DECODE ONLY execution, main currently restricts TargetDeviceMetadata to the A5 packed-cache backend, leaving native slot coordinate conversion, C2 compressed lengths, and SMLA / QLI meta",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】【DSV4.1】Capture native 解码 元数据 with first-consumer SWA priority",
+          "excerptZh": "On non-packed-缓存 (native) DeepSeek-V4.1-Flash FULL 解码 ONLY execution, main currently restricts TargetDeviceMetadata to the A5 packed-缓存 backend, leaving native slot coordinate conversion, C2 compressed lengths, and SMLA / QLI meta"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21567,
+          "title": "Fix Engram host registration on CANN driver 26.1.1",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21567",
+          "author": "new-TonyWang",
+          "labels": [
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-11T08:01:48Z",
+          "updatedAt": "2026-11-16T22:43:43Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "What this PR does DeepSeek V4.1 (an Engram model) fails to start on CANN driver 26.1.1: the single-shot aclrtHostRegisterV2 of the full Engram host table (~91.5 GiB) exceeds the driver's new per-call cap (~5.8 GiB) and returns rc=207001. Th",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "修复 Engram host registration on CANN driver 26.1.1",
+          "excerptZh": "What this PR does DeepSeek V4.1 (an Engram model) fails to start on CANN driver 26.1.1: the single-shot aclrtHostRegisterV2 of the full Engram host table (~91.5 GiB) exceeds the driver's new per-call cap (~5.8 GiB) and returns rc=207001. Th"
+        },
+        {
+          "kind": "pr",
+          "number": 21825,
+          "title": "[BugFix][Ops] Keep DeepSeek V4.1 Compressor batch extents dynamic",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21825",
+          "author": "linfeng-yuan",
+          "labels": [
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T08:30:42Z",
+          "updatedAt": "2026-11-16T17:14:01Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Use runtime batch, cache-block, and slot counts in the C2 pool and cache-update kernels. Keep the computation and cache layout fixed so changing the batch geometry can reuse the compiled kernels. Does this PR introduce any user-facing chang",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【算子】Keep DeepSeek V4.1 压缩器 batch extents dynamic",
+          "excerptZh": "Use 运行时 batch, 缓存-block, and slot counts in the C2 pool and 缓存-更新 内核. Keep the computation and 缓存 layout 修复 so changing the batch geometry can reuse the compiled 内核. Does this PR introduce any user-facing chang"
+        },
+        {
+          "kind": "pr",
+          "number": 20508,
+          "title": "[BugFix][A5] Unify DeepSeek V4.1 MLA and bounded replay metadata",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20508",
+          "author": "linfeng-yuan",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-10-31T13:41:51Z",
+          "updatedAt": "2026-11-16T21:13:06Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Unifies the A5 CANNBotDSL 0.8.2 metadata changes for DeepSeek V4.1 on main. - Build the SWA, C1 and C2 MLA plans from actual request visibility on the existing asynchronous metadata executor. Derive the shared visibility inputs once per sub",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 2,
+          "titleZh": "【修复】【A5】Unify DeepSeek V4.1 MLA and bounded replay 元数据",
+          "excerptZh": "Unifies the A5 CANNBotDSL 0.8.2 元数据 changes for DeepSeek V4.1 on main. - Build the SWA, C1 and C2 MLA plans from actual request visibility on the existing asynchronous 元数据 executor. Derive the 共享 visibility inputs once per sub"
+        },
+        {
+          "kind": "pr",
+          "number": 21852,
+          "title": "[Doc][Recipe] add Ascend 910B (Atlas 800I A2) W4A8 PD support to DeepSeek-V4.1-Flash overlay",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21852",
+          "author": "troubadourHUI",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T12:26:32Z",
+          "updatedAt": "2026-11-16T22:22:18Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds a deepseek-ai/DeepSeek-V4.1-Flash overlay with validated Ascend 910B (Atlas 800I A2 / 910B4) support for the W4A8 checkpoint in prefill/decode disaggregation, expressed with the generic PD pools introduced in 1226. Why: 1M-context W4A8",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【Recipe】新增 Ascend 910B (Atlas 800I A2) W4A8 PD 支持 to DeepSeek-V4.1-Flash overlay",
+          "excerptZh": "Adds a deepseek-ai/DeepSeek-V4.1-Flash overlay with validated Ascend 910B (Atlas 800I A2 / 910B4) 支持 for the W4A8 检查点 in 预填充/解码 disaggregation, expressed with the generic PD pools introduced in 1226. Why: 1M-context W4A8"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21849,
+          "title": "[Feature][Kimi-K3.1] Replace paired KV cache with spec-driven packed rows",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21849",
+          "author": "Dawn952",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T10:26:29Z",
+          "updatedAt": "2026-11-16T18:25:00Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Replace Kimi K3.1's paired-page KV cache with a spec-driven block-outermost pool, defaulting to BLNHC . Layer counts, dtypes, actual draft pages and raw KDA checkpoint sizes determine allocation. The old paired implementation is removed. - ",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【Kimi-K3.1】Replace paired KV 缓存 with spec-driven packed rows",
+          "excerptZh": "Replace Kimi K3.1's paired-page KV 缓存 with a spec-driven block-outermost pool, defaulting to BLNHC . Layer counts, dtypes, actual draft pages and raw KDA 检查点 sizes determine allocation. The old paired implementation is 移除. -"
+        },
+        {
+          "kind": "pr",
+          "number": 21624,
+          "title": "[Feature][Model] Add Kimi fine-grained projection and shared-expert TP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21624",
+          "author": "Dawn952",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-11T13:17:09Z",
+          "updatedAt": "2026-11-16T18:12:13Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Shard Kimi-K3.1 projection and shared-expert weights over independent groups on the DP axis while keeping attention, convolution and recurrent state on the original DP owner. QKV/beta and output G have independent group sizes; shared-expert",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 2,
+          "titleZh": "【功能】【模型】Kimi fine-grained projection and 共享-expert TP",
+          "excerptZh": "Shard Kimi-K3.1 projection and 共享-expert 权重 over independent groups on the DP axis while keeping 注意力, convolution and recurrent state on the original DP owner. QKV/beta and output G have independent group sizes; 共享-expert"
+        }
+      ]
+    }
+  ]
+}
