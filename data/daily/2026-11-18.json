@@ -1,0 +1,107 @@
+{
+  "day": "2026-11-18",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21859,
+          "title": "[BugFix][Model] GLM-5.3-Flash: build the multimodal processor with the engine tokenizer",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21859",
+          "author": "HuayuSha",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T18:16:38Z",
+          "updatedAt": "2026-11-17T17:08:42Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Glm5NextProcessingInfo builds the vendored Glm5NextProcessor from the model path only: and Glm5NextProcessor.from pretrained then loads a second tokenizer itself with AutoTokenizer.from pretrained(model path) and no kwargs. This ignores sev",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【模型】GLM-5.3-Flash: build the multimodal processor with the engine tokenizer",
+          "excerptZh": "Glm5NextProcessingInfo builds the vendored Glm5NextProcessor from the model path only: and Glm5NextProcessor.from pretrained then loads a second tokenizer itself with AutoTokenizer.from pretrained(model path) and no kwargs. This ignores sev"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21624,
+          "title": "[Feature][Model] Add Kimi fine-grained projection and shared-expert TP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21624",
+          "author": "Dawn952",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-11T13:17:09Z",
+          "updatedAt": "2026-11-17T16:40:02Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Reduce per-device Kimi-K3.1 projection and shared-expert weight storage by sharding selected weights over independent DP-axis groups. Attention, convolution and recurrent state remain on the original request owner. - Reuse GLM projection in",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】Kimi fine-grained projection and 共享-expert TP",
+          "excerptZh": "减少 per-device Kimi-K3.1 projection and 共享-expert 权重 storage by sharding selected 权重 over independent DP-axis groups. 注意力, convolution and recurrent state remain on the original request owner. - Reuse GLM projection in"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21693,
+          "title": "[Feature][Model] Support prefill context parallelism for Qwen3.8-Flash-Next",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21693",
+          "author": "wzx0726",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T07:46:39Z",
+          "updatedAt": "2026-11-17T16:00:50Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable prefill context parallelism (PCP) for Qwen3.8-Flash-Next on Model Runner V2. Reuse the KDA projection sharding over TP × PCP for Gated DeltaNet and process each rank's heads in global causal token order. Share pcp gather tokens and p",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】支持 预填充 context parallelism for Qwen3.8-Flash-Next",
+          "excerptZh": "启用 预填充 context parallelism (PCP) for Qwen3.8-Flash-Next on Model Runner V2. Reuse the KDA projection sharding over TP × PCP for Gated DeltaNet and process each rank's heads in global causal token order. Share pcp gather tokens and p"
+        }
+      ]
+    }
+  ]
+}
