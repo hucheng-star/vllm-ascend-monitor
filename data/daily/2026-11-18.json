@@ -3,69 +3,121 @@
   "timezone": "Asia/Shanghai",
   "groups": [
     {
-      "id": "glm-5",
-      "name": "GLM-5",
-      "family": "GLM",
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
       "items": [
         {
-          "kind": "pr",
-          "number": 21859,
-          "title": "[BugFix][Model] GLM-5.3-Flash: build the multimodal processor with the engine tokenizer",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/21859",
-          "author": "HuayuSha",
+          "kind": "issue",
+          "number": 22323,
+          "title": "[Feature]: Align Ascend V2 init_speculator dispatch with upstream vLLM",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/22323",
+          "author": "drslark",
           "labels": [
-            "module:tests"
+            "feature request"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-11-13T18:16:38Z",
-          "updatedAt": "2026-11-17T17:08:42Z",
+          "createdAt": "2026-11-18T10:42:13Z",
+          "updatedAt": "2026-11-18T10:42:13Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Glm5NextProcessingInfo builds the vendored Glm5NextProcessor from the model path only: and Glm5NextProcessor.from pretrained then loads a second tokenizer itself with AutoTokenizer.from pretrained(model path) and no kwargs. This ignores sev",
-          "modelIds": [
-            "glm-5"
-          ],
-          "action": "updated",
-          "score": 3,
-          "titleZh": "【修复】【模型】GLM-5.3-Flash: build the multimodal processor with the engine tokenizer",
-          "excerptZh": "Glm5NextProcessingInfo builds the vendored Glm5NextProcessor from the model path only: and Glm5NextProcessor.from pretrained then loads a second tokenizer itself with AutoTokenizer.from pretrained(model path) and no kwargs. This ignores sev"
+          "excerpt": "Refactor Model Runner V2's init speculator() in vLLM Ascend so the main branch follows upstream vLLM's speculator selection. Upstream reads speculative config.speculator config.speculator class , which already identifies the implementation ",
+          "modelIds": [],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【功能】: 对齐 Ascend V2 init_speculator dispatch with upstream vLLM",
+          "excerptZh": "Refactor Model Runner V2's init speculator() in vLLM Ascend so the main branch follows upstream vLLM's speculator selection. Upstream reads 投机 配置.speculator 配置.speculator class , which already identifies the implementation"
         }
       ]
     },
     {
-      "id": "kimi-k3",
-      "name": "Kimi K3",
-      "family": "Kimi",
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
       "items": [
         {
           "kind": "pr",
-          "number": 21624,
-          "title": "[Feature][Model] Add Kimi fine-grained projection and shared-expert TP",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/21624",
-          "author": "Dawn952",
+          "number": 22311,
+          "title": "[Performance][MoE] Prepare DeepSeek V4.1 hash routing inputs once per forward",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22311",
+          "author": "xingcanlee",
           "labels": [
-            "documentation",
             "module:tests",
             "module:ops",
-            "module:core"
+            "ready-precise"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-11-11T13:17:09Z",
-          "updatedAt": "2026-11-17T16:40:02Z",
+          "createdAt": "2026-11-18T09:49:58Z",
+          "updatedAt": "2026-11-18T10:16:23Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Reduce per-device Kimi-K3.1 projection and shared-expert weight storage by sharding selected weights over independent DP-axis groups. Attention, convolution and recurrent state remain on the original request owner. - Reuse GLM projection in",
+          "excerpt": "Carries forward 21823 by @linfeng-yuan on current main . DeepSeek V4.1 prepares INT64 routing IDs and the image sentinel mask once per target, DSpark draft, or decoder replay pass. Embedding and Engram still receive the original IDs. AllGat",
           "modelIds": [
-            "kimi-k3"
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "【性能】【MoE】Prepare DeepSeek V4.1 hash 路由 inputs once per forward",
+          "excerptZh": "Carries forward 21823 by @linfeng-yuan on current main . DeepSeek V4.1 prepares INT64 路由 IDs and the image sentinel mask once per target, DSpark draft, or decoder replay pass. Embedding and Engram still receive the original IDs. AllGat"
+        },
+        {
+          "kind": "pr",
+          "number": 21137,
+          "title": "[Feature] add Dspark adaptive verification for Deepseek-v4.1",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21137",
+          "author": "HF-001",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-06T02:28:05Z",
+          "updatedAt": "2026-11-18T10:48:20Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable DSpark adaptive verification for DeepSeek-V4.1-Flash on Ascend Model Runner V2, reusing vLLM’s common budget allocator and sampling flow. - Support bounded variable-length FULL decode graphs and preserve verification query-width boun",
+          "modelIds": [
+            "ds-v4.1"
           ],
           "action": "updated",
           "score": 3,
-          "titleZh": "【功能】【模型】Kimi fine-grained projection and 共享-expert TP",
-          "excerptZh": "减少 per-device Kimi-K3.1 projection and 共享-expert 权重 storage by sharding selected 权重 over independent DP-axis groups. 注意力, convolution and recurrent state remain on the original request owner. - Reuse GLM projection in"
+          "titleZh": "【功能】Dspark adaptive verification for Deepseek-v4.1",
+          "excerptZh": "启用 DSpark adaptive verification for DeepSeek-V4.1-Flash on Ascend Model Runner V2, reusing vLLM’s common budget allocator and sampling flow. - 支持 bounded variable-length FULL 解码 graphs and preserve verification query-width boun"
+        },
+        {
+          "kind": "pr",
+          "number": 19284,
+          "title": "[Feature][Model] Enable DeepSeek V4.1 MRV2 PP with arbitrary layer partitions",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19284",
+          "author": "LostFox11",
+          "labels": [
+            "module:tests",
+            "module:core",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-20T10:22:24Z",
+          "updatedAt": "2026-11-18T10:34:13Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable experimental DeepSeek V4.1 pipeline parallelism on Model Runner V2 with arbitrary contiguous, nonempty layer partitions. For example, with 23,17 , the second stage still consumes KV/index data produced by layer 20, as well as shared",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】启用 DeepSeek V4.1 MRV2 PP with arbitrary layer partitions",
+          "excerptZh": "启用 experimental DeepSeek V4.1 pipeline parallelism on Model Runner V2 with arbitrary contiguous, nonempty layer partitions. For example, with 23,17 , the second stage still consumes KV/index data produced by layer 20, as well as 共享"
         }
       ]
     },
@@ -76,30 +128,367 @@
       "items": [
         {
           "kind": "pr",
-          "number": 21693,
-          "title": "[Feature][Model] Support prefill context parallelism for Qwen3.8-Flash-Next",
-          "url": "https://github.com/vllm-project/vllm-ascend/pull/21693",
-          "author": "wzx0726",
+          "number": 22278,
+          "title": "feat: add native INT8 C8 support for Qwen3.8 Flash Next",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22278",
+          "author": "ffggs",
           "labels": [
             "documentation",
             "module:tests",
-            "module:ops"
+            "module:ops",
+            "module:quantization",
+            "merge-conflicts"
           ],
           "state": "open",
           "draft": false,
-          "createdAt": "2026-11-12T07:46:39Z",
-          "updatedAt": "2026-11-17T16:00:50Z",
+          "createdAt": "2026-11-18T07:50:11Z",
+          "updatedAt": "2026-11-18T10:13:58Z",
           "closedAt": null,
           "mergedAt": null,
           "comments": 0,
-          "excerpt": "Enable prefill context parallelism (PCP) for Qwen3.8-Flash-Next on Model Runner V2. Reuse the KDA projection sharding over TP × PCP for Gated DeltaNet and process each rank's heads in global causal token order. Share pcp gather tokens and p",
+          "excerpt": "Does this PR introduce any user-facing change? --- Checklist Testing - [ ] Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "opened",
+          "score": 6,
+          "titleZh": "feat: 新增 native INT8 C8 支持 for Qwen3.8 Flash Next",
+          "excerptZh": "【】--- 清单 Testing - Boundary / edge-case coverage : I reviewed whether this change involves boundary conditions (e.g. empty input, single/zero element, min/max values, off-by-one, seque"
+        },
+        {
+          "kind": "pr",
+          "number": 21697,
+          "title": "[BugFix][CI] Add Qwen3.8-Flash-Next TP2 IPC coverage and preserve PLE sleep state",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21697",
+          "author": "Windfeng8",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T08:08:52Z",
+          "updatedAt": "2026-11-18T10:29:17Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add four-layer Qwen3.8-Flash-Next TP2 unpacked IPC coverage and preserve PLE context offsets across level-2 sleep. Qwen-specific configuration and PLE initialization live in ipc/test qwen38 ipc.py , following 19828. The test-local source su",
           "modelIds": [
             "qwen3.8"
           ],
           "action": "updated",
           "score": 3,
-          "titleZh": "【功能】【模型】支持 预填充 context parallelism for Qwen3.8-Flash-Next",
-          "excerptZh": "启用 预填充 context parallelism (PCP) for Qwen3.8-Flash-Next on Model Runner V2. Reuse the KDA projection sharding over TP × PCP for Gated DeltaNet and process each rank's heads in global causal token order. Share pcp gather tokens and p"
+          "titleZh": "【修复】【持续集成】新增 Qwen3.8-Flash-Next TP2 IPC coverage and preserve PLE sleep state",
+          "excerptZh": "新增 four-layer Qwen3.8-Flash-Next TP2 unpacked IPC coverage and preserve PLE context offsets across level-2 sleep. Qwen-specific 配置 and PLE initialization live in ipc/test qwen38 ipc.py , following 19828. The test-local source su"
+        },
+        {
+          "kind": "pr",
+          "number": 21638,
+          "title": "[Feature][Qwen] Reuse shared Engram backends for PLE tables",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21638",
+          "author": "foraxe",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-11T20:59:02Z",
+          "updatedAt": "2026-11-18T10:26:26Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Allow independent Qwen4Exp / Qwen3.8-Flash-Next services to share one immutable BF16 PLE table using the shared Engram backends already on main. This refresh builds on 19528, 20612 and the merged Qwen host-offload entry in 21751. Static mul",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【Qwen】Reuse 共享 Engram backends for PLE tables",
+          "excerptZh": "Allow independent Qwen4Exp / Qwen3.8-Flash-Next services to share one immutable BF16 PLE table using the 共享 Engram backends already on main. This refresh builds on 19528, 20612 and the merged Qwen host-卸载 entry in 21751. Static mul"
+        },
+        {
+          "kind": "pr",
+          "number": 22077,
+          "title": "[Feature] Support ModelSlim INT8 and MXFP8 PLE embeddings for Qwen3.8",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22077",
+          "author": "dlsccc",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-16T13:28:15Z",
+          "updatedAt": "2026-11-18T10:14:23Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable ModelSlim group-32 INT8 and MXFP8 PLE embeddings for Qwen3.8-Flash-Next. Quantized PLE tables remain compact on the NPU or in registered host memory; lookup dequantizes only requested rows to BF16 instead of expanding the full table.",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】支持 ModelSlim INT8 and MXFP8 PLE embeddings for Qwen3.8",
+          "excerptZh": "启用 ModelSlim group-32 INT8 and MXFP8 PLE embeddings for Qwen3.8-Flash-Next. Quantized PLE tables remain compact on the NPU or in registered host 显存; lookup dequantizes only requested rows to BF16 instead of expanding the full table."
+        },
+        {
+          "kind": "pr",
+          "number": 21844,
+          "title": "[Test] Add A2 KV-pool protection cases for Qwen3.8-27B W8A8",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21844",
+          "author": "xiapeih628-bit",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T09:51:34Z",
+          "updatedAt": "2026-11-18T10:21:07Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds four single-node kv both scenarios guarding the two-card A2 pooling matrix (mooncake/memcache backends x bulk/layerwise transfer, tier-2 DRAM and tier-3 SSD-armed) for the hybrid-GDN Qwen3.8-27B W8A8 model: scenario backend mode tier -",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 A2 KV-pool protection cases for Qwen3.8-27B W8A8",
+          "excerptZh": "Adds four single-node kv both scenarios guarding the two-card A2 池化 matrix (mooncake/memcache backends x bulk/layerwise transfer, tier-2 DRAM and tier-3 SSD-armed) for the hybrid-GDN Qwen3.8-27B W8A8 model: scenario backend mode tier -"
+        }
+      ]
+    },
+    {
+      "id": "gemma4",
+      "name": "Gemma4",
+      "family": "Gemma",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 22275,
+          "title": "[Feature][Attention] Add B1 paged verify for Gemma4 512-dim MTP verify",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22275",
+          "author": "JinGuoju001",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:core",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-18T07:28:25Z",
+          "updatedAt": "2026-11-18T10:17:55Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This is a rebased and adapted continuation of 20125 on current main, where Model Runner V1 has been removed. The Gemma4 target runs its MTP verify step with k+1 queries per request on head dim=512 global-attention layers. On A2/A3, FIA TND ",
+          "modelIds": [
+            "gemma4"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【功能】【注意力】B1 paged verify for Gemma4 512-dim MTP verify",
+          "excerptZh": "This is a rebased and adapted continuation of 20125 on current main, where Model Runner V1 has been 移除. The Gemma4 target runs its MTP verify step with k+1 queries per request on head dim=512 global-注意力 layers. On A2/A3, FIA TND"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4-flash",
+      "name": "DeepSeek V4 Flash",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 18604,
+          "title": "[Feature][MoE] Add exact expert offload for V2 eager and decode ACL graphs",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/18604",
+          "author": "xuanbozzz",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-13T12:19:05Z",
+          "updatedAt": "2026-11-18T10:42:09Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR adds exact MoE expert offload for single-device inference on Ascend 950PR/950DT (A5). It enables large MoE checkpoints, including DeepSeek-V4-Flash-0731 and GLM-5.3-Flash , to run when their full expert weights exceed NPU memory cap",
+          "modelIds": [
+            "ds-v4-flash"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "[功能] [教育部]为V2 eager添加精确的专家卸载并解码ACL图",
+          "excerptZh": "This PR adds exact MoE expert 卸载 for single-device inference on Ascend 950PR/950DT (A5). It enables large MoE 检查点, including DeepSeek-V4-Flash-0731 and GLM-5.3-Flash , to run when their full expert 权重 exceed NPU 显存 cap"
+        }
+      ]
+    },
+    {
+      "id": "glm-5.1",
+      "name": "GLM-5.1",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21772,
+          "title": "[BugFix][MRv2] Preserve NZ expert weights with eager CPU prefetch",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21772",
+          "author": "goodgoodname",
+          "labels": [
+            "module:tests",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T01:50:32Z",
+          "updatedAt": "2026-11-18T10:39:01Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Before this fix, GLM-5.1 W8A8C8 could fail at startup with EZ1001 on A3 when MRv2 ran in eager mode with explicit CPU weight prefetch. Quantization post-processing produced FRACTAL NZ expert weights. The upstream offloader bound those param",
+          "modelIds": [
+            "glm-5.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【MRV2】Preserve NZ expert 权重 with eager CPU prefetch",
+          "excerptZh": "Before this 修复, GLM-5.1 W8A8C8 could fail at startup with EZ1001 on A3 when MRv2 ran in eager 模式 with explicit CPU 权重 prefetch. 量化 post-processing produced FRACTAL NZ expert 权重. The upstream offloader bound those param"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 22165,
+          "title": "[BugFix] Apply NZ mode to DeepSeek V4/V4.1 wo_a weights",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22165",
+          "author": "fuhonghao1222",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-17T08:49:03Z",
+          "updatedAt": "2026-11-18T10:38:54Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4/V4.1 unquantized grouped output projections skip NZ conversion for wo a even when the user selects weight nz mode=2 . This change removes the bypass and finalizes the grouped 3D layout before applying the existing conversion pol",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】Apply NZ mode to DeepSeek V4/V4.1 wo_a 权重",
+          "excerptZh": "DeepSeek V4/V4.1 unquantized grouped output projections skip NZ conversion for wo a even when the user selects 权重 nz mode=2 . This change removes the bypass and finalizes the grouped 3D layout before applying the existing conversion pol"
+        },
+        {
+          "kind": "pr",
+          "number": 21572,
+          "title": "[Refactor][KV Cache] Centralize shared-tuple cache planning",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21572",
+          "author": "do420",
+          "labels": [
+            "module:tests",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-11T08:45:28Z",
+          "updatedAt": "2026-11-18T10:30:16Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "get deepseek v4 cache layout() and the grouping/bucketing logic that feeds it are duplicated between vllm ascend/core/kv cache config builder.py (the pluggable builder on vLLM main) and vllm ascend/patch/platform/patch kv cache utils.py (th",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【重构】【KV 缓存】Centralize 共享-tuple 缓存 planning",
+          "excerptZh": "get deepseek v4 缓存 layout() and the grouping/bucketing logic that feeds it are duplicated between vllm ascend/core/KV 缓存 配置 builder.py (the pluggable builder on vLLM main) and vllm ascend/patch/platform/patch KV 缓存 utils.py (th"
+        },
+        {
+          "kind": "pr",
+          "number": 21572,
+          "title": "[Refactor][KV Cache] Centralize shared-tuple cache planning",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21572",
+          "author": "do420",
+          "labels": [
+            "module:tests",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-11T08:45:28Z",
+          "updatedAt": "2026-11-18T10:30:16Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "get deepseek v4 cache layout() and the grouping/bucketing logic that feeds it are duplicated between vllm ascend/core/kv cache config builder.py (the pluggable builder on vLLM main) and vllm ascend/patch/platform/patch kv cache utils.py (th",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【重构】【KV 缓存】Centralize 共享-tuple 缓存 planning",
+          "excerptZh": "get deepseek v4 缓存 layout() and the grouping/bucketing logic that feeds it are duplicated between vllm ascend/core/KV 缓存 配置 builder.py (the pluggable builder on vLLM main) and vllm ascend/patch/platform/patch KV 缓存 utils.py (th"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-moe",
+      "name": "Qwen3 MoE",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 22304,
+          "title": "[Doc] Complete Qwen3-30B-A3B Ascend recipe guidance",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22304",
+          "author": "HBnothave",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-18T09:26:01Z",
+          "updatedAt": "2026-11-18T10:35:31Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Complete the existing Qwen3-30B-A3B Ascend overlay with checkpoint selection, actual chat-inference verification, and reproducible accuracy/performance guidance from the official tutorial. Distinguish the existing TP4 W8A8 validation from B",
+          "modelIds": [
+            "qwen3-moe"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】Complete Qwen3-30B-A3B Ascend recipe guidance",
+          "excerptZh": "Complete the existing Qwen3-30B-A3B Ascend overlay with 检查点 selection, actual chat-inference verification, and reproducible 精度/性能 guidance from the official tutorial. Distinguish the existing TP4 W8A8 validation from B"
         }
       ]
     }

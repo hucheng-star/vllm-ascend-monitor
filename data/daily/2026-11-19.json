@@ -1,0 +1,380 @@
+{
+  "day": "2026-11-19",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "glm-5",
+      "name": "GLM-5",
+      "family": "GLM",
+      "items": [
+        {
+          "kind": "issue",
+          "number": 22356,
+          "title": "[Bug]: GLM-5.3-Flash PCP embedding pads to static capacity during MRV2 input preparation",
+          "url": "https://github.com/vllm-project/vllm-ascend/issues/22356",
+          "author": "YanpengDing",
+          "labels": [
+            "glm5",
+            "advanced-features",
+            "long-seq",
+            "llm-model"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-18T16:47:08Z",
+          "updatedAt": "2026-11-18T16:54:56Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 1,
+          "excerpt": "",
+          "modelIds": [
+            "glm-5"
+          ],
+          "action": "opened",
+          "score": 8,
+          "titleZh": "【缺陷】: GLM-5.3-Flash PCP embedding pads to static capacity during MRV2 input preparation",
+          "excerptZh": ""
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "name": "平台与通用",
+      "family": "平台与通用",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21588,
+          "title": "[BugFix] Size DSA SAS metadata buffers for SparseFlashMla on main",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21588",
+          "author": "LXX1122",
+          "labels": [
+            "module:tests",
+            "ready-precise"
+          ],
+          "state": "closed",
+          "draft": false,
+          "createdAt": "2026-11-11T09:43:25Z",
+          "updatedAt": "2026-11-18T16:07:41Z",
+          "closedAt": "2026-11-18T16:07:41Z",
+          "mergedAt": "2026-11-18T16:07:41Z",
+          "comments": 0,
+          "excerpt": "Forward-port 20964 from releases/v0.32.0rc to main . SparseFlashMla BF16 and MixedQuant FP8/TurboQuant metadata operators return 2048 int32 entries, but the DSA builder on main still allocates 1024-entry SAS buffers. Ordinary metadata copie",
+          "modelIds": [],
+          "action": "merged",
+          "score": 5,
+          "titleZh": "【修复】Size DSA SAS 元数据 buffers for SparseFlashMla on main",
+          "excerptZh": "Forward-port 20964 from releases/v0.32.0rc to main . SparseFlashMla BF16 and MixedQuant FP8/TurboQuant 元数据 operators return 2048 int32 entries, but the DSA builder on main still allocates 1024-entry SAS buffers. Ordinary 元数据 copie"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 22354,
+          "title": "[BugFix] Warm eager DeepSeek V4.1 attention before DP serving",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22354",
+          "author": "rikakuhi",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-18T16:02:09Z",
+          "updatedAt": "2026-11-18T16:06:21Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "An eager DeepSeek V4.1 DP worker can finish its first real prefill and then compile an uncached CANNBotDSL QLI variant on its first idle step. Peers that have already run that idle path can enter the next expert collective while this rank i",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "opened",
+          "score": 5,
+          "titleZh": "【修复】Warm eager DeepSeek V4.1 注意力 before DP 服务",
+          "excerptZh": "An eager DeepSeek V4.1 DP worker can finish its first real 预填充 and then compile an uncached CANNBotDSL QLI variant on its first idle step. Peers that have already run that idle path can enter the next expert collective while this rank i"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-omni",
+      "name": "Qwen3-Omni",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 22358,
+          "title": "[Doc][Recipe] Add Qwen3-Omni-30B-A3B-Thinking Ascend recipe",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22358",
+          "author": "hykun1989",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-18T17:09:26Z",
+          "updatedAt": "2026-11-18T20:00:45Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary Adds a complete Ascend-only recipe for Qwen/Qwen3-Omni-30B-A3B-Thinking under recipes/models/Qwen/ . The recipe is based on the historical vLLM-Ascend tutorial and was re-validated on the current v0.30.0 stack. It contains three Atl",
+          "modelIds": [
+            "qwen3-omni"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【Recipe】新增 Qwen3-Omni-30B-A3B-Thinking Ascend recipe",
+          "excerptZh": "Summary Adds a complete Ascend-only recipe for Qwen/Qwen3-Omni-30B-A3B-Thinking under recipes/models/Qwen/ . The recipe is based on the historical vLLM-Ascend tutorial and was re-validated on the current v0.30.0 stack. It contains three Atl"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-moe",
+      "name": "Qwen3 MoE",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 22359,
+          "title": "[Doc][Recipe] Add Qwen3-Coder-30B-A3B-Instruct Ascend recipe",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22359",
+          "author": "hykun1989",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-18T17:09:27Z",
+          "updatedAt": "2026-11-18T19:54:54Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary Adds a complete Ascend-only recipe for Qwen/Qwen3-Coder-30B-A3B-Instruct under recipes/models/Qwen/ . The recipe is based on the historical vLLM-Ascend tutorial and was re-validated on the current v0.30.0 stack. It contains three At",
+          "modelIds": [
+            "qwen3-moe"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【Recipe】新增 Qwen3-Coder-30B-A3B-Instruct Ascend recipe",
+          "excerptZh": "Summary Adds a complete Ascend-only recipe for Qwen/Qwen3-Coder-30B-A3B-Instruct under recipes/models/Qwen/ . The recipe is based on the historical vLLM-Ascend tutorial and was re-validated on the current v0.30.0 stack. It contains three At"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21979,
+          "title": "[BugFix][v0.32.0rc] Fall back for Qwen4 QSA norm and RoPE",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21979",
+          "author": "tomleeai",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-16T07:15:56Z",
+          "updatedAt": "2026-11-18T18:48:40Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "On releases/v0.32.0rc , Qwen3.8-Flash-Next can fail warmup with QSA main-attention fused norm+RoPE ABI is not satisfied ; ineligible indexer query/compressed-key inputs also raise. Fall back to RMSNorm plus the existing Ascend RoPE helper f",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【v0.32.0rc】Fall back for Qwen4 QSA norm and RoPE",
+          "excerptZh": "On releases/v0.32.0rc , Qwen3.8-Flash-Next can fail warmup with QSA main-注意力 融合 norm+RoPE ABI is not satisfied ; ineligible 索引器 query/compressed-key inputs also raise. Fall back to RMSNorm plus the existing Ascend RoPE helper f"
+        },
+        {
+          "kind": "pr",
+          "number": 20311,
+          "title": "[Feature][Model] Enable Qwen3.8 Flash Next PP and SP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/20311",
+          "author": "Lethobenthos20",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-30T02:57:09Z",
+          "updatedAt": "2026-11-18T18:22:27Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Summary Adapt the existing Qwen3.8/Qwen4-Exp pipeline-parallel (PP) and sequence-parallel (SP/FlashComm1) work from Lethobenthos20/vllm-ascend 4 onto the current vllm-project/vllm-ascend main , then make the packed QSA/GDN/PLE KV-cache layo",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】启用 Qwen3.8 Flash Next PP and SP",
+          "excerptZh": "Summary Adapt the existing Qwen3.8/Qwen4-Exp pipeline-parallel (PP) and 序列-parallel (SP/FlashComm1) work from Lethobenthos20/vllm-ascend 4 onto the current vllm-project/vllm-ascend main , then make the packed QSA/GDN/PLE KV-缓存 layo"
+        },
+        {
+          "kind": "pr",
+          "number": 21856,
+          "title": "[Ops][Feature] recipes: Add Ascend 910B PD separation support for Qwen3.8-Flash-Next",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21856",
+          "author": "xszbuaa",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T15:20:49Z",
+          "updatedAt": "2026-11-18T18:08:10Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Add new file Qwen3.8-Flash-Next.yaml under vllm-ascend/recipes/overlays/Qwen, add Ascend 910B w4a8 PD separation support for Qwen3.8-Flash-Next Does this PR introduce any user-facing change? No. Recipes metadata only (builder output for Hua",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【算子】【功能】recipes: 新增 Ascend 910B PD separation 支持 for Qwen3.8-Flash-Next",
+          "excerptZh": "新增 new file Qwen3.8-Flash-Next.yaml under vllm-ascend/recipes/overlays/Qwen, 新增 Ascend 910B w4a8 PD separation 支持 for Qwen3.8-Flash-Next No. Recipes 元数据 only (builder output for Hua"
+        },
+        {
+          "kind": "pr",
+          "number": 22086,
+          "title": "[Performance][Qwen4Exp] Fuse QSA preparation paths",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22086",
+          "author": "Zoezxb",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-16T15:28:30Z",
+          "updatedAt": "2026-11-18T16:08:36Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Continue the Qwen3.8-Flash-Next (Qwen4Exp) QSA preparation optimizations from 21957 on this branch. The implementation originates from 20943, 20944 and 20947; original authorship, contributor attribution and DCO sign-offs are retained. Orig",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】【Qwen4Exp】融合 QSA preparation paths",
+          "excerptZh": "Continue the Qwen3.8-Flash-Next (Qwen4Exp) QSA preparation 优化 from 21957 on this branch. The implementation originates from 20943, 20944 and 20947; original authorship, contributor attribution and DCO sign-offs are retained. Orig"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21782,
+          "title": "[Performance] Dispatch small-batch single-group DSA o_proj wo_a to the plain 2D matmul",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21782",
+          "author": "ivyilike",
+          "labels": [
+            "module:tests",
+            "merge-conflicts",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-13T02:51:14Z",
+          "updatedAt": "2026-11-18T17:46:04Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek-V4(-V4.1) DSA o\\ proj low-rank projection wo a is always dispatched to npu transpose batchmatmul on a 3D weight of shape [n local groups, hidden size, o lora rank] . When all o\\ groups land on the current TP rank ( n local groups =",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】Dispatch small-batch single-group DSA o_proj wo_a to the plain 2D matmul",
+          "excerptZh": "【n local groups, hidden size, o lora rank】DeepSeek-V4(-V4.1) DSA o\\ proj low-rank projection wo a is always dispatched to npu transpose batchmatmul on a 3D 权重 of shape . When all o\\ groups land on the current TP rank ( n local groups ="
+        },
+        {
+          "kind": "pr",
+          "number": 21259,
+          "title": "[Performance][Model] Capture DeepSeek V4 decode metadata in full graphs",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21259",
+          "author": "zzt93",
+          "labels": [
+            "module:tests",
+            "merge-conflicts"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-07T14:40:11Z",
+          "updatedAt": "2026-11-18T17:43:55Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Capture DeepSeek V4 target-model SAS/QLI metadata producers in FULL decode graphs, avoiding repeated host executor construction and CPU scalar preparation. Persistent inputs are refreshed before replay; producer outputs retain stable storag",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】【模型】Capture DeepSeek V4 解码 元数据 in full graphs",
+          "excerptZh": "Capture DeepSeek V4 target-model SAS/QLI 元数据 producers in FULL 解码 graphs, avoiding repeated host executor construction and CPU scalar preparation. Persistent inputs are refreshed before replay; producer outputs retain stable storag"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi K3",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21624,
+          "title": "[Feature][Model] Add Kimi fine-grained projection and shared-expert TP",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21624",
+          "author": "Dawn952",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "module:core",
+            "merge-conflicts",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-11T13:17:09Z",
+          "updatedAt": "2026-11-18T16:33:37Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Reduce per-device Kimi-K3.1 projection and shared-expert weight storage by sharding selected weights over independent DP-axis groups. Attention, convolution and recurrent state remain on the original request owner. - Reuse GLM projection in",
+          "modelIds": [
+            "kimi-k3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】Kimi fine-grained projection and 共享-expert TP",
+          "excerptZh": "减少 per-device Kimi-K3.1 projection and 共享-expert 权重 storage by sharding selected 权重 over independent DP-axis groups. 注意力, convolution and recurrent state remain on the original request owner. - Reuse GLM projection in"
+        }
+      ]
+    }
+  ]
+}
