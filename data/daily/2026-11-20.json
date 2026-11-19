@@ -1,0 +1,436 @@
+{
+  "day": "2026-11-20",
+  "timezone": "Asia/Shanghai",
+  "groups": [
+    {
+      "id": "ds-v4.1",
+      "name": "DeepSeek V4.1",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 19284,
+          "title": "[Feature][Model] Enable DeepSeek V4.1 MRV2 PP with arbitrary layer partitions",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/19284",
+          "author": "LostFox11",
+          "labels": [
+            "module:tests",
+            "module:core",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-10-20T10:22:24Z",
+          "updatedAt": "2026-11-19T22:51:08Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Enable experimental DeepSeek V4.1 pipeline parallelism on Model Runner V2 with arbitrary contiguous, nonempty layer partitions. For example, with 23,17 , the second stage still consumes KV/index data produced by layer 20, as well as shared",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【模型】启用 DeepSeek V4.1 MRV2 PP with arbitrary layer partitions",
+          "excerptZh": "启用 experimental DeepSeek V4.1 pipeline parallelism on Model Runner V2 with arbitrary contiguous, nonempty layer partitions. For example, with 23,17 , the second stage still consumes KV/index data produced by layer 20, as well as 共享"
+        },
+        {
+          "kind": "pr",
+          "number": 22335,
+          "title": "[BugFix][v0.32.0rc][Kernel] Fix A5 SWA indices during bounded replay",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22335",
+          "author": "cocobronie2333-dot",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "ready-precise"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-18T13:20:52Z",
+          "updatedAt": "2026-11-19T17:26:49Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Backports 21952 ( de69e8170e ) to releases/v0.32.0rc . After a DeepSeek V4.1 prefix-cache hit on A5, QSMLA reads the first N explicit sliding-window KV indices. During bounded replay, the release branch reduces N while the first index still",
+          "modelIds": [
+            "ds-v4.1"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】【v0.32.0rc】【Kernel】A5 SWA indices during bounded replay",
+          "excerptZh": "Backports 21952 ( de69e8170e ) to releases/v0.32.0rc . After a DeepSeek V4.1 前缀-缓存 hit on A5, QSMLA reads the first N explicit sliding-window KV indices. During bounded replay, the release branch reduces N while the first index still"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.8",
+      "name": "Qwen3.8",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21627,
+          "title": "[Performance] Integrate union GBSA prefill for Qwen4Exp",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21627",
+          "author": "Dean11879",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-11T13:23:20Z",
+          "updatedAt": "2026-11-19T17:18:47Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Fuse sparse-index preparation for Qwen3.8-Flash-Next GBSA Prefill and call the official GBSA metadata and attention operators. Performance results 128K input / 1-token output Both versions used the same Qwen3.8-Flash-Next W4A8 weights, 8 A3",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【性能】Integrate union GBSA 预填充 for Qwen4Exp",
+          "excerptZh": "融合 稀疏-index preparation for Qwen3.8-Flash-Next GBSA 预填充 and call the official GBSA 元数据 and 注意力 operators. 性能 results 128K input / 1-token output Both versions used the same Qwen3.8-Flash-Next W4A8 权重, 8 A3"
+        },
+        {
+          "kind": "pr",
+          "number": 22201,
+          "title": "[BugFix] Correct Qwen3.8-Flash-Next Mamba state and PLE numerical precision on main",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22201",
+          "author": "sustech-lz",
+          "labels": [
+            "documentation",
+            "module:tests",
+            "module:ops",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-17T12:46:52Z",
+          "updatedAt": "2026-11-19T17:07:55Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Port the Qwen3.8-Flash-Next correctness fixes from to the current main architecture. Commit structure 1. 261f8f30a — Mamba state copies and initialization: persistent request-slot indexing, one dimension-first convolution copy per tile set,",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】Correct Qwen3.8-Flash-Next Mamba state and PLE numerical 精度 on main",
+          "excerptZh": "Port the Qwen3.8-Flash-Next correctness fixes from to the current main architecture. Commit structure 1. 261f8f30a — Mamba state 拷贝 and initialization: persistent request-slot indexing, one dimension-first convolution copy per tile set,"
+        },
+        {
+          "kind": "pr",
+          "number": 22205,
+          "title": "[Test] Add A2 TP8 KV-pool A/B protection cases to the nightly matrix",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22205",
+          "author": "xiapeih628-bit",
+          "labels": [
+            "module:tests",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-17T13:04:02Z",
+          "updatedAt": "2026-11-19T19:47:30Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "The KV-pool protection matrix had two gaps on A2: the Qwen3.8 pair covers the single-card column and the A3 four-card pair covers GLM, but the A2 eight-card column (GLM-5.3-Flash via memcache, DeepSeek-V4.1-Flash via mooncake) had no CI cov",
+          "modelIds": [
+            "qwen3.8"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】新增 A2 TP8 KV-pool A/B protection cases to the 夜间 matrix",
+          "excerptZh": "The KV-pool protection matrix had two gaps on A2: the Qwen3.8 pair covers the single-card column and the A3 four-card pair covers GLM, but the A2 eight-card column (GLM-5.3-Flash via memcache, DeepSeek-V4.1-Flash via mooncake) had no CI cov"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.6",
+      "name": "Qwen3.6",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 21746,
+          "title": "[MRV2][Test] Verify Qwen3.6 accuracy on Model Runner V2 against recorded goldens",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21746",
+          "author": "qq3499",
+          "labels": [
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T14:15:55Z",
+          "updatedAt": "2026-11-19T17:08:46Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds e2e coverage for the Qwen3.6 family on Model Runner V2, with goldens recorded on the last release that still contains Model Runner V1 ( v0.30.0 , image digest sha256:e6c22b94f4ab3634ad20ae4ad28b73b79ef59a1e9eb0372454affd8c186e36a6 ). M",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【MRV2】【测试】Verify Qwen3.6 精度 on Model Runner V2 against recorded goldens",
+          "excerptZh": "Adds e2e coverage for the Qwen3.6 family on Model Runner V2, with goldens recorded on the last release that still contains Model Runner V1 ( v0.30.0 , image digest sha256:e6c22b94f4ab3634ad20ae4ad28b73b79ef59a1e9eb0372454affd8c186e36a6 ). M"
+        },
+        {
+          "kind": "pr",
+          "number": 21745,
+          "title": "[MRV2][BugFix] Qwen3.6 adaptation on Model Runner V2: run the official dense/MoE W8A8 checkpoints",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/21745",
+          "author": "qq3499",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "module:quantization"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-12T14:15:51Z",
+          "updatedAt": "2026-11-19T17:07:58Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Task scope This is the main (code) pull request of the task \"Complete Qwen3.6 adaptation on Model Runner V2 and ensure accuracy/performance parity with Model Runner V1\" . - Sibling PRs: 21746 (parity tests + recorded goldens), 21747 (suppor",
+          "modelIds": [
+            "qwen3.6"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【MRV2】【修复】Qwen3.6 adaptation on Model Runner V2: run the official dense/MoE W8A8 检查点",
+          "excerptZh": "Task scope This is the main (code) pull request of the task \"Complete Qwen3.6 adaptation on Model Runner V2 and ensure 精度/性能 parity with Model Runner V1\" . - Sibling PRs: 21746 (parity tests + recorded goldens), 21747 (suppor"
+        },
+        {
+          "kind": "pr",
+          "number": 22265,
+          "title": "[Doc][Recipe] Add and align Ascend overlays for Qwen3.5-27B / Qwen3.6-27B",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22265",
+          "author": "wisdom1710",
+          "labels": [
+            "recipe",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-18T06:09:17Z",
+          "updatedAt": "2026-11-19T22:58:33Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR adds and aligns the Ascend overlays for Qwen/Qwen3.5-27B and Qwen/Qwen3.6-27B models. It introduces optimized configurations for running these models on Huawei Ascend hardware (Atlas 800 A3 with 910C, Atlas 800 A2 with 910B, and 950",
+          "modelIds": [
+            "qwen3.6",
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【Recipe】新增 and 对齐 Ascend overlays for Qwen3.5-27B / Qwen3.6-27B",
+          "excerptZh": "This PR adds and aligns the Ascend overlays for Qwen/Qwen3.5-27B and Qwen/Qwen3.6-27B models. It introduces optimized configurations for running these models on Huawei Ascend hardware (Atlas 800 A3 with 910C, Atlas 800 A2 with 910B, and 950"
+        }
+      ]
+    },
+    {
+      "id": "qwen3-moe",
+      "name": "Qwen3 MoE",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 22534,
+          "title": "[Doc][v0.32.0rc] Backport #22090: fix broken --random-input flag",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22534",
+          "author": "liuxi620",
+          "labels": [
+            "documentation"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-19T16:41:01Z",
+          "updatedAt": "2026-11-19T16:43:01Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Backport 22090 to releases/v0.32.0rc . The v0.32.0rc Qwen3-30B-A3B tutorial still uses the invalid --random-input flag. vllm bench serve expects --random-input-len , so the documented command fails with an unrecognized-arguments error. This",
+          "modelIds": [
+            "qwen3-moe"
+          ],
+          "action": "opened",
+          "score": 3,
+          "titleZh": "【文档】【v0.32.0rc】Backport #22090: 修复 broken --random-input flag",
+          "excerptZh": "Backport 22090 to releases/v0.32.0rc . The v0.32.0rc Qwen3-30B-A3B tutorial still uses the invalid --random-input flag. vllm bench serve expects --random-input-len , so the documented command fails with an unrecognized-arguments error. This"
+        }
+      ]
+    },
+    {
+      "id": "ds-v4",
+      "name": "DeepSeek V4",
+      "family": "DeepSeek",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 22165,
+          "title": "[BugFix] Apply NZ mode to DeepSeek V4/V4.1 wo_a weights",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22165",
+          "author": "fuhonghao1222",
+          "labels": [
+            "module:tests",
+            "module:ops",
+            "ready-precise",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-17T08:49:03Z",
+          "updatedAt": "2026-11-19T16:12:21Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "DeepSeek V4/V4.1 unquantized grouped output projections skip NZ conversion for wo a even when the user selects weight nz mode=2 . This change removes the bypass and finalizes the grouped 3D layout before applying the existing conversion pol",
+          "modelIds": [
+            "ds-v4"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【修复】Apply NZ mode to DeepSeek V4/V4.1 wo_a 权重",
+          "excerptZh": "DeepSeek V4/V4.1 unquantized grouped output projections skip NZ conversion for wo a even when the user selects 权重 nz mode=2 . This change removes the bypass and finalizes the grouped 3D layout before applying the existing conversion pol"
+        }
+      ]
+    },
+    {
+      "id": "qwen3",
+      "name": "Qwen3",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 22520,
+          "title": "[Feature][Specdecode] Support XPress speculative decoding on Ascend",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22520",
+          "author": "shenyunyang",
+          "labels": [],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-19T14:55:34Z",
+          "updatedAt": "2026-11-19T16:00:50Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds initial XPress speculative decoding support on Ascend for Qwen3XPressModel and DFlashQwen3XPressModel draft checkpoints. - Reuses upstream XPress model loading and draft execution together with Ascend DFlash attention and KV-cache hand",
+          "modelIds": [
+            "qwen3"
+          ],
+          "action": "updated",
+          "score": 3,
+          "titleZh": "【功能】【Specdecode】支持 XPress 投机解码 on Ascend",
+          "excerptZh": "Adds initial XPress 投机解码 支持 on Ascend for Qwen3XPressModel and DFlashQwen3XPressModel draft 检查点. - Reuses upstream XPress model 加载 and draft execution together with Ascend DFlash 注意力 and KV-缓存 hand"
+        },
+        {
+          "kind": "pr",
+          "number": 22484,
+          "title": "[Doc] Add Qwen3 Dense BF16 Ascend recipes",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22484",
+          "author": "HBnothave",
+          "labels": [
+            "recipe"
+          ],
+          "state": "open",
+          "draft": true,
+          "createdAt": "2026-11-19T10:57:23Z",
+          "updatedAt": "2026-11-19T16:27:55Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds single-node BF16 deployment configurations for Qwen3-0.6B, 1.7B, 4B and 8B on Ascend 910B and 910C to the source consumed by recipes.vllm.ai. The 0.6B model has a standalone Ascend recipe. The other models use Huawei-scoped overlays th",
+          "modelIds": [
+            "qwen3"
+          ],
+          "action": "updated",
+          "score": -1,
+          "titleZh": "【文档】新增 Qwen3 Dense BF16 Ascend recipes",
+          "excerptZh": "Adds single-node BF16 deployment configurations for Qwen3-0.6B, 1.7B, 4B and 8B on Ascend 910B and 910C to the source consumed by recipes.vllm.ai. The 0.6B model has a standalone Ascend recipe. The other models use Huawei-scoped overlays th"
+        }
+      ]
+    },
+    {
+      "id": "qwen3.5",
+      "name": "Qwen3.5",
+      "family": "Qwen",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 22265,
+          "title": "[Doc][Recipe] Add and align Ascend overlays for Qwen3.5-27B / Qwen3.6-27B",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22265",
+          "author": "wisdom1710",
+          "labels": [
+            "recipe",
+            "ci-run"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-18T06:09:17Z",
+          "updatedAt": "2026-11-19T22:58:33Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "This PR adds and aligns the Ascend overlays for Qwen/Qwen3.5-27B and Qwen/Qwen3.6-27B models. It introduces optimized configurations for running these models on Huawei Ascend hardware (Atlas 800 A3 with 910C, Atlas 800 A2 with 910B, and 950",
+          "modelIds": [
+            "qwen3.6",
+            "qwen3.5"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【文档】【Recipe】新增 and 对齐 Ascend overlays for Qwen3.5-27B / Qwen3.6-27B",
+          "excerptZh": "This PR adds and aligns the Ascend overlays for Qwen/Qwen3.5-27B and Qwen/Qwen3.6-27B models. It introduces optimized configurations for running these models on Huawei Ascend hardware (Atlas 800 A3 with 910C, Atlas 800 A2 with 910B, and 950"
+        }
+      ]
+    },
+    {
+      "id": "kimi-k2",
+      "name": "Kimi K2",
+      "family": "Kimi",
+      "items": [
+        {
+          "kind": "pr",
+          "number": 22527,
+          "title": "[Test][MRV2] Add Kimi-K2.6 W4A8 MRV1/MRV2 parity config and e2e case",
+          "url": "https://github.com/vllm-project/vllm-ascend/pull/22527",
+          "author": "qq3499",
+          "labels": [
+            "documentation",
+            "module:tests"
+          ],
+          "state": "open",
+          "draft": false,
+          "createdAt": "2026-11-19T15:40:37Z",
+          "updatedAt": "2026-11-19T16:16:46Z",
+          "closedAt": null,
+          "mergedAt": null,
+          "comments": 0,
+          "excerpt": "Adds same-input MRV1/MRV2 parity coverage for Kimi-K2.6-W4A8 on a single Atlas 800T A3 node (16 × 64 GB). The patch is add-only : - tests/e2e/cases/models/configs/Kimi/Kimi-K2.6-w4a8-MRV-A3.yaml — two cases that share every argument and dif",
+          "modelIds": [
+            "kimi-k2"
+          ],
+          "action": "updated",
+          "score": 0,
+          "titleZh": "【测试】【MRV2】新增 Kimi-K2.6 W4A8 MRV1/MRV2 parity 配置 and e2e case",
+          "excerptZh": "Adds same-input MRV1/MRV2 parity coverage for Kimi-K2.6-W4A8 on a single Atlas 800T A3 node (16 × 64 GB). The patch is 新增-only : - tests/e2e/cases/models/configs/Kimi/Kimi-K2.6-w4a8-MRV-A3.yaml — two cases that share every argument and dif"
+        }
+      ]
+    }
+  ]
+}
